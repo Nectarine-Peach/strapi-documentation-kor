@@ -1,55 +1,55 @@
 ---
-title: Developing plugins
-description: Generation introduction about Strapi plugins development
+title: 플러그인 개발
+description: Strapi 플러그인 개발에 대한 일반적인 소개
 displayed_sidebar: cmsSidebar
 pagination_prev: cms/plugins-development/developing-plugins
 pagination_next: cms/plugins-development/create-a-plugin
 tags:
-- admin panel API
-- introduction
-- plugin APIs
-- plugins development
-- server API
+- 관리자 패널 API
+- 소개
+- 플러그인 API
+- 플러그인 개발
+- 서버 API
 ---
 
-# Developing Strapi plugins
+# Strapi 플러그인 개발
 
-Strapi allows the development of plugins that work exactly like the built-in plugins or 3rd-party plugins available from the <ExternalLink to="https://market.strapi.io" text="Marketplace"/>. Once created, your plugin can be:
+Strapi는 내장 플러그인이나 <ExternalLink to="https://market.strapi.io" text="마켓플레이스"/>에서 사용할 수 있는 서드파티 플러그인과 정확히 동일하게 작동하는 플러그인 개발을 허용합니다. 플러그인을 생성한 후에는:
 
-- used as a local plugin, working only with a specific Strapi project,
-- or <ExternalLink to="https://market.strapi.io/submit-plugin" text="submitted to the Marketplace"/> to be shared with the community.
+- 특정 Strapi 프로젝트에서만 작동하는 로컬 플러그인으로 사용하거나,
+- 커뮤니티와 공유하기 위해 <ExternalLink to="https://market.strapi.io/submit-plugin" text="마켓플레이스에 제출"/>할 수 있습니다.
 
-👉 To start developing a Strapi plugin:
+👉 Strapi 플러그인 개발을 시작하려면:
 
-1. [Create a plugin](/cms/plugins-development/create-a-plugin) using the Plugin SDK.
-2. Learn more about the [structure of a plugin](/cms/plugins-development/plugin-structure).
-3. Get an overview of the [plugin APIs](#plugin-apis) to add features to your plugin.
-4. Read some advanced [guides](#guides) based on your use case(s).
+1. Plugin SDK를 사용하여 [플러그인을 생성](/cms/plugins-development/create-a-plugin)합니다.
+2. [플러그인의 구조](/cms/plugins-development/plugin-structure)에 대해 자세히 알아봅니다.
+3. 플러그인에 기능을 추가하기 위한 [플러그인 API](#plugin-apis)의 개요를 확인합니다.
+4. 사용 사례에 따른 고급 [가이드](#guides)를 읽어봅니다.
 
 :::note
-Ensure you release your Strapi 5 plugin as a different major version number to distinguish it from the v4 compatible version.
+v4 호환 버전과 구별하기 위해 Strapi 5 플러그인을 다른 주요 버전 번호로 릴리즈하도록 하세요.
 :::
 
-## Plugin APIs
+## 플러그인 API
 
-Strapi provides the following programmatic APIs for plugins to hook into some of Strapi's features:
+Strapi는 플러그인이 Strapi의 일부 기능에 연결할 수 있도록 다음과 같은 프로그래밍 API를 제공합니다:
 
 <CustomDocCardsWrapper>
-<CustomDocCard emoji="" title="Admin Panel API" description="Use the Admin Panel API to have your plugin interact with the admin panel of Strapi." link="/cms/plugins-development/admin-panel-api" />
-<CustomDocCard emoji="" title="Server API" description="Use the Server API to have your plugin interact with the backend server of Strapi." link="/cms/plugins-development/server-api" />
+<CustomDocCard emoji="" title="관리자 패널 API" description="관리자 패널 API를 사용하여 플러그인이 Strapi의 관리자 패널과 상호작용하도록 합니다." link="/cms/plugins-development/admin-panel-api" />
+<CustomDocCard emoji="" title="서버 API" description="서버 API를 사용하여 플러그인이 Strapi의 백엔드 서버와 상호작용하도록 합니다." link="/cms/plugins-development/server-api" />
 </CustomDocCardsWrapper>
 
-:::strapi Custom fields plugins
-Plugins can also be used to add [custom fields](/cms/features/custom-fields) to Strapi.
+:::strapi 커스텀 필드 플러그인
+플러그인은 Strapi에 [커스텀 필드](/cms/features/custom-fields)를 추가하는 데도 사용할 수 있습니다.
 :::
 
-## Guides
+## 가이드
 
-<CustomDocCard small emoji="💁" title="How to store and access data from a Strapi plugin" description="" link="/cms/plugins-development/guides/store-and-access-data" />
-<CustomDocCard small emoji="💁" title="How to pass data from the backend server to the admin panel with a plugin" description="" link="/cms/plugins-development/guides/pass-data-from-server-to-admin" />
+<CustomDocCard small emoji="💁" title="Strapi 플러그인에서 데이터를 저장하고 접근하는 방법" description="" link="/cms/plugins-development/guides/store-and-access-data" />
+<CustomDocCard small emoji="💁" title="플러그인으로 백엔드 서버에서 관리자 패널로 데이터를 전달하는 방법" description="" link="/cms/plugins-development/guides/pass-data-from-server-to-admin" />
 
 <br />
 
-:::strapi Additional resources
-The <ExternalLink to="https://contributor.strapi.io/" text="contributors documentation"/> can also include additional information useful while developing a Strapi plugin.
+:::strapi 추가 리소스
+<ExternalLink to="https://contributor.strapi.io/" text="기여자 문서"/>에는 Strapi 플러그인 개발 시 유용한 추가 정보가 포함될 수도 있습니다.
 :::

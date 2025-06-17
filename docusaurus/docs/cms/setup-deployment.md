@@ -1,32 +1,32 @@
 ---
-title: Setup and Deployment
+title: 설치 및 배포
 displayed_sidebar: cmsSidebar
-description: Strapi is meant to be installed on your local machine, then configured, and finally deployed to a remote environment. 
+description: Strapi는 로컬에서 설치 후 설정하고, 원격 환경에 배포하는 것을 권장합니다. 
 pagination_prev: cms/intro
 pagination_next: cms/api/content-api
 tags:
-- introduction
-- concepts
-- installation 
-- configuration
-- deployment
+- 소개
+- 개념
+- 설치
+- 설정
+- 배포
 
 ---
 
-# Installation, Configuration, and Deployment
+# 설치, 설정, 배포
 
-Strapi is meant to be installed on your local machine, then configured, and finally deployed to a remote environment. This documentation section describes these topics, and clicking on any of the following cards will lead you to the corresponding section:
+Strapi는 로컬 환경에 설치한 뒤, 설정을 마치고, 원격 환경(서버/클라우드 등)에 배포하는 것을 권장합니다. 이 문서 섹션에서는 각 주제별로 자세히 안내하며, 아래 카드 중 하나를 클릭하면 해당 섹션으로 이동합니다:
 
 <CustomDocCardsWrapper>
 
-<CustomDocCard emoji="1️⃣" title="Installation" description="Install Strapi on your local machine with the command line interface (CLI) or create a Docker image." link="installation" />
+<CustomDocCard emoji="1️⃣" title="설치" description="CLI로 로컬에 Strapi를 설치하거나 Docker 이미지를 생성하세요." link="installation" />
 
-<CustomDocCard emoji="2️⃣" title="Configuration" description="Configure the Strapi server, admin panel, and all the built-in features." link="configurations" />
+<CustomDocCard emoji="2️⃣" title="설정" description="Strapi 서버, 관리자 패널, 내장 기능 전체의 설정 방법 안내." link="configurations" />
 
-<CustomDocCard emoji="3️⃣" title="Deployment" description="Deploy Strapi to Strapi Cloud or other remote environments." link="deployment" />
+<CustomDocCard emoji="3️⃣" title="배포" description="Strapi를 Strapi Cloud 또는 기타 원격 환경에 배포하세요." link="deployment" />
 
 </CustomDocCardsWrapper>
 
 :::tip
-If you're just discovering Strapi, we encourage you to read the [Quick Start Guide](/cms/quick-start) as it not only presents how to install Strapi but also gives you a quick tour of the available features.
+Strapi를 처음 접하신다면, [빠른 시작 가이드](/cms/quick-start)를 먼저 읽어보세요. 설치 방법뿐 아니라 주요 기능을 빠르게 둘러볼 수 있습니다.
 :::

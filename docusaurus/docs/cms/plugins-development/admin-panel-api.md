@@ -1,95 +1,95 @@
 ---
-title: Admin Panel API
+title: 관리자 패널 API
 pagination_prev: cms/plugins-development/plugin-structure
 pagination_next: cms/plugins-development/content-manager-apis
 toc_max_heading_level: 4
 tags:
-- admin panel
-- plugin APIs
-- asynchronous function
-- bootstrap function
-- hooks API
+- 관리자 패널
+- 플러그인 API
+- 비동기 함수
+- bootstrap 함수
+- 훅 API
 - Injection Zones API
-- lifecycle function
-- menu
-- settings
-- plugins
-- plugins development
-- register function
+- 라이프사이클 함수
+- 메뉴
+- 설정
+- 플러그인
+- 플러그인 개발
+- register 함수
 - reducers API
 - redux
 ---
 
-# Admin Panel API for plugins
+# 플러그인용 관리자 패널 API
 
-A Strapi plugin can interact with both the [back end](/cms/plugins-development/server-api) and the front end of a Strapi application. The Admin Panel API is about the front end part, i.e. it allows a plugin to customize Strapi's [admin panel](/cms/intro).
+Strapi 플러그인은 Strapi 애플리케이션의 [백엔드](/cms/plugins-development/server-api)와 프론트엔드 모두와 상호작용할 수 있습니다. 관리자 패널 API는 프론트엔드 부분에 관한 것으로, 플러그인이 Strapi의 [관리자 패널](/cms/intro)을 커스터마이징할 수 있게 해줍니다.
 
-The admin panel is a <ExternalLink to="https://reactjs.org/" text="React"/> application that can embed other React applications. These other React applications are the admin parts of each Strapi plugin.
+관리자 패널은 다른 React 애플리케이션들을 포함할 수 있는 <ExternalLink to="https://reactjs.org/" text="React"/> 애플리케이션입니다. 이러한 다른 React 애플리케이션들은 각 Strapi 플러그인의 관리자 부분입니다.
 
 :::prerequisites
-You have [created a Strapi plugin](/cms/plugins-development/create-a-plugin).
+[Strapi 플러그인을 생성](/cms/plugins-development/create-a-plugin)했어야 합니다.
 :::
 
-The Admin Panel API includes:
+관리자 패널 API는 다음을 포함합니다:
 
-- an [entry file](#entry-file) which exports the required interface,
-- [lifecycle functions](#lifecycle-functions) and the `registerTrad()` [async function](#async-function),
-- and several [specific APIs](#available-actions) for your plugin to interact with the admin panel.
+- 필수 인터페이스를 내보내는 [진입 파일](#entry-file)
+- [라이프사이클 함수](#lifecycle-functions)와 `registerTrad()` [비동기 함수](#async-function)
+- 플러그인이 관리자 패널과 상호작용하기 위한 여러 [특수 API](#available-actions)
 
 :::note
-The whole code for the admin panel part of your plugin could live in the `/strapi-admin.js|ts` or `/admin/src/index.js|ts` file. However, it's recommended to split the code into different folders, just like the [structure](/cms/plugins-development/plugin-structure) created by the `strapi generate plugin` CLI generator command.
+플러그인의 관리자 패널 부분에 대한 모든 코드는 `/strapi-admin.js|ts` 또는 `/admin/src/index.js|ts` 파일에 있을 수 있습니다. 하지만 `strapi generate plugin` CLI 생성기 명령어로 만든 [구조](/cms/plugins-development/plugin-structure)처럼 코드를 다른 폴더로 분할하는 것이 권장됩니다.
 :::
 
-## Entry file
+## 진입 파일
 
-The entry file for the Admin Panel API is `[plugin-name]/admin/src/index.js`. This file exports the required interface, with the following functions available:
+관리자 패널 API의 진입 파일은 `[plugin-name]/admin/src/index.js`입니다. 이 파일은 필수 인터페이스를 내보내며, 다음 함수들을 사용할 수 있습니다:
 
-| Function type      | Available functions                                                     |
+| 함수 타입 | 사용 가능한 함수 |
 | ------------------- | ------------------------------------------------------------------------ |
-| Lifecycle functions | <ul><li> [register](#register)</li><li>[bootstrap](#bootstrap)</li></ul> |
-| Async function      | [registerTrads](#registertrads)                                          |
+| 라이프사이클 함수 | <ul><li> [register](#register)</li><li>[bootstrap](#bootstrap)</li></ul> |
+| 비동기 함수 | [registerTrads](#registertrads) |
 
-## Lifecycle functions
+## 라이프사이클 함수
 
 <br/>
 
 ### register()
 
-**Type:** `Function`
+**타입:** `Function`
 
-This function is called to load the plugin, even before the app is actually [bootstrapped](#bootstrap). It takes the running Strapi application as an argument (`app`).
+이 함수는 앱이 실제로 [부트스트랩](#bootstrap)되기 전에도 플러그인을 로드하기 위해 호출됩니다. 실행 중인 Strapi 애플리케이션을 인수(`app`)로 받습니다.
 
-Within the register function, a plugin can:
+register 함수 내에서 플러그인은 다음을 할 수 있습니다:
 
-* [register itself](#registerplugin) so it's available to the admin panel
-* add a new link to the main navigation (see [Menu API](#menu-api))
-* [create a new settings section](#createsettingsection)
-* define [injection zones](#injection-zones-api)
-* [add reducers](#reducers-api)
+* 관리자 패널에서 사용할 수 있도록 [자신을 등록](#registerplugin)
+* 메인 네비게이션에 새 링크 추가 ([Menu API](#menu-api) 참고)
+* [새 설정 섹션 생성](#createsettingsection)
+* [injection zone](#injection-zones-api) 정의
+* [reducer 추가](#reducers-api)
 
 #### registerPlugin()
 
-**Type:** `Function`
+**타입:** `Function`
 
-Registers the plugin to make it available in the admin panel.
+플러그인을 등록하여 관리자 패널에서 사용할 수 있게 만듭니다.
 
-This function returns an object with the following parameters:
+이 함수는 다음 매개변수를 가진 객체를 반환합니다:
 
-| Parameter        | Type                     | Description                                                                                        |
+| 매개변수 | 타입 | 설명 |
 | ---------------- | ------------------------ | -------------------------------------------------------------------------------------------------- |
-| `id`             | String                   | Plugin id                                                                                          |
-| `name`           | String                   | Plugin name                                                                                        |
-| `injectionZones` | Object                   | Declaration of available [injection zones](#injection-zones-api)                                       |
+| `id` | String | 플러그인 id |
+| `name` | String | 플러그인 이름 |
+| `injectionZones` | Object | 사용 가능한 [injection zone](#injection-zones-api)의 선언 |
 
 :::note
-Some parameters can be imported from the `package.json` file.
+일부 매개변수는 `package.json` 파일에서 가져올 수 있습니다.
 :::
 
-**Example:**
+**예시:**
 
 ```js title="my-plugin/admin/src/index.js"
 
-// Auto-generated component
+// 자동 생성된 컴포넌트
 import PluginIcon from './components/PluginIcon';
 import pluginId from './pluginId'
 
@@ -107,7 +107,7 @@ export default {
 
         return component;
       },
-      permissions: [], // array of permissions (object), allow a user to access a plugin depending on its permissions
+      permissions: [], // 권한 배열(객체), 사용자의 권한에 따라 플러그인 접근을 허용
     });
     app.registerPlugin({
       id: pluginId,
@@ -119,43 +119,43 @@ export default {
 
 ### bootstrap()
 
-**Type**: `Function`
+**타입**: `Function`
 
-Exposes the bootstrap function, executed after all the plugins are [registered](#register).
+모든 플러그인이 [등록](#register)된 후 실행되는 bootstrap 함수를 노출합니다.
 
-Within the bootstrap function, a plugin can, for instance:
+bootstrap 함수 내에서 플러그인은 예를 들어 다음을 할 수 있습니다:
 
-* extend another plugin, using `getPlugin('plugin-name')`,
-* register hooks (see [Hooks API](#hooks-api)),
-* [add links to a settings section](#settings-api),
-* add actions and options to the Content Manager's List view and Edit view (see details on the [Content Manager APIs page](/cms/plugins-development/content-manager-apis)).
+* `getPlugin('plugin-name')`을 사용하여 다른 플러그인 확장
+* 훅 등록 ([Hooks API](#hooks-api) 참고)
+* [설정 섹션에 링크 추가](#settings-api)
+* Content Manager의 List view와 Edit view에 액션과 옵션 추가 ([Content Manager APIs 페이지](/cms/plugins-development/content-manager-apis)에서 자세한 내용 확인)
 
-**Example:**
+**예시:**
 
 ```js
 module.exports = () => {
   return {
     // ...
     bootstrap(app) {
-      // execute some bootstrap code
+      // 일부 bootstrap 코드 실행
       app.getPlugin('content-manager').injectComponent('editView', 'right-links', { name: 'my-compo', Component: () => 'my-compo' })
     },
   };
 };
 ```
 
-## Async function
+## 비동기 함수
 
-While [`register()`](#register) and [`bootstrap()`](#bootstrap) are lifecycle functions, `registerTrads()` is an async function.
+[`register()`](#register)와 [`bootstrap()`](#bootstrap)은 라이프사이클 함수인 반면, `registerTrads()`는 비동기 함수입니다.
 
 ### registerTrads()
 
-**Type**: `Function`
+**타입**: `Function`
 
-To reduce the build size, the admin panel is only shipped with 2 locales by default (`en` and `fr`). The `registerTrads()` function is used to register a plugin's translations files and to create separate chunks for the application translations. It does not need to be modified.
+빌드 크기를 줄이기 위해, 관리자 패널은 기본적으로 2개의 로케일(`en`과 `fr`)로만 제공됩니다. `registerTrads()` 함수는 플러그인의 번역 파일을 등록하고 애플리케이션 번역을 위한 별도 청크를 생성하는 데 사용됩니다. 수정할 필요가 없습니다.
 
 <details>
-<summary>Example: Register a plugin's translation files</summary>
+<summary>예시: 플러그인의 번역 파일 등록</summary>
 
 ```jsx
 export default {
@@ -187,59 +187,40 @@ export default {
 
 </details>
 
-## Available actions
+## 사용 가능한 액션
 
-The Admin Panel API allows a plugin to take advantage of several small APIs to perform actions. Use this table as a reference:
+관리자 패널 API는 플러그인이 여러 소규모 API를 활용하여 액션을 수행할 수 있게 해줍니다. 다음 표를 참고로 사용하세요:
 
-| Action                                   | API to use                              | Function to use                                   | Related lifecycle function  |
+| 액션 | 사용할 API | 사용할 함수 | 관련 라이프사이클 함수 |
 | ---------------------------------------- | --------------------------------------- | ------------------------------------------------- | --------------------------- |
-| Add a new link to the main navigation    | [Menu API](#menu-api)                   | [`addMenuLink()`](#menu-api)                      | [`register()`](#register)   |
-| Create a new settings section            | [Settings API](#settings-api)           | [`createSettingSection()`](#createsettingsection) | [`register()`](#register)   |
-| Declare an injection zone                | [Injection Zones API](#injection-zones-api) | [`registerPlugin()`](#registerplugin)             | [`register()`](#register)   |
-| Add a reducer                            | [Reducers API](#reducers-api)                                       | [`addReducers()`](#reducers-api)                      | [`register()`](#register)   |
-| Create a hook                          | [Hooks API](#hooks-api)                 | [`createHook()`](#hooks-api)                    | [`register()`](#register)   |
-| Add a single link to a settings section  | [Settings API](#settings-api)           | [`addSettingsLink()`](#addsettingslink)             | [`bootstrap()`](#bootstrap) |
-| Add multiple links to a settings section | [Settings API](#settings-api)           | [`addSettingsLinks()`](#addsettingslinks)           | [`bootstrap()`](#bootstrap) |
-| Inject a Component in an injection zone  | [Injection Zones API](#injection-zones-api) | [`injectComponent()`](#injection-zones-api)           | [`bootstrap()`](#register)  |
-| Add options and actions to the Content Manager's Edit view and List view | [Content Manager APIs](/cms/plugins-development/content-manager-apis) | <ul><li>`addEditViewSidePanel()`</li><li>`addDocumentAction`</li><li>`addDocumentHeaderAction`</li><li>`addBulkAction`</li></ul> | [`bootstrap()`](#bootstrap) |
-| Register a hook                          | [Hooks API](#hooks-api)                 | [`registerHook()`](#hooks-api)                    | [`bootstrap()`](#bootstrap)   |
-
-:::tip Replacing the WYSIWYG
-The WYSIWYG editor can be replaced by taking advantage of [custom fields](/cms/features/custom-fields), for instance using the <ExternalLink to="https://market.strapi.io/plugins/@ckeditor-strapi-plugin-ckeditor" text="CKEditor custom field plugin"/>.
-:::
-
-:::info
-The admin panel supports dotenv variables.
-
-All variables defined in a `.env` file and prefixed by `STRAPI_ADMIN_` are available while customizing the admin panel through `process.env`.
-:::
+| 메인 네비게이션에 새 링크 추가 | [Menu API](#menu-api) | [`addMenuLink()`](#menu-api) | [`register()`](#register) |
+| 새 설정 섹션 생성 | [Settings API](#settings-api) | [`createSettingSection()`](#createsettingsection) | [`register()`](#register) |
+| injection zone 선언 | [Injection Zones API](#injection-zones-api) | [`registerPlugin()`](#registerplugin) | [`register()`](#register) |
+| reducer 추가 | [Reducers API](#reducers-api) | [`addReducers()`](#reducers-api) | [`register()`](#register) |
+| 훅 생성 | [Hooks API](#hooks-api) | [`createHook()`](#hooks-api) | [`register()`](#register) |
+| [설정 섹션에 링크 추가](#settings-api) | [Settings API](#settings-api) | [`addSettingsLink()`](#settings-api) | [`bootstrap()`](#bootstrap) |
+| Injection zone에 컴포넌트 주입 | [Injection Zones API](#injection-zones-api) | [`injectComponent()`](#injection-zones-api) | [`bootstrap()`](#bootstrap) |
+| 훅 등록 | [Hooks API](#hooks-api) | [`registerHook()`](#hooks-api) | [`bootstrap()`](#bootstrap) |
 
 ### Menu API
 
-The Menu API allows a plugin to add a new link to the main navigation through the `addMenuLink()` function with the following parameters:
+메뉴 API는 플러그인이 관리자 패널의 메인 네비게이션에 링크를 추가할 수 있게 해줍니다.
 
-| Parameter     | Type             | Description                                                                                                                                                                                                              |
-| ------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `to`          | String           | Path the link should point to                                                                                                                                                                                            |
-| `icon`        | React Component       | Icon to display in the main navigation                                                                                                                                                                                   |
-| `intlLabel`   | Object           | Label for the link, following the <ExternalLink to="https://formatjs.io/docs/react-intl" text="React Int'l"/> convention, with:<ul><li>`id`: id used to insert the localized label</li><li>`defaultMessage`: default label for the link</li></ul> |
-| `Component`   | Async function   | Returns a dynamic import of the plugin entry point                                                                                                                                                                      |
-| `permissions` | Array of Objects |  Permissions declared in the `permissions.js` file of the plugin                                                                                                                                                                                                                         |
-| `position`    | Integer          | Position in the menu      |
-| `licenseOnly` | Boolean | If set to `true`, adds a lightning ⚡️ icon next to the icon or menu entry to indicate that the feature or plugin requires a paid license.<br/>(Defaults to `false`) |
+**함수:** `app.addMenuLink(link)`  
+**타입:** `Function`  
+**매개변수:** 링크 객체에는 다음 매개변수가 있습니다:
 
-:::note
-`intlLabel.id` are ids used in translation files (`[plugin-name]/admin/src/translations/[language].json`)
-:::
+| 매개변수 | 타입 | 설명 |
+| --------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
+| `to` | String | 링크가 가리킬 경로 |
+| `icon` | React 컴포넌트 | 링크를 나타내는 아이콘 |
+| `intlLabel` | Object | 링크의 라벨을 국제화하는 데 사용되는 객체 |
+| `Component` | React 컴포넌트 | 플러그인 인터페이스 |
+| `permissions` | Array | 사용자의 권한에 따라 플러그인 접근을 허용하는 권한 배열 |
 
-**Example:**
+**예시:**
 
-<Tabs groupId="js-ts">
-<TabItem value="js" label="JavaScript">
-
-```jsx title="my-plugin/admin/src/index.js"
-import PluginIcon from './components/PluginIcon';
-
+```js
 export default {
   register(app) {
     app.addMenuLink({
@@ -249,110 +230,49 @@ export default {
         id: 'my-plugin.plugin.name',
         defaultMessage: 'My plugin',
       },
-      Component: () => 'My plugin',
-      permissions: [], // permissions to apply to the link
-      position: 3, // position in the menu
-      licenseOnly: true, // mark the feature as a paid one not available in your license
+      Component: () => 'Hello World!',
+      permissions: [
+        // 설정된 권한 배열
+      ],
     });
-    app.registerPlugin({ ... });
   },
-  bootstrap() {},
 };
 ```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript">
-
-```ts title="my-plugin/admin/src/index.ts"
-import PluginIcon from './components/PluginIcon';
-import type { StrapiApp } from '@strapi/admin/strapi-admin';
-export default {
-  register(app: StrapiApp) {
-    app.addMenuLink({
-      to: '/plugins/my-plugin',
-      icon: PluginIcon,
-      intlLabel: {
-        id: 'my-plugin.plugin.name',
-        defaultMessage: 'My plugin',
-      },
-      Component: () => 'My plugin',
-      permissions: [], // permissions to apply to the link
-      position: 3, // position in the menu
-      licenseOnly: true, // mark the feature as a paid one not available in your license
-    });
-    app.registerPlugin({ ... });
-  },
-  bootstrap() {},
-};
-```
-
-</TabItem>
-</Tabs>
 
 ### Settings API
 
-The Settings API allows:
+Settings API는 플러그인이 설정 페이지와 상호작용할 수 있게 해줍니다.
 
-* [creating a new setting section](#createsettingsection)
-* adding [a single link](#addsettingslink) or [multiple links at once](#addsettingslinks) to existing settings sections
-
-:::note
-Adding a new section happens in the [register](#register) lifecycle while adding links happens during the [bootstrap](#bootstrap) lifecycle.
-:::
-
-All functions accept links as objects with the following parameters:
-
-| Parameter     | Type             | Description                                                                                                                                                                                                              |
-| ------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `id`          | String           | React id                                                                                                                                                                                                                 |
-| `to`          | String           | Path the link should point to                                                                                                                                                                                            |
-| `intlLabel`   | Object           | Label for the link, following the <ExternalLink to="https://formatjs.io/docs/react-intl" text="React Int'l"/> convention, with:<ul><li>`id`: id used to insert the localized label</li><li>`defaultMessage`: default label for the link</li></ul> |
-| `Component`   | Async function   | Returns a dynamic import of the plugin entry point                                                                                                                                                                       |
-| `permissions` | Array of Objects | Permissions declared in the `permissions.js` file of the plugin                                                                                                                                                          |
-| `licenseOnly` | Boolean | If set to `true`, adds a lightning ⚡️ icon next to the icon or menu entry to indicate that the feature or plugin requires a paid license.<br/>(Defaults to `false`) |
+**관련 함수:** `app.createSettingSection()` 및 `app.addSettingsLink()`
 
 #### createSettingSection()
 
-**Type**: `Function`
+새 설정 섹션을 생성합니다.
 
-Create a new settings section.
+**함수:** `app.createSettingSection(section, links)`  
+**타입:** `Function`
 
-The function takes 2 arguments:
+첫 번째 인수인 `section`은 다음 매개변수를 가진 객체입니다:
 
-| Argument        | Type             | Description                                                                                                                                                                                                                                                                                                                   |
-| --------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| first argument  | Object           | Section label:<ul><li>`id` (String): section id</li><li>`intlLabel` (Object): localized label for the section, following the <ExternalLink to="https://formatjs.io/docs/react-intl" text="React Int'l"/> convention, with:<ul><li>`id`: id used to insert the localized label</li><li>`defaultMessage`: default label for the section</li></ul></li></ul> |
-| second argument | Array of Objects | Links included in the section                                                                                                                                                                                                                                                                                                 |
+| 매개변수 | 타입 | 설명 |
+| --------------- | -------- | ---------------------------------------------------------------------------- |
+| `id` | String | 섹션 식별자 |
+| `intlLabel` | Object | 섹션의 라벨을 국제화하는 데 사용되는 객체 |
 
-:::note
-`intlLabel.id` are ids used in translation files (`[plugin-name]/admin/src/translations/[language].json`)
-:::
+두 번째 인수인 `links`는 [링크 객체](#settings-api)의 배열입니다.
 
-**Example:**
+**예시:**
 
-```jsx title="my-plugin/admin/src/index.js"
-
-const myComponent = async () => {
-  const component = await import(
-    /* webpackChunkName: "users-providers-settings-page" */ './pages/Providers'
-  );
-
-  return component;
-};
-
+```js
 export default {
   register(app) {
     app.createSettingSection(
-      { id: String, intlLabel: { id: String, defaultMessage: String } }, // Section to create
+      {
+        id: 'my-plugin',
+        intlLabel: { id: 'my-plugin.plugin.name', defaultMessage: 'My plugin name' },
+      },
       [
-        // links
-        {
-          intlLabel: { id: String, defaultMessage: String },
-          id: String,
-          to: String,
-          Component: myComponent,
-          permissions: Object[],
-        },
+        // 링크들
       ]
     );
   },
@@ -361,418 +281,201 @@ export default {
 
 #### addSettingsLink()
 
-**Type**: `Function`
+설정 섹션에 링크를 추가합니다.
 
-Add a unique link to an existing settings section.
+**함수:** `app.addSettingsLink(sectionId, link)`  
+**타입:** `Function`
 
-**Example:**
+첫 번째 인수인 `sectionId`는 섹션 식별자입니다.
 
-```jsx title="my-plugin/admin/src/index.js"
+두 번째 인수인 `link`는 다음 매개변수를 가진 객체입니다:
 
-const myComponent = async () => {
-  const component = await import(
-    /* webpackChunkName: "users-providers-settings-page" */ './pages/Providers'
-  );
+| 매개변수 | 타입 | 설명 |
+| --------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| `id` | String | React 컴포넌트 식별자 |
+| `to` | String | 링크가 가리킬 경로 |
+| `intlLabel` | Object | 링크의 라벨을 국제화하는 데 사용되는 객체 |
+| `Component` | React 컴포넌트 | 설정 인터페이스 |
+| `permissions` | Array | 사용자의 권한에 따라 플러그인 접근을 허용하는 권한 배열 |
 
-  return component;
-};
+**예시:**
 
+```js
 export default {
   bootstrap(app) {
-		// Adding a single link
-		app.addSettingsLink(
-		 'global', // id of the section to add the link to
-			{
-				intlLabel: { id: String, defaultMessage: String },
-				id: String,
-				to: String,
-				Component: myComponent,
-				permissions: Object[],
-        licenseOnly: true, // mark the feature as a paid one not available in your license
-			}
-    )
-  }
-}
+    app.addSettingsLink('global', {
+      intlLabel: { id: 'my-plugin.plugin.name', defaultMessage: 'My plugin name' },
+      id: 'my-plugin',
+      to: '/settings/my-plugin',
+      Component: () => 'Hello World!',
+      permissions: [],
+    });
+  },
+};
 ```
 
-#### addSettingsLinks()
+### Reducers API
 
-**Type**: `Function`
+Reducers API는 플러그인이 관리자 패널의 Redux store에 reducer를 추가할 수 있게 해줍니다.
 
-Add multiple links to an existing settings section.
+**함수:** `app.addReducers(reducers)`  
+**타입:** `Function`  
+**매개변수:** reducer들의 객체
 
-**Example:**
+**예시:**
 
-```jsx title="my-plugin/admin/src/index.js"
-
-const myComponent = async () => {
-  const component = await import(
-    /* webpackChunkName: "users-providers-settings-page" */ './pages/Providers'
-  );
-
-  return component;
-};
+```js
+import { exampleReducer } from './reducers'
 
 export default {
-  bootstrap(app) {
-    // Adding several links at once
-    app.addSettingsLinks(
-      'global', // id of the section to add the link in
-        [{
-          intlLabel: { id: String, defaultMessage: String },
-          id: String,
-          to: String,
-          Component: myComponent,
-          permissions: Object[],
-          licenseOnly: true, // mark the feature as a paid one not available in your license
-        }]
-    )
-  }
+  register(app) {
+    app.addReducers({
+      // 키는 store에서 접근할 reducer 이름입니다
+      'my-plugin_exampleReducer': exampleReducer,
+    })
+  },
 }
 ```
 
 ### Injection Zones API
 
-Injection zones refer to areas of a view's layout where a plugin allows another to inject a custom React component (e.g. a UI element like a button).
+Injection Zones API는 플러그인이 Strapi의 관리자 패널에서 컴포넌트를 렌더링할 수 있는 영역을 선언하고 사용할 수 있게 해줍니다.
 
-Plugins can use:
+#### injection zone 선언
 
-* Strapi's [predefined injection zones](#using-predefined-injection-zones) for the Content Manager,
-* or custom injection zones, created by a plugin
+injection zone을 선언하려면, [`registerPlugin()`](#registerplugin) 함수의 `injectionZones` 매개변수를 사용합니다.
 
-:::note
-Injection zones are defined in the [register()](#register) lifecycle but components are injected in the [bootstrap()](#bootstrap) lifecycle.
-:::
-
-#### Using predefined injection zones
-
-Strapi admin panel comes with predefined injection zones so components can be added to the UI of the [Content Manager](/cms/intro):
-
-<!-- TODO: maybe add screenshots once the design system is ready? -->
-
-| View      | Injection zone name & Location                                                                                                                                            |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| List view | `actions`: sits between Filters and the cogs icon
-| Edit view | `right-links`: sits between "Configure the view" and "Edit" buttons                       |
-
-#### Creating a custom injection zone
-
-To create a custom injection zone, declare it as a `<InjectionZone />` React component with an `area` prop that takes a string with the following naming convention: `plugin-name.viewName.injectionZoneName`.
-
-#### Injecting components
-
-A plugin has 2 different ways of injecting a component:
-
-* to inject a component from a plugin into another plugin's injection zones, use the `injectComponent()` function
-* to specifically inject a component into one of the Content Manager's [predefined injection zones](#using-predefined-injection-zones), use the `getPlugin('content-manager').injectComponent()` function instead
-
-Both the `injectComponent()` and `getPlugin('content-manager').injectComponent()` methods accept the following arguments:
-
-| Argument        | Type   | Description                                                                                                                                                                   |
-| --------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| first argument  | String | The view where the component is injected
-| second argument | String | The zone where the component is injected
-| third argument  | Object | An object with the following keys:<ul><li>`name` (string): the name of the component</li><li>`Component` (function or class): the React component to be injected</li></ul> |
-
-<details>
-<summary>Example: Inject a component in the informations box of the Edit View of the Content Manager:</summary>
-
-```jsx title="my-plugin/admin/src/index.js"
-
-export default {
-  bootstrap(app) {
-    app.getPlugin('content-manager').injectComponent('editView', 'informations', {
-      name: 'my-plugin-my-compo',
-      Component: () => 'my-compo',
-    });
-  }
-}
-```
-
-</details>
-
-<details>
-<summary>Example: Creating a new injection zone and injecting it from a plugin to another one:</summary>
-
-```jsx title="my-plugin/admin/src/injectionZones.js"
-// Use the injection zone in a view
-
-import { InjectionZone } from '@strapi/helper-plugin';
-
-const HomePage = () => {
-  return (
-    <main>
-      <h1>This is the homepage</h1>
-	    <InjectionZone area="my-plugin.homePage.right" />
-    </main>
-  );
-};
-```
-
-```jsx title="my-plugin/admin/src/index.js"
-// Declare this injection zone in the register lifecycle of the plugin
-
-export default {
-  register() {
-    app.registerPlugin({
-      // ...
-      injectionZones: {
-        homePage: {
-          right: []
-        }
-      }
-    });
-  },
-}
-```
-
-```jsx title="my-other-plugin/admin/src/index.js"
-// Inject the component from a plugin in another plugin
-
-export default {
-  register() {
-    // ...
-  },
-  bootstrap(app) {
-    app.getPlugin('my-plugin').injectComponent('homePage', 'right', {
-      name: 'my-other-plugin-component',
-      Component: () => 'This component is injected',
-    });
-  }
-};
-```
-
-</details>
-
-#### Accessing data with the `useCMEditViewDataManager` React hook
-
-Once an injection zone is defined, the component to be injected in the Content Manager can have access to all the data of the Edit View through the `useCMEditViewDataManager` React hook.
-
-<details>
-<summary>Example of a basic component using the 'useCMEditViewDataManager' hook</summary>
+`injectionZones`는 다음 형식을 따르는 객체입니다:
 
 ```js
-import { useCMEditViewDataManager } from '@strapi/helper-plugin';
-
-const MyCompo = () => {
-  const {
-    createActionAllowedFields: [], // Array of fields that the user is allowed to edit
-    formErrors: {}, // Object errors
-    readActionAllowedFields: [], // Array of field that the user is allowed to edit
-    slug: 'api::address.address', // Slug of the content-type
-    updateActionAllowedFields: [],
-    allLayoutData: {
-      components: {}, // components layout
-      contentType: {}, // content-type layout
+// 객체 구조:
+injectionZones: {
+  [areaName]: [
+    {
+      name: 'injection-zone-name',
+      Component: () => 'This will be rendered',
     },
-    initialData: {},
-    isCreatingEntry: true,
-    isSingleType: true,
-    status: 'resolved',
-    layout: {}, // Current content-type layout
-    hasDraftAndPublish: true,
-    modifiedData: {},
-    onPublish: () => {},
-    onUnpublish: () => {},
-    addComponentToDynamicZone: () => {},
-    addNonRepeatableComponentToField: () => {},
-    addRelation: () => {},
-    addRepeatableComponentToField: () => {},
-    moveComponentDown: () => {},
-    moveComponentField: () => {},
-    moveComponentUp: () => {},
-    moveRelation: () => {},
-    onChange: () => {},
-    onRemoveRelation: () => {},
-    removeComponentFromDynamicZone: () => {},
-    removeComponentFromField: () => {},
-    removeRepeatableField: () => {},
-  } = useCMEditViewDataManager()
-
-  return null
-}
+  ],
+},
 ```
 
-</details>
+여기서:
 
-### Reducers API
+- `[areaName]`은 영역의 이름입니다
+- 각 영역은 injection zone들의 배열을 포함합니다
+- 각 injection zone은 고유한 `name`과 렌더링할 `Component`를 가져야 합니다
 
-Reducers are <ExternalLink to="https://redux.js.org/" text="Redux"/> reducers that can be used to share state between components. Reducers can be useful when:
+**예시:**
 
-* Large amounts of application state are needed in many places in the application.
-* The application state is updated frequently.
-* The logic to update that state may be complex.
-
-Reducers can be added to a plugin interface with the `addReducers()` function during the [`register`](#register) lifecycle.
-
-A reducer is declared as an object with this syntax:
-
-**Example:**
-
-```js title="my-plugin/admin/src/index.js"
-import { exampleReducer } from './reducers'
-
-const reducers = {
-  // Reducer Syntax
-  [`${pluginId}_exampleReducer`]: exampleReducer
-}
+```js
+import PluginIcon from './components/PluginIcon';
 
 export default {
   register(app) {
-    app.addReducers(reducers)
+    app.registerPlugin({
+      name: 'my-plugin',
+      id: 'my-plugin',
+      injectionZones: {
+        contentManager: [
+          {
+            name: 'my-compo',
+            Component: () => ({
+              name: 'my-compo',
+              Component: () => 'This component will be injected',
+            }),
+          },
+        ],
+      },
+    });
   },
-  bootstrap() {},
 };
+```
 
+#### injection zone에 컴포넌트 주입
 
+컴포넌트를 injection zone에 주입하려면, `app.getPlugin().injectComponent()` 함수를 사용합니다.
+
+**함수:** `app.getPlugin().injectComponent(areaName, injectionZoneName, component)`  
+**타입:** `Function`
+
+| 매개변수 | 타입 | 설명 |
+| --------------- | -------- | -------------------------------------------------------------------------------------- |
+| `areaName` | String | 영역의 이름 |
+| `injectionZoneName` | String | injection zone의 이름 |
+| `component` | Object | 주입할 컴포넌트와 해당 이름을 포함하는 객체 |
+
+**예시:**
+
+```js
+export default {
+  bootstrap(app) {
+    app.getPlugin('content-manager').injectComponent('editView', 'right-links', {
+      name: 'my-compo',
+      Component: () => 'my-compo',
+    });
+  },
+};
 ```
 
 ### Hooks API
 
-The Hooks API allows a plugin to create and register hooks, i.e. places in the application where plugins can add personalized behavior.
+Hooks API는 플러그인이 관리자 패널에서 훅을 생성하고 등록할 수 있게 해줍니다.
 
-Hooks should be registered during the [bootstrap](#bootstrap) lifecycle of a plugin.
+#### 훅 생성
 
-Hooks can then be run in series, in waterfall or in parallel:
+**함수:** `app.createHook(name)`  
+**타입:** `Function`  
+**매개변수:** 훅의 이름
 
-* `runHookSeries` returns an array corresponding to the result of each function executed, ordered
-* `runHookParallel` returns an array corresponding to the result of the promise resolved by the function executed, ordered
-* `runHookWaterfall` returns a single value corresponding to all the transformations applied by the different functions starting with the initial value `args`.
+**예시:**
 
-<details>
-<summary>Example: Create a hook in a plugin and use it in another plugin</summary>
-
-```jsx title="my-plugin/admin/src/index.js"
-// Create a hook in a plugin
+```js
 export default {
   register(app) {
-    app.createHook('My-PLUGIN/MY_HOOK');
-  }
-}
-
+    app.createHook('My_PLUGIN/EXAMPLE_HOOK');
+  },
+};
 ```
 
-```jsx title="my-other-plugin/admin/src/index.js"
-// Use the hook in another plugin
+#### 훅 등록
+
+**함수:** `app.registerHook(name, fn)`  
+**타입:** `Function`  
+**매개변수:**
+
+| 매개변수 | 타입 | 설명 |
+| --------- | -------- | ---------------------------- |
+| `name` | String | 훅의 이름 |
+| `fn` | Function | 실행할 함수 |
+
+**예시:**
+
+```js
 export default {
   bootstrap(app) {
-    app.registerHook('My-PLUGIN/MY_HOOK', (...args) => {
-      console.log(args)
-
-      // important: return the mutated data
-      return args
+    app.registerHook('My_PLUGIN/EXAMPLE_HOOK', (...args) => {
+      // 뭔가 작업 수행
     });
-
-    app.registerPlugin({...})
-  }
-}
+  },
+};
 ```
 
-</details>
+#### 훅 실행
 
-#### Predefined hooks
+훅을 실행하려면, `app.runHook()`을 사용합니다.
 
-Strapi includes a predefined `Admin/CM/pages/ListView/inject-column-in-table` hook that can be used to add or mutate a column of the List View of the [Content Manager](/cms/intro):
+**함수:** `runHook(name, ...args)`  
+**타입:** `Function`  
+**매개변수:**
 
-```jsx
-runHookWaterfall(INJECT_COLUMN_IN_TABLE, {
-	displayedHeaders: ListFieldLayout[],
-	layout: ListFieldLayout,
-});
+| 매개변수 | 타입 | 설명 |
+| --------- | -------- | --------------------------------------------- |
+| `name` | String | 훅의 이름 |
+| `...args` | Any | 훅 함수로 전달할 인수들 |
+
+**예시:**
+
+```js
+// 훅 실행
+app.runHook('My_PLUGIN/EXAMPLE_HOOK', 'someArgument', 'anotherArgument');
 ```
-
-```tsx
-interface ListFieldLayout {
-  /**
-   * The attribute data from the content-type's schema for the field
-   */
-  attribute: Attribute.Any | { type: 'custom' };
-  /**
-   * Typically used by plugins to render a custom cell
-   */
-  cellFormatter?: (
-    data: Document,
-    header: Omit<ListFieldLayout, 'cellFormatter'>,
-    { collectionType, model }: { collectionType: string; model: string }
-  ) => React.ReactNode;
-  label: string | MessageDescriptor;
-  /**
-   * the name of the attribute we use to display the actual name e.g. relations
-   * are just ids, so we use the mainField to display something meaninginful by
-   * looking at the target's schema
-   */
-  mainField?: string;
-  name: string;
-  searchable?: boolean;
-  sortable?: boolean;
-}
-
-interface ListLayout {
-  layout: ListFieldLayout[];
-  components?: never;
-  metadatas: {
-    [K in keyof Contracts.ContentTypes.Metadatas]: Contracts.ContentTypes.Metadatas[K]['list'];
-  };
-  options: LayoutOptions;
-  settings: LayoutSettings;
-}
-
-type LayoutOptions = Schema['options'] & Schema['pluginOptions'] & object;
-
-interface LayoutSettings extends Contracts.ContentTypes.Settings {
-  displayName?: string;
-  icon?: never;
-}
-```
-
-Strapi also includes a `Admin/CM/pages/EditView/mutate-edit-view-layout` hook that can be used to mutate the Edit View  of the [Content Manager](/cms/intro):
-
-```tsx
-interface EditLayout {
-  layout: Array<Array<EditFieldLayout[]>>;
-  components: {
-    [uid: string]: {
-      layout: Array<EditFieldLayout[]>;
-      settings: Contracts.Components.ComponentConfiguration['settings'] & {
-        displayName?: string;
-        icon?: string;
-      };
-    };
-  };
-  metadatas: {
-    [K in keyof Contracts.ContentTypes.Metadatas]: Contracts.ContentTypes.Metadatas[K]['edit'];
-  };
-  options: LayoutOptions;
-  settings: LayoutSettings;
-}
-
-interface EditFieldSharedProps extends Omit<InputProps, 'hint' | 'type'> {
-  hint?: string;
-  mainField?: string;
-  size: number;
-  unique?: boolean;
-  visible?: boolean;
-}
-
-/**
- * Map over all the types in Attribute Types and use that to create a union of new types where the attribute type
- * is under the property attribute and the type is under the property type.
- */
-type EditFieldLayout = {
-  [K in Attribute.Kind]: EditFieldSharedProps & {
-    attribute: Extract<Attribute.Any, { type: K }>;
-    type: K;
-  };
-}[Attribute.Kind];
-
-type LayoutOptions = Schema['options'] & Schema['pluginOptions'] & object;
-
-interface LayoutSettings extends Contracts.ContentTypes.Settings {
-  displayName?: string;
-  icon?: never;
-}
-```
-
-:::note
-`EditViewLayout` and `ListViewLayout` are parts of the `useDocumentLayout` hook (see <ExternalLink to="https://github.com/strapi/strapi/blob/develop/packages/core/content-manager/admin/src/hooks/useDocumentLayout.ts" text="source code"/>).
-:::

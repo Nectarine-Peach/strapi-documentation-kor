@@ -1,29 +1,29 @@
 ---
-title: Content Manager
-description: Learn to use the Content Manager.
+title: 콘텐츠 매니저
+description: 콘텐츠 매니저 사용법을 알아보세요.
 toc_max_heading_level: 4
 tags:
-- admin panel
-- content manager
-- list view
-- edit view
-- component
-- dynamic zone
-- relational field
+- 관리자 패널
+- 콘텐츠 매니저
+- 리스트 뷰
+- 편집 뷰
+- 컴포넌트
+- 다이나믹 존
+- 관계 필드
 ---
 
 import ScreenshotNumberReference from '/src/components/ScreenshotNumberReference.jsx';
 
-# Content Manager
+# 콘텐츠 매니저
 
-From the <Icon name="feather" /> Content Manager, accessible via the main navigation of the admin panel, users can write and manage their content.
+<Icon name="feather" /> 콘텐츠 매니저는 관리자 패널의 메인 네비게이션에서 접근할 수 있으며, 사용자가 콘텐츠를 작성하고 관리할 수 있도록 합니다.
 
 <IdentityCard>
-  <IdentityCardItem icon="user" title="Role & permission">Minimum "Configure view" permissions in Roles > Plugins - Content Manager.</IdentityCardItem>
-  <IdentityCardItem icon="desktop" title="Environment">Available in both Development & Production environment.</IdentityCardItem>
+  <IdentityCardItem icon="user" title="역할 및 권한">Roles > Plugins - Content Manager에서 최소 "Configure view" 권한 필요</IdentityCardItem>
+  <IdentityCardItem icon="desktop" title="환경">개발 및 프로덕션 환경 모두에서 사용 가능</IdentityCardItem>
 </IdentityCard>
 
-## Overview
+## 개요
 
 <!--
 <ThemedImage
@@ -197,15 +197,15 @@ Relational fields can also be displayed in the list view. There are however some
 
 Note also that relational fields have a couple limitations when it comes to sorting options:
 
-- Sorting cannot be enabled for relational fields which display several fields.
-- Relational fields cannot be set as default sort.
+- 여러 필드를 표시하는 관계형 필드에는 정렬을 활성화할 수 없습니다.
+- 관계형 필드는 기본 정렬로 설정할 수 없습니다.
 :::
 
 </TabItem>
 
 </Tabs>
 
-### Configuring the edit view {#edit-view-settings}
+### 편집 뷰 구성 {#edit-view-settings}
 
 <ThemedImage
   alt="Configuring the edit view of the Content Manager"
@@ -217,56 +217,56 @@ Note also that relational fields have a couple limitations when it comes to sort
 
 <Tabs groupId="EditViewConfig">
 
-<TabItem value="EditViewSettings" label="Settings">
+<TabItem value="EditViewSettings" label="설정">
 
-1. In the edit view of your content-type, click on the <Icon name="dots-three-outline" /> button then <Icon name="list-plus" classes="ph-bold" /> **Configure the view**.
-2. In the Settings area, define your chosen new settings:
+1. 콘텐츠 타입의 편집 뷰에서 <Icon name="dots-three-outline" /> 버튼을 클릭한 다음 <Icon name="list-plus" classes="ph-bold" /> **뷰 구성**을 클릭합니다.
+2. 설정 영역에서 선택한 새 설정을 정의합니다:
 
-| Setting name    | Instructions                                                                          |
+| 설정 이름    | 지침                                                                          |
 | --------------- | ------------------------------------------------------------------------------------- |
-| Entry title     | Choose among the drop-down list the field that should be used as title for the entry. |
+| 항목 제목     | 드롭다운 목록에서 항목의 제목으로 사용할 필드를 선택합니다. |
 
-3. Click on the **Save** button.
+3. **저장** 버튼을 클릭합니다.
 
 </TabItem>
 
-<TabItem value="EditViewDisplay" label="View">
+<TabItem value="EditViewDisplay" label="뷰">
 
-1. In the edit view of your content-type, click on the <Icon name="dots-three-outline" /> button then <Icon name="list-plus" classes="ph-bold" /> **Configure the view**.
-2. In the View area, define what fields (including relational fields) to display in the list view table, in what order and what size:
-   - Click the <Icon name="plus" classes="ph-bold" /> **Insert another field** button to add a new field.
-   - Click the delete button <Icon name="x" /> to remove a field.
-   - Click the reorder button <Icon name="dots-six-vertical" classes="ph-bold" /> and drag and drop it to the place you want it to be displayed among the other fields.
-3. Click the edit button <Icon name="pencil-simple" /> of a field to access its available settings:
+1. 콘텐츠 타입의 편집 뷰에서 <Icon name="dots-three-outline" /> 버튼을 클릭한 다음 <Icon name="list-plus" classes="ph-bold" /> **뷰 구성**을 클릭합니다.
+2. 뷰 영역에서 목록 뷰 테이블에 표시할 필드(관계형 필드 포함), 순서 및 크기를 정의합니다:
+   - <Icon name="plus" classes="ph-bold" /> **다른 필드 삽입** 버튼을 클릭하여 새 필드를 추가합니다.
+   - 삭제 버튼 <Icon name="x" />을 클릭하여 필드를 제거합니다.
+   - 재정렬 버튼 <Icon name="dots-six-vertical" classes="ph-bold" />을 클릭하고 드래그 앤 드롭으로 다른 필드들 사이에서 원하는 위치로 이동합니다.
+3. 필드의 편집 버튼 <Icon name="pencil-simple" />을 클릭하여 사용 가능한 설정에 접근합니다:
 
-| Setting name    | Instructions                                                                              |
+| 설정 이름    | 지침                                                                              |
 | --------------- | ----------------------------------------------------------------------------------------- |
-| Label           | Write the label that should be used for the field.                                        |
-| Description     | Write a description for the field, to help other administrators fill it properly.         |
-| Placeholder     | Write the placeholder that should be displayed by default in the field.                   |
-| Editable field  | Click on **TRUE** or **FALSE** to able or disable the edition of the field by administrators. |
-| Size            | Select the size in which the field should be displayed in the Content Manager. Note that this setting is neither available for JSON and Rich Text fields, nor dynamic zones and components. |
-| Entry title     | *(relational fields only)* Write the entry title that should be used for the relational field. It is recommended to choose well the entry title of relational fields as the more comprehensive it is, the easier it will be for administrators to manage the content of relational fields from the edit view. |
+| 라벨           | 필드에 사용할 라벨을 작성합니다.                                        |
+| 설명     | 다른 관리자가 필드를 올바르게 채울 수 있도록 필드에 대한 설명을 작성합니다.         |
+| 플레이스홀더     | 필드에 기본적으로 표시될 플레이스홀더를 작성합니다.                   |
+| 편집 가능 필드  | **TRUE** 또는 **FALSE**를 클릭하여 관리자가 필드를 편집할 수 있도록 활성화하거나 비활성화합니다. |
+| 크기            | 콘텐츠 매니저에서 필드가 표시될 크기를 선택합니다. 이 설정은 JSON 및 Rich Text 필드, 동적 영역 및 컴포넌트에서는 사용할 수 없습니다. |
+| 항목 제목     | *(관계형 필드만)* 관계형 필드에 사용할 항목 제목을 작성합니다. 관계형 필드의 항목 제목은 포괄적일수록 관리자가 편집 뷰에서 관계형 필드의 콘텐츠를 관리하기 쉬워지므로 신중하게 선택하는 것이 좋습니다. |
 
-4. Click on the **Save** button.
+4. **저장** 버튼을 클릭합니다.
 
 :::caution
-The settings and display of a component's fields cannot be managed and reordered through the entry's edit view configuration page. Click on the **Set the component's layout** button of a component to access the component's own configuration page. You will find the exact same settings and display options as for the entry, but that will specifically apply to your component.
+컴포넌트 필드의 설정과 표시는 항목의 편집 뷰 구성 페이지를 통해 관리하고 재정렬할 수 없습니다. 컴포넌트의 **컴포넌트 레이아웃 설정** 버튼을 클릭하여 컴포넌트 자체의 구성 페이지에 접근하세요. 항목과 동일한 설정 및 표시 옵션을 찾을 수 있지만, 이는 해당 컴포넌트에만 적용됩니다.
 
-Note also that the settings are defined for the component itself, which means that the settings will automatically be applied for every other content-type where the component is used.
+또한 설정은 컴포넌트 자체에 대해 정의되므로, 해당 컴포넌트가 사용되는 다른 모든 콘텐츠 타입에 자동으로 적용됩니다.
 :::
 
 </TabItem>
 
 </Tabs>
 
-## Usage
+## 사용법
 
 <br/>
 
-### Creating & Writing content
+### 콘텐츠 생성 및 작성
 
-In Strapi, writing content consists in filling up fields, which are meant to contain specific content (e.g. text, numbers, media, etc.). These fields were configured for the collection or single type beforehand, through the [Content-type Builder](/cms/features/content-type-builder).
+Strapi에서 콘텐츠 작성은 특정 콘텐츠(예: 텍스트, 숫자, 미디어 등)를 포함하도록 의도된 필드를 채우는 것으로 구성됩니다. 이러한 필드는 [콘텐츠 타입 빌더](/cms/features/content-type-builder)를 통해 컬렉션 또는 단일 타입에 대해 미리 구성되었습니다.
 
 <ThemedImage
   alt="Edit view to write content"
@@ -276,15 +276,15 @@ In Strapi, writing content consists in filling up fields, which are meant to con
   }}
 />
 
-To write or edit content:
+콘텐츠를 작성하거나 편집하려면:
 
-1. In the <Icon name="feather" /> Content Manager:
-    - Either click on the **Create new entry** button in the top right corner of the collection type of your choice to create a new entry,
-    - Or access the edit view of your already created collection type's entry or single type.
-2. Write your content, following the available field schema. You can refer to the table below for more information and instructions on how to fill up each field type.
+1. <Icon name="feather" /> 콘텐츠 매니저에서:
+    - 새 항목을 생성하려면 선택한 컬렉션 타입의 우측 상단에 있는 **새 항목 생성** 버튼을 클릭하거나,
+    - 이미 생성된 컬렉션 타입 항목 또는 단일 타입의 편집 뷰에 접근합니다.
+2. 사용 가능한 필드 스키마에 따라 콘텐츠를 작성합니다. 각 필드 타입을 채우는 방법에 대한 자세한 정보와 지침은 아래 표를 참고하세요.
 
 :::note
-New entries are only considered created once some of their content has been written and saved once. Only then will the new entry be listed in the list view.
+새 항목은 일부 콘텐츠가 작성되고 한 번 저장된 후에만 생성된 것으로 간주됩니다. 그때서야 새 항목이 목록 뷰에 나열됩니다.
 :::
 
 <!-- MAY BE REMOVED - NOT SURE ABOUT RELEVANCE
@@ -294,35 +294,35 @@ If Draft & Publish is enabled for your content-type (it's enabled by default), t
 :::
 -->
 
-| Field name  | Instructions                                                                                                                                                                                                                                                                                                                                                              |
+| 필드 이름  | 지침                                                                                                                                                                                                                                                                                                                                                              |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Text        | Write your content in the textbox.                                                                                                                                                                                                                                                                                                                                        |
-| Rich text (Markdown) | Write your textual content in the editor, in Markdown. Some basic formatting options (titles, bold, italics, underline) are available in the top bar of the editor to apply to selected text. A **Preview mode/Markdown mode** button to switch between modes is also available. <br /><br /> 💡 The box can be expanded by clicking on **Expand** in the bottom bar. It displays side by side, at the same time, the textbox that you can edit and the preview. |
-| Rich text (Blocks) | Write and manage your content in the editor, which automatically renders live all additions/updates. In the Blocks editor, paragraphs behave as blocks of text: hovering on a paragraph will display an icon <Icon name="dots-six-vertical" classes="ph-bold"/> on which to click to reorder the content. Options to format or enrich the content are also accessible from the top bar of the editor (basic formatting options, code, links, image etc.). <!-- <br /><br /> 💡 Type `/` in the editor to have access to the list of all available options and select one. --> <br /><br /> 💡 You can use text formatting keyboard shortcuts in the Blocks editor (e.g. bold, italics, underline, and pasting link). |
-| Number      | Write your number in the textbox. Up and down arrows, displayed on the right of the box, allow to increase or decrease the current number indicated in the textbox.                                                                                                                                                                                                       |
-| Date        | 1. Click the date and/or time box. <br /> 2. Type the date and time or choose a date using the calendar and/or a time from the list. The calendar view fully supports keyboard-based navigation. |
-| Media       | 1. Click the media area. <br /> 2. Choose an asset from the [Media Library](/cms/features/media-library) or from a [folder](/cms/features/media-library#organizing-assets-with-folders) if you created some, or click the **Add more assets** button to add a new file to the Media Library. <br /><br /> 💡 It is possible to drag and drop the chosen file in the media area.                                                                                                                                   |
-| Relation    | Choose an entry from the drop-down list. See [relational fields](#relational-fields) for more information.                                                                                                                                                                                                          |
-| Boolean     | Click on **TRUE** or **FALSE**.                                                                                                                                                                                                                                                                                                                                               |
-| JSON        | Write your content, in JSON format, in the code textbox.                                                                                                                                                                                                                                                                                                                  |
-| Email       | Write a complete and valid email address.                                                                                                                                                                                                                                                                                                                                 |
-| Password    | Write a password. <br /><br /> 💡 Click the <Icon name="eye" /> icon, displayed on the right of the box, to show the password.                                                                                                                                                                                                                                                                |
-| Enumeration | 1. Click the drop-down list. <br /> 2. Choose an entry from the list.                                                                                                                                                                                                                                                                                                       |
-| UID         | Write a unique identifier in the textbox. A "Regenerate" button, displayed on the right of the box, allows automatically generating a UID based on the content type name.                                                                                                                                                                                                |
+| 텍스트        | 텍스트박스에 콘텐츠를 작성합니다.                                                                                                                                                                                                                                                                                                                                        |
+| 리치 텍스트 (Markdown) | 에디터에서 Markdown으로 텍스트 콘텐츠를 작성합니다. 선택한 텍스트에 적용할 수 있는 기본 서식 옵션(제목, 굵게, 기울임체, 밑줄)이 에디터 상단 바에서 제공됩니다. 모드를 전환하기 위한 **미리보기 모드/Markdown 모드** 버튼도 사용할 수 있습니다. <br /><br /> 💡 하단 바의 **확장**을 클릭하여 박스를 확장할 수 있습니다. 편집할 수 있는 텍스트박스와 미리보기를 동시에 나란히 표시합니다. |
+| 리치 텍스트 (Blocks) | 모든 추가/업데이트를 실시간으로 자동 렌더링하는 에디터에서 콘텐츠를 작성하고 관리합니다. Blocks 에디터에서 단락은 텍스트 블록으로 동작합니다: 단락에 마우스를 올리면 콘텐츠를 재정렬하기 위해 클릭할 수 있는 아이콘 <Icon name="dots-six-vertical" classes="ph-bold"/>이 표시됩니다. 콘텐츠를 서식화하거나 풍부하게 만드는 옵션도 에디터 상단 바에서 접근할 수 있습니다(기본 서식 옵션, 코드, 링크, 이미지 등). <!-- <br /><br /> 💡 에디터에서 `/`를 입력하면 사용 가능한 모든 옵션 목록에 접근하여 하나를 선택할 수 있습니다. --> <br /><br /> 💡 Blocks 에디터에서 텍스트 서식 키보드 단축키를 사용할 수 있습니다(예: 굵게, 기울임체, 밑줄, 링크 붙여넣기). |
+| 숫자      | 텍스트박스에 숫자를 작성합니다. 박스 오른쪽에 표시되는 위아래 화살표를 사용하여 텍스트박스에 표시된 현재 숫자를 증가시키거나 감소시킬 수 있습니다.                                                                                                                                                                                                       |
+| 날짜        | 1. 날짜 및/또는 시간 박스를 클릭합니다. <br /> 2. 날짜와 시간을 입력하거나 달력을 사용하여 날짜를 선택하고/또는 목록에서 시간을 선택합니다. 달력 뷰는 키보드 기반 네비게이션을 완전히 지원합니다. |
+| 미디어       | 1. 미디어 영역을 클릭합니다. <br /> 2. [미디어 라이브러리](/cms/features/media-library)에서 자산을 선택하거나 생성한 [폴더](/cms/features/media-library#organizing-assets-with-folders)에서 선택하거나, **더 많은 자산 추가** 버튼을 클릭하여 미디어 라이브러리에 새 파일을 추가합니다. <br /><br /> 💡 선택한 파일을 미디어 영역에 드래그 앤 드롭할 수 있습니다.                                                                                                                                   |
+| 관계    | 드롭다운 목록에서 항목을 선택합니다. 자세한 정보는 [관계형 필드](#relational-fields)를 참고하세요.                                                                                                                                                                                                          |
+| 불린     | **TRUE** 또는 **FALSE**를 클릭합니다.                                                                                                                                                                                                                                                                                                                                               |
+| JSON        | 코드 텍스트박스에 JSON 형식으로 콘텐츠를 작성합니다.                                                                                                                                                                                                                                                                                                                  |
+| 이메일       | 완전하고 유효한 이메일 주소를 작성합니다.                                                                                                                                                                                                                                                                                                                                 |
+| 비밀번호    | 비밀번호를 작성합니다. <br /><br /> 💡 박스 오른쪽에 표시된 <Icon name="eye" /> 아이콘을 클릭하여 비밀번호를 표시합니다.                                                                                                                                                                                                                                                                |
+| 열거형 | 1. 드롭다운 목록을 클릭합니다. <br /> 2. 목록에서 항목을 선택합니다.                                                                                                                                                                                                                                                                                                       |
+| UID         | 텍스트박스에 고유 식별자를 작성합니다. 박스 오른쪽에 표시된 "재생성" 버튼을 사용하여 콘텐츠 타입 이름을 기반으로 UID를 자동 생성할 수 있습니다.                                                                                                                                                                                                |
 
 :::note
-Filling out a [custom field](/cms/features/content-type-builder#custom-fields) depends on the type of content handled by the field. Please refer to the dedicated documentation for each custom field hosted on the <ExternalLink to="https://market.strapi.io" text="Marketplace"/>.
+[커스텀 필드](/cms/features/content-type-builder#custom-fields) 작성은 필드가 처리하는 콘텐츠 타입에 따라 달라집니다. <ExternalLink to="https://market.strapi.io" text="마켓플레이스"/>에서 호스팅되는 각 커스텀 필드의 전용 문서를 참고하세요.
 :::
 
-#### Components
+#### 컴포넌트
 
-Components are a combination of several fields, which are grouped together in the edit view. Writing their content works exactly like for independent fields, but there are some specificities to components.
+컴포넌트는 편집 뷰에서 함께 그룹화된 여러 필드의 조합입니다. 컴포넌트의 콘텐츠 작성은 독립적인 필드와 정확히 동일하게 작동하지만, 컴포넌트에는 몇 가지 특수성이 있습니다.
 
-There are 2 types of components: non-repeatable and repeatable components.
+컴포넌트에는 2가지 타입이 있습니다: 반복 불가능한 컴포넌트와 반복 가능한 컴포넌트입니다.
 
 <Tabs groupId="Components">
 
-<TabItem value="NonRepeatable" label="Non-repeatable components">
+<TabItem value="NonRepeatable" label="반복 불가능한 컴포넌트">
 
 <ThemedImage
   alt="Non-repeatable component - No entry yet"
@@ -341,18 +341,18 @@ There are 2 types of components: non-repeatable and repeatable components.
   }}
 />
 
-Non-repeatable components are a combination of fields that can be used only once.
+반복 불가능한 컴포넌트는 한 번만 사용할 수 있는 필드의 조합입니다.
 
-By default, the combination of fields is not directly displayed in the edit view:
+기본적으로 필드의 조합은 편집 뷰에 직접 표시되지 않습니다:
 
-1. Click on the add button <Icon name="plus-circle" /> to add the component.
-2. Fill in the fields of the component.
+1. 추가 버튼 <Icon name="plus-circle" />을 클릭하여 컴포넌트를 추가합니다.
+2. 컴포넌트의 필드를 채웁니다.
 
-To delete the non-repeatable component, click on the delete button <Icon name="trash"/>, located in the top right corner of the component area.
+반복 불가능한 컴포넌트를 삭제하려면 컴포넌트 영역의 우측 상단에 위치한 삭제 버튼 <Icon name="trash"/>을 클릭합니다.
 
 </TabItem>
 
-<TabItem value="Repeatable" label="Repeatable components">
+<TabItem value="Repeatable" label="반복 가능한 컴포넌트">
 
 <ThemedImage
   alt="Repeatable component"
@@ -363,33 +363,33 @@ To delete the non-repeatable component, click on the delete button <Icon name="t
   }}
 />
 
-Repeatable components are also a combination of fields, but they allow the creation of multiple component entries, all following the same combination of fields.
+반복 가능한 컴포넌트도 필드의 조합이지만, 모두 동일한 필드 조합을 따르는 여러 컴포넌트 항목을 생성할 수 있습니다.
 
-To add a new entry and display its combination of fields:
+새 항목을 추가하고 필드 조합을 표시하려면:
 
-1. Click on the add button <Icon name="plus-circle" /> to add the component.
-2. Fill in the fields of the component.
-3. (optional) Click on the **Add an entry** button and fill in the fields again.
+1. 추가 버튼 <Icon name="plus-circle" />을 클릭하여 컴포넌트를 추가합니다.
+2. 컴포넌트의 필드를 채웁니다.
+3. (선택사항) **항목 추가** 버튼을 클릭하고 필드를 다시 채웁니다.
 
-The repeatable component entries can be reordered or deleted directly in the edit view, using buttons displayed on the right of the entry area.
+반복 가능한 컴포넌트 항목은 항목 영역 오른쪽에 표시된 버튼을 사용하여 편집 뷰에서 직접 재정렬하거나 삭제할 수 있습니다.
 
-- Use the drag & drop button <Icon name="dots-six-vertical" classes="ph-bold" /> to reorder entries of your repeatable component.
-- Use the delete button <Icon name="trash"/> to delete an entry from your repeatable component.
+- 드래그 앤 드롭 버튼 <Icon name="dots-six-vertical" classes="ph-bold" />을 사용하여 반복 가능한 컴포넌트의 항목을 재정렬합니다.
+- 삭제 버튼 <Icon name="trash"/>을 사용하여 반복 가능한 컴포넌트에서 항목을 삭제합니다.
 
 :::note
-Unlike regular fields, the order of the entries of a repeatable component is important. It should correspond exactly to how end users will read/see the content.
+일반 필드와 달리 반복 가능한 컴포넌트 항목의 순서는 중요합니다. 최종 사용자가 콘텐츠를 읽거나 보는 방식과 정확히 일치해야 합니다.
 :::
 
 </TabItem>
 
 </Tabs>
 
-#### Dynamic zones
+#### 동적 영역
 
-Dynamic zones are a combination of components, which themselves are composed of several fields. Writing the content of a dynamic zone requires additional steps in order to access the fields.
+동적 영역은 컴포넌트의 조합이며, 각 컴포넌트는 여러 필드로 구성됩니다. 동적 영역의 콘텐츠를 작성하려면 필드에 접근하기 위한 추가 단계가 필요합니다.
 
 <ThemedImage
-  alt="Writing content for a dynamic zone"
+  alt="동적 영역을 위한 콘텐츠 작성"
   sources={{
     light: '/img/assets/content-manager/edit-view_dynamic-zone-1.png',
     dark: '/img/assets/content-manager/edit-view_dynamic-zone-1_DARK.png',
@@ -397,47 +397,47 @@ Dynamic zones are a combination of components, which themselves are composed of 
 />
 
 <ThemedImage
-  alt="Writing content for a dynamic zone"
+  alt="동적 영역을 위한 콘텐츠 작성"
   sources={{
     light: '/img/assets/content-manager/edit-view_dynamic-zone-2.png',
     dark: '/img/assets/content-manager/edit-view_dynamic-zone-2_DARK.png',
   }}
 />
 
-1. Click on the <Icon name="plus-circle" /> **Add a component to [dynamic zone name]** button.
-2. Choose a component available for the dynamic zone.
-3. Fill in the fields of the component.
+1. <Icon name="plus-circle" /> **[동적 영역 이름]에 컴포넌트 추가** 버튼을 클릭합니다.
+2. 동적 영역에 사용 가능한 컴포넌트를 선택합니다.
+3. 컴포넌트의 필드를 채웁니다.
 
-Dynamic zones' components can also be reordered or deleted directly in the edit view, using buttons displayed in the top right corner of the component area.
+동적 영역의 컴포넌트는 컴포넌트 영역의 우측 상단에 표시된 버튼을 사용하여 편집 뷰에서 직접 재정렬하거나 삭제할 수도 있습니다.
 
-- Use the drag & drop button <Icon name="dots-six-vertical" classes="ph-bold" /> to reorder components in your dynamic zone.
-- Use the delete button <Icon name="trash"/> to delete a component from your dynamic zone.
+- 드래그 앤 드롭 버튼 <Icon name="dots-six-vertical" classes="ph-bold" />을 사용하여 동적 영역의 컴포넌트를 재정렬합니다.
+- 삭제 버튼 <Icon name="trash"/>을 사용하여 동적 영역에서 컴포넌트를 삭제합니다.
 
 :::tip
-You can also use the keyboard to reorder components: focus the component using Tab, press Space on the drag & drop button <Icon name="dots-six-vertical" classes="ph-bold" /> and use the arrow keys to then re-order, pressing Space again to drop the item.
+키보드를 사용하여 컴포넌트를 재정렬할 수도 있습니다: Tab을 사용하여 컴포넌트에 포커스를 맞추고, 드래그 앤 드롭 버튼 <Icon name="dots-six-vertical" classes="ph-bold" />에서 Space를 누른 다음 화살표 키를 사용하여 재정렬하고, Space를 다시 눌러 항목을 놓습니다.
 :::
 
 :::note
-Unlike regular fields, the order of the fields and components inside a dynamic field is important. It should correspond exactly to how end users will read/see the content.
+일반 필드와 달리 동적 필드 내부의 필드와 컴포넌트의 순서는 중요합니다. 최종 사용자가 콘텐츠를 읽거나 보는 방식과 정확히 일치해야 합니다.
 :::
 
-#### Relational fields
+#### 관계형 필드
 
-Relation-type fields added to a content-type allow establishing a relation with another collection type. These fields are called "relational fields". 
+콘텐츠 타입에 추가된 관계 타입 필드는 다른 컬렉션 타입과의 관계를 설정할 수 있게 해줍니다. 이러한 필드를 "관계형 필드"라고 합니다.
 
-The content of relational fields is written from the edit view of the content-type they belong to. However, relational fields can point to one or several entries of the other collection type, this is why in the Content Manager it is possible to manage a content-type's relational fields to choose which entries are relevant.
+관계형 필드의 콘텐츠는 해당 필드가 속한 콘텐츠 타입의 편집 뷰에서 작성됩니다. 하지만 관계형 필드는 다른 컬렉션 타입의 하나 또는 여러 항목을 가리킬 수 있기 때문에, 콘텐츠 매니저에서 콘텐츠 타입의 관계형 필드를 관리하여 어떤 항목이 관련있는지 선택할 수 있습니다.
 
 <details>
-<summary>Example of relational fields</summary>
+<summary>관계형 필드 예시</summary>
 
-In my Strapi admin panel I have created 2 collection types:
+내 Strapi 관리자 패널에서 2개의 컬렉션 타입을 생성했습니다:
 
-- Restaurant, where each entry is a restaurant
-- Category, where each entry is a type of restaurant
+- Restaurant, 각 항목은 레스토랑입니다
+- Category, 각 항목은 레스토랑의 유형입니다
 
-I want to assign a category to each of my restaurants, therefore I have established a relation between my 2 collection types: restaurants can have one category.
+각 레스토랑에 카테고리를 할당하고 싶으므로, 2개의 컬렉션 타입 간에 관계를 설정했습니다: 레스토랑은 하나의 카테고리를 가질 수 있습니다.
 
-In the Content Manager, from the edit view of my Restaurant entries, I can manage the Category relational field, and choose which entry of Category is relevant for my restaurant.
+콘텐츠 매니저에서 Restaurant 항목의 편집 뷰에서 Category 관계형 필드를 관리하고, 내 레스토랑에 관련된 Category 항목을 선택할 수 있습니다.
 <br/>
 
 </details>
@@ -456,12 +456,12 @@ The relational fields of a content-type are displayed among regular fields. For 
 
 <Tabs groupId="RelationalFields">
 
-<TabItem value="OneChoice" label="One-choice relational fields">
+<TabItem value="OneChoice" label="단일 선택 관계형 필드">
 
-Many-to-one, one-to-one, and one-way types of relation only allow to choose one entry per relational field.
+다대일, 일대일, 단방향 관계 타입은 관계형 필드당 하나의 항목만 선택할 수 있습니다.
 
 <ThemedImage
-  alt="One-choice relational fields"
+  alt="단일 선택 관계형 필드"
   width="40%"
   sources={{
     light: '/img/assets/content-manager/RF_one-choice2.png',
@@ -469,21 +469,21 @@ Many-to-one, one-to-one, and one-way types of relation only allow to choose one 
   }}
 />
 
-To select the only relevant relational field's entry:
+유일한 관련 관계형 필드의 항목을 선택하려면:
 
-1. In the content-type's edit view, click on the drop-down list of the relational field.
-2. Among the list of entries, choose one.
+1. 콘텐츠 타입의 편집 뷰에서 관계형 필드의 드롭다운 목록을 클릭합니다.
+2. 항목 목록에서 하나를 선택합니다.
 
-To remove the entry selected in the drop-down list, click on the delete button <Icon name="x" />.
+드롭다운 목록에서 선택한 항목을 제거하려면 삭제 버튼 <Icon name="x" />을 클릭합니다.
 
 </TabItem>
 
-<TabItem value="MultipleChoice" label="Multiple-choice relational fields">
+<TabItem value="MultipleChoice" label="다중 선택 관계형 필드">
 
-Many-to-many, one-to-many, and many-ways types of relation allow to choose several entries per relational field.
+다대다, 일대다, 다방향 관계 타입은 관계형 필드당 여러 항목을 선택할 수 있습니다.
 
 <ThemedImage
-  alt="Multiple choices relational fields"
+  alt="다중 선택 관계형 필드"
   width="40%"
   sources={{
     light: '/img/assets/content-manager/RF_multiple-choices2.png',
@@ -491,42 +491,42 @@ Many-to-many, one-to-many, and many-ways types of relation allow to choose sever
   }}
 />
 
-To select the relevant relational field's entries:
+관련 관계형 필드의 항목들을 선택하려면:
 
-1. In the content-type's edit view, click on the drop-down list of the relational field.
-2. Among the list of entries, choose one.
-3. Repeat step 2 until all relevant entries have been chosen.
+1. 콘텐츠 타입의 편집 뷰에서 관계형 필드의 드롭다운 목록을 클릭합니다.
+2. 항목 목록에서 하나를 선택합니다.
+3. 모든 관련 항목이 선택될 때까지 2단계를 반복합니다.
 
-To remove an entry, click on the cross button <Icon name="x" classes="ph-bold" /> in the selected entries list.
+항목을 제거하려면 선택된 항목 목록에서 X 버튼 <Icon name="x" classes="ph-bold" />을 클릭합니다.
 
-Entries from multiple-choice relational fields can be reordered, indicated by a drag button <Icon name="dots-six-vertical" classes="ph-bold" />. To move an entry, click and hold it, drag it to the desired position, then release it.
+다중 선택 관계형 필드의 항목은 드래그 버튼 <Icon name="dots-six-vertical" classes="ph-bold" />으로 표시되어 재정렬할 수 있습니다. 항목을 이동하려면 클릭하여 드래그하고, 원하는 위치로 끌어다 놓은 다음 놓습니다.
 
 </TabItem>
 
 </Tabs>
 
 :::tip
-- Not all entries are listed by default: more can be displayed by clicking on the **Load more** button. Also, instead of choosing an entry by scrolling the list, you can click any relational field drop-down list and type to search a specific entry.
+- 모든 항목이 기본적으로 나열되지는 않습니다: **더 불러오기** 버튼을 클릭하여 더 많은 항목을 표시할 수 있습니다. 또한 목록을 스크롤하여 항목을 선택하는 대신, 관계형 필드 드롭다운 목록을 클릭하고 입력하여 특정 항목을 검색할 수 있습니다.
 
-- Click on the name of an entry to display a modal from where you will be able to edit the relational field's content-type. For now, you can only edit a relation on-the-fly and not create a new one.
+- 항목의 이름을 클릭하면 관계형 필드의 콘텐츠 타입을 편집할 수 있는 모달이 표시됩니다. 현재는 즉석에서 관계를 편집할 수만 있고 새로 생성할 수는 없습니다.
 :::
 
 :::note
-- If the [Draft & Publish feature](/cms/features/draft-and-publish) is activated for the content-type the relational field belongs to, you will notice blue or green dots next to the entries names in the drop-down list. They indicate the status of the entry, respectively draft or published content.
-- If the [Internationalization (i18n) feature](/cms/features/internationalization) is enabled for the content-type, the list of entries may be limited or differ from one locale to another. Only relevant entries that can possibly be chosen for a relational field will be listed.
+- 관계형 필드가 속한 콘텐츠 타입에 [초안 및 게시 기능](/cms/features/draft-and-publish)이 활성화된 경우, 드롭다운 목록의 항목 이름 옆에 파란색 또는 녹색 점이 표시됩니다. 이는 각각 초안 또는 게시된 콘텐츠의 항목 상태를 나타냅니다.
+- 콘텐츠 타입에 [국제화(i18n) 기능](/cms/features/internationalization)이 활성화된 경우, 항목 목록이 제한되거나 로케일마다 다를 수 있습니다. 관계형 필드에 선택할 수 있는 관련 항목만 나열됩니다.
 :::
 
 <!-- Add a section "Managing entries" here with the explanations of the list view interface? Or before "Creating & Writing content"? Or maybe have 1. "Creating & managing entries" 2. "Writing content"? Or just use a Guideflow? -->
 
-### Deleting content
+### 콘텐츠 삭제
 
-You can delete content by deleting any entry of a collection type, or the default entry of a single type.
+컬렉션 타입의 항목이나 단일 타입의 기본 항목을 삭제하여 콘텐츠를 삭제할 수 있습니다.
 
-1. In the edit view of the entry, click on <Icon name="dots-three-outline" /> at the top right of the interface, and click the **Delete document** button.<br/>If Internationalization is enabled for the content-type, you can also choose to delete only the currently selected locale by clicking on the **Delete locale** button.
-2. In the window that pops up, click on the **Confirm** button to confirm the deletion.
+1. 항목의 편집 뷰에서 인터페이스 우측 상단의 <Icon name="dots-three-outline" />을 클릭하고 **문서 삭제** 버튼을 클릭합니다.<br/>콘텐츠 타입에 국제화가 활성화된 경우, **로케일 삭제** 버튼을 클릭하여 현재 선택된 로케일만 삭제할 수도 있습니다.
+2. 팝업되는 창에서 **확인** 버튼을 클릭하여 삭제를 확인합니다.
 
 <ThemedImage
-  alt="Deleting entries"
+  alt="항목 삭제"
   sources={{
     light: '/img/assets/content-manager/deleting-entries.png',
     dark: '/img/assets/content-manager/deleting-entries_DARK.png',
@@ -534,4 +534,4 @@ You can delete content by deleting any entry of a collection type, or the defaul
 />
 
 :::tip
-You can delete entries from the list view of a collection type, by clicking on <Icon name="dots-three-outline" />  on the right side of the entry's record in the table, then choosing the <Icon name="trash"/> **Delete document** button.<br/>If [Internationalization](/cms/features/internationalization) is enabled for the content-type, **Delete document** deletes all locales while **Delete locale** only deletes the currently listed locale.
+컬렉션 타입의 목록 뷰에서 테이블의 항목 기록 오른쪽에 있는 <Icon name="dots-three-outline" />을 클릭한 다음 <Icon name="trash"/> **문서 삭제** 버튼을 선택하여 항목을 삭제할 수 있습니다.<br/>[국제화](/cms/features/internationalization)가 콘텐츠 타입에 활성화된 경우, **문서 삭제**는 모든 로케일을 삭제하고 **로케일 삭제**는 현재 나열된 로케일만 삭제합니다.

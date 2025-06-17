@@ -1,8 +1,8 @@
 ---
-title: Email
+title: 이메일
 displayed_sidebar: cmsSidebar
 toc_max_heading_level: 5
-description: Send email from your server or externals providers.
+description: 서버 또는 외부 제공업체를 통해 이메일을 발송하세요.
 tags:
 - admin panel
 - controllers 
@@ -12,93 +12,92 @@ tags:
 - features
 ---
 
-# Email
+# 이메일
 
-The Email feature enables Strapi applications to send emails from a server or an external provider.
+이메일 기능을 사용하면 Strapi 애플리케이션에서 서버 또는 외부 제공업체를 통해 이메일을 발송할 수 있습니다.
 
 <IdentityCard>
-  <IdentityCardItem icon="credit-card" title="Plan">Free feature</IdentityCardItem>
-  <IdentityCardItem icon="user" title="Role & permission">Email > "send" permission for the user to send emails via the backend server</IdentityCardItem>
-  <IdentityCardItem icon="toggle-right" title="Activation">Available by default</IdentityCardItem>
-  <IdentityCardItem icon="desktop" title="Environment">Available in both Development & Production environment</IdentityCardItem>
+  <IdentityCardItem icon="credit-card" title="플랜">무료 기능</IdentityCardItem>
+  <IdentityCardItem icon="user" title="역할 및 권한">이메일 > "send" 권한이 있어야 백엔드 서버를 통해 이메일 발송 가능</IdentityCardItem>
+  <IdentityCardItem icon="toggle-right" title="활성화">기본적으로 사용 가능</IdentityCardItem>
+  <IdentityCardItem icon="desktop" title="환경">개발 및 운영 환경 모두에서 사용 가능</IdentityCardItem>
 </IdentityCard>
 
-## Configuration
+## 설정
 
-Most configuration options for the Email feature are handled via your Strapi project's code. The Email feature is not configurable in the admin panel, however users can test email delivery if it has been setup by an administrator.
+이메일 기능의 대부분의 설정 옵션은 Strapi 프로젝트의 코드에서 처리됩니다. 이메일 기능은 관리자 패널에서 별도의 설정이 불가능하지만, 관리자가 이메일 발송이 정상적으로 동작하는지 테스트할 수 있습니다.
 
-### Admin panel settings
+### 관리자 패널 설정
 
-**Path to configure the feature:** <Icon name="gear-six" /> Settings > Email feature > Configuration
+**기능 설정 경로:** <Icon name="gear-six" /> 설정 > 이메일 기능 > 설정
 
 <ThemedImage
-  alt="Email configuration"
+  alt="이메일 설정"
   sources={{
     light: '/img/assets/settings/settings-email.png',
     dark: '/img/assets/settings/settings-email_DARK.png',
   }}
 />
 
-In the Configuration interface, only the email address field under "Test email delivery" is modifiable by users. A **Send test email** button sends a test email.
+설정 화면에서는 "테스트 이메일 발송" 항목의 이메일 주소만 수정할 수 있습니다. **테스트 이메일 발송** 버튼을 누르면 테스트 메일이 전송됩니다.
 
-This page is only visible if the current role has the "Access the Email Settings page" permission enabled (see [RBAC feature](/cms/features/rbac) documentation for more information):
+이 페이지는 현재 역할에 "이메일 설정 페이지 접근" 권한이 있을 때만 표시됩니다([RBAC 기능](/cms/features/rbac) 문서 참고):
 
 <ThemedImage
-  alt="Email configuration"
+  alt="이메일 설정"
   sources={{
     light: '/img/assets/settings/settings-email-config-role.png',
     dark: '/img/assets/settings/settings-email-config-role_DARK.png',
   }}
 />
 
-### Code-based configuration
+### 코드 기반 설정
 
-The Email feature requires a provider and a provider configuration in the `config/plugins.js|ts` file. See [providers](#providers) for detailed installation and configuration instructions.
+이메일 기능을 사용하려면 `config/plugins.js|ts` 파일에 제공업체(provider)와 제공업체 설정을 추가해야 합니다. 자세한 설치 및 설정 방법은 [제공업체](#providers) 항목을 참고하세요.
 
-<ExternalLink to="https://www.npmjs.com/package/sendmail" text="Sendmail"/> is the default email provider in the Strapi Email feature. It provides functionality for the local development environment but is not production-ready in the default configuration. For production stage applications you need to further configure `Sendmail` or change providers.
+<ExternalLink to="https://www.npmjs.com/package/sendmail" text="Sendmail"/>은 Strapi 이메일 기능의 기본 제공업체입니다. 로컬 개발 환경에서는 기본 설정으로 동작하지만, 운영 환경에서는 추가 설정이 필요하거나 다른 제공업체로 변경해야 합니다.
 
-#### Email configuration options
+#### 이메일 설정 옵션
 
-Plugins configuration are defined in the `config/plugins.js` file or `config/plugins.ts` file. Please refer to [providers](#providers) for detailed provider-specific installation and configuration instructions.
+플러그인 설정은 `config/plugins.js` 또는 `config/plugins.ts` 파일에 정의합니다. 각 제공업체별 설치 및 설정 방법은 [제공업체](#providers) 항목을 참고하세요.
 
-| Option                    | Type            | Description                                                                                                                                            | Default Value  | Notes    |
-|---------------------------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|----------|
-| `provider`                | `string`        | The email provider to use.                                                                                                                             | `sendmail`     | Required |
-| `providerOptions`         | `object`        | The email provider options.                                                                                                                            | `{}`           | Optional |
-| `providerOptions.apiKey`  | `string`        | The API key for the email provider.                                                                                                                    | `''`           | Optional |
-| `settings`                | `object`        | The email settings.                                                                                                                                    | `{}`           | Optional |
-| `settings.defaultFrom`    | `string`        | The default email address to use as the sender.                                                                                                        | `''`           | Optional |
-| `settings.defaultReplyTo` | `string`        | The default email address to use as the reply-to address.                                                                                              | `''`           | Optional |
-| `ratelimit`               | `object`        | The email rate limit settings.                                                                                                                         | `{}`           | Optional |
-| `ratelimit.enabled`       | `boolean`       | Whether to enable rate limiting.                                                                                                                       | `true`         | Optional |
-| `ratelimit.interval`      | `string`        | The interval for rate limiting in minutes.                                                                                                             | `5`            | Optional |
-| `ratelimit.max`           | `number`        | The maximum number of requests allowed during the interval.                                                                                            | `5`            | Optional |
-| `ratelimit.delayAfter`    | `number`        | The number of requests allowed before rate limiting is applied.                                                                                        | `1`            | Optional |
-| `ratelimit.timeWait`      | `number`        | Time to wait before responding to a request (in milliseconds).                                                                                         | `1`            | Optional |
-| `ratelimit.prefixKey`     | `string`        | The prefix for the rate limit key.                                                                                                                     | `${userEmail}` | Optional |
-| `ratelimit.whitelist`     | `array(string)` | Array of IP addresses to whitelist from rate limiting.                                                                                                 | `[]`           | Optional |
-| `ratelimit.store`         | `object`        | Rate limiting storage location and for more information please see the <ExternalLink text="koa2-ratelimit documentation" to="https://www.npmjs.com/package/koa2-ratelimit"/>. | `MemoryStore`  | Optional |
+| 옵션                    | 타입            | 설명                                                                                                                                            | 기본값  | 비고    |
+|-------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------|---------|----------|
+| `provider`              | `string`        | 사용할 이메일 제공업체                                                                                                                          | `sendmail` | 필수 |
+| `providerOptions`       | `object`        | 이메일 제공업체 옵션                                                                                                                           | `{}`    | 선택 |
+| `providerOptions.apiKey`| `string`        | 이메일 제공업체의 API 키                                                                                                                        | `''`    | 선택 |
+| `settings`              | `object`        | 이메일 설정                                                                                                                                    | `{}`    | 선택 |
+| `settings.defaultFrom`  | `string`        | 기본 발신자 이메일 주소                                                                                                                        | `''`    | 선택 |
+| `settings.defaultReplyTo`| `string`       | 기본 회신 이메일 주소                                                                                                                          | `''`    | 선택 |
+| `ratelimit`             | `object`        | 이메일 발송 속도 제한 설정                                                                                                                     | `{}`    | 선택 |
+| `ratelimit.enabled`     | `boolean`       | 속도 제한 활성화 여부                                                                                                                          | `true`  | 선택 |
+| `ratelimit.interval`    | `string`        | 속도 제한 간격(분 단위)                                                                                                                        | `5`     | 선택 |
+| `ratelimit.max`         | `number`        | 간격 내 허용 요청 최대 수                                                                                                                      | `5`     | 선택 |
+| `ratelimit.delayAfter`  | `number`        | 속도 제한 적용 전 허용 요청 수                                                                                                                 | `1`     | 선택 |
+| `ratelimit.timeWait`    | `number`        | 요청 응답 전 대기 시간(밀리초)                                                                                                                 | `1`     | 선택 |
+| `ratelimit.prefixKey`   | `string`        | 속도 제한 키의 접두사                                                                                                                         | `${userEmail}` | 선택 |
+| `ratelimit.whitelist`   | `array(string)` | 속도 제한에서 제외할 IP 주소 배열                                                                                                              | `[]`    | 선택 |
+| `ratelimit.store`       | `object`        | 속도 제한 저장소 위치(자세한 내용은 <ExternalLink text="koa2-ratelimit documentation" to="https://www.npmjs.com/package/koa2-ratelimit"/> 참고) | `MemoryStore` | 선택 |
 
-#### Providers
+#### 제공업체(Providers)
 
-The Email feature can be extended via the installation and configuration of additional providers.
+이메일 기능은 추가 제공업체를 설치 및 설정하여 확장할 수 있습니다.
 
-Providers add an extension to the core capabilities of the plugin, for example to use Amazon SES for emails instead of Sendmail.
+제공업체를 통해 기본 기능을 확장할 수 있으며, 예를 들어 Amazon SES 등으로 이메일을 발송할 수 있습니다.
 
-There are both official providers maintained by Strapi — discoverable via the [Marketplace](/cms/plugins/installing-plugins-via-marketplace) — and many community maintained providers available via <ExternalLink to="https://www.npmjs.com/" text="npm"/>.
+Strapi에서 공식적으로 관리하는 제공업체는 [마켓플레이스](/cms/plugins/installing-plugins-via-marketplace)에서 확인할 수 있으며, 커뮤니티 제공업체도 <ExternalLink to="https://www.npmjs.com/" text="npm"/>에서 찾을 수 있습니다.
 
-A provider can be configured to be [private](#private-providers) to ensure asset URLs will be signed for secure access.
+제공업체는 [비공개](#private-providers)로 설정하여 자산 URL에 서명을 적용할 수도 있습니다.
 
-##### Installing providers
+##### 제공업체 설치
 
-New providers can be installed using `npm` or `yarn` using the following format `@strapi/provider-<plugin>-<provider> --save`.
+새 제공업체는 `npm` 또는 `yarn`으로 `@strapi/provider-<plugin>-<provider> --save` 형식으로 설치할 수 있습니다.
 
-For example, to install the Sendgrid provider:
+예시: Sendgrid 제공업체 설치
 
 <Tabs groupId="yarn-npm">
 
 <TabItem value="yarn" label="Yarn">
-
 
 ```bash
 yarn add @strapi/provider-email-sendgrid
@@ -116,13 +115,13 @@ npm install @strapi/provider-email-sendgrid --save
 
 </Tabs>
 
-##### Configuring providers
+##### 제공업체 설정
 
-Newly installed providers are enabled and configured in [the `/config/plugins` file](/cms/configurations/plugins). If this file does not exist you must create it.
+설치한 제공업체는 [ `/config/plugins` 파일](/cms/configurations/plugins)에서 활성화 및 설정합니다. 파일이 없다면 새로 생성해야 합니다.
 
-Each provider will have different configuration settings available. Review the respective entry for that provider in the [Marketplace](/cms/plugins/installing-plugins-via-marketplace) or <ExternalLink to="https://www.npmjs.com/" text="npm"/> to learn more.
+각 제공업체별로 설정 항목이 다르니, 마켓플레이스 또는 <ExternalLink to="https://www.npmjs.com/" text="npm"/>에서 제공업체별 문서를 참고하세요.
 
-The following is an example configuration for the Sendgrid provider:
+Sendgrid 제공업체 예시 설정:
 
 <Tabs groupId="js-ts">
 
@@ -134,7 +133,7 @@ module.exports = ({ env }) => ({
   // ...
   email: {
     config: {
-      provider: 'sendgrid', // For community providers pass the full package name (e.g. provider: 'strapi-provider-email-mandrill')
+      provider: 'sendgrid', // 커뮤니티 제공업체는 전체 패키지명 사용(예: provider: 'strapi-provider-email-mandrill')
       providerOptions: {
         apiKey: env('SENDGRID_API_KEY'),
       },
@@ -159,7 +158,7 @@ export default ({ env }) => ({
   // ...
   email: {
     config: {
-      provider: 'sendgrid', // For community providers pass the full package name (e.g. provider: 'strapi-provider-email-mandrill')
+      provider: 'sendgrid', // 커뮤니티 제공업체는 전체 패키지명 사용(예: provider: 'strapi-provider-email-mandrill')
       providerOptions: {
         apiKey: env('SENDGRID_API_KEY'),
       },
@@ -180,23 +179,23 @@ export default ({ env }) => ({
 
 :::note
 
-* When using a different provider per environment, specify the correct configuration in `/config/env/${yourEnvironment}/plugins.js|ts` (See [Environments](/cms/configurations/environment)).
-* Only one email provider will be active at a time. If the email provider setting isn't picked up by Strapi, verify the `plugins.js|ts` file is in the correct folder.
-* When testing the new email provider with those two email templates created during strapi setup, the _shipper email_ on the template defaults to `no-reply@strapi.io` and needs to be updated according to your email provider, otherwise it will fail the test (See [Configure templates locally](/cms/features/users-permissions#templating-emails)).
+* 환경별로 다른 제공업체를 사용하려면 `/config/env/${yourEnvironment}/plugins.js|ts`에 올바른 설정을 지정하세요([환경](/cms/configurations/environment) 참고).
+* 한 번에 하나의 이메일 제공업체만 활성화됩니다. 이메일 제공업체 설정이 적용되지 않는다면 plugins.js|ts 파일의 위치를 확인하세요.
+* Strapi 설치 시 생성되는 두 개의 이메일 템플릿으로 새 제공업체를 테스트할 때, 템플릿의 _발신자 이메일_이 기본값(`no-reply@strapi.io`)으로 되어 있으니, 제공업체에 맞게 수정해야 테스트가 정상 동작합니다([템플릿 로컬 설정](/cms/features/users-permissions#templating-emails) 참고).
 
 :::
 
-###### Configuration per environment
+###### 환경별 설정
 
-When configuring your provider you might want to change the configuration based on the `NODE_ENV` environment variable or use environment specific credentials.
+제공업체 설정 시 `NODE_ENV` 환경 변수에 따라 설정을 변경하거나, 환경별 자격증명을 사용할 수 있습니다.
 
-You can set a specific configuration in the `/config/env/{env}/plugins.js|ts` configuration file and it will be used to overwrite the default configuration.
+`/config/env/{env}/plugins.js|ts` 파일에 환경별 설정을 추가하면, 기본 설정을 덮어씁니다.
 
-##### Creating providers
+##### 제공업체 직접 구현
 
-To implement your own custom provider you must <ExternalLink to="https://docs.npmjs.com/creating-node-js-modules" text="create a Node.js module"/>.
+직접 제공업체를 구현하려면 <ExternalLink to="https://docs.npmjs.com/creating-node-js-modules" text="Node.js 모듈 생성"/> 가이드를 참고하세요.
 
-The interface that must be exported depends on the plugin you are developing the provider for. The following is a template for the Email feature:
+이메일 기능용 제공업체 인터페이스 예시:
 
 <Tabs groupId="js-ts">
 
@@ -230,23 +229,23 @@ export {
 
 </Tabs>
 
-In the send function you will have access to:
+send 함수에서는 다음에 접근할 수 있습니다:
 
-* `providerOptions` that contains configurations written in `plugins.js|ts`
-* `settings` that contains configurations written in `plugins.js|ts`
-* `options` that contains options you send when you call the send function from the email plugin service
+* `providerOptions`: plugins.js|ts에 작성한 제공업체 설정
+* `settings`: plugins.js|ts에 작성한 이메일 설정
+* `options`: 이메일 서비스에서 send 함수 호출 시 전달하는 옵션
 
-You can review the <ExternalLink to="https://github.com/strapi/strapi/tree/master/packages/providers" text="Strapi-maintained providers"/> for example implementations.
+<ExternalLink to="https://github.com/strapi/strapi/tree/master/packages/providers" text="Strapi 공식 제공업체 예시"/>를 참고하세요.
 
-After creating your new provider you can <ExternalLink to="https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages" text="publish it to npm"/> to share with the community or [use it locally](#local-providers) for your project only.
+직접 구현한 제공업체는 <ExternalLink to="https://docs.npmjs.com/creating-and-publishing-unscoped-public-packages" text="npm에 배포"/>하거나, [로컬에서 사용](#local-providers)할 수 있습니다.
 
-###### Local providers
+###### 로컬 제공업체
 
-If you want to create your own provider without publishing it on npm you can follow these steps:
+npm에 배포하지 않고 직접 만든 제공업체를 사용하려면 다음 단계를 따르세요:
 
-1. Create a `providers` folder in your application.
-2. Create your provider (e.g. `/providers/strapi-provider-<plugin>-<provider>`)
-3. Then update your `package.json` to link your `strapi-provider-<plugin>-<provider>` dependency to the <ExternalLink to="https://docs.npmjs.com/files/package.json#local-paths" text="local path"/> of your new provider.
+1. 애플리케이션에 `providers` 폴더 생성
+2. 제공업체 구현(예: `/providers/strapi-provider-<plugin>-<provider>`)
+3. `package.json`의 dependencies에 로컬 경로로 연결
 
 ```json
 {
@@ -259,41 +258,41 @@ If you want to create your own provider without publishing it on npm you can fol
 }
 ```
 
-4. Update your `/config/plugins.js|ts` file to [configure the provider](#configuring-providers).
-5. Finally, run `yarn` or `npm install` to install your new custom provider.
+4. `/config/plugins.js|ts` 파일에서 [제공업체 설정](#configuring-providers)
+5. yarn 또는 npm install 실행
 
-###### Private providers
+###### 비공개 제공업체
 
-You can set up a private provider, meaning that every asset URL displayed in the Content Manager will be signed for secure access.
+비공개 제공업체로 설정하면, 콘텐츠 매니저에 표시되는 모든 자산 URL에 서명이 적용되어 보안 접근이 가능합니다.
 
-To enable private providers, you must implement the `isPrivate()` method and return `true`.
+비공개 제공업체를 활성화하려면 `isPrivate()` 메서드를 구현하고 true를 반환해야 합니다.
 
-In the backend, Strapi generates a signed URL for each asset using the `getSignedUrl(file)` method implemented in the provider. The signed URL includes an encrypted signature that allows the user to access the asset (but normally only for a limited time and with specific restrictions, depending on the provider).
+백엔드에서는 제공업체의 `getSignedUrl(file)` 메서드를 사용해 각 자산에 서명된 URL을 생성합니다. 이 URL에는 암호화된 서명이 포함되어, 제한된 시간 및 조건에서만 접근이 허용됩니다(제공업체별로 다름).
 
-Note that for security reasons, the content API will not provide any signed URLs. Instead, developers using the API should sign the urls themselves.
+보안을 위해 content API에서는 서명된 URL을 제공하지 않습니다. API를 사용하는 개발자는 직접 URL에 서명을 적용해야 합니다.
 
-## Usage
+## 사용법
 
-The Email feature uses the Strapi global API, meaning it can be called from anywhere inside a Strapi application, either from the back-end server itself through a [controller or service](#controller-service), or from the admin panel, for example in response to an event (using [lifecycle hooks](#lifecycle-hook)). 
+이메일 기능은 Strapi의 글로벌 API를 사용하므로, 백엔드 서버의 [컨트롤러 또는 서비스](/cms/backend-customization/services)에서, 또는 관리자 패널의 이벤트(예: [라이프사이클 훅](#lifecycle-hook))에서 호출할 수 있습니다.
 
-### Sending emails with a controller or service {#controller-service}
+### 컨트롤러 또는 서비스에서 이메일 발송 {#controller-service}
 
-The Email feature has an `email` [service](/cms/backend-customization/services) that contains 2 functions to send emails:
+이메일 기능의 `email` [서비스](/cms/backend-customization/services)에는 이메일을 발송하는 두 가지 함수가 있습니다:
 
-* `send()` directly contains the email contents,
-* `sendTemplatedEmail()` consumes data from the Content Manager to populate emails, streamlining programmatic emails.
+* `send()`: 이메일 내용을 직접 포함하여 발송
+* `sendTemplatedEmail()`: 콘텐츠 매니저의 데이터를 활용해 템플릿 기반 이메일 발송
 
-#### Using the `send()` function
+#### `send()` 함수 사용
 
-To trigger an email in response to a user action add the `send()` function to a [controller](/cms/backend-customization/controllers) or [service](/cms/backend-customization/services). The send function has the following properties:
+사용자 액션에 따라 이메일을 발송하려면, [컨트롤러](/cms/backend-customization/controllers) 또는 [서비스](/cms/backend-customization/services)에 `send()` 함수를 추가하세요. send 함수의 속성은 다음과 같습니다:
 
-| Property  | Type     | Format        | Description                                           |
-|-----------|----------|---------------|-------------------------------------------------------|
-| `from`    | `string` | email address | If not specified, uses `defaultFrom` in `plugins.js`. |
-| `to`      | `string` | email address | Required                                              |
-| `cc`      | `string` | email address | Optional                                              |
-| `bcc`     | `string` | email address | Optional                                              |
-| `replyTo` | `string` | email address | Optional                                              |
+| 속성      | 타입     | 형식        | 설명                                           |
+|-----------|----------|-------------|------------------------------------------------|
+| `from`    | `string` | 이메일 주소 | If not specified, uses `defaultFrom` in `plugins.js`. |
+| `to`      | `string` | 이메일 주소 | Required                                              |
+| `cc`      | `string` | 이메일 주소 | Optional                                              |
+| `bcc`     | `string` | 이메일 주소 | Optional                                              |
+| `replyTo` | `string` | 이메일 주소 | Optional                                              |
 | `subject` | `string` | -             | Required                                              |
 | `text`    | `string` | -             | Either `text` or `html` is required.                  |
 | `html`    | `string` | HTML          | Either `text` or `html` is required.                  |
@@ -313,7 +312,7 @@ await strapi.plugins['email'].services.email.send({
 }),
 ```
 
-#### Using the `sendTemplatedEmail()` function
+#### `sendTemplatedEmail()` 함수 사용
 
 The `sendTemplatedEmail()` function is used to compose emails from a template. The function compiles the email from the available properties and then sends the email.
 

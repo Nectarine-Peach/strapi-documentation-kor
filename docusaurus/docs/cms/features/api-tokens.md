@@ -1,6 +1,6 @@
 ---
-title: API Tokens
-description: Learn how you can use API tokens to manage end-users authentication.
+title: API 토큰
+description: API 토큰을 사용하여 엔드유저 인증을 관리하는 방법을 알아보세요.
 sidebar_position: 2
 toc_max_heading_level: 5
 tags:
@@ -11,25 +11,25 @@ tags:
   - features
 ---
 
-# API Tokens
+# API 토큰
 
-API tokens allow users to authenticate REST and GraphQL API queries (see [APIs introduction](/cms/api/content-api)).
+API 토큰을 사용하면 사용자가 REST 및 GraphQL API 쿼리를 인증할 수 있습니다([API 소개](/cms/api/content-api) 참고).
 
 <IdentityCard>
-  <IdentityCardItem icon="layout" title="Plan">
-    Free feature
+  <IdentityCardItem icon="layout" title="플랜">
+    무료 기능
   </IdentityCardItem>
   
-  <IdentityCardItem icon="user" title="Role and permission">
-    Minimum "Access the API tokens settings page" in Roles > Settings - API tokens
+  <IdentityCardItem icon="user" title="역할 및 권한">
+    최소 "API 토큰 설정 페이지 접근" 권한 필요 (Roles > Settings - API tokens)
   </IdentityCardItem>
   
-  <IdentityCardItem icon="toggle-right" title="Activation">
-    Available by default
+  <IdentityCardItem icon="toggle-right" title="활성화">
+    기본적으로 사용 가능
   </IdentityCardItem>
   
-  <IdentityCardItem icon="desktop" title="Environment">
-    Available in both Development & Production environment
+  <IdentityCardItem icon="desktop" title="환경">
+    개발 및 운영 환경 모두에서 사용 가능
   </IdentityCardItem>
 </IdentityCard>
 
@@ -41,37 +41,37 @@ sources={{
   }}
 />
 
-## Configuration
+## 설정
 
-Most configuration options for API tokens are available in the admin panel, and your Strapi project's code can be used to alter how API tokens are generated.
+API 토큰의 대부분의 설정 옵션은 관리자 패널에서 제공되며, Strapi 프로젝트의 코드를 통해 토큰 생성 방식을 변경할 수도 있습니다.
 
-### Admin panel settings
+### 관리자 패널 설정
 
-**Path to configure the feature:** <Icon name="gear-six" /> _Settings > Global settings > API Tokens_
+**기능 설정 경로:** <Icon name="gear-six" /> _설정 > 글로벌 설정 > API 토큰_
 
-The _API Tokens_ interface displays a table listing all of the created API tokens. More specifically, it displays each API token's name, description, date of creation, and date of last use.
+_API 토큰_ 인터페이스에는 생성된 모든 API 토큰의 목록이 테이블로 표시됩니다. 각 토큰의 이름, 설명, 생성일, 마지막 사용일이 표시됩니다.
 
-From there, you have the possibility to:
+여기서 다음 작업이 가능합니다:
 
-- click on the <Icon name="pencil-simple" /> to edit an API token's name, description, type, duration or [regenerate the token](#regenerating-an-api-token).
-- click on the <Icon name="trash" /> to delete an API token.
+- <Icon name="pencil-simple" />를 클릭하여 API 토큰의 이름, 설명, 유형, 기간을 수정하거나 [토큰 재생성](#regenerating-an-api-token) 가능
+- <Icon name="trash" />를 클릭하여 API 토큰 삭제
 
 :::note
-Strapi pre-generates 2 API tokens for you, a Full access one and a Read-only one. Since tokens can be only seen once without encryption configured, you may want to [regenerate](#regenerating-an-api-token) them after setting up an encryption key to make them permanently viewable.
+Strapi는 기본적으로 2개의 API 토큰(전체 접근, 읽기 전용)을 미리 생성합니다. 토큰은 암호화가 설정되지 않은 경우 한 번만 볼 수 있으므로, 암호화 키를 설정한 후 [재생성](#regenerating-an-api-token)하여 영구적으로 볼 수 있도록 하는 것이 좋습니다.
 :::
 
-#### Creating a new API token
+#### 새 API 토큰 생성
 
-1. Click on the **Create new API Token** button.
-2. In the API token edition interface, configure the new API token:
-   | Setting name | Instructions |
+1. **새 API 토큰 생성** 버튼을 클릭합니다.
+2. API 토큰 편집 화면에서 다음을 설정합니다:
+   | 설정명 | 설명 |
    | -------------- | ------------------------------------------------------------------------ |
-   | Name | Write the name of the API token. |
-   | Description | (optional) Write a description for the API token. |
-   | Token duration | Choose a token duration: _7 days_, _30 days_, _90 days_, or _Unlimited_. |
-   | Token type | Choose a token type: _Read-only_, _Full access_, or _Custom_. |
-3. (optional) For the _Custom_ token type, define specific permissions for your API endpoints by clicking on the content-type name and using checkboxes to enable or disable permissions.
-4. Click on the **Save** button. The new API token will be displayed at the top of the interface, along with a copy button <Icon name="copy" />.
+   | 이름 | API 토큰의 이름을 입력합니다. |
+   | 설명 | (선택) API 토큰에 대한 설명을 입력합니다. |
+   | 토큰 기간 | 토큰 기간을 선택합니다: _7일_, _30일_, _90일_, _무제한_. |
+   | 토큰 유형 | 토큰 유형을 선택합니다: _읽기 전용_, _전체 접근_, _사용자 지정_. |
+3. (선택) _사용자 지정_ 유형의 경우, 콘텐츠 타입별로 API 엔드포인트 권한을 체크박스로 직접 설정할 수 있습니다.
+4. **저장** 버튼을 클릭합니다. 새 API 토큰이 인터페이스 상단에 표시되며, 복사 버튼 <Icon name="copy" />도 함께 나타납니다.
 
 <ThemedImage
 alt="Custom API token"
@@ -81,42 +81,42 @@ sources={{
   }}
 />
 
-:::info Viewable tokens
-If an encryption key is configured in your Strapi project (`admin.secrets.encryptionKey`), the newly created and regenerated API tokens will be **viewable at any time** in the admin panel.
+:::info 토큰 보기
+Strapi 프로젝트에 암호화 키(`admin.secrets.encryptionKey`)가 설정되어 있으면, 새로 생성되거나 재생성된 API 토큰을 언제든지 관리자 패널에서 볼 수 있습니다.
 
-If no encryption key is set, tokens will only be viewable **once**, immediately after creation or regeneration.
+암호화 키가 없으면, 토큰은 생성 또는 재생성 직후 **한 번만** 볼 수 있습니다.
 :::
 
-#### Regenerating an API token
+#### API 토큰 재생성
 
-1. Click on the API token's edit button.
-2. Click on the **Regenerate** button.
-3. Click on the **Regenerate** button to confirm in the dialog.
-4. Copy the new API token displayed at the top of the interface.
+1. API 토큰의 편집 버튼을 클릭합니다.
+2. **재생성** 버튼을 클릭합니다.
+3. 대화 상자에서 **재생성** 버튼을 눌러 확인합니다.
+4. 새로 표시된 API 토큰을 복사합니다.
 
-### Code-based configuration
+### 코드 기반 설정
 
-New API tokens are generated using a salt. This salt is automatically generated by Strapi and stored in environment variables (the `.env` file) as `API_TOKEN_SALT`.
+새 API 토큰은 salt를 사용하여 생성됩니다. 이 salt는 Strapi에서 자동으로 생성되어 환경 변수(`.env` 파일)의 `API_TOKEN_SALT`에 저장됩니다.
 
-The salt can be customized:
+salt는 다음과 같이 커스터마이즈할 수 있습니다:
 
-- either by updating the string value for `apiToken.salt` in [your `/config/admin` file](/cms/configurations/admin-panel)
-- or by creating an `API_TOKEN_SALT` [environment variable](/cms/configurations/environment#strapi) in the `.env` file of the project
+- `/config/admin` 파일의 `apiToken.salt` 값을 수정
+- 또는 프로젝트의 `.env` 파일에 `API_TOKEN_SALT` 환경 변수 추가
 
 :::caution
-Changing the salt invalidates all the existing API tokens.
+salt를 변경하면 기존의 모든 API 토큰이 무효화됩니다.
 :::
 
-#### Ensuring API tokens are visible in the admin panel
+#### 관리자 패널에서 API 토큰을 항상 볼 수 있도록 설정
 
-To allow persistent visibility of API tokens in the admin panel, an encryption key must be provided in [your `/config/admin` file](/cms/configurations/admin-panel) under `apiToken.secrets.encryptionKey`:
+API 토큰을 관리자 패널에서 항상 볼 수 있도록 하려면, `/config/admin` 파일의 `apiToken.secrets.encryptionKey`에 암호화 키를 추가해야 합니다:
 
 <Tabs groupId="js-ts">
 <TabItem label="JavaScript" value="js">
 
 ```js title="/config/admin.js"
 module.exports = ({ env }) => ({
-  // other config parameters
+  // 기타 설정
   apiToken: {
     secrets: {
       encryptionKey: env('ENCRYPTION_KEY'),
@@ -131,7 +131,7 @@ module.exports = ({ env }) => ({
 
 ```js title="/config/admin.ts"
 export default ({ env }) => ({
-  // other config parameters
+  // 기타 설정
   apiToken: {
     secrets: {
       encryptionKey: env('ENCRYPTION_KEY'),
@@ -143,16 +143,16 @@ export default ({ env }) => ({
 </TabItem>
 </Tabs>
 
-This key is used to encrypt and decrypt token values. Without this key, tokens remain usable, but will not be viewable after initial display. New Strapi projects will have this key automatically generated.
+이 키는 토큰 값을 암호화/복호화하는 데 사용됩니다. 이 키가 없으면 토큰은 계속 사용할 수 있지만, 최초 표시 이후에는 볼 수 없습니다. 새 Strapi 프로젝트는 이 키가 자동으로 생성됩니다.
 
-## Usage
+## 사용법
 
-Using API tokens allows executing a request on [REST API](/cms/api/rest) or [GraphQL API](/cms/api/graphql) endpoints as an authenticated user.
+API 토큰을 사용하면 [REST API](/cms/api/rest) 또는 [GraphQL API](/cms/api/graphql) 엔드포인트에서 인증된 사용자로 요청을 실행할 수 있습니다.
 
-API tokens can be helpful to give access to people or applications without managing a user account or changing anything in the Users & Permissions plugin.
+API 토큰은 사용자 계정을 별도로 관리하거나 Users & Permissions 플러그인 설정을 변경하지 않고도, 사람이나 애플리케이션에 접근 권한을 부여할 때 유용합니다.
 
-When performing a request to Strapi's REST API, the API token should be added to the request's `Authorization` header with the following syntax: `bearer your-api-token`.
+Strapi의 REST API에 요청할 때는, API 토큰을 요청의 `Authorization` 헤더에 다음과 같은 형식으로 추가해야 합니다: `bearer your-api-token`.
 
 :::note
-Read-only API tokens can only access the `find` and `findOne` functions.
+읽기 전용 API 토큰은 `find` 및 `findOne` 기능만 접근할 수 있습니다.
 :::

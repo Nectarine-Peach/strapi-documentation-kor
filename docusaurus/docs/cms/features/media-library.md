@@ -1,41 +1,41 @@
 ---
-title: Media Library
+title: 미디어 라이브러리
 sidebar_position: 1
-description: Learn to use the Media Library which allows to display and manage all assets uploaded in the application.
+description: 애플리케이션에 업로드된 모든 에셋을 표시하고 관리할 수 있는 미디어 라이브러리 사용법을 알아보세요.
 toc_max_heading_level: 5
 tags:
-- admin panel
-- features
-- media library
+- 관리자 패널
+- 기능
+- 미디어 라이브러리
 ---
 
 import ScreenshotNumberReference from '/src/components/ScreenshotNumberReference.jsx';
 import MediaLibraryProvidersList from '/docs/snippets/media-library-providers-list.md';
 
-# Media Library
+# 미디어 라이브러리
 
-The <Icon name="images" /> Media Library is the Strapi feature that displays all assets uploaded in the Strapi application and allows users to manage them.
+<Icon name="images" /> 미디어 라이브러리는 Strapi 애플리케이션에 업로드된 모든 에셋을 표시하고, 사용자가 이를 관리할 수 있도록 하는 기능입니다.
 
 <IdentityCard>
-  <IdentityCardItem icon="credit-card" title="Plan">Free feature</IdentityCardItem>
-  <IdentityCardItem icon="user" title="Role & permission">Minimum "Access the Media Library" permission in Roles > Plugins - Upload</IdentityCardItem>
-  <IdentityCardItem icon="toggle-right" title="Activation">Available and activated by default</IdentityCardItem>
-  <IdentityCardItem icon="desktop" title="Environment">Available in both Development & Production environment</IdentityCardItem>
+  <IdentityCardItem icon="credit-card" title="플랜">무료 기능</IdentityCardItem>
+  <IdentityCardItem icon="user" title="역할 및 권한">Roles > Plugins - Upload에서 최소 "Access the Media Library" 권한 필요</IdentityCardItem>
+  <IdentityCardItem icon="toggle-right" title="활성화">기본 제공 및 활성화</IdentityCardItem>
+  <IdentityCardItem icon="desktop" title="환경">개발 및 프로덕션 환경 모두에서 사용 가능</IdentityCardItem>
 </IdentityCard>
 
 <Guideflow lightId="mk6z26zaqp" darkId="9r2m74otok"/>
 
-## Configuration
+## 설정
 
-Some configuration options for the Media Library are available in the admin panel, and some are handled via your Strapi project's code.
+미디어 라이브러리의 일부 설정은 관리자 패널에서, 일부는 프로젝트 코드에서 관리할 수 있습니다.
 
-### Admin panel configuration
+### 관리자 패널 설정
 
-In the admin panel, some Media Library settings are available via the Global Settings to manage the format, file size, and orientation of uploaded assets. It is also possible, directly via the Media Library to configure the view.
+글로벌 설정에서 업로드 에셋의 포맷, 파일 크기, 방향 등을 관리할 수 있습니다. 미디어 라이브러리 내에서 뷰 설정도 가능합니다.
 
-#### Configuring settings
+#### 설정 방법
 
-**Path to configure the feature:** <Icon name="gear-six" /> Settings > Global Settings > Media Library.
+**기능 설정 경로:** <Icon name="gear-six" /> 설정 > 글로벌 설정 > 미디어 라이브러리
 
 1. Define your chosen new Media Library settings:
     | Setting name   | Instructions   | Default value |
@@ -46,39 +46,39 @@ In the admin panel, some Media Library settings are available via the Global Set
 2. Click on the **Save** button.
 
 <ThemedImage
-  alt="Media Library settings"
+  alt="미디어 라이브러리 설정 화면"
   sources={{
     light: '/img/assets/settings/settings_media-library.png',
     dark: '/img/assets/settings/settings_media-library_DARK.png',
   }}
 />
 
-#### Configuring the view
+#### 뷰 구성
 
-**Path to configure the feature:** <Icon name="images" /> Media Library
+**기능 구성 경로:** <Icon name="images" /> 미디어 라이브러리
 
-1. Click on the <Icon name="gear-six" /> button just above the list of folders and assets, on the right side of the interface.
-2. Configure the Media Library view, following the instructions below:
-    | Setting name              | Instructions                                                              |
+1. 인터페이스 오른쪽에 있는 폴더 및 자산 목록 바로 위의 <Icon name="gear-six" /> 버튼을 클릭합니다.
+2. 아래 지침에 따라 미디어 라이브러리 뷰를 구성합니다:
+    | 설정 이름              | 지침                                                              |
     | ------------------------- | ------------------------------------------------------------------------- |
-    | Entries per page          | Use the dropdown to define the number of assets displayed by default per page. |
-    | Default sort order        | Use the dropdown to define the default order in which assets are displayed. This can be overriden when sorting assets in the Media Library. |
+    | 페이지당 항목 수          | 드롭다운을 사용하여 페이지당 기본적으로 표시될 자산 수를 정의합니다. |
+    | 기본 정렬 순서        | 드롭다운을 사용하여 자산이 표시되는 기본 순서를 정의합니다. 이는 미디어 라이브러리에서 자산을 정렬할 때 재정의할 수 있습니다. |
 
 :::note
-Both settings are used as the defaults in the Media Library and in the Content Manager's media upload modal. These settings are global across the entire Strapi project for all users.
+두 설정 모두 미디어 라이브러리와 콘텐츠 매니저의 미디어 업로드 모달에서 기본값으로 사용됩니다. 이러한 설정은 모든 사용자에 대해 전체 Strapi 프로젝트에서 전역적으로 적용됩니다.
 :::
 
 <ThemedImage
-  alt="Configure the view"
+  alt="뷰 구성"
   sources={{
     light: '/img/assets/media-library/media-library_configure-the-view.png',
     dark: '/img/assets/media-library/media-library_configure-the-view_DARK.png',
   }}
 />
 
-### Code-based configuration
+### 코드 기반 구성
 
-The Media Library is powered in the backend server by the Upload package, which can be configured and extended through providers.
+미디어 라이브러리는 백엔드 서버에서 Upload 패키지에 의해 구동되며, 이는 제공업체를 통해 구성하고 확장할 수 있습니다.
 
 #### Providers
 
@@ -87,7 +87,7 @@ The Media Library is powered in the backend server by the Upload package, which 
 If you need to install other providers or create your own, please refer to the following guide:
 
 <CustomDocCardsWrapper>
-<CustomDocCard icon="plug" title="Media Library Providers" link="/cms/configurations/media-library-providers" description="Learn how you can add additional providers or create your own." />
+<CustomDocCard icon="plug" title="미디어 라이브러리 Provider" link="/cms/configurations/media-library-providers" description="추가 provider를 설치하거나 직접 만드는 방법을 알아보세요." />
 </CustomDocCardsWrapper>
 
 :::info
@@ -161,7 +161,7 @@ export default () => ({
       },
     },
   },
-})
+});
 ```
 
 </TabItem>

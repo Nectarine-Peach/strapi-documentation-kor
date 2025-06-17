@@ -1,59 +1,59 @@
 ---
-title: Usage information
-description: We are committed to providing a solution, with Strapi, that exceeds the expectations of the users and community. We are also committed to continuing to develop and make Strapi even better than it is today.
+title: 사용 정보
+description: Strapi는 사용자와 커뮤니티의 기대를 뛰어넘는 솔루션을 제공하기 위해 최선을 다하고 있습니다. 또한 Strapi를 더욱 발전시키기 위해 지속적으로 개발하고 있습니다.
 sidebarDepth: 0
 tags:
-- collected data
-- telemetry
+- 수집 데이터
+- 텔레메트리
 - GDPR
 - UUID
 ---
 
-# Collected Usage Information
+# 사용 정보 수집 안내
 
-We are committed to providing a solution, with Strapi, that exceeds the expectations of the users and community. We are also committed to continuing to develop and make Strapi even better than it is today. To that end, Strapi contains a feature in which non-sensitive data is collected. This data is collectively aggregated for all our users, which when taken together give us a better global understanding of how users are interacting and using Strapi. We will never share the data collected in any way that would identify our Customers or their users; if shared, this data will always be anonymous.
+Strapi는 사용자와 커뮤니티의 기대를 뛰어넘는 솔루션을 제공하기 위해 최선을 다하고 있습니다. 이를 위해 Strapi에는 민감하지 않은 데이터를 수집하는 기능이 내장되어 있습니다. 이 데이터는 모든 사용자의 정보를 집계하여, Strapi가 어떻게 사용되고 있는지에 대한 전반적인 이해를 돕습니다. 수집된 데이터는 고객이나 사용자를 식별할 수 있는 방식으로는 절대 공유되지 않으며, 공유 시 항상 익명으로 처리됩니다.
 
-## Context
+## 배경
 
-The number of developers using Strapi is growing significantly. As mentioned earlier, we are committed to providing the best experience to our users. We will always continue to do hands-on UI/UX testing, surveys, issue tracking, roadmap votes, etc... and otherwise talk with the Strapi Community while striving to understand and deliver what is being asked for and what is needed, by any means available.
+Strapi를 사용하는 개발자 수가 빠르게 증가하고 있습니다. Strapi 팀은 항상 최고의 경험을 제공하기 위해 노력합니다. UI/UX 테스트, 설문조사, 이슈 트래킹, 로드맵 투표 등 다양한 방법으로 커뮤니티와 소통하며, 필요한 기능과 요구사항을 파악하고자 합니다.
 
-However, these above actions alone are often insufficient to maintain an overall picture of some aspects of the global usage of Strapi and its features. Globally aggregated data helps us answer and make choices around questions like these:
+하지만 위와 같은 방법만으로는 Strapi와 그 기능의 전 세계적 사용 현황을 완전히 파악하기 어렵습니다. 집계된 데이터는 다음과 같은 질문에 답하고, 더 나은 선택을 하는 데 도움을 줍니다:
 
-- Are our users using a particular feature or not? For those who are using it, what do they use it for? Is it activated and used alongside another plugin? Which specific plugin? Or something else, like, only in development/production?
-- How long does setting up a project take? If the global install time increases, does it mean that users are encountering issues or the process is simply too complicated?
-- What type of errors our users are facing?
-- What are the most used plugins?
-- And more...
+- 특정 기능이 실제로 얼마나 사용되고 있는가? 사용자는 어떤 용도로 사용하는가? 다른 플러그인과 함께 사용하는가? 개발/운영 환경에서만 사용하는가?
+- 프로젝트 설정에 소요되는 시간은 어느 정도인가? 설치 시간이 길어진다면, 사용자가 문제를 겪고 있거나 과정이 복잡하다는 의미일 수 있음
+- 사용자가 가장 많이 겪는 오류는 무엇인가?
+- 가장 많이 사용되는 플러그인은 무엇인가?
+- 기타 다양한 질문들...
 
-Without these metrics, we wouldn't be able to make the right choices as we continue to move forward with the roadmap and provide what you, the community and users, are asking for.
+이러한 지표가 없다면, 앞으로의 로드맵을 결정하고 커뮤니티와 사용자가 원하는 기능을 제공하는 데 어려움이 있습니다.
 
-## Collected data
+## 수집되는 데이터
 
-The following data is collected:
+다음과 같은 데이터가 수집됩니다:
 
-- Unique project ID (generated with UUID)
-- Unique machine ID (generated with <ExternalLink to="https://www.npmjs.com/package/node-machine-id" text="node-machine-id"/>)
-- Environment state (development, staging, production)
-- System information (OS)
-- Build configurations
+- 고유 프로젝트 ID(UUID로 생성)
+- 고유 머신 ID(<ExternalLink to="https://www.npmjs.com/package/node-machine-id" text="node-machine-id"/>로 생성)
+- 환경 상태(개발, 스테이징, 운영)
+- 시스템 정보(OS)
+- 빌드 설정 정보
 
 :::caution GDPR
-Any identifiable data collected and aggregated is of a non-sensitive nature. We are compliant with the European GDPR recommendations (see our <ExternalLink to="https://strapi.io/privacy" text="Privacy Policy"/>). We do not collect databases configurations, password or custom variables. Any data collected (as above) is secured, encrypted and then anonymized.
+수집 및 집계되는 모든 데이터는 비식별성, 비민감성 데이터입니다. Strapi는 유럽 GDPR 권고사항을 준수합니다(자세한 내용은 <ExternalLink to="https://strapi.io/privacy" text="개인정보 처리방침"/> 참고). 데이터베이스 설정, 비밀번호, 커스텀 변수 등은 수집하지 않으며, 수집된 데이터는 암호화 및 익명화되어 안전하게 관리됩니다.
 :::
 
 :::note
-If you check the box "Keep me updated about new features & upcoming improvements (by doing this, you accept the terms and the privacy policy)" on the first registration screen, your email address, first name, and role in the company will be sent to our marketing team.
+최초 회원가입 화면에서 "신기능 및 업데이트 소식을 이메일로 받겠습니다(이 박스를 체크하면 약관 및 개인정보 처리방침에 동의하게 됩니다)"를 체크하면, 이메일, 이름, 회사 내 역할 정보가 마케팅팀에 전달됩니다.
 
-These data are used for marketing-related purposes only (e.g., the Strapi newsletter) and are not sent to Strapi's telemetry system. This collected usage information is opt-out by default: the data aren't sent if you don't check the box.
+이 정보는 마케팅(예: 뉴스레터) 용도로만 사용되며, Strapi의 텔레메트리 시스템에는 전송되지 않습니다. 이 정보 수집은 기본적으로 옵트아웃(비활성) 상태이며, 박스를 체크하지 않으면 데이터가 전송되지 않습니다.
 :::
 
-### Opt-out
+### 수집 비활성화(Opt-out)
 
 :::caution
-Strapi previously recommended disabling data collection by removing the `uuid` property in the `package.json` file located in the project root. While this method will still work it is discouraged since the `uuid` might be required for certain project functionality and adding a `uuid` at a later date would re-enable data collection without informing the user.
+이전에는 프로젝트 루트의 `package.json`에서 `uuid` 속성을 삭제하여 데이터 수집을 비활성화하는 방법을 안내했으나, 이 방법은 권장하지 않습니다. 일부 기능에 uuid가 필요할 수 있으며, 나중에 uuid를 추가하면 데이터 수집이 다시 활성화될 수 있습니다.
 :::
 
-The default data collection feature can be disabled using the following CLI command:
+기본 데이터 수집 기능은 다음 CLI 명령어로 비활성화할 수 있습니다:
 
 <Tabs groupId="yarn-npm">
 
@@ -75,10 +75,10 @@ npm run strapi telemetry:disable
 
 </Tabs>
 
-Alternatively, the `strapi.telemetryDisabled: true` flag in the project `package.json` file will also disable data collection.
+또는 프로젝트의 `package.json` 파일에 `strapi.telemetryDisabled: true` 플래그를 추가해도 데이터 수집이 비활성화됩니다.
 
-Data collection can later be re-enabled by deleting the flag or setting it to false, or by using the `telemetry:enable` command.
+이후 데이터 수집을 다시 활성화하려면 플래그를 삭제하거나 false로 변경하거나, `telemetry:enable` 명령어를 사용하면 됩니다.
 
 :::note
-If you have any questions or concerns regarding data collection, please contact us at the following email address [privacy@strapi.io](mailto:privacy@strapi.io).
+데이터 수집에 대해 궁금한 점이나 우려 사항이 있다면 [privacy@strapi.io](mailto:privacy@strapi.io)로 문의해 주세요.
 :::

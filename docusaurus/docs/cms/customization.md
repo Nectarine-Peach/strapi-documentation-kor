@@ -1,48 +1,47 @@
 ---
-title: Customization
-description: Learn more about Strapi 5 customization possibilities
+title: 커스터마이징
+description: Strapi 5의 다양한 커스터마이징 가능성을 알아보세요
 displayed_sidebar: cmsSidebar
 pagination_next: cms/backend-customization
 tags:
-- admin panel
-- admin panel customization
-- backend customization
-- backend server
-- concepts
-- Content-type Builder 
+- 관리자 패널
+- 관리자 패널 커스터마이징
+- 백엔드 커스터마이징
+- 백엔드 서버
+- 개념
+- Content-type Builder
 - Content Manager
-- introduction
+- 소개
 ---
 
-# Customization
+# 커스터마이징
 
-Strapi includes 2 main components:
+Strapi는 2가지 주요 컴포넌트로 구성되어 있습니다:
 
-- The back-end part of Strapi is a **server** that receives requests and handles them to return responses that can surface the data you built and saved through the Content-Type Builder and Content Manager. The backend server is described in more details in the [Backend Customization introduction](/cms/backend-customization). Most of the parts of the backend server can be customized.
+- Strapi의 백엔드 부분은 **서버**로, 요청을 받아 응답을 반환하며, Content-Type Builder와 Content Manager를 통해 구축하고 저장한 데이터를 노출합니다. 백엔드 서버에 대한 자세한 설명은 [백엔드 커스터마이징 소개](/cms/backend-customization)에서 확인할 수 있습니다. 백엔드 서버의 대부분은 커스터마이징이 가능합니다.
 
-- The front-end, user-facing part of Strapi is called the **admin panel**. The admin panel is the graphical user interface (GUI) that you use to build a content structure, create and manage content, and perform various other actions that can be managed by built-in or 3rd-party plugins.  Some parts of the admin panel can be customized.
+- Strapi의 프론트엔드, 즉 사용자 인터페이스 부분은 **관리자 패널**이라고 부릅니다. 관리자 패널은 콘텐츠 구조를 만들고, 콘텐츠를 관리하며, 내장 또는 서드파티 플러그인을 통해 다양한 작업을 수행할 수 있는 그래픽 사용자 인터페이스(GUI)입니다. 관리자 패널의 일부도 커스터마이징할 수 있습니다.
 
-From a bigger picture, this is how Strapi integrates in a typical, generic setup: Strapi includes 2 parts, a back-end server and an admin panel, and interact with a database (which stores data) and an external, front-end application that displays your data. Both parts of Strapi can be customized to some extent.
+전체적인 관점에서 Strapi는 일반적인 환경에서 다음과 같이 통합됩니다: Strapi는 백엔드 서버와 관리자 패널 두 부분으로 구성되며, 데이터베이스(데이터 저장) 및 외부 프론트엔드 애플리케이션(데이터 표시)과 상호작용합니다. Strapi의 두 부분 모두 어느 정도까지 커스터마이징이 가능합니다.
 
 <MermaidWithFallback
     chartFile="/diagrams/customization.mmd"
     fallbackImage="/img/assets/diagrams/customization.png"
     fallbackImageDark="/img/assets/diagrams/customization_DARK.png"
-    alt="Customization diagram"
+    alt="커스터마이징 다이어그램"
 />
 
 <br />
 
-Click on any of the following cards to learn more about customization possibilities:
+아래 카드 중 하나를 클릭하면 커스터마이징 가능 항목에 대해 더 자세히 알아볼 수 있습니다:
 
 <CustomDocCardsWrapper>
-<CustomDocCard emoji="" title="Back-end customization" description="Customize the backend server (routes, policies, middlewares, controllers, services, and models)." link="/cms/backend-customization" />
-<CustomDocCard emoji="" title="Admin panel customization" description="Customize the admin panel (logos, themes, menu, translations, and more)." link="/cms/admin-panel-customization" />
+<CustomDocCard emoji="" title="백엔드 커스터마이징" description="백엔드 서버(라우트, 정책, 미들웨어, 컨트롤러, 서비스, 모델 등) 커스터마이징." link="/cms/backend-customization" />
+<CustomDocCard emoji="" title="관리자 패널 커스터마이징" description="관리자 패널(로고, 테마, 메뉴, 번역 등) 커스터마이징." link="/cms/admin-panel-customization" />
 </CustomDocCardsWrapper>
 
-
 :::info
-Customizing the database or the external, front-end application are outside of the scope of the present documentation section.
-- You can learn more about databases usage with Strapi by reading the installation documentation, which lists [supported databases](/cms/installation/cli#preparing-the-installation), and the configuration documentation, which describes how to [configure a database](/cms/configurations/database) with your project.
-- You can learn more about how external front-end applications can interact with Strapi by reading the Strapi's <ExternalLink to="https://strapi.io/integrations" text="integration pages"/>.
+데이터베이스 또는 외부 프론트엔드 애플리케이션 커스터마이징은 본 문서 범위에 포함되지 않습니다.
+- Strapi에서 지원하는 데이터베이스에 대한 자세한 내용은 설치 문서([지원 데이터베이스](/cms/installation/cli#preparing-the-installation))와 [데이터베이스 구성](/cms/configurations/database) 문서를 참고하세요.
+- 외부 프론트엔드 애플리케이션이 Strapi와 상호작용하는 방법은 Strapi의 <ExternalLink to="https://strapi.io/integrations" text="통합 페이지"/>에서 확인할 수 있습니다.
 :::

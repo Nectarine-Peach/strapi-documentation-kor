@@ -1,69 +1,69 @@
 ---
-title: TypeScript - Manipulating Documents and Entries
-sidebar_label: Manipulating Documents and Entries
+title: TypeScript - 문서와 엔트리 조작하기
+sidebar_label: 문서와 엔트리 조작하기
 displayed_sidebar: cmsSidebar
-description: TypeScript guide to get started with manipulating documents and entries
+description: 문서와 엔트리 조작을 시작하기 위한 TypeScript 가이드
 tags:
-  - typescript
-  - guides
-  - data
-  - document
-  - component
+  - 타입스크립트
+  - 가이드
+  - 데이터
+  - 문서
+  - 컴포넌트
   - uid
-  - entries
+  - 엔트리
 ---
 
-# Manipulating documents and entries with a TypeScript-based project
+# TypeScript 기반 프로젝트에서 문서와 엔트리 조작하기
 
-This guide will explore [TypeScript](/cms/typescript) patterns for manipulating documents and entries in a Strapi v5 application, including how to leverage Strapi's `UID` and `Data` namespaces to interact with both generic and known entity types safely. If you're working on a TypeScript-based Strapi project, mastering these approaches will help you take full advantage of type safety and code completion, ensuring robust, error-free interactions with your application’s content and components.
+이 가이드는 Strapi v5 애플리케이션에서 문서와 엔트리를 조작하기 위한 [TypeScript](/cms/typescript) 패턴을 탐색하며, Strapi의 `UID`와 `Data` 네임스페이스를 활용하여 일반적인 엔티티 타입과 알려진 엔티티 타입 모두와 안전하게 상호작용하는 방법을 포함합니다. TypeScript 기반 Strapi 프로젝트에서 작업한다면, 이러한 접근 방식을 마스터하는 것이 타입 안전성과 코드 완성의 이점을 최대한 활용하는 데 도움이 되어, 애플리케이션의 콘텐츠와 컴포넌트와의 견고하고 오류 없는 상호작용을 보장합니다.
 
 :::prerequisites
 
-- **Strapi Application:** A Strapi v5 application. If you don't have one, follow the [documentation](/cms/quick-start) to get started.
-- **TypeScript:** Ensure TypeScript is set up in your Strapi project. You can follow Strapi's [official guide](/cms/typescript#getting-started-with-typescript-in-strapi) on configuring TypeScript.
-- **Generated Types:** Application types [have been generated](/cms/typescript/development#generate-typings-for-content-types-schemas) and are accessible.
+- **Strapi 애플리케이션:** Strapi v5 애플리케이션. 없다면 [문서](/cms/quick-start)를 따라 시작하세요.
+- **TypeScript:** Strapi 프로젝트에 TypeScript가 설정되어 있는지 확인하세요. TypeScript 구성에 대한 Strapi의 [공식 가이드](/cms/typescript#getting-started-with-typescript-in-strapi)를 따를 수 있습니다.
+- **생성된 타입:** 애플리케이션 타입이 [생성되었고](/cms/typescript/development#generate-typings-for-content-types-schemas) 접근 가능한지 확인하세요.
   :::
 
-## Type Imports
+## 타입 가져오기
 
-The `UID` namespace contains literal unions representing the available resources in the application.
+`UID` 네임스페이스는 애플리케이션에서 사용 가능한 리소스를 나타내는 리터럴 유니온을 포함합니다.
 
 ```typescript
 import type { UID } from '@strapi/strapi';
 ```
 
-- `UID.ContentType` represents a union of every content-type identifier in the application
-- `UID.Component` represents a union of every component identifier in the application
-- `UID.Schema` represents a union of every schema (content-type or component) identifier in the application
-- And others...
+- `UID.ContentType`은 애플리케이션의 모든 콘텐츠 타입 식별자의 유니온을 나타냅니다
+- `UID.Component`는 애플리케이션의 모든 컴포넌트 식별자의 유니온을 나타냅니다
+- `UID.Schema`는 모든 스키마(콘텐츠 타입 또는 컴포넌트) 식별자의 유니온을 나타냅니다
+- 그리고 기타 등등...
 
 ---
 
-Strapi provides a `Data` namespace containing several built-in types for entity representation.
+Strapi는 엔티티 표현을 위한 여러 내장 타입을 포함하는 `Data` 네임스페이스를 제공합니다.
 
 ```typescript
 import type { Data } from '@strapi/strapi';
 ```
 
-- `Data.ContentType` represents a Strapi document object
-- `Data.Component` represents a Strapi component object
-- `Data.Entity` represents either a document or a component
+- `Data.ContentType`은 Strapi 문서 객체를 나타냅니다
+- `Data.Component`는 Strapi 컴포넌트 객체를 나타냅니다
+- `Data.Entity`는 문서 또는 컴포넌트를 나타냅니다
 
 :::tip
-Both the entities' type definitions and UIDs are based on the generated schema types for your application.
+엔티티의 타입 정의와 UID 모두 애플리케이션의 생성된 스키마 타입을 기반으로 합니다.
 
-In case of a mismatch or error, you can always [regenerate the types](/cms/typescript/development#generate-typings-for-content-types-schemas).
+불일치나 오류가 발생하는 경우, 언제든지 [타입을 재생성](/cms/typescript/development#generate-typings-for-content-types-schemas)할 수 있습니다.
 :::
 
-## Usage
+## 사용법
 
 <br />
 
-### Generic entities
+### 일반적인 엔티티
 
-When dealing with generic data, it is recommended to use non-parametrized forms of the `Data` types.
+일반적인 데이터를 다룰 때는 `Data` 타입의 매개변수화되지 않은 형태를 사용하는 것이 권장됩니다.
 
-#### Generic documents
+#### 일반적인 문서
 
 ```typescript
 async function save(name: string, document: Data.ContentType) {
@@ -80,9 +80,9 @@ async function save(name: string, document: Data.ContentType) {
 ```
 
 :::warning
-In the preceding example, the resolved properties for `document` are those common to every content-type.
+앞의 예제에서 `document`에 대해 해결된 속성들은 모든 콘텐츠 타입에 공통인 것들입니다.
 
-Other properties have to be checked manually using type guards.
+다른 속성들은 타입 가드를 사용하여 수동으로 확인해야 합니다.
 
 ```typescript
 if ('my_prop' in document) {
@@ -92,7 +92,7 @@ if ('my_prop' in document) {
 
 :::
 
-#### Generic components
+#### 일반적인 컴포넌트
 
 ```typescript
 function renderComponent(parent: Node, component: Data.Component) {
@@ -113,11 +113,11 @@ function renderComponent(parent: Node, component: Data.Component) {
 }
 ```
 
-### Known entities
+### 알려진 엔티티
 
-When manipulating known entities, it is possible to parametrize `Data` types for better type safety and code completion.
+알려진 엔티티를 조작할 때는 더 나은 타입 안전성과 코드 완성을 위해 `Data` 타입을 매개변수화할 수 있습니다.
 
-#### Known documents
+#### 알려진 문서
 
 ```typescript
 const ALL_CATEGORIES = ['food', 'tech', 'travel'];
@@ -128,16 +128,16 @@ function validateArticle(article: Data.ContentType<'api::article.article'>) {
   //       string     Data.ContentType<'api::category.category'>
 
   if (title.length < 5) {
-    throw new Error('Title too short');
+    throw new Error('제목이 너무 짧습니다');
   }
 
   if (!ALL_CATEGORIES.includes(category.name)) {
-    throw new Error(`Unknown category ${category.name}`);
+    throw new Error(`알 수 없는 카테고리 ${category.name}`);
   }
 }
 ```
 
-#### Known components
+#### 알려진 컴포넌트
 
 ```typescript
 function processUsageMetrics(
@@ -148,13 +148,13 @@ function processUsageMetrics(
 }
 ```
 
-### Advanced use cases
+### 고급 사용 사례
 
 <br/>
 
-#### Entities subsets
+#### 엔티티 하위 집합
 
-Using the types' second parameter (`TKeys`), it is possible to obtain a subset of an entity.
+타입의 두 번째 매개변수(`TKeys`)를 사용하여 엔티티의 하위 집합을 얻을 수 있습니다.
 
 ```typescript
 type Credentials = Data.ContentType<'api::acount.acount', 'email' | 'password'>;
@@ -166,11 +166,11 @@ type UsageMetrics = Data.Component<'app.metrics', 'clicks' | 'views'>;
 //   ^? { clicks: number; views: number }
 ```
 
-#### Type argument inference
+#### 타입 인수 추론
 
-It is possible to bind and restrict an entity type based on other function parameters.
+다른 함수 매개변수를 기반으로 엔티티 타입을 바인딩하고 제한할 수 있습니다.
 
-In the following example, the `uid` type is inferred upon usage as `T` and used as a type parameter for the `document`.
+다음 예제에서 `uid` 타입은 사용 시 `T`로 추론되고 `document`의 타입 매개변수로 사용됩니다.
 
 ```typescript
 import type { UID } from '@strapi/strapi';
@@ -196,7 +196,7 @@ function display<T extends UID.ContentType>(
       //     ^? Data.ContentType<'api::account.account'>
     }
     default: {
-      throw new Error(`unknown content-type uid: "${uid}"`);
+      throw new Error(`알 수 없는 콘텐츠 타입 uid: "${uid}"`);
     }
   }
 }

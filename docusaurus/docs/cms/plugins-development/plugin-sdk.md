@@ -1,90 +1,90 @@
 ---
-title: Plugin SDK
-description: Reference documentation for Strapi's Plugin SDK commands
+title: 플러그인 SDK
+description: Strapi의 플러그인 SDK 명령어에 대한 참조 문서
 displayed_sidebar: cmsSidebar
 tags:
-  - backend server
-  - Plugin SDK
-  - plugins
-  - plugins development
+  - 백엔드 서버
+  - 플러그인 SDK
+  - 플러그인
+  - 플러그인 개발
 ---
 
-# Plugin SDK reference
+# 플러그인 SDK 참조
 
-The Plugin SDK is set of commands provided by the package <ExternalLink to="https://github.com/strapi/sdk-plugin" text="@strapi/sdk-plugin"/> orientated around developing plugins to use them as local plugins or to publish them on NPM and/or submit them to the Marketplace.
+플러그인 SDK는 <ExternalLink to="https://github.com/strapi/sdk-plugin" text="@strapi/sdk-plugin"/> 패키지에서 제공하는 명령어 세트로, 로컬 플러그인으로 사용하거나 NPM에 게시하거나 마켓플레이스에 제출하기 위한 플러그인 개발에 중점을 둡니다.
 
-The present documentation lists the available Plugin SDK commands. The [associated guide](/cms/plugins-development/create-a-plugin) illustrates how to use these commands to create a plugin from scratch, link it to an existing project, and publish it.
+현재 문서는 사용 가능한 플러그인 SDK 명령어를 나열합니다. [관련 가이드](/cms/plugins-development/create-a-plugin)는 이러한 명령어를 사용하여 처음부터 플러그인을 생성하고, 기존 프로젝트에 연결하고, 게시하는 방법을 보여줍니다.
 
 ## npx @strapi/sdk-plugin init
 
-Create a new plugin at a given path.
+주어진 경로에 새 플러그인을 생성합니다.
 
 ```bash
 npx @strapi/sdk-plugin init
 ```
 
-| Arguments |  Type  | Description        | Default                   |
+| 인수    |  타입  | 설명               | 기본값                     |
 | --------- | :----: | ------------------ | ------------------------- |
-| `path`    | string | Path to the plugin | `./src/plugins/my-plugin` |
+| `path`    | string | 플러그인 경로       | `./src/plugins/my-plugin` |
 
-| Option        | Type | Description                             | Default |
+| 옵션           | 타입 | 설명                                    | 기본값 |
 | ------------- | :--: | --------------------------------------- | ------- |
-| `-d, --debug` |  -   | Enable debugging mode with verbose logs | false   |
-| `--silent`    |  -   | Do not log anything                     | false   |
+| `-d, --debug` |  -   | 상세 로그와 함께 디버깅 모드 활성화        | false   |
+| `--silent`    |  -   | 아무것도 로그하지 않음                   | false   |
 
 ## strapi-plugin build
 
-Bundle the Strapi plugin for publishing.
+게시를 위해 Strapi 플러그인을 번들링합니다.
 
 ```bash
 strapi-plugin build
 ```
 
-| Option         |  Type  | Description                                                                                                       | Default |
+| 옵션           |  타입  | 설명                                                                                                       | 기본값 |
 | -------------- | :----: | ----------------------------------------------------------------------------------------------------------------- | ------- |
-| `--force`      | string | Automatically answer "yes" to all prompts, including potentially destructive requests, and run non-interactively. | -       |
-| `-d, --debug`  |   -    | Enable debugging mode with verbose logs                                                                           | false   |
-| `--silent`     |   -    | Do not log anything                                                                                               | false   |
-| `--minify`     |   -    | Minify the output                                                                                                 | true    |
-| `--sourcemaps` |   -    | Produce sourcemaps                                                                                                | false   |
+| `--force`      | string | 잠재적으로 파괴적인 요청을 포함하여 모든 프롬프트에 자동으로 "yes"라고 답하고 비대화식으로 실행합니다. | -       |
+| `-d, --debug`  |   -    | 상세 로그와 함께 디버깅 모드 활성화                                                                           | false   |
+| `--silent`     |   -    | 아무것도 로그하지 않음                                                                                               | false   |
+| `--minify`     |   -    | 출력을 최소화                                                                                                 | true    |
+| `--sourcemaps` |   -    | 소스맵 생성                                                                                                | false   |
 
 ## strapi-plugin watch:link
 
-Recompiles the plugin automatically on changes and runs `yalc push --publish`.
+변경 시 플러그인을 자동으로 재컴파일하고 `yalc push --publish`를 실행합니다.
 
-For testing purposes, it is very convenient to link your plugin to an existing application to experiment with it in real condition. This command is made to help you streamline this process.
+테스트 목적으로 플러그인을 기존 애플리케이션에 연결하여 실제 조건에서 실험하는 것이 매우 편리합니다. 이 명령어는 이 프로세스를 간소화하는 데 도움을 줍니다.
 
 ```bash
 strapi-plugin watch:link
 ```
 
-| Option        | Type | Description                             | Default |
+| 옵션           | 타입 | 설명                                    | 기본값 |
 | ------------- | :--: | --------------------------------------- | ------- |
-| `-d, --debug` |  -   | Enable debugging mode with verbose logs | false   |
-| `--silent`    |  -   | Do not log anything                     | false   |
+| `-d, --debug` |  -   | 상세 로그와 함께 디버깅 모드 활성화        | false   |
+| `--silent`    |  -   | 아무것도 로그하지 않음                   | false   |
 
 ## strapi-plugin watch
 
-Watch the plugin source code for any change and rebuild it everytime. Useful when implementing your plugin and testing it in an application.
+플러그인 소스 코드의 변경 사항을 감시하고 매번 재빌드합니다. 플러그인을 구현하고 애플리케이션에서 테스트할 때 유용합니다.
 
 ```bash
 strapi-plugin watch
 ```
 
-| Option        | Type | Description                             | Default |
+| 옵션           | 타입 | 설명                                    | 기본값 |
 | ------------- | :--: | --------------------------------------- | ------- |
-| `-d, --debug` |  -   | Enable debugging mode with verbose logs | false   |
-| `--silent`    |  -   | Do not log anything                     | false   |
+| `-d, --debug` |  -   | 상세 로그와 함께 디버깅 모드 활성화        | false   |
+| `--silent`    |  -   | 아무것도 로그하지 않음                   | false   |
 
 ## strapi-plugin verify
 
-Verify the output of the plugin before publishing it.
+게시하기 전에 플러그인의 출력을 검증합니다.
 
 ```bash
 strapi-plugin verify
 ```
 
-| Option        | Type | Description                             | Default |
+| 옵션           | 타입 | 설명                                    | 기본값 |
 | ------------- | :--: | --------------------------------------- | ------- |
-| `-d, --debug` |  -   | Enable debugging mode with verbose logs | false   |
-| `--silent`    |  -   | Do not log anything                     | false   |
+| `-d, --debug` |  -   | 상세 로그와 함께 디버깅 모드 활성화        | false   |
+| `--silent`    |  -   | 아무것도 로그하지 않음                   | false   |

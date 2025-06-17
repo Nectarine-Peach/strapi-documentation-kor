@@ -1,65 +1,65 @@
 ---
-title: Error handling
+title: 에러 처리
 displayed_sidebar: cmsSidebar
-description: With Strapi's error handling feature it's easy to send and receive errors in your application.
+description: Strapi의 에러 처리 기능을 통해 애플리케이션에서 에러를 쉽게 송수신할 수 있습니다.
 tags:
 - ctx
 - GraphQL API
-- GraphQL errorsa
-- policies
-- middlewares
+- GraphQL 에러
+- 정책(policies)
+- 미들웨어
 - REST API
-- REST errors
-- throw errors
+- REST 에러
+- 에러 발생
 - strapi-utils
 ---
 
-# Error handling
+# 에러 처리
 
-Strapi is natively handling errors with a standard format.
+Strapi는 표준 포맷으로 에러를 기본적으로 처리합니다.
 
-There are 2 use cases for error handling:
+에러 처리는 두 가지 주요 상황에서 사용됩니다:
 
-- As a developer querying content through the [REST](/cms/api/rest) or [GraphQL](/cms/api/graphql) APIs, you might [receive errors](#receiving-errors) in response to the requests.
-- As a developer customizing the backend of your Strapi application, you could use controllers and services to [throw errors](#throwing-errors).
+- [REST](/cms/api/rest) 또는 [GraphQL](/cms/api/graphql) API를 통해 콘텐츠를 쿼리하는 개발자는 요청에 대한 [에러 응답](#receiving-errors)을 받을 수 있습니다.
+- Strapi 애플리케이션의 백엔드를 커스터마이징하는 개발자는 컨트롤러나 서비스에서 [에러를 발생](#throwing-errors)시킬 수 있습니다.
 
-## Receiving errors
+## 에러 응답 받기
 
-Errors are included in the response object with the `error` key and include information such as the HTTP status code, the name of the error, and additional information.
+에러는 응답 객체의 `error` 키에 포함되며, HTTP 상태 코드, 에러 이름, 추가 정보 등이 포함됩니다.
 
-### REST errors
+### REST 에러
 
-Errors thrown by the REST API are included in the [response](/cms/api/rest#requests) that has the following format:
+REST API에서 발생한 에러는 다음과 같은 [응답](/cms/api/rest#requests) 포맷으로 반환됩니다:
 
 ```json
 {
   "data": null,
   "error": {
-    "status": "", // HTTP status
-    "name": "", // Strapi error name ('ApplicationError' or 'ValidationError')
-    "message": "", // A human readable error message
+    "status": "", // HTTP 상태
+    "name": "", // Strapi 에러 이름('ApplicationError' 또는 'ValidationError')
+    "message": "", // 사람이 읽을 수 있는 에러 메시지
     "details": {
-      // error info specific to the error type
+      // 에러 타입별 상세 정보
     }
   }
 }
 ```
 
-### GraphQL errors
+### GraphQL 에러
 
-Errors thrown by the GraphQL API are included in the response that has the following format:
+GraphQL API에서 발생한 에러는 다음과 같은 포맷으로 반환됩니다:
 
 ```json
 { "errors": [
     {
-      "message": "", // A human reable error message
+      "message": "", // 사람이 읽을 수 있는 에러 메시지
       "extensions": {
         "error": {
-          "name": "", // Strapi error name ('ApplicationError' or 'ValidationError'),
-          "message": "", // A human reable error message (same one as above);
-          "details": {}, // Error info specific to the error type
+          "name": "", // Strapi 에러 이름('ApplicationError' 또는 'ValidationError')
+          "message": "", // 사람이 읽을 수 있는 에러 메시지(동일)
+          "details": {}, // 에러 타입별 상세 정보
         },
-        "code": "" // GraphQL error code (ex: BAD_USER_INPUT)
+        "code": "" // GraphQL 에러 코드(예: BAD_USER_INPUT)
       }
     }
   ],
@@ -69,20 +69,20 @@ Errors thrown by the GraphQL API are included in the response that has the follo
 }
 ```
 
-## Throwing errors
+## 에러 발생시키기
 
 <br/>
 
-### Controllers and middlewares
+### 컨트롤러 및 미들웨어
 
-The recommended way to throw errors when developing any custom logic with Strapi is to have the [controller](/cms/backend-customization/controllers) or [middleware](/cms/backend-customization/middlewares) respond with the correct status and body.
+Strapi에서 커스텀 로직을 개발할 때 에러를 발생시키는 권장 방법은 [컨트롤러](/cms/backend-customization/controllers)나 [미들웨어](/cms/backend-customization/middlewares)에서 적절한 상태와 본문으로 응답하는 것입니다.
 
-This can be done by calling an error function on the context (i.e. `ctx`). Available error functions are listed in the <ExternalLink to="https://github.com/jshttp/http-errors#list-of-all-constructors" text="http-errors documentation"/> but their name should be lower camel-cased to be used by Strapi (e.g. `badRequest`).
+이는 컨텍스트(예: `ctx`)에서 에러 함수를 호출하여 처리할 수 있습니다. 사용 가능한 에러 함수는 <ExternalLink to="https://github.com/jshttp/http-errors#list-of-all-constructors" text="http-errors 문서"/>에서 확인할 수 있으며, Strapi에서는 lower camel-case로 사용해야 합니다(예: `badRequest`).
 
-Error functions accept 2 parameters that correspond to the `error.message` and `error.details` attributes [received](#receiving-errors) by a developer querying the API:
+에러 함수는 두 개의 파라미터를 받으며, 각각 [API 쿼리 시 받는 응답](#receiving-errors)의 `error.message`와 `error.details`에 해당합니다:
 
-- the first parameter of the function is the error `message`
-- and the second one is the object that will be set as `details` in the response received
+- 첫 번째 파라미터: 에러 메시지(`message`)
+- 두 번째 파라미터: 응답의 `details`로 설정될 객체
 
 <Tabs groupId="js-ts">
 
@@ -144,19 +144,19 @@ export default async (ctx, next) => {
 
 </Tabs>
 
-### Services and models lifecycles
+### 서비스 및 모델 라이프사이클
 
-Once you are working at a deeper layer than the controllers or middlewares there are dedicated error classes that can be used to throw errors. These classes are extensions of <ExternalLink to="https://nodejs.org/api/errors.html#errors_class_error" text="Node `Error` class"/> and are specifically targeted for certain use-cases.
+컨트롤러나 미들웨어보다 더 깊은 레이어에서 작업할 때는, 에러를 발생시키기 위한 전용 에러 클래스가 있습니다. 이 클래스들은 <ExternalLink to="https://nodejs.org/api/errors.html#errors_class_error" text="Node `Error` 클래스"/>를 확장하며, 특정 용도에 맞게 설계되어 있습니다.
 
-These error classes are imported through the `@strapi/utils` package and can be called from several different layers. The following examples use the service layer but error classes are not just limited to services and model lifecycles. When throwing errors in the model lifecycle layer, it's recommended to use the `ApplicationError` class so that proper error messages are shown in the admin panel.
+이 에러 클래스들은 `@strapi/utils` 패키지에서 import하여 여러 레이어에서 사용할 수 있습니다. 아래 예시는 서비스 레이어를 사용하지만, 서비스와 모델 라이프사이클 외에도 사용할 수 있습니다. 모델 라이프사이클 레이어에서 에러를 발생시킬 때는 `ApplicationError` 클래스를 사용하는 것이 관리자 패널에 올바른 에러 메시지를 표시하는 데 권장됩니다.
 
 :::note
-See the [default error classes](#default-error-classes) section for more information on the error classes provided by Strapi.
+Strapi에서 제공하는 [기본 에러 클래스](#default-error-classes)도 참고하세요.
 :::
 
-#### Example: Throwing an error in a service**
+#### 예시: 서비스에서 에러 발생시키기
 
-This example shows wrapping a [core service](/cms/backend-customization/services#extending-core-services) and doing a custom validation on the `create` method:
+아래는 [코어 서비스 확장](/cms/backend-customization/services#extending-core-services)에서 `create` 메서드에 커스텀 검증을 추가하는 예시입니다:
 
 <Tabs groupId="js-ts">
 
@@ -172,7 +172,7 @@ module.exports = createCoreService('api::restaurant.restaurant', ({ strapi }) =>
   async create(params) {
     let okay = false;
 
-    // Throwing an error will prevent the restaurant from being created
+    // 에러를 발생시키면 restaurant 생성이 중단됨
     if (!okay) {
       throw new errors.ApplicationError('Something went wrong', { foo: 'bar' });
     }
@@ -181,7 +181,7 @@ module.exports = createCoreService('api::restaurant.restaurant', ({ strapi }) =>
 
     return result;
   }
-});
+}));
 ```
 
 </TabItem>
@@ -199,7 +199,7 @@ export default factories.createCoreService('api::restaurant.restaurant', ({ stra
   async create(params) {
     let okay = false;
 
-    // Throwing an error will prevent the restaurant from being created
+    // 에러를 발생시키면 restaurant 생성이 중단됨
     if (!okay) {
       throw new errors.ApplicationError('Something went wrong', { foo: 'bar' });
     }
@@ -216,9 +216,9 @@ export default factories.createCoreService('api::restaurant.restaurant', ({ stra
 
 </Tabs>
 
-#### Example: Throwing an error in a model lifecycle**
+#### 예시: 모델 라이프사이클에서 에러 발생시키기
 
-This example shows building a [custom model lifecycle](/cms/backend-customization/models#lifecycle-hooks) and being able to throw an error that stops the request and will return proper error messages to the admin panel. Generally you should only throw an error in `beforeX` lifecycles, not `afterX` lifecycles.
+아래는 [커스텀 모델 라이프사이클](/cms/backend-customization/models#lifecycle-hooks)에서 에러를 발생시켜 요청을 중단하고, 관리자 패널에 올바른 에러 메시지를 반환하는 예시입니다. 일반적으로 `beforeX` 라이프사이클에서만 에러를 발생시키는 것이 좋습니다.
 
 <Tabs groupId="js-ts">
 
@@ -233,13 +233,12 @@ module.exports = {
   beforeCreate(event) {
     let okay = false;
 
-    // Throwing an error will prevent the entity from being created
+    // 에러를 발생시키면 엔티티 생성이 중단됨
     if (!okay) {
       throw new errors.ApplicationError('Something went wrong', { foo: 'bar' });
     }
   },
 };
-
 ```
 
 </TabItem>
@@ -255,7 +254,7 @@ export default {
   beforeCreate(event) {
     let okay = false;
 
-    // Throwing an error will prevent the entity from being created
+    // 에러를 발생시키면 엔티티 생성이 중단됨
     if (!okay) {
       throw new errors.ApplicationError('Something went wrong', { foo: 'bar' });
     }
@@ -267,18 +266,18 @@ export default {
 
 </Tabs>
 
-### Policies
+### 정책(Policy)
 
-[Policies](/cms/backend-customization/policies) are a special type of middleware that are executed before a controller. They are used to check if the user is allowed to perform the action or not. If the user is not allowed to perform the action and a `return false` is used then a generic error will be thrown. As an alternative, you can throw a custom error message using a nested class extensions from the Strapi `ForbiddenError` class, `ApplicationError` class (see [Default error classes](#default-error-classes) for both classes), and finally the <ExternalLink to="https://nodejs.org/api/errors.html#errors_class_error" text="Node `Error` class"/>.
+[정책(Policy)](/cms/backend-customization/policies)은 컨트롤러 실행 전 동작하는 특수한 미들웨어입니다. 사용자의 액션 허용 여부를 검사하며, 허용되지 않을 경우 `return false`로 일반 에러를 발생시킬 수 있습니다. 또는 Strapi의 `ForbiddenError`, `ApplicationError` 클래스(둘 다 [기본 에러 클래스](#default-error-classes) 참고), 그리고 <ExternalLink to="https://nodejs.org/api/errors.html#errors_class_error" text="Node `Error` 클래스"/>를 확장한 커스텀 에러 메시지를 던질 수도 있습니다.
 
-The `PolicyError` class is available from `@strapi/utils` package and accepts 2 parameters:
+`PolicyError` 클래스는 `@strapi/utils` 패키지에서 제공되며, 2개의 파라미터를 받습니다:
 
-- the first parameter of the function is the error `message`
-- (optional) the second parameter is the object that will be set as `details` in the response received; a best practice is to set a `policy` key with the name of the policy that threw the error.
+- 첫 번째 파라미터: 에러 메시지(`message`)
+- (선택) 두 번째 파라미터: 응답의 `details`로 설정될 객체(권장: 에러를 발생시킨 정책 이름을 `policy` 키로 명시)
 
-#### Example: Throwing a PolicyError in a custom policy
+#### 예시: 커스텀 정책에서 PolicyError 발생시키기
 
-This example shows building a [custom policy](/cms/backend-customization/policies) that will throw a custom error message and stop the request.
+아래는 [커스텀 정책](/cms/backend-customization/policies)에서 에러 메시지를 던져 요청을 중단하는 예시입니다.
 
 <Tabs groupId="js-ts">
 
@@ -331,20 +330,20 @@ export default (policyContext, config, { strapi }) => {
 
 </Tabs>
 
-### Default error classes
+### 기본 에러 클래스
 
-The default error classes are available from the `@strapi/utils` package and can be imported and used in your code. Any of the default error classes can be extended to create a custom error class. The custom error class can then be used in your code to throw errors.
+기본 에러 클래스는 `@strapi/utils` 패키지에서 import하여 사용할 수 있습니다. 모든 기본 에러 클래스는 확장하여 커스텀 에러 클래스를 만들 수 있습니다. 커스텀 에러 클래스는 코드 내에서 에러를 발생시키는 데 사용할 수 있습니다.
 
 <Tabs> 
 
 <TabItem value="Application" label="Application">
 
-The `ApplicationError` class is a generic error class for application errors and is generally recommended as the default error class. This class is specifically designed to throw proper error messages that the admin panel can read and show to the user. It accepts the following parameters:
+`ApplicationError` 클래스는 애플리케이션 에러를 위한 일반적인 에러 클래스이며, 기본값으로 권장됩니다. 이 클래스는 관리자 패널에서 읽고 사용자에게 표시할 수 있는 에러 메시지를 던지도록 설계되었습니다. 파라미터는 다음과 같습니다:
 
-| Parameter | Type | Description | Default |
+| 파라미터 | 타입 | 설명 | 기본값 |
 | --- | --- | --- | --- |
-| `message` | `string` | The error message | `An application error occured` |
-| `details` | `object` | Object to define additional details | `{}` |
+| `message` | `string` | 에러 메시지 | `An application error occured` |
+| `details` | `object` | 추가 상세 정보 객체 | `{}` |
 
 ```js
 throw new errors.ApplicationError('Something went wrong', { foo: 'bar' });
@@ -352,31 +351,13 @@ throw new errors.ApplicationError('Something went wrong', { foo: 'bar' });
 
 </TabItem>
 
-<!-- Not sure if it's worth keeping this tab or not as it's very specific to Strapi internal use-cases -->
-<!-- ::: tab Validation
-
-The `ValidationError` and `YupValidationError` classes are specific error classes designed to be used with the built in validations system and specifically format the errors coming from <ExternalLink to="https://www.npmjs.com/package/yup" text="Yup"/>. The `ValidationError` does not accept any parameters but the `YupValidationError` accepts the following parameters:
-
-| Parameter | Type | Description | Default |
-| --- | --- | --- | --- |
-| `message` | `string` | The error message | - |
-| `details` | `object` | Object to define additional details | `{ yupErrors }` |
-
-```js
-
-```js
-throw new PolicyError('Something went wrong', { policy: 'my-policy' });
-```
-
-::: -->
-
 <TabItem value="Pagination" label="Pagination">
 
-The `PaginationError` class is a specific error class that is typically used when parsing the pagination information from [REST](/cms/api/rest/sort-pagination#pagination), [GraphQL](/cms/api/graphql#pagination), or the [Document Service](/cms/api/document-service). It accepts the following parameters:
+`PaginationError` 클래스는 [REST](/cms/api/rest/sort-pagination#pagination), [GraphQL](/cms/api/graphql#pagination), [Document Service](/cms/api/document-service)에서 페이지네이션 정보를 파싱할 때 주로 사용됩니다. 파라미터는 다음과 같습니다:
 
-| Parameter | Type | Description | Default |
+| 파라미터 | 타입 | 설명 | 기본값 |
 | --- | --- | --- | --- |
-| `message` | `string` | The error message | `Invalid pagination` |
+| `message` | `string` | 에러 메시지 | `Invalid pagination` |
 
 ```js
 throw new errors.PaginationError('Exceeded maximum pageSize limit');
@@ -386,11 +367,11 @@ throw new errors.PaginationError('Exceeded maximum pageSize limit');
 
 <TabItem value="NotFound" label="NotFound">
 
-The `NotFoundError` class is a generic error class for throwing `404` status code errors. It accepts the following parameters:
+`NotFoundError` 클래스는 404 상태 코드를 반환할 때 사용하는 일반 에러 클래스입니다. 파라미터는 다음과 같습니다:
 
-| Parameter | Type | Description | Default |
+| 파라미터 | 타입 | 설명 | 기본값 |
 | --- | --- | --- | --- |
-| `message` | `string` | The error message | `Entity not found` |
+| `message` | `string` | 에러 메시지 | `Entity not found` |
 
 ```js
 throw new errors.NotFoundError('These are not the droids you are looking for');
@@ -400,11 +381,11 @@ throw new errors.NotFoundError('These are not the droids you are looking for');
 
 <TabItem value="Forbidden" label="Forbidden">
 
-The `ForbiddenError` class is a specific error class used when a user either doesn't provide any or the correct authentication credentials. It accepts the following parameters:
+`ForbiddenError` 클래스는 인증 정보가 없거나 올바르지 않을 때 사용하는 에러 클래스입니다. 파라미터는 다음과 같습니다:
 
-| Parameter | Type | Description | Default |
+| 파라미터 | 타입 | 설명 | 기본값 |
 | --- | --- | --- | --- |
-| `message` | `string` | The error message | `Forbidden access` |
+| `message` | `string` | 에러 메시지 | `Forbidden access` |
 
 ```js
 throw new errors.ForbiddenError('Ah ah ah, you didn\'t say the magic word');
@@ -414,11 +395,11 @@ throw new errors.ForbiddenError('Ah ah ah, you didn\'t say the magic word');
 
 <TabItem value="Unauthorized" label="Unauthorized">
 
-The `UnauthorizedError` class is a specific error class used when a user doesn't have the proper role or permissions to perform a specific action, but has properly authenticated. It accepts the following parameters:
+`UnauthorizedError` 클래스는 인증은 되었으나 특정 액션에 대한 권한이 없을 때 사용하는 에러 클래스입니다. 파라미터는 다음과 같습니다:
 
-| Parameter | Type | Description | Default |
+| 파라미터 | 타입 | 설명 | 기본값 |
 | --- | --- | --- | --- |
-| `message` | `string` | The error message | `Unauthorized` |
+| `message` | `string` | 에러 메시지 | `Unauthorized` |
 
 ```js
 throw new errors.UnauthorizedError('You shall not pass!');
@@ -428,11 +409,11 @@ throw new errors.UnauthorizedError('You shall not pass!');
 
 <TabItem value="NotImplemented" label="NotImplemented">
 
-The `NotImplementedError` class is a specific error class used when the incoming request is attempting to use a feature that is not currently implemented or configured. It accepts the following parameters:
+`NotImplementedError` 클래스는 아직 구현되지 않았거나 설정되지 않은 기능을 요청할 때 사용하는 에러 클래스입니다. 파라미터는 다음과 같습니다:
 
-| Parameter | Type | Description | Default |
+| 파라미터 | 타입 | 설명 | 기본값 |
 | --- | --- | --- | --- |
-| `message` | `string` | The error message | `This feature isn't implemented` |
+| `message` | `string` | 에러 메시지 | `This feature isn't implemented` |
 
 ```js
 throw new errors.NotImplementedError('This isn\'t implemented', { feature: 'test', implemented: false });
@@ -442,11 +423,11 @@ throw new errors.NotImplementedError('This isn\'t implemented', { feature: 'test
 
 <TabItem value="PayloadTooLarge" label="PayloadTooLarge">
 
-The `PayloadTooLargeError` class is a specific error class used when the incoming request body or attached files exceed the limits of the server. It accepts the following parameters:
+`PayloadTooLargeError` 클래스는 요청 본문이나 첨부 파일이 서버 제한을 초과할 때 사용하는 에러 클래스입니다. 파라미터는 다음과 같습니다:
 
-| Parameter | Type | Description | Default |
+| 파라미터 | 타입 | 설명 | 기본값 |
 | --- | --- | --- | --- |
-| `message` | `string` | The error message | `Entity too large` |
+| `message` | `string` | 에러 메시지 | `Entity too large` |
 
 ```js
 throw new errors.PayloadTooLargeError('Uh oh, the file too big!');
@@ -456,15 +437,45 @@ throw new errors.PayloadTooLargeError('Uh oh, the file too big!');
 
 <TabItem value="Policy" label="Policy">
 
-The `PolicyError` class is a specific error designed to be used with [route policies](/cms/backend-customization/policies). The best practice recommendation is to ensure the name of the policy is passed in the `details` parameter. It accepts the following parameters:
+`PolicyError` 클래스는 [라우트 정책](/cms/backend-customization/policies)에서 사용하도록 설계된 에러입니다. 권장 사항은 `details` 파라미터에 정책 이름을 명시하는 것입니다. 파라미터는 다음과 같습니다:
 
-| Parameter | Type | Description | Default |
+| 파라미터 | 타입 | 설명 | 기본값 |
 | --- | --- | --- | --- |
-| `message` | `string` | The error message | `Policy Failed` |
-| `details` | `object` | Object to define additional details | `{}` |
+| `message` | `string` | 에러 메시지 | `Policy Failed` |
+| `details` | `object` | 추가 상세 정보 객체 | `{}` |
 
 ```js
 throw new errors.PolicyError('Something went wrong', { policy: 'my-policy' });
+```
+
+</TabItem>
+
+<TabItem value="Validation" label="Validation">
+
+`ValidationError` 클래스는 입력 데이터 검증 실패 시 사용하는 에러 클래스입니다. 파라미터는 다음과 같습니다:
+
+| 파라미터 | 타입 | 설명 | 기본값 |
+| --- | --- | --- | --- |
+| `message` | `string` | 에러 메시지 | `Validation error` |
+| `details` | `object` | 추가 상세 정보 객체 | `{}` |
+
+```js
+throw new errors.ValidationError('Invalid input provided', { field: 'email', value: 'not-an-email' });
+```
+
+</TabItem>
+
+<TabItem value="YupValidation" label="YupValidation">
+
+`YupValidationError` 클래스는 <ExternalLink to="https://github.com/jquense/yup" text="Yup"/>을 사용한 검증 실패 시 사용하는 에러 클래스입니다. 파라미터는 다음과 같습니다:
+
+| 파라미터 | 타입 | 설명 | 기본값 |
+| --- | --- | --- | --- |
+| `errors` | `array` | Yup 검증 에러 배열 | `[]` |
+| `message` | `string` | 에러 메시지 | `Validation error` |
+
+```js
+throw new errors.YupValidationError(validationErrors, 'Schema validation failed');
 ```
 
 </TabItem>

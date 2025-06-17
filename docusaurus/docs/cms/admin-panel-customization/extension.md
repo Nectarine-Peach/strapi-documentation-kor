@@ -1,35 +1,35 @@
 ---
-title: Admin panel extension
-description: Learn more about extending Strapi's admin panel.
+title: 관리자 패널 확장
+description: Strapi 관리자 패널을 확장하는 방법을 알아보세요.
 displayed_sidebar: cmsSidebar
 toc_max_heading_level: 4
 tags:
-- admin panel 
-- admin panel customization
+- 관리자 패널
+- 관리자 패널 커스터마이징
 
 ---
 
 import HotReloading from '/docs/snippets/hot-reloading-admin-panel.md'
 
-# Admin panel extension
+# 관리자 패널 확장
 
-Strapi's [admin panel](/cms/admin-panel-customization) is a React-based single-page application that encapsulates all the features and installed plugins of a Strapi application. If the [customization options](/cms/admin-panel-customization#available-customizations) provided by Strapi are not enough for your use case, you will need to extend Strapi's admin panel.
+Strapi의 [관리자 패널](/cms/admin-panel-customization)은 Strapi 애플리케이션의 모든 기능과 설치된 플러그인을 포함하는 React 기반 싱글 페이지 애플리케이션입니다. Strapi에서 제공하는 [커스터마이징 옵션](/cms/admin-panel-customization#available-customizations)만으로는 요구사항을 충족할 수 없는 경우, 관리자 패널을 확장해야 합니다.
 
-Extending Strapi's admin panel means leveraging its React foundation to adapt and enhance the interface and features according to the specific needs of your project, which might imply creating new components or adding new types of fields.
+관리자 패널 확장이란, React 기반 구조를 활용해 프로젝트의 특정 요구에 맞게 인터페이스와 기능을 확장하거나 새로운 컴포넌트, 필드 타입 등을 추가하는 것을 의미합니다.
 
-There are 2 use cases where you might want to extend the admin panel:
+관리자 패널을 확장해야 하는 경우는 2가지가 있습니다:
 
-- As a Strapi plugin developer, you want to develop a Strapi plugin that extends the admin panel **everytime it's installed in any Strapi application**.
+- Strapi 플러그인 개발자로서, **어떤 Strapi 애플리케이션에 설치해도 항상 관리자 패널을 확장하는 플러그인**을 개발하고 싶은 경우
 
-  👉 This can be done by taking advantage of the [Admin Panel API for plugins](/cms/plugins-development/admin-panel-api).
+  👉 [플러그인용 관리자 패널 API](/cms/plugins-development/admin-panel-api)를 활용하면 됩니다.
 
-- As a Strapi developer, you want to develop a unique solution for a Strapi user who only needs to extend a specific instance of a Strapi application.
+- Strapi 개발자로서, **특정 Strapi 애플리케이션 인스턴스만을 위한 고유한 확장**을 개발하고 싶은 경우
 
-  👉 This can be done by directly updating the `/src/admin/app` file, which can import any file located in `/src/admin/extensions`.
+  👉 `/src/admin/app` 파일을 직접 수정하고, `/src/admin/extensions` 내의 파일을 import하여 확장할 수 있습니다.
 
-:::strapi Additional resources
-* If you're searching for ways of replacing the default Rich text editor, please refer to the [corresponding page](/cms/admin-panel-customization/wysiwyg-editor).
-* The <ExternalLink to="https://design-system.strapi.io/?path=/docs/getting-started-welcome--docs" text="Strapi Design System documentation"/> also provide extensive additional information on developing for Strapi's admin panel.
+:::strapi 추가 자료
+* 기본 리치 텍스트 에디터를 교체하고 싶다면 [관련 문서](/cms/admin-panel-customization/wysiwyg-editor)를 참고하세요.
+* <ExternalLink to="https://design-system.strapi.io/?path=/docs/getting-started-welcome--docs" text="Strapi Design System 문서"/>에서도 관리자 패널 개발에 대한 추가 정보를 확인할 수 있습니다.
 :::
 
 <HotReloading />

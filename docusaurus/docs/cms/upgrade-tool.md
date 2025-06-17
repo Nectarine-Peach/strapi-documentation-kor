@@ -1,177 +1,175 @@
 ---
-title: Upgrade tool
-description: The Strapi upgrade tool is a CLI command that helps automatically upgrading to a new Strapi version.
+title: 업그레이드 도구
+description: Strapi 업그레이드 도구는 새로운 Strapi 버전으로 자동 업그레이드를 도와주는 CLI 명령어입니다.
 displayed_sidebar: cmsSidebar
 pagination_next: cms/migration/v4-to-v5/breaking-changes
-sidebar_label: Upgrade tool reference
+sidebar_label: 업그레이드 도구 레퍼런스
 tags:
-- major version
-- minor version
-- patch version
-- semantic versioning
-- upgrade tool
-- version types
+- 주요 버전
+- 마이너 버전
+- 패치 버전
+- 시맨틱 버전
+- 업그레이드 도구
+- 버전 종류
 ---
 
-# Upgrade tool
+# 업그레이드 도구
 
-The upgrade tool assists Strapi users in upgrading their Strapi application dependencies and code to a specific version.
+업그레이드 도구는 Strapi 사용자가 애플리케이션의 의존성과 코드를 특정 버전으로 업그레이드할 수 있도록 도와줍니다.
 
-Running the upgrade tool triggers the update of the application dependencies, their installation, and the execution of a series of **codemods** <Codemods/> that automatically edit the application codebase according to the breaking changes introduced up until the targeted version.
+업그레이드 도구를 실행하면 애플리케이션의 의존성이 업데이트 및 설치되고, 대상 버전까지의 브레이킹 체인지에 맞춰 **코드모드** <Codemods/>가 자동으로 코드베이스를 수정합니다.
 
-The upgrade tool is a Strapi package and can be run from the CLI.
+업그레이드 도구는 Strapi 패키지로 제공되며, CLI에서 실행할 수 있습니다.
 
-## Scope
+## 지원 범위
 
-While the upgrade tool helps upgrade applications and plugins, it doesn't cover every aspect of it. 
+업그레이드 도구는 애플리케이션과 플러그인 업그레이드를 지원하지만, 모든 부분을 자동화하지는 않습니다.
 
-:white_check_mark: The upgrade tool supports:
-- Updating the project's dependencies
-- Applying automatic code transformation to existing files
-- Installing or re-installing the correct dependencies for the project
+:white_check_mark: 업그레이드 도구가 지원하는 것:
+- 프로젝트 의존성 업데이트
+- 기존 파일에 대한 자동 코드 변환 적용
+- 프로젝트에 필요한 의존성 설치 또는 재설치
 
-:x: The upgrade tool doesn't support:
-- Modifying the file tree by adding, removing or moving files and directories
-- Migrating the application's data. This is handled by Strapi database migrations
+:x: 업그레이드 도구가 지원하지 않는 것:
+- 파일 트리 구조 변경(파일/폴더 추가, 삭제, 이동)
+- 애플리케이션 데이터 마이그레이션(이 부분은 Strapi 데이터베이스 마이그레이션이 담당)
 
 :::warning
-After the upgrade tool completes its execution,
-it is strongly recommended to review the modifications made before re-running the app or plugin.
+업그레이드 도구 실행 후, 앱이나 플러그인을 다시 실행하기 전에 변경된 내용을 반드시 검토하세요.
 :::
 
-## Version types
+## 버전 종류
 
-Strapi version numbers respect the <ExternalLink to="https://semver.org/" text="semantic versioning"/> conventions:
+Strapi 버전은 <ExternalLink to="https://semver.org/" text="시맨틱 버전(semver)"/> 규칙을 따릅니다:
 
 <ThemedImage
-  alt="Version numbers explained"
+  alt="버전 넘버 설명"
   sources={{
     light: '/img/assets/update-migration/version-numbers.png',
     dark: '/img/assets/update-migration/version-numbers_DARK.png',
   }}
 />
 
-- The first number is the **major** version number.
-- The second number is the **minor** version number.
-- The third number is the **patch** version number.
+- 첫 번째 숫자는 **주요(major)** 버전입니다.
+- 두 번째 숫자는 **마이너(minor)** 버전입니다.
+- 세 번째 숫자는 **패치(patch)** 버전입니다.
 
-The upgrade tool allows upgrading to a major, minor, or patch version.
+업그레이드 도구는 주요, 마이너, 패치 버전 모두로 업그레이드할 수 있습니다.
 
-What the upgrade tool does depends on the latest existing version and the command you run.
+업그레이드 도구의 동작은 현재 버전과 실행하는 명령어에 따라 달라집니다.
 
-For instance, if the latest Strapi v4 version is v4.25.9:
+예를 들어, 최신 Strapi v4 버전이 v4.25.9라면:
 
-| My Strapi application is currently on… | If I run…                   | My Strapi application will be upgraded to …                                                |
-|----------------------------------------|-----------------------------|--------------------------------------------------------------------------------------------|
-| v4.25.1                                | `npx @strapi/upgrade patch` | v4.25.9<br/><br/>(because v4.25.9 is the latest patch version for the v4.25 minor version) |
-| v4.14.1                                | `npx @strapi/upgrade minor` | v4.25.9                                                                                    |
-| v4.14.1                                | `npx @strapi/upgrade major` | Nothing.<br/><br/>I first need to run `npx @strapi/upgrade minor` to upgrade to v4.25.9.   |
-| v4.25.9                                | `npx @strapi/upgrade major` | v5.0.0                                                                                     |
-| v4.14.1                                | `npx @strapi/upgrade latest` | v5.1.2 <br/><br/>A confirmation prompt appears to make sure the major version bump is intended. |
+| 내 Strapi 앱 현재 버전 | 실행 명령어 | 업그레이드 결과 |
+|----------------------|--------------------------|----------------------------------------------------------|
+| v4.25.1 | `npx @strapi/upgrade patch` | v4.25.9<br/>(해당 마이너 버전의 최신 패치로 업그레이드) |
+| v4.14.1 | `npx @strapi/upgrade minor` | v4.25.9 |
+| v4.14.1 | `npx @strapi/upgrade major` | 아무 일도 일어나지 않음.<br/>먼저 `npx @strapi/upgrade minor`로 v4.25.9까지 올려야 함. |
+| v4.25.9 | `npx @strapi/upgrade major` | v5.0.0 |
+| v4.14.1 | `npx @strapi/upgrade latest` | v5.1.2 <br/>주요 버전 업그레이드 의사 확인 프롬프트가 표시됨. |
 
-## Upgrade to a new version
+## 새 버전으로 업그레이드하기
 
 :::warning
-Before running the upgrade process, make sure you've created a backup of your codebase and database.
+업그레이드 전, 코드베이스와 데이터베이스의 백업을 반드시 생성하세요.
 :::
 
-### Upgrade to a major version
+### 주요(major) 버전 업그레이드
 
-Run the upgrade tool with the `major` parameter to upgrade the project to the next major version of Strapi:
+`major` 파라미터로 업그레이드 도구를 실행하면 프로젝트가 다음 주요 버전으로 업그레이드됩니다:
 
 ```bash
 npx @strapi/upgrade major
 ```
 
-During the upgrade process, the application dependencies are updated and installed, and the related codemods are executed.
+업그레이드 과정에서 의존성이 업데이트 및 설치되고, 관련 코드모드가 실행됩니다.
 
 :::note
-If your application is not already running the latest minor and patch version in the current major, the `major` upgrade is prevented, and you will first need to upgrade to the latest [minor.patch](#upgrade-to-a-minor-version) version in the current major version. This means that moving from v4.14.4 to v5.0.0 is a 2-step process because the latest v4 version is v4.16.2.
+현재 major의 최신 마이너/패치 버전이 아니라면, `major` 업그레이드는 차단되며, 먼저 [마이너/패치 업그레이드](#upgrade-to-a-minor-version)를 해야 합니다. 예를 들어 v4.14.4에서 v5.0.0으로 바로 올릴 수 없고, v4.16.2(최신 v4)까지 올린 뒤 major 업그레이드가 가능합니다.
 :::
 
-### Upgrade to a minor version
+### 마이너(minor) 버전 업그레이드
 
-Run the upgrade tool with the `minor` parameter to upgrade the project to the latest minor and patch version of Strapi:
+`minor` 파라미터로 업그레이드 도구를 실행하면 프로젝트가 해당 major의 최신 마이너/패치 버전으로 업그레이드됩니다:
 
 ```bash
 npx @strapi/upgrade minor
 ```
 
-During the upgrade process, the project dependencies are updated and installed, and the related codemods are executed (if any).
+업그레이드 과정에서 의존성이 업데이트 및 설치되고, 관련 코드모드가 실행됩니다(있을 경우).
 
-### Upgrade to a patch version
+### 패치(patch) 버전 업그레이드
 
-Run the upgrade tool with the `patch` parameter to upgrade the project to the latest patch version in the current minor and major version of Strapi:
+`patch` 파라미터로 업그레이드 도구를 실행하면 현재 major/minor의 최신 패치 버전으로 업그레이드됩니다:
 
 ```bash
 npx @strapi/upgrade patch
 ```
 
-During the upgrade process, the project dependencies are updated and installed, and the related codemods are executed (if any).
+업그레이드 과정에서 의존성이 업데이트 및 설치되고, 관련 코드모드가 실행됩니다(있을 경우).
 
-### Upgrade to the latest version
+### 최신 버전으로 업그레이드
 
-Run the upgrade tool with the `latest` parameter to upgrade the project to the latest available version regardless of the current Strapi version:
+`latest` 파라미터로 업그레이드 도구를 실행하면 현재 Strapi 버전에 상관없이 최신 버전으로 업그레이드됩니다:
 
 ```bash
 npx @strapi/upgrade latest
 ```
 
-During the upgrade process, the project dependencies are updated and installed, and the related codemods are executed (if any).
+업그레이드 과정에서 의존성이 업데이트 및 설치되고, 관련 코드모드가 실행됩니다(있을 경우).
 
 :::note
-If a `major` version upgrade is detected, the upgrade tool displays a confirmation prompt to make sure the change is
-intended.
+`major` 버전 업그레이드가 감지되면, 업그레이드 도구가 의사 확인 프롬프트를 표시합니다.
 
-In the scenario where the major bump isn't the desired option, see [the minor upgrade](#upgrade-to-a-minor-version).
+주요 버전 업그레이드를 원하지 않는 경우, [마이너 업그레이드](#upgrade-to-a-minor-version)를 참고하세요.
 :::
 
-## Run codemods only
+## 코드모드만 실행하기
 
-Run the upgrade tool with the `codemods` parameter to execute a utility that allows selecting the codemods to be executed. With this command, only the codemods are run, the dependencies are not updated nor installed.
+`codemods` 파라미터로 업그레이드 도구를 실행하면, 실행할 코드모드를 선택할 수 있습니다. 이 명령어는 코드모드만 실행하며, 의존성은 업데이트/설치하지 않습니다.
 
-To view a list of the available codemods, use the `ls` command:
+사용 가능한 코드모드 목록을 보려면 `ls` 명령어를 사용하세요:
 
 ```bash
 npx @strapi/upgrade codemods ls
 ```
 
-To select from a list of available codemods and run them, use the `run` command:
+코드모드를 선택해 실행하려면 `run` 명령어를 사용하세요:
 
 ```bash
 npx @strapi/upgrade codemods run
 ```
 
-To run only a specific codemod, use `run` followed by a UID found from the `ls` command:
+특정 코드모드만 실행하려면, `ls` 명령어로 확인한 UID를 `run` 뒤에 붙여 실행하세요:
 
 ```bash
 npx @strapi/upgrade codemods run 5.0.0-strapi-codemod-uid
 ```
 
-## Options
+## 옵션
 
-The `npx @strapi/upgrade [major|minor|patch]` commands can accept the following options:
+`npx @strapi/upgrade [major|minor|patch]` 명령어는 다음 옵션을 지원합니다:
 
-| Option                                                                                  | Description                                                                     | Default  |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------|----------|
-| [`-n, --dry`](#simulate-the-upgrade-without-updating-any-files-dry-run)                 | [Simulate](#simulate-the-upgrade-without-updating-any-files-dry-run) the upgrade without updating any files | false    |
-| [`-d, --debug`](#get-detailed-debugging-information)                                    | Get [more logs](#get-detailed-debugging-information) in debug mode              | false    |
-| [`-s, --silent`](#execute-the-upgrade-silently)                                         | [Don't log anything](#execute-the-upgrade-silently)                             | false    |
-| [`-p, --project-path <project-path>`](#select-a-path-for-the-strapi-application-folder) | [Path](#select-a-path-for-the-strapi-application-folder) to the Strapi project  | -        |
-| [`-y, --yes`](#answer-yes-to-every-prompt)                                              | Automatically [answer "yes"](#answer-yes-to-every-prompt) to every prompt       | false    |
+| 옵션 | 설명 | 기본값 |
+|----------------|------------------------------------------------------|--------|
+| [`-n, --dry`](#simulate-the-upgrade-without-updating-any-files-dry-run) | 실제 파일을 수정하지 않고 업그레이드를 시뮬레이션 | false |
+| [`-d, --debug`](#get-detailed-debugging-information) | 디버그 모드로 더 많은 로그 출력 | false |
+| [`-s, --silent`](#execute-the-upgrade-silently) | 아무 로그도 출력하지 않음 | false |
+| [`-p, --project-path <project-path>`](#select-a-path-for-the-strapi-application-folder) | Strapi 프로젝트가 위치한 경로 지정 | - |
+| [`-y, --yes`](#answer-yes-to-every-prompt) | 모든 프롬프트에 자동으로 "yes" 응답 | false |
 
-The following options can be run either with the `npx @strapi/upgrade` command alone or with the `npx @strapi/upgrade [major|minor|patch]` commands:
+아래 옵션들은 `npx @strapi/upgrade` 단독 또는 `[major|minor|patch]`와 함께 사용할 수 있습니다:
 
-| Option                                                                   | Description                                                      |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------- |
-| [`-V, --version`](#get-the-current-version)                              | Output the [version number](#get-the-current-version)            |
-| [`-h, --help`](#get-help)                                                | [Print](#get-help) command line options                          |
+| 옵션 | 설명 |
+|----------------|-------------------------------|
+| [`-V, --version`](#get-the-current-version) | 현재 업그레이드 도구 버전 출력 |
+| [`-h, --help`](#get-help) | 명령어 옵션 도움말 출력 |
 
-### Simulate the upgrade without updating any files (dry run)
+### 실제 파일을 수정하지 않고 업그레이드 시뮬레이션(dry run)
 
-When passing the `-n` or `--dry` option, the codemods are executed without actually editing the files. The package.json will not be modified, and the dependencies will not be re-installed. Using this option allows simulating the upgrade of the codebase, checking the outcomes without applying any changes:
+`-n` 또는 `--dry` 옵션을 사용하면, 실제로 파일을 수정하지 않고 코드모드만 실행합니다. package.json도 수정되지 않고, 의존성도 재설치되지 않습니다. 이 옵션으로 코드베이스 업그레이드 결과를 미리 확인할 수 있습니다.
 
-Examples:
+예시:
 
 ```bash
 npx @strapi/upgrade major --dry
@@ -179,94 +177,63 @@ npx @strapi/upgrade minor --dry
 npx @strapi/upgrade patch --dry
 ```
 
-### Select a path for the Strapi application folder
+### 상세 디버깅 정보 출력
 
-When passing the `-p` or `--project-path` option followed by a valid path you can specify in which folder the Strapi application is located.
+`-d` 또는 `--debug` 옵션을 사용하면 디버그 모드로 실행되어 더 자세한 로그가 출력됩니다.
 
-Example:
+예시:
+
+```bash
+npx @strapi/upgrade major --debug
+```
+
+### 조용히 업그레이드 실행
+
+`-s` 또는 `--silent` 옵션을 사용하면 아무 로그도 출력하지 않고 업그레이드를 실행합니다.
+
+예시:
+
+```bash
+npx @strapi/upgrade major --silent
+```
+
+### Strapi 애플리케이션 폴더 경로 지정
+
+`-p` 또는 `--project-path` 옵션 뒤에 경로를 지정하면, 해당 폴더의 Strapi 애플리케이션을 대상으로 업그레이드할 수 있습니다.
+
+예시:
 
 ```bash
 npx @strapi/upgrade major -p /path/to/the/Strapi/application/folder
 ```
 
-### Get the current version
+### 모든 프롬프트에 자동으로 "yes" 응답
 
-When passing the `--version` option (or its `-V` shorthand), the current version of the upgrade tool is logged.
+`-y` 또는 `--yes` 옵션을 사용하면 업그레이드 과정의 모든 프롬프트에 자동으로 "yes"라고 응답합니다.
 
-Example:
+예시:
+
+```bash
+npx @strapi/upgrade major --yes
+```
+
+### 현재 버전 확인
+
+`--version` 또는 `-V` 옵션을 사용하면, 업그레이드 도구의 현재 버전을 출력합니다.
+
+예시:
 
 ```sh
 $ npx @strapi/upgrade -V
 4.15.1
 ```
 
-### Get detailed debugging information
+### 도움말 보기
 
-When passing the `--debug` option (or its `-d` shorthand), the upgrade tool provides more detailed logs while running:
+`-h` 또는 `--help` 옵션을 사용하면 업그레이드 도구의 사용법과 옵션을 출력합니다.
 
-```bash
-npx @strapi/upgrade --debug
-```
-
-### Execute the upgrade silently
-
-When passing the `--silent` option (or its `-s` shorthand), the tool executes the upgrade without providing any log:
+예시:
 
 ```bash
-npx @strapi/upgrade --silent
+npx @strapi/upgrade --help
 ```
-
-### Answer yes to every prompt
-
-When passing the `--yes` option (or its `-y` shorthand), the tool automatically answers "yes" to every prompt:
-
-```bash
-npx @strapi/upgrade --yes`
-```
-
-### Get help
-
-When passing the `--help` option (or its `-h` shorthand), help information is displayed, listing the available options:
-
-Examples:
-
-<Tabs>
-<TabItem value="upgrade" label="General help for the upgrade tool">
-
-```sh
-$ npx @strapi/upgrade -h
-Usage: upgrade <command> [options]
-
-Options:
- -V, --version    output the version number
- -h, --help       Print command line options
-
-Commands:
- major [options]  Upgrade to the next available major version of Strapi
- minor [options]  Upgrade to ...
- patch [options]  Upgrade to ...
- help [command]   Print options for a specific command
-
-```
-
-</TabItem>
-
-<TabItem value="major" label="Specific help for upgrade major">
-
-```sh
-$ npx @strapi/upgrade major -h
-Usage: upgrade major [options]
-
-Upgrade to the next available major version of Strapi
-
-Options:
-  -p, --project-path <project-path>  Path to the Strapi project
-  -n, --dry                          Simulate the upgrade without updating any files (default: false)
-  -d, --debug                        Get more logs in debug mode (default: false)
-  -s, --silent                       Don't log anything (default: false)
-  -h, --help                         Display help for command
-  -y, --yes                          Automatically answer yes to every prompt
-```
-
-</TabItem>
-</Tabs>

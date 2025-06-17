@@ -1,41 +1,41 @@
 ---
-title: Data Management
+title: 데이터 관리
 sidebar_position: 1
-description: Learn to use the Data Management to import, export, or transfer data between different Strapi instances.
+description: 데이터 관리 기능을 사용해 서로 다른 Strapi 인스턴스 간 데이터 가져오기, 내보내기, 전송을 수행하는 방법을 알아보세요.
 toc_max_heading_level: 5
 tags:
-- admin panel
-- features
-- data management
-- data import
-- data export
-- data transfer
+- 관리자 패널
+- 기능
+- 데이터 관리
+- 데이터 가져오기
+- 데이터 내보내기
+- 데이터 전송
 ---
 
-# Data Management
+# 데이터 관리
 
-The Data Management feature can be used to import, export, or transfer data. Data Management is  CLI-based only, but is partly configured in the admin panel.
+데이터 관리 기능은 데이터를 가져오거나 내보내거나, 서로 다른 Strapi 인스턴스 간에 전송할 때 사용할 수 있습니다. 데이터 관리는 CLI 기반으로 동작하지만, 일부 설정은 관리자 패널에서 진행합니다.
 
 <IdentityCard>
-  <IdentityCardItem icon="credit-card" title="Plan">Free feature</IdentityCardItem>
-  <IdentityCardItem icon="user" title="Role & permission">Minimum "Access the transfer tokens settings page" permission in Roles > Settings - Transfer tokens</IdentityCardItem>
-  <IdentityCardItem icon="toggle-right" title="Activation">Available and activated if a transfer salt is defined</IdentityCardItem>
-  <IdentityCardItem icon="desktop" title="Environment">Available in both Development & Production environment</IdentityCardItem>
+  <IdentityCardItem icon="credit-card" title="플랜">무료 기능</IdentityCardItem>
+  <IdentityCardItem icon="user" title="역할 및 권한">Roles > Settings - Transfer tokens에서 최소 "Access the transfer tokens settings page" 권한 필요</IdentityCardItem>
+  <IdentityCardItem icon="toggle-right" title="활성화">transfer salt가 정의된 경우 사용 가능</IdentityCardItem>
+  <IdentityCardItem icon="desktop" title="환경">개발 및 프로덕션 환경 모두에서 사용 가능</IdentityCardItem>
 </IdentityCard>
 
-## Configuration
+## 설정
 
-Some configuration options for the Data Management feature are available in the admin panel, and some are handled via your Strapi project's code.
+데이터 관리 기능의 일부 설정은 관리자 패널에서, 일부는 프로젝트 코드에서 관리할 수 있습니다.
 
-### Admin panel settings
+### 관리자 패널 설정
 
 :::prerequisites
-A `transfer.token.salt` should be defined in the `config/admin` configuration file (see [code-based configuration](#code-based-configuration)).
+`config/admin` 설정 파일에 `transfer.token.salt`가 정의되어 있어야 합니다([코드 기반 설정](#code-based-configuration) 참고).
 :::
 
-**Path to configure the feature:** <Icon name="gear-six" /> *Settings > Global settings > Transfer Tokens*
+**기능 설정 경로:** <Icon name="gear-six" /> *설정 > 글로벌 설정 > Transfer Tokens*
 
-Transfer tokens allow users to authorize the `strapi transfer` CLI command (see [Data transfer](/cms/data-management/transfer) documentation).
+Transfer token을 사용하면 `strapi transfer` CLI 명령어를 인증할 수 있습니다([데이터 전송](/cms/data-management/transfer) 문서 참고).
 
 <ThemedImage
   alt="Transfer tokens"

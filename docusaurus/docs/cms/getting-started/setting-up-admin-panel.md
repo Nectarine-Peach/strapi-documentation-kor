@@ -1,89 +1,89 @@
 ---
-title: Setting up the admin panel
+title: 관리자 패널 설정
 displayed_sidebar: cmsSidebar
-description: How to setup your Strapi Admin Panel
+description: Strapi 관리자 패널을 설정하는 방법
 tags:
-- admin panel
-- administrator
-- password
+- 관리자 패널
+- 관리자
+- 비밀번호
 ---
 
 
-Before going over individual features, we recommend the following steps to set up and configure your Strapi admin panel correctly. Once you complete the setup, you can access the admin panel through the provided URL.
+개별 기능을 살펴보기 전에 Strapi 관리자 패널을 올바르게 설정하고 구성하기 위해 다음 단계를 권장합니다. 설정을 완료하면 제공된 URL을 통해 관리자 패널에 접근할 수 있습니다.
 
-## Accessing the admin panel
+## 관리자 패널 접근
 
-The admin panel is the back office of your Strapi application. From the admin panel, you will be able to manage content-types, and write their actual content. It is also from the admin panel that you will manage users, both administrators and end users of your Strapi application.
+관리자 패널은 Strapi 애플리케이션의 백오피스입니다. 관리자 패널에서 콘텐츠 타입을 관리하고 실제 콘텐츠를 작성할 수 있습니다. 또한 관리자 패널에서 Strapi 애플리케이션의 관리자와 최종 사용자 모두를 관리할 수 있습니다.
 
 :::caution
-In order to access the admin panel, your Strapi application must be launched, and you must be aware of the URL to its admin panel (e.g. `api.example.com/admin`).
+관리자 패널에 접근하려면 Strapi 애플리케이션이 실행되어야 하며, 관리자 패널의 URL(예: `api.example.com/admin`)을 알고 있어야 합니다.
 :::
 
 <ThemedImage
-alt="Login page"
+alt="로그인 페이지"
 sources={{
     light: '/img/assets/getting-started/login-page-sso.png',
     dark: '/img/assets/getting-started/login-page_DARK.png',
   }}
 />
 
-To access the admin panel:
+관리자 패널에 접근하려면:
 
-1. Go to the URL of your Strapi application's admin panel.
-2. Enter your credentials to log in.
-3. Click on the **Login** button. You should be redirected to the homepage of the admin panel.
+1. Strapi 애플리케이션의 관리자 패널 URL로 이동하세요.
+2. 로그인 자격 증명을 입력하세요.
+3. **Login** 버튼을 클릭하세요. 관리자 패널의 홈페이지로 리디렉션됩니다.
 
-### Using SSO for authentication {#using-sso}
+### 인증을 위한 SSO 사용 {#using-sso}
 <EnterpriseBadge /> <SsoBadge />
 
-If your Strapi application was configured to allow authentication through SSO (see [Configuring Single Sign-On](/cms/features/sso)), you can access the admin panel using a specific provider instead of logging in with a regular Strapi administrator account.
+Strapi 애플리케이션이 SSO를 통한 인증을 허용하도록 구성된 경우([Single Sign-On 구성](/cms/features/sso) 참고), 일반 Strapi 관리자 계정으로 로그인하는 대신 특정 제공업체를 사용하여 관리자 패널에 접근할 수 있습니다.
 
-To do so, in the login page of your Strapi application, click on a chosen provider. If you cannot see your provider, click the <Icon name="dots-three-outline" /> button to access the full list of all available providers. You will be redirected to your provider's own login page where you will be able to authenticate.
+이렇게 하려면 Strapi 애플리케이션의 로그인 페이지에서 선택한 제공업체를 클릭하세요. 제공업체가 보이지 않으면 <Icon name="dots-three-outline" /> 버튼을 클릭하여 사용 가능한 모든 제공업체의 전체 목록에 접근하세요. 인증할 수 있는 제공업체의 자체 로그인 페이지로 리디렉션됩니다.
 
-## Setting up your administrator profile
+## 관리자 프로필 설정
 
-If you are a new administrator, we recommend making sure your profile is all set, before diving into your Strapi application. From your administrator profile, you are able to modify your user information, such as name, username, email or password. You can also choose the language of the interface for your Strapi application.
+새로운 관리자라면 Strapi 애플리케이션에 본격적으로 시작하기 전에 프로필이 모두 설정되어 있는지 확인하는 것을 권장합니다. 관리자 프로필에서 이름, 사용자명, 이메일, 비밀번호와 같은 사용자 정보를 수정할 수 있습니다. 또한 Strapi 애플리케이션 인터페이스의 언어를 선택할 수도 있습니다.
 
 <ThemedImage
-alt="Homepage of the Admin Panel"
+alt="관리자 패널 홈페이지"
 sources={{
     light: '/img/assets/getting-started/user-information-profile.png',
     dark: '/img/assets/getting-started/user-information-profile_DARK.png',
   }}
 />
 
-To modify your user information:
+사용자 정보를 수정하려면:
 
-1. Click on your account name or initials in the bottom left hand corner of the main navigation of your Strapi application.
-2. In the drop-down menu, click on **Profile**.
-3. Modify the information of your choice:
+1. Strapi 애플리케이션의 메인 네비게이션 왼쪽 하단에 있는 계정명 또는 이니셜을 클릭하세요.
+2. 드롭다운 메뉴에서 **Profile**을 클릭하세요.
+3. 원하는 정보를 수정하세요:
 
-| Profile & Experience | Instructions                                                                                                                                                                                                      |
+| 프로필 및 경험 | 지침                                                                                                                                                                                                      |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| First name           | Write your first name in the textbox.                                                                                                                                                                             |
-| Last name            | Write your last name in the textbox.                                                                                                                                                                              |
-| Email                | Write your complete email address in the textbox.                                                                                                                                                                 |
-| Username             | (optional) Write a username in the textbox.                                                                                                                                                                       |
-| Interface language   | Among the drop-down list, choose a language for your Strapi application interface.                                                                                                                                |
-| Interface mode       | Among the drop-down list, choose a mode for your Strapi application interface: either "Light mode" or "Dark mode". Note that by default, the chosen mode for a Strapi application is based on the browser's mode. |
+| 이름           | 텍스트박스에 이름을 입력하세요.                                                                                                                                                                             |
+| 성            | 텍스트박스에 성을 입력하세요.                                                                                                                                                                              |
+| 이메일                | 텍스트박스에 완전한 이메일 주소를 입력하세요.                                                                                                                                                                 |
+| 사용자명             | (선택사항) 텍스트박스에 사용자명을 입력하세요.                                                                                                                                                                       |
+| 인터페이스 언어   | 드롭다운 목록에서 Strapi 애플리케이션 인터페이스의 언어를 선택하세요.                                                                                                                                |
+| 인터페이스 모드       | 드롭다운 목록에서 Strapi 애플리케이션 인터페이스의 모드를 선택하세요: "라이트 모드" 또는 "다크 모드". 기본적으로 Strapi 애플리케이션의 선택된 모드는 브라우저의 모드를 기반으로 합니다. |
 
-4. Click on the **Save** button.
+4. **Save** 버튼을 클릭하세요.
 
-### Changing your password
+### 비밀번호 변경
 
-To change the password of your account:
+계정의 비밀번호를 변경하려면:
 
-1. Go to your administrator profile.
-2. Fill in the password-related options:
+1. 관리자 프로필로 이동하세요.
+2. 비밀번호 관련 옵션을 입력하세요:
 
-| Password modification |                                                                                                                  |
+| 비밀번호 수정 |                                                                                                                  |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Current password      | Write your current password in the textbox. <br/> 💡 You can click on the <Icon name="eye" /> icon for the password to be shown. |
-| Password              | Write the new password in the textbox. <br/> 💡 You can click on the <Icon name="eye" /> icon for the password to be shown.      |
-| Password confirmation | Write the same new password in the textbox. <br/> 💡 You can click on the <Icon name="eye" /> icon for the password to be shown. |
+| 현재 비밀번호      | 텍스트박스에 현재 비밀번호를 입력하세요. <br/> 💡 <Icon name="eye" /> 아이콘을 클릭하여 비밀번호를 표시할 수 있습니다. |
+| 비밀번호              | 텍스트박스에 새 비밀번호를 입력하세요. <br/> 💡 <Icon name="eye" /> 아이콘을 클릭하여 비밀번호를 표시할 수 있습니다.      |
+| 비밀번호 확인 | 텍스트박스에 같은 새 비밀번호를 입력하세요. <br/> 💡 <Icon name="eye" /> 아이콘을 클릭하여 비밀번호를 표시할 수 있습니다. |
 
-3. Click on the **Save** button.
+3. **Save** 버튼을 클릭하세요.
 
 ---
 
-Congratulations on being a new Strapi user! You're now ready to discover all the features and options that Strapi has to offer!
+새로운 Strapi 사용자가 되신 것을 축하합니다! 이제 Strapi가 제공하는 모든 기능과 옵션을 탐색할 준비가 되었습니다!

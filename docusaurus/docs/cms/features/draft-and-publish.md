@@ -1,100 +1,99 @@
 ---
-title: Draft & Publish
-description: Learn how you can use the Draft & Publish feature of Strapi 5 to manage drafts for content.
+title: 드래프트 & 발행
+description: Strapi 5의 드래프트 & 발행 기능을 활용해 콘텐츠 초안을 관리하는 방법을 알아보세요.
 displayed_sidebar: cmsSidebar
 toc_max_heading_level: 5
 tags:
- - content manager
- - content type builder
- - draft & publish
- - publishing a draft
- - unpublishing content
- - features
+ - 콘텐츠 매니저
+ - 콘텐츠 타입 빌더
+ - 드래프트 & 발행
+ - 초안 발행
+ - 콘텐츠 미발행
+ - 기능
 ---
 
-# Draft & Publish
+# 드래프트 & 발행
 
-The Draft & Publish feature allows to manage drafts for your content.
+드래프트 & 발행 기능을 사용하면 콘텐츠의 초안을 관리할 수 있습니다.
 
 <IdentityCard>
-  <IdentityCardItem icon="credit-card" title="Plan">Free feature</IdentityCardItem>
-  <IdentityCardItem icon="user" title="Role & permission">None</IdentityCardItem>
-  <IdentityCardItem icon="toggle-right" title="Activation">Available but disabled by default</IdentityCardItem>
-  <IdentityCardItem icon="desktop" title="Environment">Available in both Development & Production environment</IdentityCardItem>
+  <IdentityCardItem icon="credit-card" title="플랜">무료 기능</IdentityCardItem>
+  <IdentityCardItem icon="user" title="역할 및 권한">없음</IdentityCardItem>
+  <IdentityCardItem icon="toggle-right" title="활성화">기본 제공(비활성화 상태)</IdentityCardItem>
+  <IdentityCardItem icon="desktop" title="환경">개발 및 프로덕션 환경 모두에서 사용 가능</IdentityCardItem>
 </IdentityCard>
 
 <Guideflow lightId="3r3wj5lbnk" darkId="ok8y5xehxp"/>
 
-## Configuration
+## 설정
 
-**Path to configure the feature:** <Icon name="layout" /> Content Type Builder
+**기능 설정 경로:** <Icon name="layout" /> Content Type Builder
 
-For your content types to be managed with Draft & Publish in the Content Manager, the feature must be enabled through the Content-type Builder. Draft & Publish can be configured for each content type.
+콘텐츠 타입을 콘텐츠 매니저에서 드래프트 & 발행 기능으로 관리하려면, Content-type Builder에서 해당 기능을 활성화해야 합니다. 각 콘텐츠 타입별로 개별 설정이 가능합니다.
 
-1. Either edit an already created content type of your choice, or create a new content type (see [Content Type Builder](/cms/features/content-type-builder) documentation for more information).
-2. Go to the **Advanced settings** tab.
-3. Tick the Draft & Publish option.
-4. Click the **Finish** button.
+1. 이미 생성된 콘텐츠 타입을 수정하거나, 새 콘텐츠 타입을 생성합니다([Content Type Builder](/cms/features/content-type-builder) 문서 참고).
+2. **고급 설정** 탭으로 이동합니다.
+3. Draft & Publish 옵션을 체크합니다.
+4. **완료** 버튼을 클릭합니다.
 
 <ThemedImage
-  alt="Content-type Builder's advanced settings"
+  alt="Content-type Builder의 고급 설정"
   sources={{
     light: '/img/assets/content-type-builder/advanced-settings.png',
     dark: '/img/assets/content-type-builder/advanced-settings_DARK.png',
   }}
 />
 
-## Usage
+## 사용법
 
-With Draft & Publish enabled, the [Content Manager's edit view](/cms/features/content-manager#overview) indicates the current status of your content type's entry at the top of the interface. Your content can have 3 statuses:
+Draft & Publish가 활성화된 경우, [콘텐츠 매니저의 편집 뷰](/cms/features/content-manager#overview) 상단에서 해당 엔트리의 현재 상태를 확인할 수 있습니다. 콘텐츠는 3가지 상태를 가질 수 있습니다:
 
-- <span style={{color:"#5cb176"}}>Published</span>: The content was previously published. There are no pending draft changes saved.
-- <span style={{color:"#ac73e6"}}>Modified</span>: The content was previously published. You made some changes to the draft version and saved these changes, but the changes have not been published yet.
-- <span style={{color:"#7b79ff"}}>Draft</span>: The content has never been published yet.
+- <span style={{color:"#5cb176"}}>발행됨(Published)</span>: 이전에 발행된 콘텐츠로, 저장된 초안 변경사항이 없습니다.
+- <span style={{color:"#ac73e6"}}>수정됨(Modified)</span>: 이전에 발행된 콘텐츠로, 초안 버전에서 변경 후 저장했지만 아직 발행하지 않은 상태입니다.
+- <span style={{color:"#7b79ff"}}>초안(Draft)</span>: 아직 한 번도 발행되지 않은 콘텐츠입니다.
 
-### Working with drafts
+### 초안 작업하기
 
-**Path:** <Icon name="feather" /> Content Manager, edit view of your content type
+**경로:** <Icon name="feather" /> 콘텐츠 매니저, 해당 콘텐츠 타입의 편집 뷰
 
-While editing a document, you can see 2 tabs:
+문서를 편집할 때 2개의 탭이 표시됩니다:
 
-- The _Draft_ tab is where you can edit your content.
-- The _Published_ tab is a read-only tab where edition of all fields is disabled. The _Published_ tab only exists to show what is the content of fields in the published version.
+- _Draft_ 탭: 콘텐츠를 편집할 수 있는 영역입니다.
+- _Published_ 탭: 읽기 전용으로, 발행된 버전의 필드 내용을 보여줍니다. (편집 불가)
 
 <ThemedImage
-  alt="Editing draft version"
+  alt="초안 버전 편집 화면"
   sources={{
     light: '/img/assets/content-manager/editing_draft_version3.png',
     dark: '/img/assets/content-manager/editing_draft_version3_DARK.png',
   }}
 />
 
-By default, each newly created content is a draft. Drafts can be modified and saved at will, using the **Save** button in the _Entry_ box on the right side of the interface, until they are ready to be published.
+새로 생성된 콘텐츠는 기본적으로 초안 상태입니다. 초안은 **저장** 버튼을 통해 언제든 저장할 수 있으며, 발행 준비가 될 때까지 자유롭게 수정할 수 있습니다.
 
-Once you made changes to a draft, you have 3 possible options, all available in the _Entry_ box on the right side of the interface:
-- **Publish** your document (see [Publishing a draft](#publishing-a-draft)),
-- **Save** your draft for later retrieval,
-- or discard changes, by clicking on <Icon name="dots-three-outline" /> and choosing <Icon name="x-circle" /> **Discard changes**.
+초안에서 변경사항을 저장하면, 오른쪽 _Entry_ 박스에서 3가지 옵션을 사용할 수 있습니다:
+- **발행**: 문서를 발행합니다([초안 발행](#publishing-a-draft) 참고)
+- **저장**: 초안을 저장합니다
+- **변경사항 폐기**: <Icon name="dots-three-outline" /> 클릭 후 <Icon name="x-circle" /> **Discard changes** 선택
 
-### Publishing a draft
+### 초안 발행하기
 
-**Path:** <Icon name="feather" /> Content Manager, edit view of your content type
+**경로:** <Icon name="feather" /> 콘텐츠 매니저, 해당 콘텐츠 타입의 편집 뷰
 
-To publish a draft, click on the **Publish** button in the _Entry_ box on the right side of the interface.
+초안을 발행하려면, 오른쪽 _Entry_ 박스의 **발행** 버튼을 클릭하세요.
 
-After a draft is published:
-
-- The content of the _Draft_ and _Published_ tabs should be exactly the same (but the _Published_ tab remains read-only).
-- The status, below the document's title, will switch to "Published".
+초안이 발행되면:
+- _Draft_와 _Published_ 탭의 내용이 동일해집니다(단, _Published_ 탭은 읽기 전용).
+- 문서 제목 아래 상태가 "발행됨"으로 변경됩니다.
 
 :::caution
-Before publishing a draft, make sure it doesn't have relations with other non-published content, otherwise some of the content may not be available through the API.
+초안을 발행하기 전, 다른 미발행 콘텐츠와의 관계가 없는지 반드시 확인하세요. 그렇지 않으면 일부 콘텐츠가 API를 통해 노출되지 않을 수 있습니다.
 :::
 
-When a document has both a draft and a published version available, the published version can be found in the _Published_ tab. If the document has only a draft version, you can not click on the _Published_ tab.
+문서에 초안과 발행 버전이 모두 존재하는 경우, _Published_ 탭에서 발행 버전을 확인할 수 있습니다. 초안만 존재한다면 _Published_ 탭은 비활성화됩니다.
 
 <ThemedImage
-  alt="Editing published version"
+  alt="발행 버전 편집 화면"
   sources={{
     light: '/img/assets/content-manager/editing_published_version3.png',
     dark: '/img/assets/content-manager/editing_published_version3_DARK.png',
@@ -102,25 +101,25 @@ When a document has both a draft and a published version available, the publishe
 />
 
 :::tip
-To schedule publication (i.e. convert a draft to a published entry at a given date and time) you can include it in a release and schedule the publication of that release. Please refer to the [Releases feature](/cms/features/releases) documentation for more information.
+발행 예약(특정 날짜/시간에 초안을 발행) 기능은 [릴리즈 기능](/cms/features/releases) 문서를 참고하세요.
 :::
 
-### Unpublishing content
+### 콘텐츠 미발행 처리하기
 
-**Path:** <Icon name="feather" /> Content Manager, edit view of your content type
+**경로:** <Icon name="feather" /> 콘텐츠 매니저, 해당 콘텐츠 타입의 편집 뷰
 
-To unpublish a previously published content: from the _Draft_ tab, click on <Icon name="dots-three-outline" /> in the _Entry_ box on the right side of the interface and choose the **Unpublish** button.
+이전에 발행된 콘텐츠를 미발행 처리하려면: _Draft_ 탭에서 오른쪽 _Entry_ 박스의 <Icon name="dots-three-outline" />를 클릭한 뒤 **Unpublish** 버튼을 선택하세요.
 
-If the draft version of the document contains content different from the published version, you can decide what to do with both content when unpublishing:
+만약 초안 버전과 발행 버전의 내용이 다르다면, 미발행 시 두 버전의 콘텐츠를 어떻게 처리할지 선택할 수 있습니다:
 
-1. From the _Draft_ tab, click on <Icon name="dots-three-outline" /> in the _Entry_ box on the right side of the interface and choose the **Unpublish** button.
-2. In the Confirmation dialog that opens, you can choose to:
+1. _Draft_ 탭에서 오른쪽 _Entry_ 박스의 <Icon name="dots-three-outline" />를 클릭한 뒤 **Unpublish** 버튼을 선택합니다.
+2. 확인 대화상자가 열리면, 다음 중 하나를 선택할 수 있습니다:
     - **Unpublish and keep last draft**, so that all the content you currently have in the _Draft_ tab is preserved, but the all the content from the _Published_ tab is definitely gone
     - **Unpublish and replace last draft** to discard any existing content in the _Draft_ tab and replace it with the content of all fields from the _Published_ tab
-3. Click **Confirm**. The desired changes will be applied to both the _Draft_ and _Published_ tabs and the new status of the entry will also be reflected below the entry title.
+3. **Confirm** 버튼을 클릭하면 원하는 변경사항이 _Draft_와 _Published_ 탭에 적용되며 엔트리의 새로운 상태도 해당 엔트리 제목 아래에 반영됩니다.
 
 <ThemedImage
-  alt="Unpublish a document"
+  alt="콘텐츠 미발행 처리 화면"
   sources={{
     light: '/img/assets/content-manager/content-manager_unpublish.png',
     dark: '/img/assets/content-manager/content-manager_unpublish_DARK.png',

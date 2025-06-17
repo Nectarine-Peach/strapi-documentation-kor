@@ -1,42 +1,37 @@
 ---
-title: Preview
-description: With the Preview feature, you can preview your front-end directly from the Content Manager
+title: 미리보기
+description: 미리보기 기능을 통해 Content Manager에서 프론트엔드 결과를 바로 확인할 수 있습니다.
 displayedSidebar: userSidebar
 toc_max_heading_level: 4
 tags:
-- content manager
-- preview
-- features
+- 콘텐츠 매니저
+- 미리보기
+- 기능
 ---
 
-# Preview
+# 미리보기
 
-With the Preview feature, you can preview your front end application directly from Strapi's admin panel. This is helpful to see how updates to your content in the Edit View of the Content Manager will affect the final result.
+미리보기 기능을 사용하면 Strapi 관리자 패널에서 프론트엔드 애플리케이션을 직접 미리 볼 수 있습니다. 이 기능은 Content Manager의 편집 뷰에서 콘텐츠를 수정할 때, 실제 결과가 어떻게 보일지 바로 확인하는 데 유용합니다.
 
 <IdentityCard>
-  <IdentityCardItem icon="credit-card" title="Plan">Free feature<br/>Live Preview available only with the CMS Growth and Enterprise plans.</IdentityCardItem>
-  <IdentityCardItem icon="user" title="Role & permission">Read permissions in Roles > Plugins - Users & Permissions</IdentityCardItem>
-  <IdentityCardItem icon="toggle-right" title="Activation">Should be configured in the `config/admin` file</IdentityCardItem>
-  <IdentityCardItem icon="desktop" title="Environment">Available in both Development & Production environment</IdentityCardItem>
+  <IdentityCardItem icon="credit-card" title="플랜">무료 기능<br/>Live Preview는 CMS Growth 및 Enterprise 플랜에서만 제공</IdentityCardItem>
+  <IdentityCardItem icon="user" title="역할 및 권한">Roles > Plugins - Users & Permissions에서 읽기 권한 필요</IdentityCardItem>
+  <IdentityCardItem icon="toggle-right" title="활성화">`config/admin` 파일에서 설정 필요</IdentityCardItem>
+  <IdentityCardItem icon="desktop" title="환경">개발 및 프로덕션 환경 모두에서 사용 가능</IdentityCardItem>
 </IdentityCard>
 
-<!-- TODO: add a dark mode screenshot -->
 <ThemedImage
-  alt="Previewing content"
+  alt="콘텐츠 미리보기 화면"
   sources={{
     light: '/img/assets/content-manager/previewing-content.png',
     dark: '/img/assets/content-manager/previewing-content.png',
   }}
 />
 
-<!-- <div style={{position: 'relative', paddingBottom: 'calc(54.43121693121693% + 50px)', height: '0'}}>
-<iframe id="zpen5g4t8p" src="https://app.guideflow.com/embed/zpen5g4t8p" width="100%" height="100%" style={{overflow:'hidden', position:'absolute', border:'none'}} scrolling="no" allow="clipboard-read; clipboard-write" webkitallowfullscreen mozallowfullscreen allowfullscreen allowtransparency="true"></iframe>
-</div> -->
+## 설정
 
-## Configuration
-
-:::note Notes
-* The following environment variables must be defined in your `.env` file, replacing example values with appropriate values:
+:::note 참고
+* 아래 환경 변수들을 `.env` 파일에 정의해야 하며, 예시 값을 실제 환경에 맞게 변경하세요:
 
   ```bash
   CLIENT_URL=https://your-frontend-app.com
@@ -48,13 +43,13 @@ With the Preview feature, you can preview your front end application directly fr
 * A front-end application for your Strapi project should be already created and set up.
 :::
 
-### Configuration components
+### 구성 요소
 
-The Preview feature configuration is stored in the `preview` object of [the `config/admin` file](/cms/configurations/admin-panel) and consists of 3 key components:
+미리보기 기능 구성은 [`config/admin` 파일](/cms/configurations/admin-panel)의 `preview` 객체에 저장되며 3가지 주요 구성 요소로 구성됩니다:
 
-#### Activation flag
+#### 활성화 플래그
 
-Enables or disables the preview feature:
+미리보기 기능을 활성화하거나 비활성화합니다:
 ```javascript title="config/admin.ts|js" {3}
 // …
 preview: {
@@ -64,25 +59,25 @@ preview: {
 // …
 ```
 
-#### Allowed origins
+#### 허용된 원본
 
-Controls which domains can access previews:
+미리보기에 접근할 수 있는 도메인을 제어합니다:
 
 ```javascript title="config/admin.ts|js" {5}
 // …
 preview: {
   enabled: true,
   config: {
-    allowedOrigins: env("CLIENT_URL"),  // Usually your frontend application URL
+    allowedOrigins: env("CLIENT_URL"),  // 일반적으로 프론트엔드 애플리케이션 URL
     // …
   }
 }
 // …
 ```
 
-#### Preview handler
+#### 미리보기 핸들러
 
-Manages the preview logic and URL generation, as in the following basic example where `uid` is the content-type identifier (e.g., `api::article.article` or `plugin::my-api.my-content-type`):
+미리보기 로직과 URL 생성을 관리합니다. 다음은 `uid`가 콘텐츠 타입 식별자(예: `api::article.article` 또는 `plugin::my-api.my-content-type`)인 기본 예시입니다:
 
 ```jsx title="config/admin.ts|js" {6-11}
 // …
@@ -101,91 +96,91 @@ preview: {
 // …
 ```
 
-An example of [URL generation logic](#2-add-url-generation) in given in the following basic implementation guide.
+[URL 생성 로직](#2-add-url-generation)의 예시는 다음 기본 구현 가이드에서 제공됩니다.
 
-##### Previewing draft entries
+##### 초안 항목 미리보기
 
-The strategy for the front end application to query draft or published content is framework-specific. At least 3 strategies exist:
+프론트엔드 애플리케이션이 초안 또는 게시된 콘텐츠를 쿼리하는 전략은 프레임워크별로 다릅니다. 최소 3가지 전략이 존재합니다:
 
-- using a query parameter, having something like `/your-path?preview=true` (this is, for instance, how <ExternalLink to="https://nuxt.com/docs/api/composables/use-preview-mode" text="Nuxt"/> works)
-- redirecting to a dedicated preview route like `/preview?path=your-path`(this is, for instance, how <ExternalLink to="https://nextjs.org/docs/app/building-your-application/configuring/draft-mode" text="Next's draft mode"/> works)
-- or using a different domain for previews like `preview.mysite.com/your-path`.
+- `/your-path?preview=true`와 같은 쿼리 매개변수 사용 (예를 들어, <ExternalLink to="https://nuxt.com/docs/api/composables/use-preview-mode" text="Nuxt"/>가 작동하는 방식)
+- `/preview?path=your-path`와 같은 전용 미리보기 경로로 리디렉션 (예를 들어, <ExternalLink to="https://nextjs.org/docs/app/building-your-application/configuring/draft-mode" text="Next의 draft mode"/>가 작동하는 방식)
+- 또는 `preview.mysite.com/your-path`와 같은 미리보기용 다른 도메인 사용
 
-When [Draft & Publish](/cms/features/draft-and-publish) is enabled for your content-type, you can also directly leverage Strapi's `status` parameter to handle the logic within the Preview handler, using the following generic approach:
+콘텐츠 타입에 [초안 및 게시](/cms/features/draft-and-publish)가 활성화된 경우, 다음과 같은 일반적인 접근 방식을 사용하여 미리보기 핸들러 내에서 Strapi의 `status` 매개변수를 직접 활용할 수 있습니다:
 
 ```javascript
 async handler(uid, { documentId, locale, status }) {
    const document = await strapi.documents(uid).findOne({ documentId });
    const pathname = getPreviewPathname(uid, { locale, document });
    if (status === 'published')  { 
-      // return the published version
+      // 게시된 버전 반환
    }
-   // return the draft version
+   // 초안 버전 반환
 },
 ```
 
-A more detailed example using the draft mode of Next.js is given in the [basic implementation guide](#3-add-handler).
+Next.js의 draft mode를 사용하는 더 자세한 예시는 [기본 구현 가이드](#3-add-handler)에서 제공됩니다.
 
-### Basic implementation guide
+### 기본 구현 가이드
 
-Follow these steps to add Preview capabilities to your content types.
+콘텐츠 타입에 미리보기 기능을 추가하려면 다음 단계를 따르세요.
 
-#### 1. [Strapi] Create the Preview configuration {#1-create-config}
+#### 1. [Strapi] 미리보기 구성 생성 {#1-create-config}
 
-Create a new file `/config/admin.ts` (or update it if it exists) with the following basic structure:
+다음 기본 구조로 새 파일 `/config/admin.ts`를 생성하거나 (이미 존재하는 경우 업데이트) 하세요:
 
 ```javascript title="config/admin.ts"
 export default ({ env }) => ({
-  // Other admin-related configurations go here
-  // (see docs.strapi.io/cms/configurations/admin-panel)
+  // 기타 관리자 관련 구성이 여기에 들어갑니다
+  // (docs.strapi.io/cms/configurations/admin-panel 참고)
   preview: {
     enabled: true,
     config: {
       allowedOrigins: env('CLIENT_URL'),
       async handler (uid, { documentId, locale, status }) => {
-        // Handler implementation coming in step 3
+        // 핸들러 구현은 3단계에서 진행
       },
     },
   },
 });
 ```
 
-#### 2. [Strapi] Add URL generation logic {#2-add-url-generation}
+#### 2. [Strapi] URL 생성 로직 추가 {#2-add-url-generation}
 
-Add the URL generation logic with a `getPreviewPathname` function. The following example is taken from the <ExternalLink to="https://github.com/strapi/LaunchPad/tree/feat/preview" text="Launchpad"/> Strapi demo application:
+`getPreviewPathname` 함수로 URL 생성 로직을 추가합니다. 다음 예시는 <ExternalLink to="https://github.com/strapi/LaunchPad/tree/feat/preview" text="Launchpad"/> Strapi 데모 애플리케이션에서 가져온 것입니다:
 
 ```typescript title="config/admin.ts"
-// Function to generate preview pathname based on content type and document
+// 콘텐츠 타입과 문서를 기반으로 미리보기 경로명을 생성하는 함수
 const getPreviewPathname = (uid, { locale, document }): string => {
   const { slug } = document;
   
-  // Handle different content types with their specific URL patterns
+  // 특정 URL 패턴을 가진 다양한 콘텐츠 타입 처리
   switch (uid) {
-    // Handle pages with predefined routes
+    // 미리 정의된 경로를 가진 페이지 처리
     case "api::page.page":
       switch (slug) {
         case "homepage":
-          return `/${locale}`; // Localized homepage
+          return `/${locale}`; // 지역화된 홈페이지
         case "pricing":
-          return "/pricing"; // Pricing page
+          return "/pricing"; // 가격 페이지
         case "contact":
-          return "/contact"; // Contact page
+          return "/contact"; // 연락처 페이지
         case "faq":
-          return "/faq"; // FAQ page
+          return "/faq"; // FAQ 페이지
       }
-    // Handle product pages
+    // 제품 페이지 처리
     case "api::product.product": {
       if (!slug) {
-        return "/products"; // Products listing page
+        return "/products"; // 제품 목록 페이지
       }
-      return `/products/${slug}`; // Individual product page
+      return `/products/${slug}`; // 개별 제품 페이지
     }
-    // Handle blog articles
+    // 블로그 기사 처리
     case "api::article.article": {
       if (!slug) {
-        return "/blog"; // Blog listing page
+        return "/blog"; // 블로그 목록 페이지
       }
-      return `/blog/${slug}`; // Individual article page
+      return `/blog/${slug}`; // 개별 기사 페이지
     }
     default: {
       return null;
@@ -193,14 +188,14 @@ const getPreviewPathname = (uid, { locale, document }): string => {
   }
 };
 
-// … main export (see step 3)
+// … 메인 export (3단계 참고)
 ```
 
 :::note
-Some content types don't need to have a preview if it doesn't make sense, hence the default case returning `null`. A Global single type with some site metadata, for example, will not have a matching front-end page. In these cases, the handler function should return `null`, and the preview UI will not be shown in the admin panel. This is how you enable or disable preview per content type.
+일부 콘텐츠 타입은 의미가 없다면 미리보기가 필요하지 않으므로, 기본 케이스에서 `null`을 반환합니다. 예를 들어, 일부 사이트 메타데이터를 가진 Global 단일 타입은 일치하는 프론트엔드 페이지가 없을 것입니다. 이러한 경우 핸들러 함수는 `null`을 반환해야 하며, 관리자 패널에서 미리보기 UI가 표시되지 않습니다. 이것이 콘텐츠 타입별로 미리보기를 활성화하거나 비활성화하는 방법입니다.
 :::
 
-#### 3. [Strapi] Add handler logic {#3-add-handler}
+#### 3. [Strapi] 핸들러 로직 추가 {#3-add-handler}
 
 Create the complete configuration, expanding the basic configuration created in step 1. with the URL generation logic created in step 2., adding an appropriate handler logic:
 
@@ -428,172 +423,37 @@ const pageData = await fetchContentType('api::page.page', {
 });
 ```
 
-#### 6. [Front end] Detect changes in Strapi and refresh the front-end {#6-refresh-frontend}
+## 사용법
 
-Strapi emits a `strapiUpdate` message to inform the front end that data has changed. 
+**기능 사용 경로:** <Icon name="feather" /> 콘텐츠 매니저, 콘텐츠 타입의 편집 뷰
 
-To track this, within your front-end application, add an event listener to listen to events posted through [the `postMessage()` API](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) on the `window` object. The listener needs to filter through messages and react only to Strapi-initiated messages, then refresh the iframe content.
-
-With Next.js, the recommended way to refresh the iframe content is with <ExternalLink to="https://nextjs.org/docs/app/building-your-application/caching#routerrefresh" text="the `router.refresh()` method" />.
-
-<Tabs groupId="js-ts">
-<TabItem value="js" label="JavaScript" >
-
-```tsx title="next/app/path/to/your/front/end/logic.jsx" {6-17}
-export default function MyClientComponent({...props}) {
-  // …
-  const router = useRouter();
-
-  useEffect(() => {
-    const handleMessage = async (message) => {
-      if (
-        // Filters events emitted through the postMessage() API
-        message.origin === process.env.NEXT_PUBLIC_API_URL &&
-        message.data.type === "strapiUpdate"
-      ) { // Recommended way to refresh with Next.js
-        router.refresh();
-      }
-    };
-
-    // Add the event listener
-    window.addEventListener("message", handleMessage);
-
-    // Cleanup the event listener on unmount
-    return () => {
-      window.removeEventListener("message", handleMessage);
-    };
-  }, [router]);
-
-  // ...
-}
-```
-
-</TabItem>
-<TabItem value="ts" label="TypeScript" >
-
-```tsx title="next/app/path/to/your/front/end/logic.tsx" {6-17}
-export default function MyClientComponent({
-  //…
-  const router = useRouter();
-
-  useEffect(() => {
-    const handleMessage = async (message: MessageEvent<any>) => {
-      if (
-        // Filters events emitted through the postMessage() API
-        message.origin === process.env.NEXT_PUBLIC_API_URL &&
-        message.data.type === "strapiUpdate"
-      ) { // Recommended way to refresh with Next.js
-        router.refresh();
-      }
-    };
-
-    // Add the event listener
-    window.addEventListener("message", handleMessage);
-
-    // Cleanup the event listener on unmount
-    return () => {
-      window.removeEventListener("message", handleMessage);
-    };
-  }, [router]);
-
-  // …
-})
-```
-
-</TabItem>
-
-</Tabs>
-
-<details>
-<summary>Caching in Next.js:</summary>
-
-In Next.js, [cache persistence](https://nextjs.org/docs/app/building-your-application/caching) may require additional steps. You might need to invalidate the cache by making an API call from the client side to the server, where the revalidation logic will be handled. Please refer to Next.js documentation for details, for instance with the [revalidatePath() method](https://nextjs.org/docs/app/building-your-application/caching#revalidatepath).
-<br/>
-
-</details>
-
-#### [Front end] Next steps
-
-Once the preview system is set up, you need to adapt your data fetching logic to handle draft content appropriately. This involves the following steps:
-
-1. Create or adapt your data fetching utility to check if draft mode is enabled
-2. Update your API calls to include the draft status parameter when appropriate
-
-The following, taken from the <ExternalLink to="https://github.com/strapi/LaunchPad/tree/feat/preview" text="Launchpad" /> Strapi demo application, is an example of how to implement draft-aware data fetching in your Next.js front-end application:
-
-```typescript {8-18}
-import { draftMode } from "next/headers";
-import qs from "qs";
-
-export default async function fetchContentType(
-  contentType: string,
-  params: Record = {}
-): Promise {
-  // Check if Next.js draft mode is enabled
-  const { isEnabled: isDraftMode } = draftMode();
-  
-  try {
-    const queryParams = { ...params };
-    // Add status=draft parameter when draft mode is enabled
-    if (isDraftMode) {
-      queryParams.status = "draft";
-    }
-    
-    const url = `${baseURL}/${contentType}?${qs.stringify(queryParams)}`;
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch data from Strapi (url=${url}, status=${response.status})`
-      );
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching content:", error);
-    throw error;
-  }
-}
-```
-
-This utility method can then be used in your page components to fetch either draft or published content based on the preview state:
-
-```typescript
-// In your page component:
-const pageData = await fetchContentType('api::page.page', {
-  // Your other query parameters
-});
-```
-
-## Usage
-
-**Path to use the feature:** <Icon name="feather" /> Content Manager, edit view of your content type
-
-:::strapi Preview vs. Live Preview
-Based on your CMS plan, your experience with Preview will be different:
-- With the Free plan, Preview will be full screen only.
-- With the <GrowthBadge /> and <EnterpriseBadge /> plans, you get access to Live Preview. With Live Preview, you can see the Preview alongside the Edit view of the Content Manager, allowing you to edit your content and previewing it simultaneously.
+:::strapi 미리보기 vs. 라이브 미리보기
+CMS 요금제에 따라 미리보기 경험이 다릅니다:
+- 무료 요금제에서는 미리보기가 전체 화면으로만 제공됩니다.
+- <GrowthBadge /> 및 <EnterpriseBadge /> 요금제에서는 라이브 미리보기에 접근할 수 있습니다. 라이브 미리보기를 사용하면 콘텐츠 매니저의 편집 뷰와 함께 미리보기를 볼 수 있어, 콘텐츠를 편집하면서 동시에 미리보기할 수 있습니다.
 :::
 
-Once the Preview feature is properly set up, an **Open preview** button is visible on the right side of the [Content Manager's edit view](/cms/features/content-manager#overview). Clicking it will display the preview of your content as it will appear in your front-end application, but directly within Strapi's the admin panel.
+미리보기 기능이 올바르게 설정되면 [콘텐츠 매니저의 편집 뷰](/cms/features/content-manager#overview) 오른쪽에 **미리보기 열기** 버튼이 표시됩니다. 이를 클릭하면 프론트엔드 애플리케이션에서 나타날 콘텐츠의 미리보기가 Strapi 관리자 패널 내에서 직접 표시됩니다.
 
 <!-- TODO: add a dark mode GIF -->
 <ThemedImage
-  alt="Previewing content"
+  alt="콘텐츠 미리보기"
   sources={{
     light: '/img/assets/content-manager/previewing-content2.gif',
     dark: '/img/assets/content-manager/previewing-content2.gif',
   }}
 />
 
-Once the Preview is open, you can:
+미리보기가 열리면 다음을 할 수 있습니다:
 
-- click the close button <Icon name="x" classes="ph-bold" /> in the upper left corner to go back to the Edit View of the Content Manager,
-- switch between previewing the draft and the published version (if [Draft & Publish](/cms/features/draft-and-publish) is enabled for the content-type),
-- and click the link icon <Icon name="link" classes="ph-bold"/> in the upper right corner to copy the preview link. Depending on the preview tab you are currently viewing, this will either copy the link to the preview of the draft or the published version.
+- 왼쪽 상단의 닫기 버튼 <Icon name="x" classes="ph-bold" />을 클릭하여 콘텐츠 매니저의 편집 뷰로 돌아갑니다,
+- 초안과 게시된 버전 간의 미리보기를 전환합니다 (콘텐츠 타입에 [초안 및 게시](/cms/features/draft-and-publish)가 활성화된 경우),
+- 오른쪽 상단의 링크 아이콘 <Icon name="link" classes="ph-bold"/>을 클릭하여 미리보기 링크를 복사합니다. 현재 보고 있는 미리보기 탭에 따라 초안 또는 게시된 버전의 미리보기 링크가 복사됩니다.
 
-Additionally, with Live Preview, you can:
-- with <GrowthBadge /> and <EnterpriseBadge /> plans, expand the side panel by clicking on the <Icon name="arrow-line-left" classes="ph-bold" /> button to make the Preview full screen,
-- and, with the <EnterpriseBadge /> plan, use buttons at the top right of the editor to define the assignee and stage for the [Review Workflows feature](/cms/features/review-workflows) if enabled.
+또한 라이브 미리보기에서는 다음을 할 수 있습니다:
+- <GrowthBadge /> 및 <EnterpriseBadge /> 요금제에서 <Icon name="arrow-line-left" classes="ph-bold" /> 버튼을 클릭하여 사이드 패널을 확장하고 미리보기를 전체 화면으로 만들 수 있습니다,
+- <EnterpriseBadge /> 요금제에서는 활성화된 경우 [검토 워크플로 기능](/cms/features/review-workflows)의 담당자 및 단계를 정의하기 위해 에디터 오른쪽 상단의 버튼을 사용할 수 있습니다.
 
 :::note
-In the Edit view of the Content Manager, the Open preview button will be disabled if you have unsaved changes. Save your latest changes and you should be able to preview content again.
+콘텐츠 매니저의 편집 뷰에서 저장되지 않은 변경사항이 있으면 미리보기 열기 버튼이 비활성화됩니다. 최신 변경사항을 저장하면 다시 콘텐츠를 미리보기할 수 있습니다.
 :::

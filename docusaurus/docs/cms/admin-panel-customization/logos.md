@@ -1,44 +1,44 @@
 ---
-title: Logos
-description: Customize the logos displayed in Strapi's admin panel.
+title: 로고
+description: Strapi 관리자 패널에 표시되는 로고를 커스터마이징하는 방법을 알아보세요.
 displayed_sidebar: cmsSidebar
-sidebar_label: Logos
+sidebar_label: 로고
 toc_max_heading_level: 4
 tags:
-- admin panel
-- admin panel customization
+- 관리자 패널
+- 관리자 패널 커스터마이징
 ---
 
-# Logos
+# 로고
 
-Strapi's [admin panel](/cms/admin-panel-customization) displays its branding on both the login screen and in the main navigation. Replacing these images allows you to match the interface to your identity. The present page shows how to override the two logo files via the admin panel configuration. If you prefer uploading them directly in the UI, see [Customizing the logo](/cms/features/admin-panel#customizing-the-logo).
+Strapi의 [관리자 패널](/cms/admin-panel-customization)은 로그인 화면과 메인 네비게이션에 브랜드 로고를 표시합니다. 이 이미지를 교체하면 인터페이스를 브랜드에 맞게 맞출 수 있습니다. 본 문서에서는 관리자 패널 설정 파일을 통해 두 개의 로고 파일을 오버라이드하는 방법을 안내합니다. UI에서 직접 업로드하고 싶다면 [로고 커스터마이징](/cms/features/admin-panel#customizing-the-logo) 문서를 참고하세요.
 
-The Strapi admin panel displays a logo in 2 different locations, represented by 2 different keys in the admin panel configuration:
+Strapi 관리자 패널은 2개의 위치에 각각 다른 키로 로고를 표시합니다:
 
-| Location in the UI     | Configuration key to update |
+| UI 내 위치 | 설정에서 변경할 키 |
 | ---------------------- | --------------------------- |
-| On the login page      | `config.auth.logo`          |
-| In the main navigation | `config.menu.logo`          |
+| 로그인 페이지 | `config.auth.logo` |
+| 메인 네비게이션 | `config.menu.logo` |
 
 :::note
-Logos uploaded via the admin panel supersede any logo set through the configuration files.
+관리자 패널에서 직접 업로드한 로고가 설정 파일에서 지정한 로고보다 우선 적용됩니다.
 :::
 
-### Logos location in the admin panel
+### 관리자 패널 내 로고 위치
 
 <!--TODO: update screenshot #2 -->
 
-The logo handled by `config.auth.logo` logo is only shown on the login screen:
+`config.auth.logo`로 지정한 로고는 로그인 화면에만 표시됩니다:
 
-![Location of the auth logo](/img/assets/development/config-auth-logo.png)
+![Auth 로고 위치](/img/assets/development/config-auth-logo.png)
 
-The logo handled by `config.menu.logo` logo is located in the main navigation at the top left corner of the admin panel:
+`config.menu.logo`로 지정한 로고는 관리자 패널 좌측 상단 메인 네비게이션에 표시됩니다:
 
-![Location of Menu logo](/img/assets/development/config-menu-logo.png)
+![메뉴 로고 위치](/img/assets/development/config-menu-logo.png)
 
-### Updating logos
+### 로고 변경 방법
 
-To update the logos, put image files in the `/src/admin/extensions` folder, import these files in `src/admin/app` and update the corresponding keys as in the following example:
+로고 이미지를 `/src/admin/extensions` 폴더에 두고, `src/admin/app`에서 import한 뒤 아래 예시처럼 해당 키를 업데이트하세요:
 
 <Tabs groupId="js-ts">
 <TabItem value="js" label="JavaScript">

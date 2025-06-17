@@ -1,245 +1,245 @@
 ---
-title: Content-type Builder
-description: Learn to use the Content-type Builder.
+title: 콘텐츠 타입 빌더
+description: 콘텐츠 타입 빌더 사용법을 알아보세요.
 toc_max_heading_level: 5
 tags:
-- admin panel
-- content type builder
-- content types
-- component
-- dynamic zone
-- custom field
+- 관리자 패널
+- 콘텐츠 타입 빌더
+- 콘텐츠 타입
+- 컴포넌트
+- 동적 영역
+- 커스텀 필드
 ---
 
 import ScreenshotNumberReference from '/src/components/ScreenshotNumberReference.jsx';
 
-# Content-type Builder
+# 콘텐츠 타입 빌더
 
-From the <Icon name="layout" /> Content-type Builder, accessible via the main navigation of the admin panel, users can create and edit their content types.
+관리자 패널의 메인 네비게이션을 통해 접근할 수 있는 <Icon name="layout" /> 콘텐츠 타입 빌더에서 사용자는 콘텐츠 타입을 생성하고 편집할 수 있습니다.
 
 <IdentityCard>
-  <IdentityCardItem icon="user" title="Role & permission">Minimum "Read" permission in Roles > Plugins - Content Type Builder.</IdentityCardItem>
-  <IdentityCardItem icon="desktop" title="Environment">Available in Development environment only.</IdentityCardItem>
+  <IdentityCardItem icon="user" title="역할 및 권한">역할 > 플러그인 - 콘텐츠 타입 빌더에서 최소 "읽기" 권한 필요.</IdentityCardItem>
+  <IdentityCardItem icon="desktop" title="환경">개발 환경에서만 사용 가능.</IdentityCardItem>
 </IdentityCard>
 
-## Overview
+## 개요
 
 <Guideflow lightId="lpnm3w1ber" darkId="zklmd4gijr" />
 
-The <Icon name="layout" /> Content-type Builder allows the creation and management of content-types, which can be:
+<Icon name="layout" /> 콘텐츠 타입 빌더를 통해 다음과 같은 콘텐츠 타입을 생성하고 관리할 수 있습니다:
 
-- Collection types: content-types that can manage several entries.
-- Single types: content-types that can only manage one entry.
-- Components: content structure that can be used in multiple collection types and single types. Although they are technically not proper content-types because they cannot exist independently, components are also created and managed through the Content-type Builder, in the same way as collection and single types.
+- 컬렉션 타입: 여러 엔트리를 관리할 수 있는 콘텐츠 타입.
+- 싱글 타입: 하나의 엔트리만 관리할 수 있는 콘텐츠 타입.
+- 컴포넌트: 여러 컬렉션 타입과 싱글 타입에서 사용할 수 있는 콘텐츠 구조. 기술적으로는 독립적으로 존재할 수 없기 때문에 진정한 콘텐츠 타입은 아니지만, 컴포넌트도 컬렉션 타입과 싱글 타입과 동일한 방식으로 콘텐츠 타입 빌더에서 생성하고 관리됩니다.
 
-All 3 are displayed as categories in the sub navigation of the <Icon name="layout" /> Content-type Builder. In each category are listed all content-types and components that have already been created.
+이 3가지 모두 <Icon name="layout" /> 콘텐츠 타입 빌더의 서브 네비게이션에서 카테고리로 표시됩니다. 각 카테고리에는 이미 생성된 모든 콘텐츠 타입과 컴포넌트가 나열됩니다.
 
 :::tip
-Click the search icon <Icon name="magnifying-glass" classes="ph-bold" /> in the <Icon name="layout" /> Content-type Builder sub navigation to find a specific collection type, single type, or component.
+<Icon name="layout" /> 콘텐츠 타입 빌더 서브 네비게이션에서 검색 아이콘 <Icon name="magnifying-glass" classes="ph-bold" />을 클릭하여 특정 컬렉션 타입, 싱글 타입 또는 컴포넌트를 찾을 수 있습니다.
 :::
 
-In the Content-type Builder's sub navigation is also displayed a centralised **Save** button that applies for all content-types and components. Along with the display of statuses for both content-types/components and fields, this allows you to work on several content-types and components at the same time. The following statuses can be displayed:
+콘텐츠 타입 빌더의 서브 네비게이션에는 모든 콘텐츠 타입과 컴포넌트에 적용되는 중앙 집중식 **저장** 버튼도 표시됩니다. 콘텐츠 타입/컴포넌트와 필드 모두의 상태 표시와 함께, 이를 통해 여러 콘텐츠 타입과 컴포넌트를 동시에 작업할 수 있습니다. 다음 상태가 표시될 수 있습니다:
 
-- `New` or `N` indicates that a content-type/component or field is new and hasn't been saved yet,
-- `Modified` or `M` indicates that a content-type/component or field has been modified since the last save,
-- `Deleted` or `D` indicates that a content-type/component or field has been deleted but that it will only be confirmed once saved.
+- `New` 또는 `N`은 콘텐츠 타입/컴포넌트 또는 필드가 새로 만들어져 아직 저장되지 않았음을 나타냅니다.
+- `Modified` 또는 `M`은 콘텐츠 타입/컴포넌트 또는 필드가 마지막 저장 이후 수정되었음을 나타냅니다.
+- `Deleted` 또는 `D`는 콘텐츠 타입/컴포넌트 또는 필드가 삭제되었지만 저장해야만 확정됨을 나타냅니다.
 
 :::note
-Clicking on the **...** button next to **Save** gives access to other options, such as **Undo/Redo last change** and **Discard all changes**. These options are also centralised, meaning that they apply to the last action(s) that was/were done on all content-types, components and fields since the last time you saved.
+**저장** 옆의 **...** 버튼을 클릭하면 **마지막 변경 실행 취소/다시 실행** 및 **모든 변경 사항 삭제**와 같은 다른 옵션에 접근할 수 있습니다. 이러한 옵션들도 중앙 집중식으로, 마지막 저장 이후 모든 콘텐츠 타입, 컴포넌트 및 필드에서 수행된 마지막 액션(들)에 적용됩니다.
 :::
 
-## Usage
+## 사용법
 
 <br/>
 
-### Creating content-types
+### 콘텐츠 타입 생성
 
-The Content-type Builder allows to create new content-types: single and collection types, but also components.
+콘텐츠 타입 빌더를 통해 싱글 타입과 컬렉션 타입뿐만 아니라 컴포넌트까지 새로운 콘텐츠 타입을 생성할 수 있습니다.
 
-#### New content-type
+#### 새 콘텐츠 타입
 
 <ThemedImage
-  alt="Content-type creation"
+  alt="콘텐츠 타입 생성"
   sources={{
     light: '/img/assets/content-type-builder/content-type-creation.png',
     dark: '/img/assets/content-type-builder/content-type-creation_DARK.png',
   }}
 />
 
-1. Choose whether you want to create a collection type or a single type.
-2. In the <Icon name="layout" /> Content-type Builder's category of the content-type you want to create, click on **Create new collection/single type**.
-3. In the content-type creation window, write the name of the new content-type in the *Display name* textbox.
-4. Check the *API ID* to make sure the automatically pre-filled values are correct. Collection type names are indeed automatically pluralized when displayed in the Content Manager. It is recommended to opt for singular names, but the *API ID* field allows to fix any pluralization mistake.
-5. (optional) In the Advanced Settings tab, configure the available settings for the new content-type:
-      | Setting name    | Instructions                                                                                                                                     |
+1. 컬렉션 타입 또는 싱글 타입 중 원하는 유형을 선택합니다.
+2. <Icon name="layout" /> 콘텐츠 타입 빌더의 해당 카테고리에서 **새 컬렉션/싱글 타입 생성**을 클릭합니다.
+3. 생성 창에서 *표시 이름* 텍스트박스에 새 콘텐츠 타입의 이름을 입력합니다.
+4. *API ID*를 확인하여 자동으로 미리 채워진 값이 올바른지 확인합니다. 컬렉션 타입 이름은 콘텐츠 매니저에 표시될 때 자동으로 복수형으로 표시됩니다. 단수 이름을 선택하는 것이 권장되지만, *API ID* 필드를 통해 복수형 오류를 수정할 수 있습니다.
+5. (선택사항) 고급 설정 탭에서 새 콘텐츠 타입에 사용 가능한 설정을 구성합니다:
+      | 설정 이름    | 지침                                                                                                                                     |
       |-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-      | Draft & publish | Tick the checkbox to allow entries of the content-type to be managed as draft versions, before they are published (see [Draft & Publish](/cms/features/draft-and-publish)). |
-      | Internationalization | Tick the checkbox to allow entries of the content-type to be translated into other locales. |
-6. Click on the **Continue** button.
-7. Add and configure chosen fields for your content-type (see [Configuring fields for content-types](#configuring-fields-content-type)).
-8. Click on the **Save** button.
+      | 초안 및 발행 | 콘텐츠 타입의 엔트리가 발행되기 전에 초안 버전으로 관리될 수 있도록 체크박스를 선택합니다([초안 및 발행](/cms/features/draft-and-publish) 참고). |
+      | 국제화 | 콘텐츠 타입의 엔트리가 다른 로케일로 번역될 수 있도록 체크박스를 선택합니다. |
+6. **계속** 버튼을 클릭합니다.
+7. 콘텐츠 타입에 선택한 필드를 추가하고 구성합니다([콘텐츠 타입 필드 구성](#configuring-fields-content-type) 참고).
+8. **저장** 버튼을 클릭합니다.
 
 :::caution
-New content-types are only considered created once they have been saved. Saving is only possible if at least one field has been added and properly configured. If these steps have not been done, a content-type cannot be created, listed in its category in the Content-type Builder, and cannot be used in the [Content Manager](/cms/features/content-manager).
+새 콘텐츠 타입은 저장되어야만 생성된 것으로 간주됩니다. 저장은 최소 하나의 필드가 추가되고 올바르게 구성된 경우에만 가능합니다. 이러한 단계가 완료되지 않으면 콘텐츠 타입을 생성할 수 없고, 콘텐츠 타입 빌더의 해당 카테고리에 나열되지 않으며, [콘텐츠 매니저](/cms/features/content-manager)에서 사용할 수 없습니다.
 :::
 
-#### New component
+#### 새 컴포넌트
 
 <ThemedImage
-  alt="Component creation"
+  alt="컴포넌트 생성"
   sources={{
     light: '/img/assets/content-type-builder/component-creation-1.png',
     dark: '/img/assets/content-type-builder/component-creation-1_DARK.png',
   }}
 />
 
-1. In the Components category of the <Icon name="layout" /> Content-type Builder sub navigation, click on **Create new component**.
-2. In the component creation window, configure the base settings of the new component:
-   - Write the name of the component in the *Display name* textbox.
-   - Select an available category, or enter in the textbox a new category name to create one.
-   - _(optional)_ Choose an icon representing the new component. You can use the search <Icon name="magnifying-glass" classes="ph-bold" /> to find an icon instead of scrolling through the list.
-3. Click on the **Continue** button.
-4. Add and configure chosen fields for your component (see [Configuring fields for content-types](#configuring-fields-content-type)).
-5. Click on the **Save** button.
+1. <Icon name="layout" /> 콘텐츠 타입 빌더 서브 네비게이션의 컴포넌트 카테고리에서 **새 컴포넌트 생성**을 클릭합니다.
+2. 컴포넌트 생성 창에서 새 컴포넌트의 기본 설정을 구성합니다:
+   - *표시 이름* 텍스트박스에 컴포넌트의 이름을 입력합니다.
+   - 사용 가능한 카테고리를 선택하거나, 텍스트박스에 새 카테고리 이름을 입력하여 생성합니다.
+   - _(선택사항)_ 새 컴포넌트를 나타내는 아이콘을 선택합니다. 목록을 스크롤하는 대신 검색 <Icon name="magnifying-glass" classes="ph-bold" />을 사용하여 아이콘을 찾을 수 있습니다.
+3. **계속** 버튼을 클릭합니다.
+4. 컴포넌트에 선택한 필드를 추가하고 구성합니다([콘텐츠 타입 필드 구성](#configuring-fields-content-type) 참고).
+5. **저장** 버튼을 클릭합니다.
 
-### Editing content-types
+### 콘텐츠 타입 편집
 
-The Content-type Builder allows to manage all existing content-types. For an chosen content-type or component to edit, the right side of the Content-type Builder interface displays all available editing and management options.
+콘텐츠 타입 빌더를 통해 기존의 모든 콘텐츠 타입을 관리할 수 있습니다. 편집할 콘텐츠 타입이나 컴포넌트를 선택하면, 콘텐츠 타입 빌더 인터페이스의 오른쪽에 사용 가능한 모든 편집 및 관리 옵션이 표시됩니다.
 
 <ThemedImage
-  alt="Content-type Builder's edition interface"
+  alt="콘텐츠 타입 빌더의 편집 인터페이스"
   sources={{
     light: '/img/assets/content-type-builder/new_CTB.png',
     dark: '/img/assets/content-type-builder/new_CTB_DARK.png',
   }}
 />
 
-#### Settings
+#### 설정
 
-1. Click on the <Icon name="pencil-simple" /> **Edit** button of your content-type to access its settings.
-2. Edit the available settings of your choice:
+1. 콘텐츠 타입의 <Icon name="pencil-simple" /> **편집** 버튼을 클릭하여 설정에 접근합니다.
+2. 원하는 사용 가능한 설정을 편집합니다:
 
   <Tabs groupId="CTSettings">
 
-  <TabItem value="CTBasicSettings" label="Basic settings">
+  <TabItem value="CTBasicSettings" label="기본 설정">
 
   <ThemedImage
-    alt="Content-type Builder's basic settings"
+    alt="콘텐츠 타입 빌더의 기본 설정"
     sources={{
       light: '/img/assets/content-type-builder/basic-settings.png',
       dark: '/img/assets/content-type-builder/basic-settings_DARK.png',
     }}
   />
 
-  * **Display name**: Name of the content-type or component as it will be displayed in the admin panel.
-  * **API ID (singular)**: Name of the content-type or component as it will be used in the API. It is automatically generated from the display name, but can be edited.
-  * **API ID (plural)**: Plural name of the content-type or component as it will be used in the API. It is automatically generated from the display name, but can be edited.
-  * **Type**: Type of the content-type or component. It can be either a **Collection type** or a **Single type**.
+  * **표시 이름**: 관리자 패널에 표시될 콘텐츠 타입 또는 컴포넌트의 이름.
+  * **API ID (단수)**: API에서 사용될 콘텐츠 타입 또는 컴포넌트의 이름. 표시 이름에서 자동으로 생성되지만 편집할 수 있습니다.
+  * **API ID (복수)**: API에서 사용될 콘텐츠 타입 또는 컴포넌트의 복수 이름. 표시 이름에서 자동으로 생성되지만 편집할 수 있습니다.
+  * **타입**: 콘텐츠 타입 또는 컴포넌트의 유형. **컬렉션 타입** 또는 **싱글 타입**일 수 있습니다.
 
   </TabItem>
 
-  <TabItem value="CTAdvancedSettings" label="Advanced settings">
+  <TabItem value="CTAdvancedSettings" label="고급 설정">
 
   <ThemedImage
-    alt="Content-type Builder's advanced settings"
+    alt="콘텐츠 타입 빌더의 고급 설정"
     sources={{
       light: '/img/assets/content-type-builder/advanced-settings.png',
       dark: '/img/assets/content-type-builder/advanced-settings_DARK.png',
     }}
   />
 
-  * **Draft & Publish**: Enable the [Draft & Publish](/cms/features/draft-and-publish) feature for the content-type or component. It is disabled by default.
-  * **Internationalization**: Enable the [Internationalization](/cms/features/internationalization) feature for the content-type or component. It is disabled by default.
+  * **초안 및 발행**: 콘텐츠 타입 또는 컴포넌트에 대해 [초안 및 발행](/cms/features/draft-and-publish) 기능을 활성화합니다. 기본적으로 비활성화되어 있습니다.
+  * **국제화**: 콘텐츠 타입 또는 컴포넌트에 대해 [국제화](/cms/features/internationalization) 기능을 활성화합니다. 기본적으로 비활성화되어 있습니다.
 
   </TabItem>
 
   </Tabs>
-3. Click the **Finish** button in the dialog.
-4. Click the **Save** button in the Content-Type Builder navigation.
+3. 대화 상자에서 **완료** 버튼을 클릭합니다.
+4. 콘텐츠 타입 빌더 네비게이션에서 **저장** 버튼을 클릭합니다.
 
-#### Fields
+#### 필드
 
-From the table that lists the fields of your content-type, you can:
-- Click on the <Icon name="pencil-simple" /> button to access a field's basic and advanced settings to edit them
-- Click on the **Add another field** buttons to create a new field for the selected content-type
-- Click on the <Icon name="dots-six-vertical" classes="ph-bold"/> button and drag and drop any field to reorder the content-type's fields
-- Click on the <Icon name="trash" /> button to delete a field
+콘텐츠 타입의 필드를 나열하는 테이블에서 다음을 수행할 수 있습니다:
+- <Icon name="pencil-simple" /> 버튼을 클릭하여 필드의 기본 및 고급 설정에 접근하여 편집
+- **다른 필드 추가** 버튼을 클릭하여 선택한 콘텐츠 타입에 새 필드 생성
+- <Icon name="dots-six-vertical" classes="ph-bold"/> 버튼을 클릭하고 필드를 드래그 앤 드롭하여 콘텐츠 타입의 필드 순서 변경
+- <Icon name="trash" /> 버튼을 클릭하여 필드 삭제
 
 :::caution
-Editing a field allows renaming it. However, keep in mind that regarding the database, renaming a field means creating a whole new field and deleting the former one. Although nothing is deleted from the database, the data that was associated with the former field name will not be accessible from the admin panel of your application anymore.
+필드를 편집하면 이름을 바꿀 수 있습니다. 하지만 데이터베이스 관점에서 필드 이름을 바꾸는 것은 완전히 새로운 필드를 생성하고 이전 필드를 삭제하는 것임을 명심하세요. 데이터베이스에서 아무것도 삭제되지 않지만, 이전 필드 이름과 연결된 데이터는 더 이상 애플리케이션의 관리자 패널에서 접근할 수 없게 됩니다.
 :::
 
-### Configuring content-types fields {#configuring-fields-content-type}
+### 콘텐츠 타입 필드 구성 {#configuring-fields-content-type}
 
-Content-types are composed of one or several fields. Each field is designed to contain specific kind of data, filled up in the Content Manager (see [Creating & Writing content](/cms/features/content-manager#creating--writing-content)).
+콘텐츠 타입은 하나 또는 여러 개의 필드로 구성됩니다. 각 필드는 콘텐츠 매니저에서 입력되는 특정 종류의 데이터를 포함하도록 설계되었습니다([콘텐츠 생성 및 작성](/cms/features/content-manager#creating--writing-content) 참고).
 
-In the <Icon name="layout" /> Content-type Builder, fields can be added at the creation of a new content-type or component, or afterward when a content-type or component is edited or updated.
+<Icon name="layout" /> 콘텐츠 타입 빌더에서 필드는 새 콘텐츠 타입이나 컴포넌트 생성 시에 추가하거나, 나중에 콘텐츠 타입이나 컴포넌트를 편집하거나 업데이트할 때 추가할 수 있습니다.
 
 :::note
-Depending on what content-type or component is being created or edited, not all fields -including components and dynamic zones- are always available.
+생성하거나 편집 중인 콘텐츠 타입이나 컴포넌트에 따라 컴포넌트와 동적 영역을 포함한 모든 필드가 항상 사용 가능한 것은 아닙니다.
 :::
 
 <ThemedImage
-  alt="Fields selection"
+  alt="필드 선택"
   sources={{
     light: '/img/assets/content-type-builder/fields-selection.png',
     dark: '/img/assets/content-type-builder/fields-selection_DARK.png',
   }}
 />
 
-#### <img width="28" src="/img/assets/icons/v5/ctb_text.svg" /> Text {#text}
+#### <img width="28" src="/img/assets/icons/v5/ctb_text.svg" /> 텍스트 {#text}
 
-The Text field displays a textbox that can contain small text. This field can be used for titles, descriptions, etc.
+텍스트 필드는 작은 텍스트를 포함할 수 있는 텍스트박스를 표시합니다. 이 필드는 제목, 설명 등에 사용할 수 있습니다.
 
 <Tabs>
 
-<TabItem value="base" label="Base settings">
+<TabItem value="base" label="기본 설정">
 
-| Setting name | Instructions                                                                                            |
+| 설정 이름 | 지침                                                                                            |
 |--------------|---------------------------------------------------------------------------------------------------------|
-| Name         | Write the name of the Text field.                                                                       |
-| Type         | Choose between *Short text* (255 characters maximum) and *Long text*, to allow more or less space to fill up the Text field.     |
+| 이름         | 텍스트 필드의 이름을 입력합니다.                                                                       |
+| 타입         | 텍스트 필드를 채울 수 있는 공간을 늘리거나 줄이기 위해 *짧은 텍스트* (최대 255자)와 *긴 텍스트* 중에서 선택합니다.     |
 
 </TabItem>
 
-<TabItem value="advanced" label="Advanced settings">
+<TabItem value="advanced" label="고급 설정">
 
-| Setting name   | Instructions                                                                  |
-|----------------|-------------------------------------------------------------------------------|
-| Default value  | Write the default value of the Text field.                                    |
-| RegExp pattern | Write a regular expression to make sure the value of the Text field matches a specific format. |
-| Private field  | Tick to make the field private and prevent it from being found via the API.   |
-| Enable localization for this field | (if [Internationalization](/cms/features/internationalization) is enabled for the content-type) Allow the field to have a different value per locale. |
-| Required field | Tick to prevent creating or saving an entry if the field is not filled in.    |
-| Unique field   | Tick to prevent another field to be identical to this one.                    |
-| Maximum length | Tick to define a maximum number of characters allowed.                        |
-| Minimum length | Tick to define a minimum number of characters allowed.                        |
+| 설정 이름   | 지침                                                                |
+|----------------|-----------------------------------------------------------------------------|
+| 기본값  | 텍스트 필드의 기본값을 입력합니다.                                    |
+| RegExp 패턴 | 텍스트 필드의 값이 특정 형식과 일치하는지 확인하기 위해 정규 표현식을 입력합니다. |
+| 비공개 필드  | 필드를 비공개로 만들어 API를 통해 찾을 수 없도록 하려면 체크합니다.   |
+| 이 필드에 대해 로컬라이제이션 활성화 | ([국제화](/cms/features/internationalization)가 콘텐츠 타입에 활성화된 경우) 필드가 로케일별로 다른 값을 가질 수 있도록 허용합니다. |
+| 필수 필드 | 필드가 채워지지 않으면 엔트리 생성 또는 저장이 방지되도록 하려면 체크합니다.    |
+| 고유 필드   | 다른 필드가 이 필드와 동일한 값을 갖는 것을 방지하려면 체크합니다.                    |
+| 최대 길이 | 허용되는 최대 문자 수를 정의하려면 체크합니다.                        |
+| 최소 길이 | 허용되는 최소 문자 수를 정의하려면 체크합니다.                        |
 
 </TabItem>
 
 </Tabs>
 
-#### <img width="28" src="/img/assets/icons/v5/ctb_richtextblocks.svg" /> Rich Text (Blocks) {#rich-text-blocks}
+#### <img width="28" src="/img/assets/icons/v5/ctb_richtextblocks.svg" /> 리치 텍스트 (블록) {#rich-text-blocks}
 
-The Rich Text (Blocks) field displays an editor with live rendering and various options to manage rich text. This field can be used for long written content, even including images and code.
+리치 텍스트 (블록) 필드는 실시간 렌더링과 리치 텍스트 관리를 위한 다양한 옵션이 있는 편집기를 표시합니다. 이 필드는 이미지와 코드를 포함한 긴 텍스트 콘텐츠에 사용할 수 있습니다.
 
 <Tabs>
 
-<TabItem value="base" label="Base settings">
+<TabItem value="base" label="기본 설정">
 
-| Setting name | Instructions                                    |
+| 설정 이름 | 지침                                    |
 |--------------|-------------------------------------------------|
-| Name         | Write the name of the Rich Text (Blocks) field. |
+| 이름         | 리치 텍스트 (블록) 필드의 이름을 입력합니다. |
 
 </TabItem>
 
-<TabItem value="advanced" label="Advanced settings">
+<TabItem value="advanced" label="고급 설정">
 
-| Setting name   | Instructions                                                                |
+| 설정 이름   | 지침                                                                |
 |----------------|-----------------------------------------------------------------------------|
-| Private field  | Tick to make the field private and prevent it from being found via the API. |
-| Required field | Tick to prevent creating or saving an entry if the field is not filled in.  |
-| Enable localization for this field | (if [Internationalization](/cms/features/internationalization) is enabled for the content-type) Allow the field to have a different value per locale. |
+| 비공개 필드  | 필드를 비공개로 만들어 API를 통해 찾을 수 없도록 하려면 체크합니다. |
+| 필수 필드 | 필드가 채워지지 않으면 엔트리 생성 또는 저장이 방지되도록 하려면 체크합니다.  |
+| 이 필드에 대해 로컬라이제이션 활성화 | ([국제화](/cms/features/internationalization)가 콘텐츠 타입에 활성화된 경우) 필드가 로케일별로 다른 값을 가질 수 있도록 허용합니다. |
 
 </TabItem>
 
@@ -249,154 +249,154 @@ The Rich Text (Blocks) field displays an editor with live rendering and various 
 If using the Blocks editor, we recommend that you also use the <ExternalLink to="https://github.com/strapi/blocks-react-renderer" text="Strapi Blocks React Renderer"/> to easily render the content in a React frontend.
 :::
 
-#### <img width="28" src="/img/assets/icons/v5/ctb_number.svg" /> Number {#number}
+#### <img width="28" src="/img/assets/icons/v5/ctb_number.svg" /> 숫자 {#number}
 
-The Number field displays a field for any kind of number: integer, decimal and float.
+숫자 필드는 정수, 소수, 부동소수점 등 모든 종류의 숫자를 위한 필드를 표시합니다.
 
 <Tabs>
 
-<TabItem value="base" label="Base settings">
+<TabItem value="base" label="기본 설정">
 
-| Setting name  | Instructions                                                    |
+| 설정 이름  | 지침                                                    |
 |---------------|-----------------------------------------------------------------|
-| Name          | Write the name of the Number field.                             |
-| Number format | Choose between *integer*, *big integer*, *decimal* and *float*. |
+| 이름          | 숫자 필드의 이름을 입력합니다.                             |
+| 숫자 형식 | *정수*, *빅 정수*, *소수* 및 *부동소수점* 중에서 선택합니다. |
 
 </TabItem>
 
-<TabItem value="advanced" label="Advanced settings">
+<TabItem value="advanced" label="고급 설정">
 
-| Setting name   | Instructions                                                                |
+| 설정 이름   | 지침                                                                |
 |----------------|-----------------------------------------------------------------------------|
-| Default value  | Write the default value of the Number field.                                |
-| Private field  | Tick to make the field private and prevent it from being found via the API. |
-| Enable localization for this field | (if [Internationalization](/cms/features/internationalization) is enabled for the content-type) Allow the field to have a different value per locale. |
-| Required field | Tick to prevent creating or saving an entry if the field is not filled in.  |
-| Unique field   | Tick to prevent another field to be identical to this one.                  |
-| Maximum value  | Tick to define a maximum value allowed.                      |
-| Minimum value  | Tick to define a minimum value allowed.                      |
+| 기본값  | 숫자 필드의 기본값을 입력합니다.                                |
+| 비공개 필드  | 필드를 비공개로 만들어 API를 통해 찾을 수 없도록 하려면 체크합니다. |
+| 이 필드에 대해 로컬라이제이션 활성화 | ([국제화](/cms/features/internationalization)가 콘텐츠 타입에 활성화된 경우) 필드가 로케일별로 다른 값을 가질 수 있도록 허용합니다. |
+| 필수 필드 | 필드가 채워지지 않으면 엔트리 생성 또는 저장이 방지되도록 하려면 체크합니다.  |
+| 고유 필드   | 다른 필드가 이 필드와 동일한 값을 갖는 것을 방지하려면 체크합니다.                  |
+| 최대값  | 허용되는 최대값을 정의하려면 체크합니다.                      |
+| 최소값  | 허용되는 최소값을 정의하려면 체크합니다.                      |
 
 </TabItem>
 
 </Tabs>
 
-#### <img width="28" src="/img/assets/icons/v5/ctb_date.svg" /> Date {#date}
+#### <img width="28" src="/img/assets/icons/v5/ctb_date.svg" /> 날짜 {#date}
 
-The Date field can display a date (year, month, day), time (hour, minute, second) or datetime (year, month, day, hour, minute, and second) picker.
+날짜 필드는 날짜(년, 월, 일), 시간(시, 분, 초) 또는 날짜시간(년, 월, 일, 시, 분, 초) 선택기를 표시할 수 있습니다.
 
 <Tabs>
 
-<TabItem value="base" label="Base settings">
+<TabItem value="base" label="기본 설정">
 
-| Setting name  | Instructions                                                    |
+| 설정 이름  | 지침                                                    |
 |---------------|-----------------------------------------------------------------|
-| Name          | Write the name of the Date field.                               |
-| Type          | Choose between *date*, *datetime* and *time*                    |
+| 이름          | 날짜 필드의 이름을 입력합니다.                               |
+| 타입          | *날짜*, *날짜시간* 및 *시간* 중에서 선택합니다                    |
 
 </TabItem>
 
-<TabItem value="advanced" label="Advanced settings">
+<TabItem value="advanced" label="고급 설정">
 
-| Setting name   | Instructions                                                                |
+| 설정 이름   | 지침                                                                |
 |----------------|-----------------------------------------------------------------------------|
-| Default value  | Write the default value of the Date field.                                  |
-| Private field  | Tick to make the field private and prevent it from being found via the API. |
-| Enable localization for this field | (if [Internationalization](/cms/features/internationalization) is enabled for the content-type) Allow the field to have a different value per locale. |
-| Required field | Tick to prevent creating or saving an entry if the field is not filled in.  |
-| Unique field   | Tick to prevent another field to be identical to this one.                  |
+| 기본값  | 날짜 필드의 기본값을 입력합니다.                                  |
+| 비공개 필드  | 필드를 비공개로 만들어 API를 통해 찾을 수 없도록 하려면 체크합니다. |
+| 이 필드에 대해 로컬라이제이션 활성화 | ([국제화](/cms/features/internationalization)가 콘텐츠 타입에 활성화된 경우) 필드가 로케일별로 다른 값을 가질 수 있도록 허용합니다. |
+| 필수 필드 | 필드가 채워지지 않으면 엔트리 생성 또는 저장이 방지되도록 하려면 체크합니다.  |
+| 고유 필드   | 다른 필드가 이 필드와 동일한 값을 갖는 것을 방지하려면 체크합니다.                  |
 
 </TabItem>
 
 </Tabs>
  
-#### <img width="28" src="/img/assets/icons/v5/ctb_password.svg" /> Password
+#### <img width="28" src="/img/assets/icons/v5/ctb_password.svg" /> 비밀번호
 
-The Password field displays a password field that is encrypted.
+비밀번호 필드는 암호화된 비밀번호 필드를 표시합니다.
 
 <Tabs>
 
-<TabItem value="base" label="Base settings">
+<TabItem value="base" label="기본 설정">
 
-| Setting name  | Instructions                                                    |
+| 설정 이름  | 지침                                                    |
 |---------------|-----------------------------------------------------------------|
-| Name          | Write the name of the Password field.                           |
+| 이름          | 비밀번호 필드의 이름을 입력합니다.                           |
 
 </TabItem>
 
-<TabItem value="advanced" label="Advanced settings">
+<TabItem value="advanced" label="고급 설정">
 
-| Setting name   | Instructions                                                                |
+| 설정 이름   | 지침                                                                |
 |----------------|-----------------------------------------------------------------------------|
-| Default value  | Write the default value of the Password field.                              |
-| Private field  | Tick to make the field private and prevent it from being found via the API. |
-| Enable localization for this field | (if [Internationalization](/cms/features/internationalization) is enabled for the content-type) Allow the field to have a different value per locale. |
-| Required field | Tick to prevent creating or saving an entry if the field is not filled in.  |
-| Maximum length | Tick to define a maximum number of characters allowed.                      |
-| Minimum length | Tick to define a minimum number of characters allowed.                      |
+| 기본값  | 비밀번호 필드의 기본값을 입력합니다.                              |
+| 비공개 필드  | 필드를 비공개로 만들어 API를 통해 찾을 수 없도록 하려면 체크합니다. |
+| 이 필드에 대해 로컬라이제이션 활성화 | ([국제화](/cms/features/internationalization)가 콘텐츠 타입에 활성화된 경우) 필드가 로케일별로 다른 값을 가질 수 있도록 허용합니다. |
+| 필수 필드 | 필드가 채워지지 않으면 엔트리 생성 또는 저장이 방지되도록 하려면 체크합니다.  |
+| 최대 길이 | 허용되는 최대 문자 수를 정의하려면 체크합니다.                      |
+| 최소 길이 | 허용되는 최소 문자 수를 정의하려면 체크합니다.                      |
 
 </TabItem>
 
 </Tabs>
 
 
-#### <img width="28" src="/img/assets/icons/v5/ctb_media.svg" /> Media {#media}
+#### <img width="28" src="/img/assets/icons/v5/ctb_media.svg" /> 미디어 {#media}
 
-The Media field allows to choose one or more media files (e.g. image, video) from those uploaded in the Media Library of the application.
+미디어 필드를 사용하면 애플리케이션의 미디어 라이브러리에 업로드된 미디어 파일(예: 이미지, 비디오) 중에서 하나 또는 여러 개를 선택할 수 있습니다.
 
 <Tabs>
 
-<TabItem value="base" label="Base settings">
+<TabItem value="base" label="기본 설정">
 
-| Setting name  | Instructions                                                    |
+| 설정 이름  | 지침                                                    |
 |---------------|-----------------------------------------------------------------|
-| Name          | Write the name of the Media field.                              |
-| Type          | Choose between *Multiple media* to allow multiple media uploads, and *Single media* to only allow one media upload. |
+| 이름          | 미디어 필드의 이름을 입력합니다.                              |
+| 타입          | 여러 미디어 업로드를 허용하는 *다중 미디어*와 하나의 미디어 업로드만 허용하는 *단일 미디어* 중에서 선택합니다. |
 
 </TabItem>
 
-<TabItem value="advanced" label="Advanced settings">
+<TabItem value="advanced" label="고급 설정">
 
-| Setting name   | Instructions                                                                |
+| 설정 이름   | 지침                                                                |
 |----------------|-----------------------------------------------------------------------------|
-| Select allowed types of media  | Click on the drop-down list to untick media types not allowed for this field. |
-| Private field  | Tick to make the field private and prevent it from being found via the API. |
-| Enable localization for this field | (if [Internationalization](/cms/features/internationalization) is enabled for the content-type) Allow the field to have a different value per locale. |
-| Required field | Tick to prevent creating or saving an entry if the field is not filled in.  |
-| Unique field   | Tick to prevent another field to be identical to this one.                  |
+| 허용되는 미디어 타입 선택  | 드롭다운 목록을 클릭하여 이 필드에서 허용되지 않는 미디어 타입의 체크를 해제합니다. |
+| 비공개 필드  | 필드를 비공개로 만들어 API를 통해 찾을 수 없도록 하려면 체크합니다. |
+| 이 필드에 대해 로컬라이제이션 활성화 | ([국제화](/cms/features/internationalization)가 콘텐츠 타입에 활성화된 경우) 필드가 로케일별로 다른 값을 가질 수 있도록 허용합니다. |
+| 필수 필드 | 필드가 채워지지 않으면 엔트리 생성 또는 저장이 방지되도록 하려면 체크합니다.  |
+| 고유 필드   | 다른 필드가 이 필드와 동일한 값을 갖는 것을 방지하려면 체크합니다.                  |
 
 </TabItem>
 
 </Tabs>
 
-#### <img width="28" src="/img/assets/icons/v5/ctb_relation.svg" /> Relation {#relation}
+#### <img width="28" src="/img/assets/icons/v5/ctb_relation.svg" /> 관계 {#relation}
 
-The Relation field allows to establish a relation with another content-type, that must be a collection type.
+관계 필드는 컬렉션 타입이어야 하는 다른 콘텐츠 타입과의 관계를 설정할 수 있습니다.
 
-There are 6 different types of relations:
+6가지 다른 관계 타입이 있습니다:
 
-- <img width="25" src="/img/assets/icons/v5/ctb_relation_oneway.svg" /> One way: Content-type A *has one* Content-type B
-- <img width="25" src="/img/assets/icons/v5/ctb_relation_1to1.svg" /> One-to-one: Content-type A *has and belong to one* Content-type B
-- <img width="25" src="/img/assets/icons/v5/ctb_relation_1tomany.svg" /> One-to-many: Content-type A *belongs to many* Content-type B
-- <img width="25" src="/img/assets/icons/v5/ctb_relation_manyto1.svg" /> Many-to-one: Content-type B *has many* Content-type A
-- <img width="25" src="/img/assets/icons/v5/ctb_relation_manytomany.svg" /> Many-to-many: Content-type A *has and belongs to many* Content-type B
-- <img width="25" src="/img/assets/icons/v5/ctb_relation_manyway.svg" /> Many way: Content-type A *has many* Content-type B
+- <img width="25" src="/img/assets/icons/v5/ctb_relation_oneway.svg" /> 단방향: 콘텐츠 타입 A가 콘텐츠 타입 B를 *하나 가짐*
+- <img width="25" src="/img/assets/icons/v5/ctb_relation_1to1.svg" /> 일대일: 콘텐츠 타입 A가 콘텐츠 타입 B를 *하나 가지고 속함*
+- <img width="25" src="/img/assets/icons/v5/ctb_relation_1tomany.svg" /> 일대다: 콘텐츠 타입 A가 콘텐츠 타입 B에 *여러 개 속함*
+- <img width="25" src="/img/assets/icons/v5/ctb_relation_manyto1.svg" /> 다대일: 콘텐츠 타입 B가 콘텐츠 타입 A를 *여러 개 가짐*
+- <img width="25" src="/img/assets/icons/v5/ctb_relation_manytomany.svg" /> 다대다: 콘텐츠 타입 A가 콘텐츠 타입 B를 *여러 개 가지고 속함*
+- <img width="25" src="/img/assets/icons/v5/ctb_relation_manyway.svg" /> 다방향: 콘텐츠 타입 A가 콘텐츠 타입 B를 *여러 개 가짐*
 
 <Tabs>
 
-<TabItem value="base" label="Base settings">
+<TabItem value="base" label="기본 설정">
 
-Configuring the base settings of the Relation field consists in choosing with which existing content-type the relation should be established and the kind of relation. The edition window of the Relation field displays 2 grey boxes, each representing one of the content-types in relation. Between the grey boxes are displayed all possible relation types.
+관계 필드의 기본 설정 구성은 어떤 기존 콘텐츠 타입과 관계를 설정할지, 그리고 어떤 종류의 관계인지를 선택하는 것으로 구성됩니다. 관계 필드의 편집 창에는 관계에 있는 콘텐츠 타입 중 하나를 나타내는 2개의 회색 박스가 표시됩니다. 회색 박스 사이에는 가능한 모든 관계 타입이 표시됩니다.
 
-1. Click on the 2nd grey box to define the content-type B. It must be an already created collection type.
-2. Click on the icon representing the relation to establish between the content-types.
-3. Choose the *Field name* of the content-type A, meaning the name that will be used for the field in the content-type A.
-4. (optional if disabled by the relation type) Choose the *Field name* of the content-type B.
+1. 두 번째 회색 박스를 클릭하여 콘텐츠 타입 B를 정의합니다. 이미 생성된 컬렉션 타입이어야 합니다.
+2. 콘텐츠 타입 간에 설정할 관계를 나타내는 아이콘을 클릭합니다.
+3. 콘텐츠 타입 A의 *필드 이름*을 선택합니다. 즉, 콘텐츠 타입 A에서 필드에 사용될 이름입니다.
+4. (관계 타입에 의해 비활성화된 경우 선택사항) 콘텐츠 타입 B의 *필드 이름*을 선택합니다.
 
 </TabItem>
 
-<TabItem value="advanced" label="Advanced settings">
+<TabItem value="advanced" label="고급 설정">
 
-| Setting name   | Instructions                                                                |
+| 설정 이름   | 지침                                                                |
 |----------------|-----------------------------------------------------------------------------|
 | Private field  | Tick to make the field private and prevent it from being found via the API. |
 
@@ -682,7 +682,7 @@ When using dynamic zones, different components cannot have the same field name w
 
 #### Custom fields
 
-[Custom fields](/cms/features/custom-fields) are a way to extend Strapi’s capabilities by adding new types of fields to content-types or components. Once installed (see [Marketplace](/cms/plugins/installing-plugins-via-marketplace) documentation), custom fields are listed in the _Custom_ tab when selecting a field for a content-type.
+[Custom fields](/cms/features/custom-fields) are a way to extend Strapi's capabilities by adding new types of fields to content-types or components. Once installed (see [Marketplace](/cms/plugins/installing-plugins-via-marketplace) documentation), custom fields are listed in the _Custom_ tab when selecting a field for a content-type.
 
 Each custom field type can have basic and advanced settings. The <ExternalLink to="https://market.strapi.io/plugins?categories=Custom+fields" text="Marketplace"/> lists available custom fields, and hosts dedicated documentation for each custom field, including specific settings.
 

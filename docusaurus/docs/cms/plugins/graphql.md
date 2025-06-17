@@ -1,43 +1,43 @@
 ---
-title: GraphQL plugin
+title: GraphQL 플러그인
 displayed_sidebar: cmsSidebar
 toc_max_heading_level: 6
-description: Use a GraphQL endpoint in your Strapi project to fetch and mutate your content.
+description: Strapi 프로젝트에서 GraphQL 엔드포인트를 사용하여 콘텐츠를 가져오고 변경하세요.
 tags:
-- admin panel 
-- API token
+- 관리자 패널 
+- API 토큰
 - Apollo Server 
 - getters
 - GraphQL API
 - GraphQL 
-- policies
-- plugins 
-- middlewares
-- Users, Roles & Permissions
+- 정책
+- 플러그인 
+- 미들웨어
+- 사용자, 역할 및 권한
 
 ---
 
-# GraphQL plugin
+# GraphQL 플러그인
 
-By default Strapi create [REST endpoints](/cms/api/rest#endpoints) for each of your content-types. The GraphQL plugin adds a GraphQL endpoint to fetch and mutate your content. With the GraphQL plugin installed, you can use the Apollo Server-based GraphQL Sandbox to interactively build your queries and mutations and read documentation tailored to your content types.
+기본적으로 Strapi는 각 콘텐츠 타입에 대해 [REST 엔드포인트](/cms/api/rest#endpoints)를 생성합니다. GraphQL 플러그인은 콘텐츠를 가져오고 변경할 수 있는 GraphQL 엔드포인트를 추가합니다. GraphQL 플러그인이 설치된 상태에서 Apollo Server 기반 GraphQL Sandbox를 사용하여 대화형으로 쿼리와 뮤테이션을 작성하고 콘텐츠 타입에 맞춘 문서를 읽을 수 있습니다.
 
 <IdentityCard isPlugin>
-  <IdentityCardItem icon="navigation-arrow" title="Location">Usable via the admin panel.<br/>Configured through both admin panel and server code, with different sets of options.</IdentityCardItem>
-  <IdentityCardItem icon="package" title="Package name">`@strapi/plugin-graphql`  </IdentityCardItem>
-  <IdentityCardItem icon="plus-square" title="Additional resources"><ExternalLink to="https://market.strapi.io/plugins/@strapi-plugin-graphql" text="Strapi Marketplace page"/> </IdentityCardItem>
+  <IdentityCardItem icon="navigation-arrow" title="위치">관리자 패널을 통해 사용 가능.<br/>관리자 패널과 서버 코드를 통해 구성되며, 각각 다른 옵션 세트를 제공.</IdentityCardItem>
+  <IdentityCardItem icon="package" title="패키지 이름">`@strapi/plugin-graphql`  </IdentityCardItem>
+  <IdentityCardItem icon="plus-square" title="추가 리소스"><ExternalLink to="https://market.strapi.io/plugins/@strapi-plugin-graphql" text="Strapi 마켓플레이스 페이지"/> </IdentityCardItem>
 </IdentityCard>
 
 <ThemedImage
-  alt="GraphQL playground use example"
+  alt="GraphQL playground 사용 예시"
   sources={{
     light:'/img/assets/apis/use-graphql-playground.gif',
     dark:'/img/assets/apis/use-graphql-playground_DARK.gif',
   }}
 />
 
-## Installation
+## 설치
 
-To install the GraphQL plugin, run the following command in your terminal:
+GraphQL 플러그인을 설치하려면 터미널에서 다음 명령을 실행하세요:
 
 <Tabs groupId="yarn-npm">
 <TabItem value="yarn" label="Yarn">
@@ -57,47 +57,47 @@ npm install @strapi/plugin-graphql
 
 </Tabs>
 
-Once installed, the GraphQL sandbox is accessible at the `/graphql` URL and can be used to interactively build your queries and mutations and read documentation tailored to your content-types.
+설치가 완료되면 GraphQL 샌드박스는 `/graphql` URL에서 접근할 수 있으며, 콘텐츠 타입에 맞춘 쿼리와 뮤테이션을 대화형으로 작성하고 문서를 읽는 데 사용할 수 있습니다.
 
-Once the plugin is installed, the **GraphQL Sandbox** is accessible at the `/graphql` route (e.g., <ExternalLink to="http://localhost:1337/graphql" text="localhost:1337/graphql"/>) when your Strapi application server is running.
+플러그인이 설치되면 Strapi 애플리케이션 서버가 실행 중일 때 **GraphQL Sandbox**에 `/graphql` 경로(예: <ExternalLink to="http://localhost:1337/graphql" text="localhost:1337/graphql"/>)에서 접근할 수 있습니다.
 
-## Configuration
+## 구성
 
-Most configuration options for the Documentation plugin are handled via your Strapi project's code, though the GraphQL playground also offers some non-specific Strapi settings.
+GraphQL 플러그인의 대부분의 구성 옵션은 Strapi 프로젝트의 코드를 통해 처리되지만, GraphQL playground는 Strapi와 관련이 없는 일부 설정도 제공합니다.
 
-### Admin panel settings
+### 관리자 패널 설정
 
-The Strapi admin panel does not provide Strapi-specific settings for the GraphQL plugin. However, the GraphQL Playground accessible at the `/graphql` route is an embedded Apollo Server playground, so it includes all configuration and settings available with such an instance. Please refer to the official <ExternalLink to="https://www.apollographql.com/docs/apollo-server/v2/testing/graphql-playground" text="GraphQL playground documentation"/> for details.
+Strapi 관리자 패널은 GraphQL 플러그인에 대한 Strapi 관련 설정을 제공하지 않습니다. 하지만 `/graphql` 경로에서 접근할 수 있는 GraphQL Playground는 내장된 Apollo Server playground이므로, 해당 인스턴스에서 사용 가능한 모든 구성 및 설정을 포함합니다. 자세한 내용은 공식 <ExternalLink to="https://www.apollographql.com/docs/apollo-server/v2/testing/graphql-playground" text="GraphQL playground 문서"/>를 참조하세요.
 
-### Code-based configuration
+### 코드 기반 구성
 
-Plugins configuration are defined in [the `config/plugins.js` file](/cms/configurations/plugins). This configuration file can include a `graphql.config` object to define specific configurations for the GraphQL plugin.
+플러그인 구성은 [`config/plugins.js` 파일](/cms/configurations/plugins)에서 정의됩니다. 이 구성 파일에는 GraphQL 플러그인에 대한 특정 구성을 정의하는 `graphql.config` 객체가 포함될 수 있습니다.
 
-#### Available options
+#### 사용 가능한 옵션
 
-<ExternalLink to="https://www.apollographql.com/docs/apollo-server/api/apollo-server/#apolloserver" text="Apollo Server"/> options can be passed directly to Apollo with the `graphql.config.apolloServer` configuration object. Apollo Server options can be used for instance to enable the <ExternalLink to="https://www.apollographql.com/docs/federation/metrics/" text="tracing feature"/>, which is supported by the GraphQL Sandbox to track the response time of each part of your query. The `Apollo Server` default cache option is `cache: 'bounded'`. You can change it in the `apolloServer` configuration. For more information visit <ExternalLink to="https://www.apollographql.com/docs/apollo-server/performance/cache-backends/" text="Apollo Server Docs"/>.
+<ExternalLink to="https://www.apollographql.com/docs/apollo-server/api/apollo-server/#apolloserver" text="Apollo Server"/> 옵션은 `graphql.config.apolloServer` 구성 객체를 통해 Apollo에 직접 전달할 수 있습니다. Apollo Server 옵션은 예를 들어 <ExternalLink to="https://www.apollographql.com/docs/federation/metrics/" text="추적 기능"/>을 활성화하는 데 사용할 수 있으며, 이는 GraphQL Sandbox에서 쿼리의 각 부분의 응답 시간을 추적하는 데 지원됩니다. `Apollo Server`의 기본 캐시 옵션은 `cache: 'bounded'`입니다. `apolloServer` 구성에서 이를 변경할 수 있습니다. 자세한 정보는 <ExternalLink to="https://www.apollographql.com/docs/apollo-server/performance/cache-backends/" text="Apollo Server 문서"/>를 참조하세요.
 
-The GraphQL plugin has the following specific configuration options that should be declared in a `graphql.config` object within the `config/plugins` file. All parameters are optional:
+GraphQL 플러그인에는 `config/plugins` 파일 내의 `graphql.config` 객체에서 선언해야 하는 다음과 같은 특정 구성 옵션이 있습니다. 모든 매개변수는 선택사항입니다:
 
-| Option             | Type                | Description                                                                                                                                                      | Default Value | Notes                                               |
+| 옵션             | 타입                | 설명                                                                                                                                                      | 기본값 | 참고사항                                               |
 | ------------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------- |
-| `endpoint`         | String              | Sets the GraphQL endpoint path.                                                                                                                                  | `'/graphql'`  | Example: `/custom-graphql`                          |
-| `shadowCRUD`       | Boolean             | Enables or disables automatic schema generation for content types.                                                                                               | `true`        |                                                     |
-| `depthLimit`       | Number              | Limits the depth of GraphQL queries to prevent excessive nesting.                                                                                                | `10`          | Use this to mitigate potential DoS attacks.         |
-| `amountLimit`      | Number              | Limits the maximum number of items returned in a single response.                                                                                                | `100`         | Use cautiously to avoid performance issues.         |
-| `playgroundAlways` | Boolean             | [Deprecated] Enables GraphQL Playground in all environments (deprecated).                                                                                        | `false`       | Prefer using `landingPage` instead.                 |
-| `landingPage`      | Boolean \| Function | Enables or disables the landing page for GraphQL. Accepts a boolean or a function returning a boolean or an ApolloServerPlugin implementing `renderLandingPage`. |               | `false` in production, `true` in other environments |
-| `apolloServer`     | Object              | Passes configuration options directly to Apollo Server.                                                                                                          | `{}`          | Example: `{ tracing: true }`    
+| `endpoint`         | String              | GraphQL 엔드포인트 경로를 설정합니다.                                                                                                                                  | `'/graphql'`  | 예시: `/custom-graphql`                          |
+| `shadowCRUD`       | Boolean             | 콘텐츠 타입에 대한 자동 스키마 생성을 활성화하거나 비활성화합니다.                                                                                               | `true`        |                                                     |
+| `depthLimit`       | Number              | 과도한 중첩을 방지하기 위해 GraphQL 쿼리의 깊이를 제한합니다.                                                                                                | `10`          | 잠재적인 DoS 공격을 완화하는 데 사용하세요.         |
+| `amountLimit`      | Number              | 단일 응답에서 반환되는 최대 항목 수를 제한합니다.                                                                                                                | `100`         | 성능 문제를 피하기 위해 신중하게 사용하세요.         |
+| `playgroundAlways` | Boolean             | [폐기됨] 모든 환경에서 GraphQL Playground를 활성화합니다(폐기됨).                                                                                        | `false`       | 대신 `landingPage`를 사용하는 것을 권장합니다.                 |
+| `landingPage`      | Boolean \| Function | GraphQL용 랜딩 페이지를 활성화하거나 비활성화합니다. 불린값 또는 불린값을 반환하는 함수, 또는 `renderLandingPage`를 구현하는 ApolloServerPlugin을 허용합니다. |               | 프로덕션에서는 `false`, 다른 환경에서는 `true` |
+| `apolloServer`     | Object              | 구성 옵션을 Apollo Server에 직접 전달합니다.                                                                                                          | `{}`          | 예시: `{ tracing: true }`    
 
 :::caution
-The maximum number of items returned by the response is limited to 100 by default. This value can be changed using the `amountLimit` configuration option, but should only be changed after careful consideration: a large query can cause a DDoS (Distributed Denial of Service) and may cause abnormal load on your Strapi server, as well as your database server.
+응답에서 반환되는 최대 항목 수는 기본적으로 100개로 제한됩니다. 이 값은 `amountLimit` 구성 옵션을 사용하여 변경할 수 있지만, 신중한 고려 후에만 변경해야 합니다: 큰 쿼리는 DDoS(분산 서비스 거부) 공격을 일으킬 수 있으며 Strapi 서버뿐만 아니라 데이터베이스 서버에도 비정상적인 부하를 일으킬 수 있습니다.
 :::
 
 :::note
-The GraphQL Sandbox is enabled by default in all environments except production. Set the `landingPage` configuration option to `true` to also enable the GraphQL Sandbox in production environments.
+GraphQL Sandbox는 프로덕션을 제외한 모든 환경에서 기본적으로 활성화됩니다. 프로덕션 환경에서도 GraphQL Sandbox를 활성화하려면 `landingPage` 구성 옵션을 `true`로 설정하세요.
 :::
 
-The following is an example custom configuration:
+다음은 사용자 지정 구성 예시입니다:
 
 <Tabs groupId="js-ts">
 
@@ -109,7 +109,7 @@ module.exports = {
     config: {
       endpoint: '/graphql',
       shadowCRUD: true,
-      landingPage: false, // disable Sandbox everywhere
+      landingPage: false, // 모든 곳에서 Sandbox 비활성화
       depthLimit: 7,
       amountLimit: 100,
       apolloServer: {
@@ -130,7 +130,7 @@ export default () => ({
     config: {
       endpoint: '/graphql',
       shadowCRUD: true,
-      landingPage: false, // disable Sandbox everywhere
+      landingPage: false, // 모든 곳에서 Sandbox 비활성화
       depthLimit: 7,
       amountLimit: 100,
       apolloServer: {
@@ -146,9 +146,9 @@ export default () => ({
 </Tabs>
 
 
-#### Dynamically enable Apollo Sandbox
+#### 동적으로 Apollo Sandbox 활성화
 
-You can use a function to dynamically enable Apollo Sandbox depending on the environment:
+환경에 따라 동적으로 Apollo Sandbox를 활성화하는 함수를 사용할 수 있습니다:
 
 <Tabs groupId="js-ts">
 
@@ -197,7 +197,7 @@ export default ({ env }) => {
 
 </Tabs>
 
-#### CORS exceptions for Landing Page
+#### 랜딩 페이지의 CORS 예외
 
 If the landing page is enabled in production environments (which is not recommended), CORS headers for the Apollo Server landing page must be added manually.
 
@@ -612,6 +612,14 @@ The `types` and `plugins` parameters are based on <ExternalLink to="https://nexu
 
 module.exports = {
   register({ strapi }) {
+    const extensionService = strapi.plugin('graphql').service('extension');
+    
+    extensionService.shadowCRUD('api::restaurant.restaurant').disable();
+    extensionService.shadowCRUD('api::category.category').disableQueries();
+    extensionService.shadowCRUD('api::address.address').disableMutations();
+    extensionService.shadowCRUD('api::document.document').field('locked').disable();
+    extensionService.shadowCRUD('api::like.like').disableActions(['create', 'update', 'delete']);
+    
     const extension = ({ nexus }) => ({
       types: [
         nexus.objectType({
@@ -638,6 +646,14 @@ module.exports = {
 
 export default {
   register({ strapi }) {
+    const extensionService = strapi.plugin('graphql').service('extension');
+    
+    extensionService.shadowCRUD('api::restaurant.restaurant').disable();
+    extensionService.shadowCRUD('api::category.category').disableQueries();
+    extensionService.shadowCRUD('api::address.address').disableMutations();
+    extensionService.shadowCRUD('api::document.document').field('locked').disable();
+    extensionService.shadowCRUD('api::like.like').disableActions(['create', 'update', 'delete']);
+    
     const extension = ({ nexus }) => ({
       types: [
         nexus.objectType({

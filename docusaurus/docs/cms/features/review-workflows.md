@@ -1,6 +1,6 @@
 ---
-title: Review Workflows
-description: Learn how to use the Review Workflows feature that enables the creation and management of workflows for your various content-types
+title: 리뷰 워크플로우
+description: 다양한 콘텐츠 타입에 대한 워크플로우를 생성 및 관리할 수 있는 리뷰 워크플로우(Review Workflows) 기능 사용법을 알아보세요.
 toc_max_heading_level: 5
 tags:
 - admin panel
@@ -9,118 +9,117 @@ tags:
 - review workflows
 ---
 
-# Review Workflows
+# 리뷰 워크플로우
 <EnterpriseBadge />
 
-The Review Workflows feature allows you to create and manage workflows for your various content-types. Each workflow can consist of any review stages for your content, enabling your team to collaborate in the content creation flow from draft to publication.
+리뷰 워크플로우(Review Workflows) 기능을 사용하면 다양한 콘텐츠 타입에 대해 워크플로우를 생성 및 관리할 수 있습니다. 각 워크플로우는 여러 검토 단계를 가질 수 있어, 팀이 초안부터 발행까지 협업하며 콘텐츠를 관리할 수 있습니다.
 
 <IdentityCard>
-  <IdentityCardItem icon="credit-card" title="Plan">CMS Enterprise Plan</IdentityCardItem>
-  <IdentityCardItem icon="user" title="Role & permission">Super Admin role in project's admin panel</IdentityCardItem>
-  <IdentityCardItem icon="toggle-right" title="Activation">Available by default, if required plan</IdentityCardItem>
-  <IdentityCardItem icon="desktop" title="Environment">Available in both Development & Production environment</IdentityCardItem>
+  <IdentityCardItem icon="credit-card" title="플랜">CMS 엔터프라이즈 플랜</IdentityCardItem>
+  <IdentityCardItem icon="user" title="역할 및 권한">프로젝트 관리자 패널의 슈퍼 관리자(Super Admin) 역할</IdentityCardItem>
+  <IdentityCardItem icon="toggle-right" title="활성화">필요한 플랜이 있다면 기본적으로 사용 가능</IdentityCardItem>
+  <IdentityCardItem icon="desktop" title="환경">개발 및 운영 환경 모두에서 사용 가능</IdentityCardItem>
 </IdentityCard>
 
 <Guideflow lightId="zpez8vgs3p" darkId="lpx4d4zs4k"/>
 
-## Configuration
+## 설정
 
-**Path to configure the feature:** <Icon name="gear-six" /> Settings > Global settings > Review Workflows
+**기능 설정 경로:** <Icon name="gear-six" /> 설정 > 글로벌 설정 > 리뷰 워크플로우
 
-For the review workflows to be usable in the [Content Manager](/cms/features/content-manager), the default one should be configured or a new one should be created.
+[콘텐츠 매니저](/cms/features/content-manager)에서 리뷰 워크플로우를 사용하려면, 기본 워크플로우를 설정하거나 새 워크플로우를 생성해야 합니다.
 
-The default workflow is configured to have 4 stages: To do, In progress, Ready to review, and Reviewed. All 4 stages can be edited, reordered or deleted as needed, and it is also possible to add new stages.
+기본 워크플로우에는 4단계가 포함되어 있습니다: To do, In progress, Ready to review, Reviewed. 각 단계는 필요에 따라 수정, 재정렬, 삭제할 수 있으며, 새 단계를 추가할 수도 있습니다.
 
-### Creating a new workflow
+### 새 워크플로우 생성
 
-1. Click on the **Create new workflow** button or on the edit button <Icon name="pencil-simple" /> of a workflow.
-2. In the workflow edit interface, configure the new workflow:
-    | Setting name   | Instructions                                                             |
-    | -------------- | ------------------------------------------------------------------------ |
-    | Workflow name  | Write a unique name of workflow.                                         |
-    | Associated to  | (optional) Assign this workflow to one or more existing content-types.   |
-    | Stages         | Add review stages (see [Adding a new stage](#adding-a-new-stage)).       |
-3. Click on the **Save** button. The new workflow will be displayed in the list view and for every content-type assigned.
+1. **새 워크플로우 생성** 버튼을 클릭하거나 워크플로우의 편집 버튼 <Icon name="pencil-simple" />을 클릭합니다.
+2. 워크플로우 편집 화면에서 다음을 설정합니다:
+    | 설정명   | 설명                                                             |
+    | -------- | ---------------------------------------------------------------- |
+    | 워크플로우 이름  | 워크플로우의 고유 이름을 입력합니다.                                         |
+    | 연결 대상  | (선택) 이 워크플로우를 하나 이상의 기존 콘텐츠 타입에 할당합니다.             |
+    | 단계         | 검토 단계를 추가합니다([새 단계 추가](#adding-a-new-stage) 참고).            |
+3. **저장** 버튼을 클릭하면 새 워크플로우가 목록에 표시되고, 할당된 모든 콘텐츠 타입에 적용됩니다.
 
 :::note
-The maximum number of <ExternalLink to="https://strapi.io/pricing-cloud" text="workflows and stages per workflow is limited"/>.
+<ExternalLink to="https://strapi.io/pricing-cloud" text="워크플로우 및 단계별 최대 개수는 제한"/>되어 있습니다.
 :::
 
-### Editing a workflow
+### 워크플로우 편집
 
 <ThemedImage
-  alt="Workflow edit view"
+  alt="워크플로우 편집 화면"
   sources={{
     light: '/img/assets/review-workflows/edit-view-light.png',
     dark: '/img/assets/review-workflows/edit-view-dark.png',
   }}
 />
 
-#### Adding a new stage
+#### 새 단계 추가
 
-1. Click on the **Add new stage** button.
-2. Write the *Stage name*.
-3. Select a *Color*.
-4. Select *Roles* that can change the stage, if the entity is currently in that review stage.
-5. Click on the **Save** button.
+1. **새 단계 추가** 버튼을 클릭합니다.
+2. *단계 이름*을 입력합니다.
+3. *색상*을 선택합니다.
+4. 해당 단계에 있을 때 단계를 변경할 수 있는 *역할*을 선택합니다.
+5. **저장** 버튼을 클릭합니다.
 
-By default new stages are appended, but they can be reordered anytime using the <Icon name="dots-six-vertical" classes="ph-bold" /> button.
+기본적으로 새 단계는 마지막에 추가되지만, <Icon name="dots-six-vertical" classes="ph-bold" /> 버튼으로 언제든지 순서를 변경할 수 있습니다.
 
 :::tip
-To set up roles for each stage, you can either click "Apply to all stages" to apply the current roles to all other stages of the workflow or use "Duplicate stage" of the stage context menu.
+각 단계별로 역할을 설정할 때 "모든 단계에 적용"을 클릭하면 현재 역할을 모든 단계에 일괄 적용할 수 있습니다. 단계 컨텍스트 메뉴의 "단계 복제" 기능도 활용할 수 있습니다.
 :::
 
-#### Duplicating a stage
+#### 단계 복제
 
-1. Click **Duplicate Stage** in the context menu of the stage.
-2. Change the name of the duplicated stage.
-2. Click on the **Save** button.
+1. 단계의 컨텍스트 메뉴에서 **단계 복제**를 클릭합니다.
+2. 복제된 단계의 이름을 변경합니다.
+3. **저장** 버튼을 클릭합니다.
 
-#### Deleting a stage
+#### 단계 삭제
 
-To delete a stage, click <Icon name="dots-three-outline" /> in the context menu of the stage, then **Delete**.
+단계의 컨텍스트 메뉴에서 <Icon name="dots-three-outline" />를 클릭한 후 **삭제**를 선택하면 해당 단계를 삭제할 수 있습니다.
 
-If you delete a stage that has pending reviews, the reviews will be moved to first stage in the workflow. Every workflow needs to
-contain at least one stage and therefore it is not possible to delete the last stage.
+대기 중인 리뷰가 있는 단계를 삭제하면, 해당 리뷰는 워크플로우의 첫 번째 단계로 이동됩니다. 워크플로우에는 최소 한 단계가 반드시 존재해야 하므로 마지막 단계는 삭제할 수 없습니다.
 
-### Deleting a workflow
+### 워크플로우 삭제
 
-To delete a workflow click on the delete button <Icon name="trash" /> of a workflow in the list view.
+워크플로우 목록에서 삭제 버튼 <Icon name="trash" />을 클릭하면 워크플로우를 삭제할 수 있습니다.
 
 :::note
-It is not possible to delete the last workflow.
+마지막 워크플로우는 삭제할 수 없습니다.
 :::
 
-## Usage
+## 사용법
 
-**Path to use the feature:** <Icon name="feather" /> Content Manager
+**기능 사용 경로:** <Icon name="feather" /> 콘텐츠 매니저
 
-### Changing review stage {#change-review-stage}
+### 리뷰 단계 변경 {#change-review-stage}
 
-As content is created and revised among your team, you can change the review stage of the content to any stage defined in the review workflow.
+팀이 콘텐츠를 작성 및 수정하는 과정에서, 콘텐츠의 리뷰 단계를 워크플로우에 정의된 임의의 단계로 변경할 수 있습니다.
 
-1. Access the edit view of your content-type.
-2. In the *Review Workflows* box on the right side of the interface, click on the _Review stage_ drop-down list.
-3. Choose the new review stage of your entry. It is automatically saved.
+1. 콘텐츠 타입의 편집 화면에 접근합니다.
+2. 화면 오른쪽의 *리뷰 워크플로우* 박스에서 _리뷰 단계_ 드롭다운을 클릭합니다.
+3. 새 리뷰 단계를 선택하면 자동으로 저장됩니다.
 
 <ThemedImage
-  alt="Review Stage dropdown"
+  alt="리뷰 단계 드롭다운"
   sources={{
     light: '/img/assets/content-manager/review-stage-dropdown.png',
     dark: '/img/assets/content-manager/review-stage-dropdown_DARK.png',
   }}
 />
 
-### Defining assignee {#change-assignee}
+### 담당자 지정 {#change-assignee}
 
-Entries of a review workflow content type can be assigned to any admin user in Strapi for review.
+리뷰 워크플로우가 적용된 콘텐츠 타입의 항목은 Strapi의 모든 관리자에게 리뷰 담당자로 지정할 수 있습니다.
 
-1. Access the edit view of your content-type.
-2. In the *Review Workflows* box on the right side of the interface, click on the _Assignee_ drop-down list.
-3. Choose the new assignee of your entry. It is automatically saved.
+1. 콘텐츠 타입의 편집 화면에 접근합니다.
+2. 화면 오른쪽의 *리뷰 워크플로우* 박스에서 _담당자_ 드롭다운을 클릭합니다.
+3. 새 담당자를 선택하면 자동으로 저장됩니다.
 
 <ThemedImage
-  alt="Review Stage dropdown"
+  alt="리뷰 담당자 드롭다운"
   sources={{
     light: '/img/assets/content-manager/review-assignee-dropdown.png',
     dark: '/img/assets/content-manager/review-assignee-dropdown_DARK.png',

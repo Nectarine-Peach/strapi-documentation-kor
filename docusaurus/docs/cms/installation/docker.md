@@ -3,60 +3,60 @@ title: Docker
 displayed_sidebar: cmsSidebar
 pagination_prev: cms/installation/cli
 pagination_next: cms/features/admin-panel
-description: Quickly create a Docker container from a local project.
+description: 로컬 프로젝트에서 빠르게 Docker 컨테이너를 생성하세요.
 tags:
-- installation
-- environment 
+- 설치
+- 환경 
 - MySQL
 ---
 
 import DockerEnvTable from '/docs/snippets/docker-env-table.md'
 
-# Running Strapi in a Docker container
+# Docker 컨테이너에서 Strapi 실행하기
 
 :::caution
-Strapi does not build any official container images. The following instructions are provided as a courtesy to the community. If you have any questions please reach out on <ExternalLink to="https://discord.strapi.io" text="Discord"/>.
+Strapi는 공식 컨테이너 이미지를 빌드하지 않습니다. 다음 지침은 커뮤니티에 대한 예의로 제공됩니다. 질문이 있으시면 <ExternalLink to="https://discord.strapi.io" text="Discord"/>로 문의하세요.
 :::
 
 :::danger
- Strapi applications are not meant to be connected to a pre-existing database, not created by a Strapi application, nor connected to a Strapi v3 database. The Strapi team will not support such attempts. Attempting to connect to an unsupported database may, and most likely will, result in lost data such as dropped tables.
+ Strapi 애플리케이션은 Strapi 애플리케이션에서 생성되지 않은 기존 데이터베이스나 Strapi v3 데이터베이스에 연결하도록 설계되지 않았습니다. Strapi 팀은 이러한 시도를 지원하지 않습니다. 지원되지 않는 데이터베이스에 연결을 시도하면 테이블 삭제와 같은 데이터 손실이 발생할 가능성이 높습니다.
 :::
 
-The following documentation will guide you through building a custom <ExternalLink to="https://www.docker.com/" text="Docker"/> container with an existing Strapi project.
+다음 문서는 기존 Strapi 프로젝트로 커스텀 <ExternalLink to="https://www.docker.com/" text="Docker"/> 컨테이너를 빌드하는 방법을 안내합니다.
 
-Docker is an open platform that allows developing, shipping, and running applications by using containers (i.e. packages containing all the parts an application needs to function, such as libraries and dependencies). Containers are isolated from each other and bundle their own software, libraries, and configuration files; they can communicate with each other through well-defined channels.
+Docker는 컨테이너(즉, 라이브러리 및 종속성과 같이 애플리케이션이 작동하는 데 필요한 모든 부분을 포함하는 패키지)를 사용하여 애플리케이션을 개발, 배송 및 실행할 수 있는 오픈 플랫폼입니다. 컨테이너는 서로 격리되어 있으며 자체 소프트웨어, 라이브러리 및 구성 파일을 번들로 제공합니다. 잘 정의된 채널을 통해 서로 통신할 수 있습니다.
 
 :::prerequisites
 
-- <ExternalLink to="https://www.docker.com/" text="Docker"/> installed on your machine
-- A [supported version of Node.js](/cms/installation/cli#preparing-the-installation)
-- An **existing Strapi 5 project**, or a new one created with the [Quick Start guide](/cms/quick-start.md)
-- (_optional_) <ExternalLink to="https://yarnpkg.com/" text="Yarn"/> installed on your machine
-- (_optional_) <ExternalLink to="https://docs.docker.com/compose/" text="Docker Compose"/> installed on your machine
+- 머신에 <ExternalLink to="https://www.docker.com/" text="Docker"/> 설치
+- [지원되는 Node.js 버전](/cms/installation/cli#preparing-the-installation)
+- **기존 Strapi 5 프로젝트** 또는 [빠른 시작 가이드](/cms/quick-start.md)로 생성한 새 프로젝트
+- _(선택사항)_ 머신에 <ExternalLink to="https://yarnpkg.com/" text="Yarn"/> 설치
+- _(선택사항)_ 머신에 <ExternalLink to="https://docs.docker.com/compose/" text="Docker Compose"/> 설치
 
 :::
 
-## Development and/or Staging environments
+## 개발 및/또는 스테이징 환경
 
-For working with Strapi locally on your host machine you can use the <ExternalLink to="https://docs.docker.com/engine/reference/builder/" text="Dockerfile"/>, and if needed the <ExternalLink to="https://docs.docker.com/compose/compose-file/" text="docker-compose.yml"/> can also be used to start up a database container.
+호스트 머신에서 Strapi와 로컬로 작업하려면 <ExternalLink to="https://docs.docker.com/engine/reference/builder/" text="Dockerfile"/>을 사용할 수 있으며, 필요한 경우 <ExternalLink to="https://docs.docker.com/compose/compose-file/" text="docker-compose.yml"/>을 사용하여 데이터베이스 컨테이너를 시작할 수도 있습니다.
 
-Both methods require an existing Strapi project or a new one created (see [Quick Start guide](/cms/quick-start.md)).
+두 방법 모두 기존 Strapi 프로젝트가 있거나 새로 생성된 프로젝트가 필요합니다([빠른 시작 가이드](/cms/quick-start.md) 참고).
 
-### Development Dockerfile
+### 개발용 Dockerfile
 
-The following `Dockerfile` can be used to build a non-production Docker image for a Strapi project.
+다음 `Dockerfile`은 Strapi 프로젝트의 비프로덕션 Docker 이미지를 빌드하는 데 사용할 수 있습니다.
 
 :::note
 
-If you are using `docker-compose`, you can skip setting the environment variables manually, as they will be set in the `docker-compose.yml` file or a `.env` file.
+`docker-compose`를 사용하는 경우 환경 변수를 수동으로 설정할 필요가 없습니다. `docker-compose.yml` 파일이나 `.env` 파일에서 설정됩니다.
 
 :::
 
 <DockerEnvTable components={props.components} />
 
-For more information on the `Dockerfile` and its commands, please refer to the <ExternalLink to="https://docs.docker.com/engine/reference/commandline/cli/" text="official Docker documentation"/>.
+`Dockerfile` 및 그 명령어에 대한 자세한 정보는 <ExternalLink to="https://docs.docker.com/engine/reference/commandline/cli/" text="공식 Docker 문서"/>를 참조하세요.
 
-Sample `Dockerfile`:
+샘플 `Dockerfile`:
 
 <Tabs groupId="yarn-npm">
 
@@ -64,7 +64,7 @@ Sample `Dockerfile`:
 
 ```dockerfile title="./Dockerfile"
 FROM node:22-alpine
-# Installing libvips-dev for sharp Compatibility
+# Sharp 호환성을 위한 libvips-dev 설치
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev git
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
@@ -90,7 +90,7 @@ CMD ["yarn", "develop"]
 
 ```dockerfile title="./Dockerfile"
 FROM node:22-alpine
-# Installing libvips-dev for sharp Compatibility
+# Sharp 호환성을 위한 libvips-dev 설치
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev git
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
@@ -115,15 +115,15 @@ CMD ["npm", "run", "develop"]
 
 </Tabs>
 
-### (Optional) Docker Compose
+### (선택사항) Docker Compose
 
-The following `docker-compose.yml` can be used to start up a database container and a Strapi container along with a shared network for communication between the two.
+다음 `docker-compose.yml`은 데이터베이스 컨테이너와 Strapi 컨테이너, 그리고 두 컨테이너 간 통신을 위한 공유 네트워크를 시작하는 데 사용할 수 있습니다.
 
 :::note
-For more information about running Docker compose and its commands, please refer to the <ExternalLink to="https://docs.docker.com/compose/" text="Docker Compose documentation"/>.
+Docker compose 실행 및 그 명령어에 대한 자세한 정보는 <ExternalLink to="https://docs.docker.com/compose/" text="Docker Compose 문서"/>를 참조하세요.
 :::
 
-Sample `docker-compose.yml`:
+샘플 `docker-compose.yml`:
 
 <Tabs groupId="databases">
 
@@ -164,7 +164,7 @@ services:
 
   strapiDB:
     container_name: strapiDB
-    platform: linux/amd64 #for platform error on Apple M1 chips
+    platform: linux/amd64 #Apple M1 칩의 플랫폼 오류용
     restart: unless-stopped
     env_file: .env
     image: mysql:8.0
@@ -176,7 +176,7 @@ services:
       MYSQL_DATABASE: ${DATABASE_NAME}
     volumes:
       - strapi-data:/var/lib/mysql
-      #- ./data:/var/lib/mysql # if you want to use a bind folder
+      #- ./data:/var/lib/mysql # 바인드 폴더를 사용하려는 경우
     ports:
       - "3306:3306"
     networks:

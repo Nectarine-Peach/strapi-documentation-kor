@@ -1,24 +1,24 @@
 ---
-title: Adding TypeScript support 
-description: Learn how to add TypeScript support to an existing Strapi project.
+title: TypeScript 지원 추가하기
+description: 기존 Strapi 프로젝트에 TypeScript 지원을 추가하는 방법을 알아보세요.
 displayed_sidebar: cmsSidebar
 pagination_previous: cms/typescript/development
 tags:
-- allowJs flag
-- typescript
-- tsconfig.json file
-- project structure
+- allowJs 플래그
+- 타입스크립트
+- tsconfig.json 파일
+- 프로젝트 구조
 ---
 
-# Adding TypeScript support to existing Strapi projects
+# 기존 Strapi 프로젝트에 TypeScript 지원 추가하기
 
-Adding [TypeScript](/cms/typescript) support to an existing project requires adding 2 `tsconfig.json` files and rebuilding the admin panel. Additionally, the `eslintrc` and `eslintignore` files can be optionally removed.
+기존 프로젝트에 [TypeScript](/cms/typescript) 지원을 추가하려면 2개의 `tsconfig.json` 파일을 추가하고 관리자 패널을 재빌드해야 합니다. 추가로 `eslintrc`와 `eslintignore` 파일은 선택적으로 제거할 수 있습니다.
 
-The TypeScript flag `allowJs` should be set to `true` in the root `tsconfig.json` file to incrementally add TypeScript files to existing JavaScript projects. The `allowJs` flag allows `.ts` and `.tsx` files to coexist with JavaScript files.
+TypeScript 플래그 `allowJs`는 기존 JavaScript 프로젝트에 점진적으로 TypeScript 파일을 추가하기 위해 루트 `tsconfig.json` 파일에서 `true`로 설정해야 합니다. `allowJs` 플래그는 `.ts`와 `.tsx` 파일이 JavaScript 파일과 공존할 수 있게 해줍니다.
 
-TypeScript support can be added to an existing Strapi project using the following procedure:
+다음 절차를 사용하여 기존 Strapi 프로젝트에 TypeScript 지원을 추가할 수 있습니다:
 
-1. Add a `tsconfig.json` file at the project root and copy the following code, with the `allowJs` flag, to the file:
+1. 프로젝트 루트에 `tsconfig.json` 파일을 추가하고 다음 코드를 `allowJs` 플래그와 함께 파일에 복사하세요:
 
   ```json title="./tsconfig.json"
 
@@ -27,7 +27,7 @@ TypeScript support can be added to an existing Strapi project using the followin
       "compilerOptions": {
         "outDir": "dist",
         "rootDir": ".",
-        "allowJs": true //enables the build without .ts files
+        "allowJs": true //ts 파일 없이도 빌드 가능하게 함
       },
       "include": [
         "./",
@@ -48,7 +48,7 @@ TypeScript support can be added to an existing Strapi project using the followin
     
   ```
 
-2. Add a `tsconfig.json` file in the `./src/admin/` directory and copy the following code to the file:
+2. `./src/admin/` 디렉터리에 `tsconfig.json` 파일을 추가하고 다음 코드를 파일에 복사하세요:
 
   ```json title="./src/admin/tsconfig.json"
 
@@ -68,8 +68,8 @@ TypeScript support can be added to an existing Strapi project using the followin
     
   ```
 
-3. _(optional)_ Delete the `.eslintrc` and `.eslintignore` files from the project root.
-4. Add an additional `'..'` to the `filename` property in the `database.ts` configuration file (only required for SQLite databases):
+3. _(선택사항)_ 프로젝트 루트에서 `.eslintrc`와 `.eslintignore` 파일을 삭제하세요.
+4. `database.ts` 구성 파일의 `filename` 속성에 추가 `'..'`를 추가하세요 (SQLite 데이터베이스에만 필요):
 
   ```js title="./config/database.ts"
 
@@ -92,7 +92,7 @@ TypeScript support can be added to an existing Strapi project using the followin
 
   ```
 
-5. Rebuild the admin panel and start the development server:
+5. 관리자 패널을 재빌드하고 개발 서버를 시작하세요:
 
   <Tabs groupId="yarn-npm">
 
@@ -116,4 +116,4 @@ TypeScript support can be added to an existing Strapi project using the followin
 
   </Tabs>
 
-A `dist` directory will be added at the project root (see [project structure](/cms/project-structure)) and the project has access to the same TypeScript features as a new TypeScript-supported Strapi project.
+`dist` 디렉터리가 프로젝트 루트에 추가되고([프로젝트 구조](/cms/project-structure) 참고), 프로젝트가 새로운 TypeScript를 지원하는 Strapi 프로젝트와 동일한 TypeScript 기능에 접근할 수 있게 됩니다.

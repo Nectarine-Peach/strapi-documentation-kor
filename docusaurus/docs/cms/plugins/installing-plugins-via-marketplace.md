@@ -1,59 +1,59 @@
 ---
-title: Installing Plugins via the Marketplace
+title: 마켓플레이스를 통한 플러그인 설치
 displayed_sidebar: cmsSidebar
 sidebar_position: 2
 tags:
-- plugins
-- provider
-- marketplace
-- upload plugin
+- 플러그인
+- 제공업체
+- 마켓플레이스
+- 업로드 플러그인
 ---
 
-# Using the Marketplace
+# 마켓플레이스 사용하기
 
-Strapi comes with built-in plugins such as [Documentation](/cms/plugins/documentation), [GraphQL](/cms/plugins/graphql), and [Sentry](/cms/plugins/sentry). The Marketplace is where users can find additional plugins to customize Strapi applications, and additional providers to extend plugins. The Marketplace is located in the admin panel, indicated by <Icon name="shopping-cart" /> _Marketplace_. In the Marketplace, users can browse or search for plugins and providers, link to detailed descriptions for each, and submit new plugins and providers.
+Strapi는 [문서화](/cms/plugins/documentation), [GraphQL](/cms/plugins/graphql), [Sentry](/cms/plugins/sentry)와 같은 내장 플러그인이 함께 제공됩니다. 마켓플레이스는 사용자가 Strapi 애플리케이션을 커스터마이징할 수 있는 추가 플러그인과 플러그인을 확장할 수 있는 추가 제공업체를 찾을 수 있는 곳입니다. 마켓플레이스는 관리자 패널에서 <Icon name="shopping-cart" /> _마켓플레이스_로 표시됩니다. 마켓플레이스에서 사용자는 플러그인과 제공업체를 찾아보거나 검색하고, 각각에 대한 자세한 설명으로 이동하며, 새로운 플러그인과 제공업체를 제출할 수 있습니다.
 
-:::note strapi In-app Marketplace vs. Market website
-The Marketplace in the admin panel displays all existing plugins, regardless of the version of Strapi they are for. All plugins can also be discoverable through the <ExternalLink to="https://market.strapi.io" text="Strapi Market"/> website.
+:::note strapi 인앱 마켓플레이스 vs 마켓 웹사이트
+관리자 패널의 마켓플레이스는 Strapi 버전에 관계없이 모든 기존 플러그인을 표시합니다. 모든 플러그인은 <ExternalLink to="https://market.strapi.io" text="Strapi Market"/> 웹사이트를 통해서도 찾을 수 있습니다.
 
-Keep in mind however that v4 and v5 plugins are not cross-compatible, but that providers are compatible both with v4 and v5 plugins.
+하지만 v4와 v5 플러그인은 호환되지 않으며, 제공업체는 v4와 v5 플러그인 모두와 호환된다는 점을 유의하세요.
 :::
 
 <ThemedImage
-  alt="The Marketplace interface"
+  alt="마켓플레이스 인터페이스"
   sources={{
     light: '/img/assets/plugins/marketplace-plugins.png',
     dark: '/img/assets/plugins/marketplace-plugins_DARK.png',
   }}
 />
 
-The Plugins and Providers tabs display each plugin/provider on individual cards containing:
+플러그인 및 제공업체 탭은 각 플러그인/제공업체를 다음 내용을 포함한 개별 카드로 표시합니다:
 
-- their name, sometimes followed by either of the following badges:
-  - <img alt="maintained by Strapi icon" src="/img/strapi-logo.png" width="14px" style={{position: "relative", bottom:"2px", marginRight:"2px"}} /> to indicate it is made by Strapi,
-  - <Icon name="seal-check" color="rgb(58,115,66)" /> to indicate it was verified by Strapi.
-- the number of times the plugin/provider was starred on GitHub and downloaded
-- the description
-- a **More** <Icon name="arrow-square-out" /> button to be redirected to the Market website for additional information, including about the version of Strapi the plugin is for, and implementation instructions
+- 이름, 때로는 다음 배지 중 하나가 뒤따릅니다:
+  - <img alt="Strapi에서 관리하는 아이콘" src="/img/strapi-logo.png" width="14px" style={{position: "relative", bottom:"2px", marginRight:"2px"}} /> Strapi에서 제작했음을 나타냄,
+  - <Icon name="seal-check" color="rgb(58,115,66)" /> Strapi에서 검증했음을 나타냄.
+- GitHub에서 플러그인/제공업체가 받은 스타 수와 다운로드 수
+- 설명
+- 추가 정보를 위해 마켓 웹사이트로 리디렉션되는 **더보기** <Icon name="arrow-square-out" /> 버튼(플러그인이 지원하는 Strapi 버전과 구현 지침 포함)
 
-In the top right corner of the Marketplace, the **Submit plugin** button redirects to the Strapi Market where it is possible to submit your own plugin and provider.
+마켓플레이스 오른쪽 상단의 **플러그인 제출** 버튼은 자신만의 플러그인과 제공업체를 제출할 수 있는 Strapi Market으로 리디렉션됩니다.
 
-:::tip Tips
+:::tip 팁
 
-- The search bar displays incremental search results based on the plugin/provider name and description.
-- Use the "Sort by" button or set filters to find plugins more easily.
+- 검색창은 플러그인/제공업체 이름과 설명을 기반으로 점진적 검색 결과를 표시합니다.
+- "정렬 기준" 버튼을 사용하거나 필터를 설정하여 플러그인을 더 쉽게 찾을 수 있습니다.
 
 :::
 
-## Installing Marketplace plugins and providers
+## 마켓플레이스 플러그인 및 제공업체 설치
 
-To install a new plugin or provider via the Marketplace:
+마켓플레이스를 통해 새 플러그인이나 제공업체를 설치하려면:
 
-1. Go to the <Icon name="shopping-cart" /> *Marketplace*.
-2. Choose the **Plugins** tab to browse available plugins or the **Providers** tab to browse available providers.
-3. Choose an available plugin/provider and click on the **More** <Icon name="arrow-square-out" /> button.
-4. Once redirected to the Strapi Market website, follow the plugin/provider-specific implementation instructions.
+1. <Icon name="shopping-cart" /> *마켓플레이스*로 이동합니다.
+2. **플러그인** 탭을 선택하여 사용 가능한 플러그인을 찾아보거나 **제공업체** 탭을 선택하여 사용 가능한 제공업체를 찾아봅니다.
+3. 원하는 플러그인/제공업체를 선택하고 **더보기** <Icon name="arrow-square-out" /> 버튼을 클릭합니다.
+4. Strapi Market 웹사이트로 리디렉션되면, 플러그인/제공업체별 구현 지침을 따릅니다.
 
-:::strapi Developing Strapi plugins
-Can't find a plugin that suits your use case? Feel free to [create your own](/cms/plugins-development/developing-plugins)!
+:::strapi Strapi 플러그인 개발하기
+사용 사례에 맞는 플러그인을 찾을 수 없나요? [직접 만들어보세요](/cms/plugins-development/developing-plugins)!
 :::

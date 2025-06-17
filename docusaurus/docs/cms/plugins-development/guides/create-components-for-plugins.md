@@ -1,46 +1,46 @@
 ---
-title: How to create components for Strapi plugins
-description: Learn how to create and configure components for your Strapi plugins
-sidebar_label: Create components for plugins
+title: Strapi 플러그인용 컴포넌트 생성하는 방법
+description: Strapi 플러그인용 컴포넌트를 생성하고 설정하는 방법을 알아보세요
+sidebar_label: 플러그인용 컴포넌트 생성
 displayed_sidebar: cmsSidebar
 tags:
-- admin panel
-- components
-- content-type
-- guides
-- plugins
-- plugins development guides
+- 관리자 패널
+- 컴포넌트
+- 콘텐츠 타입
+- 가이드
+- 플러그인
+- 플러그인 개발 가이드
 ---
 
-# How to create components for Strapi plugins
+# Strapi 플러그인용 컴포넌트 생성하는 방법
 
-When [developing a Strapi plugin](/cms/plugins-development/developing-plugins), you might want to create reusable components for your plugin. Components in Strapi are reusable data structures that can be used across different content-types.
+[Strapi 플러그인을 개발](/cms/plugins-development/developing-plugins)할 때 플러그인용 재사용 가능한 컴포넌트를 생성하고 싶을 수 있습니다. Strapi의 컴포넌트는 여러 콘텐츠 타입에서 사용할 수 있는 재사용 가능한 데이터 구조입니다.
 
-To create components for your Strapi plugin, you'll need to follow a similar approach to creating content-types, but with some specific differences.
+Strapi 플러그인용 컴포넌트를 생성하려면 콘텐츠 타입 생성과 유사한 방법을 따라야 하지만 몇 가지 특별한 차이점이 있습니다.
 
-## Creating components
+## 컴포넌트 생성
 
-You can create components for your plugins in 2 different ways: using the Content-Type Builder (recommended way) or manually.
+플러그인용 컴포넌트는 2가지 방법으로 생성할 수 있습니다: 콘텐츠 타입 빌더 사용(권장 방법) 또는 수동으로 생성.
 
-### Using the Content-Type Builder 
+### 콘텐츠 타입 빌더 사용
 
-The recommended way to create components for your plugin is through the Content-Type Builder in the admin panel. 
-The [Content-Type Builder documentation](/cms/features/content-type-builder#new-component) provides more details on this process.
+플러그인용 컴포넌트를 생성하는 권장 방법은 관리자 패널의 콘텐츠 타입 빌더를 통하는 것입니다. 
+[콘텐츠 타입 빌더 문서](/cms/features/content-type-builder#new-component)에서 이 과정에 대한 자세한 내용을 제공합니다.
 
-### Creating components manually
+### 수동으로 컴포넌트 생성
 
-If you prefer to create components manually, you'll need to:
+수동으로 컴포넌트를 생성하는 것을 선호한다면 다음을 수행해야 합니다:
 
-1. Create a component schema in your plugin's structure.
-2. Make sure the component is properly registered.
+1. 플러그인 구조에서 컴포넌트 스키마를 생성합니다.
+2. 컴포넌트가 올바르게 등록되었는지 확인합니다.
 
-Components for plugins should be placed in the appropriate directory within your plugin structure. You would typically create them within the server part of your plugin (see [plugin structure documentation](/cms/plugins-development/plugin-structure)).
+플러그인용 컴포넌트는 플러그인 구조 내의 적절한 디렉토리에 배치되어야 합니다. 일반적으로 플러그인의 서버 부분 내에서 생성합니다([플러그인 구조 문서](/cms/plugins-development/plugin-structure) 참고).
 
-For more detailed information about components in Strapi, you can refer to the [Model attributes documentation](/cms/backend-customization/models#components-json).
+Strapi의 컴포넌트에 대한 자세한 정보는 [모델 속성 문서](/cms/backend-customization/models#components-json)를 참고할 수 있습니다.
 
-## Reviewing the component structure
+## 컴포넌트 구조 검토
 
-Components in Strapi follow the following format in their definition:
+Strapi의 컴포넌트는 정의에서 다음 형식을 따릅니다:
 
 ```javascript title="/my-plugin/server/components/category/component-name.json"
 {
@@ -54,9 +54,9 @@ Components in Strapi follow the following format in their definition:
 }
 ```
 
-## Making components visible in the admin panel
+## 관리자 패널에서 컴포넌트 표시하기
 
-To ensure your plugin's components are visible in the admin panel, you need to set the appropriate `pluginOptions` in your component schema:
+플러그인의 컴포넌트가 관리자 패널에 표시되도록 하려면 컴포넌트 스키마에서 적절한 `pluginOptions`을 설정해야 합니다:
 
 ```javascript {9-16}
 {
@@ -83,4 +83,4 @@ To ensure your plugin's components are visible in the admin panel, you need to s
 }
 ```
 
-This configuration ensures your components will be visible and editable in both the Content-Type Builder and Content Manager.
+이 설정을 통해 컴포넌트가 콘텐츠 타입 빌더와 콘텐츠 매니저 모두에서 표시되고 편집 가능하게 됩니다.

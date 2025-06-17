@@ -1,84 +1,84 @@
 ---
-title: Custom Fields
-description: Learn how you can use custom fields to extend Strapi's content-types capabilities.
+title: 커스텀 필드
+description: 커스텀 필드를 사용하여 Strapi의 콘텐츠 타입 기능을 확장하는 방법을 알아보세요.
 displayed_sidebar: cmsSidebar
 toc_max_heading_level: 5
 canonicalUrl: https://docs.strapi.io/cms/development/custom-fields.html
 tags:
-- admin panel
-- Components
-- Content-type Builder 
-- Content Manager 
-- custom fields
-- register function
+- 관리자 패널
+- 컴포넌트
+- 콘텐츠 타입 빌더
+- 콘텐츠 매니저
+- 커스텀 필드
+- 등록 함수
 ---
 
 import CustomFieldRequiresPlugin from '/docs/snippets/custom-field-requires-plugin.md'
 
-# Custom Fields
+# 커스텀 필드
 
-Custom fields extend Strapi’s capabilities by adding new types of fields to content-types and components. Once created or added to Strapi via plugins, custom fields can be used in the Content-Type Builder and Content Manager just like built-in fields.
+커스텀 필드는 콘텐츠 타입과 컴포넌트에 새로운 유형의 필드를 추가하여 Strapi의 기능을 확장합니다. 생성되거나 플러그인을 통해 Strapi에 추가되면, 커스텀 필드는 내장 필드와 마찬가지로 콘텐츠 타입 빌더와 콘텐츠 매니저에서 사용할 수 있습니다.
 
 <IdentityCard>
-  <IdentityCardItem icon="credit-card" title="Plan">Free feature</IdentityCardItem>
-  <IdentityCardItem icon="user" title="Role & permission">None</IdentityCardItem>
-  <IdentityCardItem icon="toggle-right" title="Activation">Available and activated by default</IdentityCardItem>
-  <IdentityCardItem icon="desktop" title="Environment">Available in both Development & Production environment</IdentityCardItem>
+  <IdentityCardItem icon="credit-card" title="플랜">무료 기능</IdentityCardItem>
+  <IdentityCardItem icon="user" title="역할 및 권한">없음</IdentityCardItem>
+  <IdentityCardItem icon="toggle-right" title="활성화">기본적으로 사용 가능하며 활성화됨</IdentityCardItem>
+  <IdentityCardItem icon="desktop" title="환경">개발 및 프로덕션 환경 모두에서 사용 가능</IdentityCardItem>
 </IdentityCard>
 
-## Configuration
+## 구성
 
-Ready-made custom fields can be found on the [Marketplace](https://market.strapi.io/plugins?categories=Custom+fields). Once installed these, no other configuration is required, and you can start using them (see [usage](#usage)).
+기성품 커스텀 필드는 [마켓플레이스](https://market.strapi.io/plugins?categories=Custom+fields)에서 찾을 수 있습니다. 설치 후에는 다른 구성이 필요하지 않으며 바로 사용할 수 있습니다([사용법](#usage) 참고).
 
-You can also develop your own custom field.
+직접 커스텀 필드를 개발할 수도 있습니다.
 
-### Developing your own custom field
+### 자체 커스텀 필드 개발
 
-Though the recommended way to add a custom field is through creating a plugin, app-specific custom fields can also be registered within the global `register` [function](/cms/configurations/functions) found in `src/index` and `src/admin/app` files.
+커스텀 필드를 추가하는 권장 방법은 플러그인을 생성하는 것이지만, 앱별 커스텀 필드는 `src/index` 및 `src/admin/app` 파일에 있는 전역 `register` [함수](/cms/configurations/functions) 내에서도 등록할 수 있습니다.
 
-:::note Current limitations
-* Custom fields can only be shared and distributed on the Marketplace using plugins.
-* Custom fields cannot add new data types to Strapi and must use existing, built-in Strapi data types described in the [models' attributes](/cms/backend-customization/models#model-attributes) documentation. 
-* You also cannot modify an existing data type.
-* Special data types unique to Strapi, such as relation, media, component, or dynamic zone data types, cannot be used in custom fields.
+:::note 현재 제한사항
+* 커스텀 필드는 플러그인을 사용해야만 마켓플레이스에서 공유하고 배포할 수 있습니다.
+* 커스텀 필드는 Strapi에 새로운 데이터 타입을 추가할 수 없으며, [모델의 속성](/cms/backend-customization/models#model-attributes) 문서에 설명된 기존 내장 Strapi 데이터 타입을 사용해야 합니다.
+* 기존 데이터 타입을 수정할 수도 없습니다.
+* 관계, 미디어, 컴포넌트, 다이나믹 존과 같은 Strapi 고유의 특수 데이터 타입은 커스텀 필드에서 사용할 수 없습니다.
 :::
 
 :::prerequisites
 <CustomFieldRequiresPlugin components={props.components} />
 :::
 
-Custom field plugins include both a server and admin panel part. The custom field must be registered in both parts before it is usable in Strapi's admin panel.
+커스텀 필드 플러그인은 서버와 관리자 패널 부분을 모두 포함합니다. 커스텀 필드가 Strapi의 관리자 패널에서 사용 가능하려면 두 부분 모두에 등록되어야 합니다.
 
-#### Registering a custom field on the server
+#### 서버에서 커스텀 필드 등록
 
-Strapi's server needs to be aware of all the custom fields to ensure that an attribute using a custom field is valid.
+Strapi의 서버는 커스텀 필드를 사용하는 속성이 유효한지 확인하기 위해 모든 커스텀 필드를 알고 있어야 합니다.
 
-The `strapi.customFields` object exposes a `register()` method on the `Strapi` instance. This method is used to register custom fields on the server during the plugin's server [register lifecycle](/cms/plugins-development/server-api#register).
+`strapi.customFields` 객체는 `Strapi` 인스턴스에서 `register()` 메서드를 노출합니다. 이 메서드는 플러그인의 서버 [등록 라이프사이클](/cms/plugins-development/server-api#register) 중에 서버에서 커스텀 필드를 등록하는 데 사용됩니다.
 
-`strapi.customFields.register()` registers one or several custom field(s) on the server by passing an object (or an array of objects) with some parameters.
+`strapi.customFields.register()`는 일부 매개변수가 있는 객체(또는 객체 배열)를 전달하여 서버에서 하나 또는 여러 커스텀 필드를 등록합니다.
 
 <details>
-<summary>Parameters available to register the custom field on the server:</summary>
+<summary>서버에서 커스텀 필드를 등록하는 데 사용 가능한 매개변수:</summary>
 
-| Parameter                         | Description                                                                                                                                             | Type     |
+| 매개변수                         | 설명                                                                                                                                             | 타입     |
 | --------------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
-| `name`                            | The name of the custom field                                                                                                                            | `String` |
-| `plugin`<br/><br/>(_optional_)    | The name of the plugin creating the custom fields<br/><br/>❗️ If defined, the `pluginId` value on the admin panel registration must have the same value (see [Registering a custom field in the admin panel](#registering-a-custom-field-in-the-admin-panel)) | `String` |
-| `type`                            | The data type the custom field will use                                                                                                                 | `String` |
-| `inputSize`<br/><br/>(_optional_) | Parameters to define the width of a custom field's input in the admin panel                                                                             | `Object` |
+| `name`                            | 커스텀 필드의 이름                                                                                                                            | `String` |
+| `plugin`<br/><br/>(_선택사항_)    | 커스텀 필드를 생성하는 플러그인 이름<br/><br/>❗️ 정의된 경우, 관리자 패널 등록 시 `pluginId` 값이 동일해야 함([관리자 패널에 커스텀 필드 등록](#registering-a-custom-field-in-the-admin-panel) 참고) | `String` |
+| `type`                            | 커스텀 필드가 사용할 데이터 타입                                                                                                                 | `String` |
+| `inputSize`<br/><br/>(_선택사항_) | 관리자 패널에서 커스텀 필드 입력란의 너비를 정의하는 매개변수                                                                             | `Object` |
 
-The optional `inputSize` object, when specified, must contain all of the following parameters:
+`inputSize` 객체를 지정하면 다음 매개변수를 모두 포함해야 합니다:
 
-| Parameter     | Description                                                                                                                                               | Type      |
+| 매개변수     | 설명                                                                                                                                               | 타입      |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| `default`     | The default size in columns that the input field will occupy in the 12-column grid in the admin panel.<br/>The value can either be `4`, `6`, `8` or `12`. | `Integer` |
-| `isResizable` | Whether the input can be resized or not                                                                                                                   | `Boolean` |
+| `default`     | 입력 필드가 관리자 패널의 12-컬럼 그리드에서 차지할 기본 크기.<br/>값은 `4`, `6`, `8`, `12` 중 하나여야 함. | `Integer` |
+| `isResizable` | 입력란의 크기 조절 가능 여부                                                                                                                   | `Boolean` |
 
 </details>
 
-**Example: Registering an example "color" custom field on the server:**
+**예시: 서버에서 "color" 커스텀 필드 등록:**
 
-In the following example, the `color-picker` plugin was created using the CLI generator (see [plugins development](/cms/plugins-development/developing-plugins)):
+아래 예시는 CLI 생성기를 사용해 `color-picker` 플러그인을 생성한 경우입니다([플러그인 개발](/cms/plugins-development/developing-plugins) 참고):
 
 <Tabs groupId="js-ts">
 <TabItem value="js" label="JavaScript">
@@ -194,9 +194,9 @@ The `app.customFields` object exposes a `register()` method on the `StrapiApp` i
 
 </details>
 
-**Example: Registering an example "color" custom field in the admin panel:**
+**예시: 관리자 패널에서 "color" 커스텀 필드 등록:**
 
-In the following example, the `color-picker` plugin was created using the CLI generator (see [plugins development](/cms/plugins-development/developing-plugins.md)):
+다음 예시에서는 CLI 생성기를 사용하여 `color-picker` 플러그인을 생성했습니다([플러그인 개발](/cms/plugins-development/developing-plugins.md) 참고):
 
 <Tabs groupId="js-ts">
 <TabItem value="js" label="JavaScript">
@@ -211,8 +211,8 @@ export default {
 
     app.customFields.register({
       name: "color",
-      pluginId: "color-picker", // the custom field is created by a color-picker plugin
-      type: "string", // the color will be stored as a string
+      pluginId: "color-picker", // 커스텀 필드가 color-picker 플러그인에 의해 생성됨
+      type: "string", // 색상은 문자열로 저장됨
       intlLabel: {
         id: "color-picker.color.label",
         defaultMessage: "Color",
@@ -221,7 +221,7 @@ export default {
         id: "color-picker.color.description",
         defaultMessage: "Select any color",
       },
-      icon: ColorPickerIcon, // don't forget to create/import your icon component
+      icon: ColorPickerIcon, // 아이콘 컴포넌트를 생성/가져오는 것을 잊지 마세요
       components: {
         Input: async () =>
           import('./components/Input').then((module) => ({
@@ -229,7 +229,7 @@ export default {
           })),
       },
       options: {
-        // declare options here
+        // 여기에 옵션을 선언하세요
       },
     });
   },
@@ -252,8 +252,8 @@ export default {
 
     app.customFields.register({
       name: "color",
-      pluginId: "color-picker", // the custom field is created by a color-picker plugin
-      type: "string", // the color will be stored as a string
+      pluginId: "color-picker", // 커스텀 필드가 color-picker 플러그인에 의해 생성됨
+      type: "string", // 색상은 문자열로 저장됨
       intlLabel: {
         id: "color-picker.color.label",
         defaultMessage: "Color",
@@ -262,7 +262,7 @@ export default {
         id: "color-picker.color.description",
         defaultMessage: "Select any color",
       },
-      icon: ColorPickerIcon, // don't forget to create/import your icon component
+      icon: ColorPickerIcon, // 아이콘 컴포넌트를 생성/가져오는 것을 잊지 마세요
       components: {
         Input: async () =>
           import('./components/Input').then((module) => ({
@@ -270,7 +270,7 @@ export default {
           })),
       },
       options: {
-        // declare options here
+        // 여기에 옵션을 선언하세요
       },
     });
   },
@@ -282,13 +282,13 @@ export default {
 </TabItem>
 </Tabs>
 
-##### Components
+##### 컴포넌트
 
-`app.customFields.register()` must pass a `components` object with an `Input` React component to use in the Content Manager's edit view.
+`app.customFields.register()`는 콘텐츠 매니저의 편집 뷰에서 사용할 `Input` React 컴포넌트가 포함된 `components` 객체를 전달해야 합니다.
 
-**Example: Registering an Input component:**
+**예시: Input 컴포넌트 등록:**
 
-In the following example, the `color-picker` plugin was created using the CLI generator (see [plugins development](/cms/plugins-development/developing-plugins.md)):
+다음 예시에서는 CLI 생성기를 사용하여 `color-picker` 플러그인을 생성했습니다([플러그인 개발](/cms/plugins-development/developing-plugins.md) 참고):
 
 <Tabs groupId="js-ts">
 <TabItem value="js" label="JavaScript">
@@ -335,32 +335,32 @@ export default {
 </Tabs>
 
 <details>
-<summary>Props passed to the custom field <code>Input</code> component:</summary>
+<summary>커스텀 필드 <code>Input</code> 컴포넌트에 전달되는 Props:</summary>
 
-| Prop             | Description                                                                                                                                                                                                                               | Type                                                                 |
+| Prop             | 설명                                                                                                                                                                                                                               | 타입                                                                 |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `attribute`      | The attribute object with custom field's underlying Strapi type and options                                                                                                                                                               | `{ type: String, customField: String }`                              |
-| `description`    | The field description set in [configure the view](/cms/features/content-manager#edit-view-settings)                                                                                                  | <ExternalLink to="https://formatjs.io/docs/react-intl/" text="IntlObject"/>                 |
-| `placeholder`    | The field placeholder set in [configure the view](/cms/features/content-manager#edit-view-settings)                                                                                                  | <ExternalLink to="https://formatjs.io/docs/react-intl/" text="IntlObject"/>                 |
-| `hint`           | The field description set in [configure the view](/cms/features/content-manager#edit-view-settings) along with min/max [validation requirements](/cms/backend-customization/models#validations) | `String`                                                             |
-| `name`           | The field name set in the content-type builder                                                                                                                                                                                            | `String`                                                             |
-| `intlLabel`      | The field name set in the content-type builder or configure the view                                                                                                                                                                      | <ExternalLink to="https://formatjs.io/docs/react-intl/" text="IntlObject"/>                 |
-| `onChange`       | The handler for the input change event. The `name` argument references the field name. The `type` argument references the underlying Strapi type                                                                                          | `({ target: { name: String value: unknown type: String } }) => void` |
-| `contentTypeUID` | The content-type the field belongs to                                                                                                                                                                                                     | `String`                                                             |
-| `type`           | The custom field uid, for example `plugin::color-picker.color`                                                                                                                                                                            | `String`                                                             |
-| `value`          | The input value the underlying Strapi type expects                                                                                                                                                                                        | `unknown`                                                            |
-| `required`       | Whether or not the field is required                                                                                                                                                                                                      | `boolean`                                                            |
-| `error`          | Error received after validation                                                                                                                                                                                                           | <ExternalLink to="https://formatjs.io/docs/react-intl/" text="IntlObject"/>                 |
-| `disabled`       | Whether or not the input is disabled                                                                                                                                                                                                      | `boolean`                                                            |
+| `attribute`      | 커스텀 필드의 기본 Strapi 타입과 옵션이 포함된 속성 객체                                                                                                                                                                               | `{ type: String, customField: String }`                              |
+| `description`    | [뷰 구성](/cms/features/content-manager#edit-view-settings)에서 설정한 필드 설명                                                                                                  | <ExternalLink to="https://formatjs.io/docs/react-intl/" text="IntlObject"/>                 |
+| `placeholder`    | [뷰 구성](/cms/features/content-manager#edit-view-settings)에서 설정한 필드 플레이스홀더                                                                                                  | <ExternalLink to="https://formatjs.io/docs/react-intl/" text="IntlObject"/>                 |
+| `hint`           | [뷰 구성](/cms/features/content-manager#edit-view-settings)에서 설정한 필드 설명과 최소/최대 [유효성 검사 요구사항](/cms/backend-customization/models#validations) | `String`                                                             |
+| `name`           | 콘텐츠 타입 빌더에서 설정한 필드 이름                                                                                                                                                                                            | `String`                                                             |
+| `intlLabel`      | 콘텐츠 타입 빌더 또는 뷰 구성에서 설정한 필드 이름                                                                                                                                                                      | <ExternalLink to="https://formatjs.io/docs/react-intl/" text="IntlObject"/>                 |
+| `onChange`       | 입력 변경 이벤트 핸들러. `name` 인수는 필드 이름을, `type` 인수는 기본 Strapi 타입을 참조합니다                                                                                          | `({ target: { name: String value: unknown type: String } }) => void` |
+| `contentTypeUID` | 필드가 속한 콘텐츠 타입                                                                                                                                                                                                     | `String`                                                             |
+| `type`           | 커스텀 필드 uid, 예: `plugin::color-picker.color`                                                                                                                                                                            | `String`                                                             |
+| `value`          | 기본 Strapi 타입이 예상하는 입력 값                                                                                                                                                                                        | `unknown`                                                            |
+| `required`       | 필드가 필수인지 여부                                                                                                                                                                                                      | `boolean`                                                            |
+| `error`          | 유효성 검사 후 받은 오류                                                                                                                                                                                                           | <ExternalLink to="https://formatjs.io/docs/react-intl/" text="IntlObject"/>                 |
+| `disabled`       | 입력이 비활성화되었는지 여부                                                                                                                                                                                                      | `boolean`                                                            |
 
-As of Strapi v4.13.0, fields in the Content Manager can be auto-focussed via the `URLSearchParam` `field`. It's recommended that your input component is wrapped in React's <ExternalLink to="https://react.dev/reference/react/forwardRef" text="`forwardRef`"/> method; you should pass the corresponding `ref` to the `input` element.
+Strapi v4.13.0부터 콘텐츠 매니저의 필드는 `URLSearchParam` `field`를 통해 자동 포커스될 수 있습니다. 입력 컴포넌트를 React의 <ExternalLink to="https://react.dev/reference/react/forwardRef" text="`forwardRef`"/> 메서드로 래핑하는 것이 권장되며, 해당 `ref`를 `input` 요소에 전달해야 합니다.
 
 <br/>
 </details>
 
-**Example: A custom text input**
+**예시: 커스텀 텍스트 입력**
 
-In the following example we're providing a custom text input that is controlled. All inputs should be controlled otherwise their data will not be submitted on save.
+다음 예시에서는 제어되는 커스텀 텍스트 입력을 제공합니다. 모든 입력은 제어되어야 하며, 그렇지 않으면 저장 시 데이터가 제출되지 않습니다.
 
 <Tabs groupId="js-ts">
 <TabItem value="js" label="JavaScript">
@@ -372,7 +372,7 @@ import { useIntl } from "react-intl";
 
 const Input = React.forwardRef((props, ref) => {
   const { attribute, disabled, intlLabel, name, onChange, required, value } =
-    props; // these are just some of the props passed by the content-manager
+    props; // 콘텐츠 매니저에서 전달하는 props 중 일부입니다
 
   const { formatMessage } = useIntl();
 

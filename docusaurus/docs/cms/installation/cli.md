@@ -1,13 +1,13 @@
 ---
 title: CLI
 displayed_sidebar: cmsSidebar
-description: Fast-track local install for getting Strapi running on your computer in less than a minute.
+description: 1분 안에 컴퓨터에서 Strapi를 실행하기 위한 빠른 로컬 설치.
 pagination_prev: cms/installation
 pagination_next: cms/installation/docker
 tags:
-- installation
+- 설치
 - Command Line Interface (CLI)
-- database
+- 데이터베이스
 - MySQL
 - PostgreSQL
 ---
@@ -15,21 +15,21 @@ tags:
 import InstallPrerequisites from '/docs/snippets/installation-prerequisites.md'
 import SupportedDatabases from '/docs/snippets/supported-databases.md'
 
-# Installing from CLI
+# CLI로 설치하기
 
-Strapi CLI (Command Line Interface) installation scripts are the fastest way to get Strapi running locally. The following guide is the installation option most recommended by Strapi.
+Strapi CLI(Command Line Interface) 설치 스크립트는 Strapi를 로컬에서 실행하는 가장 빠른 방법입니다. 다음 가이드는 Strapi에서 가장 권장하는 설치 옵션입니다.
 
-## Preparing the installation
+## 설치 준비
 
 <InstallPrerequisites components={props.components} />
-A supported database is also required for any Strapi project:
+모든 Strapi 프로젝트에는 지원되는 데이터베이스도 필요합니다:
 <SupportedDatabases components={props.components} />
 
-## Creating a Strapi project
+## Strapi 프로젝트 생성
 
-Follow the steps below to create a new Strapi project, being sure to use the appropriate command for your installed package manager:
+새로운 Strapi 프로젝트를 만들려면 아래 단계를 따르되, 설치된 패키지 매니저에 맞는 적절한 명령어를 사용하세요:
 
-1. In a terminal, run the following command:
+1. 터미널에서 다음 명령어를 실행합니다:
 
     <Tabs groupId="yarn-npm">
 
@@ -40,17 +40,17 @@ Follow the steps below to create a new Strapi project, being sure to use the app
     ```
 
     <details>
-    <summary>Additional explanations for the command:</summary>
+    <summary>명령어에 대한 추가 설명:</summary>
 
-    * `npx` runs a command from a npm package
-    * `create-strapi` is the Strapi package
-    * `@latest` indicates that the latest version of Strapi is used
+    * `npx`는 npm 패키지에서 명령어를 실행합니다
+    * `create-strapi`는 Strapi 패키지입니다
+    * `@latest`는 최신 버전의 Strapi가 사용됨을 나타냅니다
     
     <br/>
 
-    Instead of npx, the traditional npm command can be used too, with `npm create strapi@latest`.
+    npx 대신 기존 npm 명령어도 `npm create strapi@latest`로 사용할 수 있습니다.
 
-    Please note the additional dash between create and strapi when using npx: `npx create-strapi` vs. `npm create strapi`.
+    npx 사용 시 create와 strapi 사이의 추가 대시에 주의하세요: `npx create-strapi` vs. `npm create strapi`.
     </details>
     
     </TabItem>
@@ -63,7 +63,7 @@ Follow the steps below to create a new Strapi project, being sure to use the app
     ```
 
     :::note
-    Yarn does not support passing the version tag such as `@latest`, as opposed to npm. If you experience unexpected results with yarn and the latest version of Strapi is not installed, you might need to <ExternalLink to="https://yarnpkg.com/cli/cache/clean" text="run the `yarn cache clean` command"/> to clean your Yarn cache.
+    Yarn은 npm과 달리 `@latest`와 같은 버전 태그 전달을 지원하지 않습니다. yarn을 사용했는데 예상과 다른 결과가 나오고 최신 버전의 Strapi가 설치되지 않았다면, <ExternalLink to="https://yarnpkg.com/cli/cache/clean" text="`yarn cache clean` 명령어를 실행"/>하여 Yarn 캐시를 정리해야 할 수 있습니다.
     :::
 
     </TabItem>
@@ -71,7 +71,7 @@ Follow the steps below to create a new Strapi project, being sure to use the app
     <TabItem value="pnpm" label="pnpm">
 
     :::caution
-    You might have issues with projects created with pnpm on Strapi Cloud. Strapi Cloud does not support pnpm yet, so it's recommended to use yarn or npm if you plan to eventually host your project on Strapi Cloud.
+    Strapi Cloud에서 pnpm으로 생성된 프로젝트에 문제가 있을 수 있습니다. Strapi Cloud는 아직 pnpm을 지원하지 않으므로, 결국 Strapi Cloud에서 프로젝트를 호스팅할 계획이라면 yarn이나 npm을 사용하는 것이 좋습니다.
     :::
 
     ```bash
@@ -82,98 +82,98 @@ Follow the steps below to create a new Strapi project, being sure to use the app
 
     </Tabs>
 
-2. The terminal will ask you whether you want to `Login/Signup` or `Skip` this step. Use arrow keys and press `Enter` to make your choice. If you choose to login, you'll receive a 30-day trial of the <GrowthBadge /> plan that will be automatically applied to your created project. If you skip this step, the project will fall back to the CMS Free plan.
+2. 터미널에서 `Login/Signup` 또는 `Skip` 중 어느 것을 선택할지 묻습니다. 화살표 키를 사용하고 `Enter`를 눌러 선택하세요. 로그인을 선택하면 생성된 프로젝트에 자동으로 적용되는 <GrowthBadge /> 플랜의 30일 체험판을 받게 됩니다. 이 단계를 건너뛰면 프로젝트는 CMS Free 플랜으로 되돌아갑니다.
 
-3. The terminal will ask you a few questions. For each of them, if you press `Enter` instead of typing something, the default answer (Yes) will be used:
+3. 터미널에서 몇 가지 질문을 합니다. 각 질문에 대해 입력하는 대신 `Enter`를 누르면 기본 답변(Yes)이 사용됩니다:
 
-  ![Terminal prompts at installation](/img/assets/installation/prompts.png)
+  ![설치 시 터미널 프롬프트](/img/assets/installation/prompts.png)
 
   :::tip
-  You can skip these questions using various options passed to the installation command. Please refer to the [table](#cli-installation-options) for the full list of available options.
+  설치 명령어에 전달되는 다양한 옵션을 사용하여 이러한 질문들을 건너뛸 수 있습니다. 사용 가능한 모든 옵션의 전체 목록은 [표](#cli-installation-options)를 참조하세요.
   :::
 
-4. _(optional)_ If you answered `n` for "no" to the default (SQLite) database question, the CLI will ask for more questions about the database:
+4. _(선택사항)_ 기본(SQLite) 데이터베이스 질문에 "no"인 `n`으로 답했다면, CLI가 데이터베이스에 대한 추가 질문을 합니다:
 
-    * Use arrow keys to select the database type you want, then press `Enter`.
-    * Give the database a name, define the database host address and port, define the database admin username and password, and define whether the database will use a SSL connection.<br/>For any of these questions, if you press `Enter` without typing anything, the default value (indicated in parentheses in the terminal output) will be used.
+    * 화살표 키를 사용하여 원하는 데이터베이스 타입을 선택한 다음 `Enter`를 누르세요.
+    * 데이터베이스 이름을 지정하고, 데이터베이스 호스트 주소와 포트를 정의하고, 데이터베이스 관리자 사용자명과 비밀번호를 정의하고, 데이터베이스가 SSL 연결을 사용할지 정의하세요.<br/>이러한 질문 중 어느 것에서든 아무것도 입력하지 않고 `Enter`를 누르면, 기본값(터미널 출력에서 괄호 안에 표시됨)이 사용됩니다.
 
-Once all questions have been answered, the script will start creating the Strapi project.
+모든 질문에 답하면 스크립트가 Strapi 프로젝트 생성을 시작합니다.
 
-### CLI installation options
+### CLI 설치 옵션
 
-The above installation guide only covers the basic installation option using the CLI. There are other options that can be used when creating a new Strapi project, for example:
+위의 설치 가이드는 CLI를 사용한 기본 설치 옵션만 다룹니다. 새로운 Strapi 프로젝트를 생성할 때 사용할 수 있는 다른 옵션들이 있습니다. 예를 들어:
 
-| Option                              | Description                                                                                                                                                                                                                                     |
+| 옵션                              | 설명                                                                                                                                                                                                                                     |
 |-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `--no-run`                          | Do not start the application after it is created                                                                                                                                                                                                |
-| `--ts`<br/>`--typescript`           | Initialize the project with TypeScript (default)                                                                                                                                                                                                |
-| `--js`<br/>`--javascript`           | Initialize the project with JavaScript                                                                                                                                                                                                          |
-| `--use-npm`                         | Force the usage of <ExternalLink to="https://www.npmjs.com/" text="npm"/> as the project package manager                                                                                                                                        |
-| `--use-yarn`                        | Force the usage of <ExternalLink to="https://yarnpkg.com/" text="yarn"/> as the project package manager                                                                                                                                         |
-| `--use-pnpm`                        | Force the usage of <ExternalLink to="https://pnpm.io/" text="pnpm"/> as the project package manager                                                                                                                                             |
-| `--install`                         | Install all dependencies, skipping the related CLI prompt                                                                                                                                                                                       |
-| `--no-install`                      | Do not install all dependencies, skipping the related CLI prompt                                                                                                                                                                                |
-| `--git-init`                        | Initialize a git repository, skipping the related CLI prompt                                                                                                                                                                                    |
-| `--no-git-init`                     | Do not initialize a git repository, skipping the related CLI prompt                                                                                                                                                                             |
-| `--example`                         | Add example data, skipping the related CLI prompt                                                                                                                                                                                               |
-| `--no-example`                      | Do not add example data, skipping the related CLI prompt                                                                                                                                                                                        |
-| `--skip-cloud`                      | Skip [Strapi login and project creation steps](#skipping-the-strapi-login-step)                                                                                                                                                     |
-| `--skip-db`                         | Skip all database-related prompts and create a project with the default (SQLite) database                                                                                                                                                       |
-| `--template <template-name-or-url>` | Create the application based on a given template.<br/>Additional options for templates are available, see the [templates documentation](/cms/templates) for details.                                                                            |
-| `--dbclient <dbclient>`             | Define the database client to use by replacing `<dbclient>` in the command by one of the these values:<ul><li>`sql` for a SQLite database (default)</li><li>`postgres` for a PostgreSQL database</li><li>`mysql` for a MySQL database</li></ul> |
-| `--dbhost <dbhost>`                 | Define the database host to use by replacing `<dbhost>` in the command by the value of your choice                                                                                                                                              |
-| `--dbport <dbport>`                 | Define the database port to use by replacing `<dbport>` in the command by the value of your choice                                                                                                                                              |
-| `--dbname <dbname>`                 | Define the database name to use by replacing `<dbname>` in the command by the value of your choice                                                                                                                                              |
-| `--dbusername <dbusername>`         | Define the database username to use by replacing `<dbusername>` in the command by the value of your choice                                                                                                                                      |
-| `--dbpassword <dbpassword>`         | Define the database password to use by replacing `<dbpassword>` in the command by the value of your choice                                                                                                                                      |
-| `--dbssl <dbssl>`                   | Define that SSL is used with the database, by passing `--dbssl=true` (No SSL by default)                                                                                                                                                        |
-| `--dbfile <dbfile>`                 | For SQLite databases, define the database file path to use by replacing `<dbclient>` in the command by the value of your choice                                                                                                                 |
-| `--quickstart`                      | (**Deprecated in Strapi 5**)<br/>Directly create the project in quickstart mode.                                                                                                                                                                |
+| `--no-run`                          | 생성 후 애플리케이션을 시작하지 않습니다                                                                                                                                                                                                                |
+| `--ts`<br/>`--typescript`           | TypeScript로 프로젝트를 초기화합니다 (기본값)                                                                                                                                                                                                |
+| `--js`<br/>`--javascript`           | JavaScript로 프로젝트를 초기화합니다                                                                                                                                                                                                          |
+| `--use-npm`                         | <ExternalLink to="https://www.npmjs.com/" text="npm"/>을 프로젝트 패키지 매니저로 강제 사용합니다                                                                                                                                        |
+| `--use-yarn`                        | <ExternalLink to="https://yarnpkg.com/" text="yarn"/>을 프로젝트 패키지 매니저로 강제 사용합니다                                                                                                                                         |
+| `--use-pnpm`                        | <ExternalLink to="https://pnpm.io/" text="pnpm"/>을 프로젝트 패키지 매니저로 강제 사용합니다                                                                                                                                             |
+| `--install`                         | 모든 종속성을 설치하고, 관련 CLI 프롬프트를 건너뜁니다                                                                                                                                                                                       |
+| `--no-install`                      | 모든 종속성을 설치하지 않고, 관련 CLI 프롬프트를 건너뜁니다                                                                                                                                                                                |
+| `--git-init`                        | git 저장소를 초기화하고, 관련 CLI 프롬프트를 건너뜁니다                                                                                                                                                                                    |
+| `--no-git-init`                     | git 저장소를 초기화하지 않고, 관련 CLI 프롬프트를 건너뜁니다                                                                                                                                                                             |
+| `--example`                         | 예제 데이터를 추가하고, 관련 CLI 프롬프트를 건너뜁니다                                                                                                                                                                                               |
+| `--no-example`                      | 예제 데이터를 추가하지 않고, 관련 CLI 프롬프트를 건너뜁니다                                                                                                                                                                                        |
+| `--skip-cloud`                      | [Strapi 로그인 및 프로젝트 생성 단계](#skipping-the-strapi-login-step)를 건너뜁니다                                                                                                                                                     |
+| `--skip-db`                         | 모든 데이터베이스 관련 프롬프트를 건너뛰고 기본(SQLite) 데이터베이스로 프로젝트를 생성합니다                                                                                                                                                       |
+| `--template <template-name-or-url>` | 주어진 템플릿을 기반으로 애플리케이션을 생성합니다.<br/>템플릿에 대한 추가 옵션이 있습니다. 자세한 내용은 [템플릿 문서](/cms/templates)를 참조하세요.                                                                            |
+| `--dbclient <dbclient>`             | 명령어에서 `<dbclient>`를 다음 값 중 하나로 바꿔서 사용할 데이터베이스 클라이언트를 정의합니다:<ul><li>`sql` (SQLite 데이터베이스, 기본값)</li><li>`postgres` (PostgreSQL 데이터베이스)</li><li>`mysql` (MySQL 데이터베이스)</li></ul> |
+| `--dbhost <dbhost>`                 | 명령어에서 `<dbhost>`를 원하는 값으로 바꿔서 사용할 데이터베이스 호스트를 정의합니다                                                                                                                                              |
+| `--dbport <dbport>`                 | 명령어에서 `<dbport>`를 원하는 값으로 바꿔서 사용할 데이터베이스 포트를 정의합니다                                                                                                                                              |
+| `--dbname <dbname>`                 | 명령어에서 `<dbname>`을 원하는 값으로 바꿔서 사용할 데이터베이스 이름을 정의합니다                                                                                                                                              |
+| `--dbusername <dbusername>`         | 명령어에서 `<dbusername>`을 원하는 값으로 바꿔서 사용할 데이터베이스 사용자명을 정의합니다                                                                                                                                      |
+| `--dbpassword <dbpassword>`         | 명령어에서 `<dbpassword>`를 원하는 값으로 바꿔서 사용할 데이터베이스 비밀번호를 정의합니다                                                                                                                                      |
+| `--dbssl <dbssl>`                   | `--dbssl=true`를 전달하여 데이터베이스에서 SSL이 사용됨을 정의합니다 (기본적으로 SSL 없음)                                                                                                                                                        |
+| `--dbfile <dbfile>`                 | SQLite 데이터베이스의 경우, 명령어에서 `<dbclient>`를 원하는 값으로 바꿔서 사용할 데이터베이스 파일 경로를 정의합니다                                                                                                                 |
+| `--quickstart`                      | (**Strapi 5에서 폐기됨**)<br/>quickstart 모드에서 직접 프로젝트를 생성합니다.                                                                                                                                                                |
 
-:::note Notes
-* If you do not pass a `--use-yarn|npm|pnpm` option, the installation script will use whatever package manager was used with the create command to install all dependencies (e.g., `npm create strapi` will install all the project's dependencies with npm).
-* For additional information about database configuration, please refer to the [database configuration documentation](/cms/configurations/database).
-* Experimental Strapi versions are released every Tuesday through Saturday at midnight GMT. You can create a new Strapi application based on the latest experimental release using `npx create-strapi@experimental`. Please use these experimental builds at your own risk. It is not recommended to use them in production.
+:::note 참고사항
+* `--use-yarn|npm|pnpm` 옵션을 전달하지 않으면, 설치 스크립트는 create 명령어에 사용된 패키지 매니저를 사용하여 모든 종속성을 설치합니다(예: `npm create strapi`는 npm으로 프로젝트의 모든 종속성을 설치합니다).
+* 데이터베이스 구성에 대한 추가 정보는 [데이터베이스 구성 문서](/cms/configurations/database)를 참조하세요.
+* 실험적 Strapi 버전은 매주 화요일부터 토요일까지 GMT 자정에 릴리스됩니다. `npx create-strapi@experimental`을 사용하여 최신 실험적 릴리스를 기반으로 새로운 Strapi 애플리케이션을 생성할 수 있습니다. 이러한 실험적 빌드는 본인의 책임하에 사용하세요. 프로덕션에서 사용하는 것은 권장되지 않습니다.
 :::
 
-### Skipping the Strapi login step
+### Strapi 로그인 단계 건너뛰기
 
-When the installation script runs, the terminal will first ask you if you want to login/signup. Choosing `Login/signup` will provide you with a 30-day trial of the <GrowthBadge tooltip="The CMS Growth plan includes the Live Preview, Releases, and Content History features."/> that will be automatically applied to your created project. This will give you access to advanced CMS features.
+설치 스크립트가 실행되면 터미널에서 먼저 로그인/가입 여부를 묻습니다. `Login/signup`을 선택하면 생성된 프로젝트에 자동으로 적용되는 <GrowthBadge tooltip="CMS Growth 플랜에는 Live Preview, Releases, Content History 기능이 포함됩니다."/>의 30일 체험판을 제공받습니다. 이를 통해 고급 CMS 기능에 접근할 수 있습니다.
 
-If you prefer skipping this Strapi login part, use the arrow keys to select `Skip`. The script will resume and create a local project using the CMS Free plan.
+이 Strapi 로그인 부분을 건너뛰고 싶다면 화살표 키를 사용하여 `Skip`을 선택하세요. 스크립트가 계속되어 CMS Free 플랜을 사용하는 로컬 프로젝트를 생성합니다.
 
-You will be able to purchase a CMS license later by checking out our <ExternalLink to="https://strapi.io/pricing-self-hosted" text="pricing page"/>.
+나중에 [가격 페이지](https://strapi.io/pricing-self-hosted)를 확인하여 CMS 라이선스를 구매할 수 있습니다.
 
-### Hosting your project
+### 프로젝트 호스팅
 
-You can create a free [Strapi Cloud](/cloud/intro) project. To deploy this project and host it online, you can choose to:
+무료 [Strapi Cloud](/cloud/intro) 프로젝트를 생성할 수 있습니다. 이 프로젝트를 배포하고 온라인으로 호스팅하려면 다음을 선택할 수 있습니다:
 
-- host it yourself by pushing the project's code to a repository (e.g., on GitHub) before following the [deployment guide](/cms/deployment),
-- or use the [Cloud CLI](/cloud/cli/cloud-cli#) commands to login to Strapi Cloud and deploy your project there for free.
+- [배포 가이드](/cms/deployment)를 따르기 전에 프로젝트 코드를 저장소(예: GitHub)에 푸시하여 직접 호스팅하거나,
+- [Cloud CLI](/cloud/cli/cloud-cli#) 명령어를 사용하여 Strapi Cloud에 로그인하고 무료로 프로젝트를 배포합니다.
 
-If you want to host your project yourself and are not already familiar with GitHub, the following togglable content should get you started👇.
+프로젝트를 직접 호스팅하고 싶지만 GitHub에 익숙하지 않다면, 다음 토글 가능한 콘텐츠가 시작하는 데 도움이 될 것입니다👇.
 
 <details>
-<summary>Steps required to push your Strapi project code to GitHub:</summary>
+<summary>Strapi 프로젝트 코드를 GitHub에 푸시하는 데 필요한 단계:</summary>
 
-1. In the terminal, ensure you are still in the folder that hosts the Strapi project you created.
-2. Run the `git init` command to initialize git for this folder.
-3. Run the `git add .` command to add all modified files to the git index.
-4. Run the `git commit -m "Initial commit"` command to create a commit with all the added changes.
-5. Log in to your GitHub account and <ExternalLink to="https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories" text="create a new repository"/>. Give the new repository a name, for instance `my-first-strapi-project`, and remember this name.
-6. Go back to the terminal and push your local repository to GitHub:
+1. 터미널에서 생성한 Strapi 프로젝트를 호스팅하는 폴더에 있는지 확인하세요.
+2. `git init` 명령어를 실행하여 이 폴더에 대해 git을 초기화하세요.
+3. `git add .` 명령어를 실행하여 수정된 모든 파일을 git 인덱스에 추가하세요.
+4. `git commit -m "Initial commit"` 명령어를 실행하여 추가된 모든 변경사항으로 커밋을 생성하세요.
+5. GitHub 계정에 로그인하고 <ExternalLink to="https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories" text="새 저장소를 생성"/>하세요. 새 저장소에 이름을 지정합니다(예: `my-first-strapi-project`). 이 이름을 기억하세요.
+6. 터미널로 돌아가서 로컬 저장소를 GitHub에 푸시하세요:
 
-  a. Run a command similar to the following: `git remote add origin git@github.com:yourname/my-first-strapi-project.git`, ensuring you replace `yourname` by your own GitHub profile name, and `my-first-strapi-project` by the actual name you used at step 4.
+  a. 다음과 유사한 명령어를 실행하세요: `git remote add origin git@github.com:yourname/my-first-strapi-project.git`. `yourname`을 본인의 GitHub 프로필 이름으로, `my-first-strapi-project`를 4단계에서 사용한 실제 이름으로 바꿔주세요.
 
-  b. Run the `git push --set-upstream origin main` command to finally push the commit to your GitHub repository.
+  b. `git push --set-upstream origin main` 명령어를 실행하여 마지막으로 커밋을 GitHub 저장소에 푸시하세요.
 
-Additional information about using git with the command line interface can be found in the <ExternalLink to="https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git" text="official GitHub documentation"/>.
+명령줄 인터페이스로 git을 사용하는 것에 대한 추가 정보는 <ExternalLink to="https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git" text="공식 GitHub 문서"/>에서 찾을 수 있습니다.
 
 </details>
 
-## Running Strapi
+## Strapi 실행
 
-To start the Strapi application, run the following command in the project folder:
+Strapi 애플리케이션을 시작하려면 프로젝트 폴더에서 다음 명령어를 실행하세요:
 
 <Tabs groupId="yarn-npm">
 
@@ -195,8 +195,6 @@ npm run develop
 
 </Tabs>
 
-:::info Where is my content?
-For self-hosted Strapi projects, all your content is saved in a database file (by default, SQLite) found in the `.tmp` subfolder in your project's folder. So anytime you start the Strapi application from the folder where you created your Strapi project, your content will be available (see [database configuration](/cms/configurations/database) for additional information).
-
-If the content was added to a Strapi Cloud project, it is stored in the database managed with your Strapi Cloud project (see [advanced database configuration for Strapi Cloud](/cloud/advanced/database) for additional information).
+:::info 내 콘텐츠는 어디에 있나요?
+자체 호스팅 Strapi 프로젝트의 경우, 모든 콘텐츠는 프로젝트 폴더의 `.tmp` 하위 폴더에 있는 데이터베이스 파일(기본적으로 SQLite)에 저장됩니다. 따라서 Strapi 프로젝트를 생성한 폴더에서 Strapi 애플리케이션을 시작할 때마다 콘텐츠를 사용할 수 있습니다([데이터베이스 구성](/cms/configurations/database)에서 추가 정보 참고).
 :::

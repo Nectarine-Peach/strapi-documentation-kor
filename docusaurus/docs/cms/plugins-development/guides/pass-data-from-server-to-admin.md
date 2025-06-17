@@ -1,43 +1,43 @@
 ---
-title: How to pass data from server to admin panel with a Strapi plugin
-description: Learn how to pass data from server to admin panel with a Strapi plugin
-sidebar_label: Pass data from server to admin
+title: Strapi 플러그인으로 서버에서 관리자 패널로 데이터 전달하는 방법
+description: Strapi 플러그인으로 서버에서 관리자 패널로 데이터를 전달하는 방법을 알아보세요
+sidebar_label: 서버에서 관리자로 데이터 전달
 displayed_sidebar: cmsSidebar
 tags:
-- admin panel
-- admin routes 
-- content-type
-- guides
-- plugins
-- plugins development guides
+- 관리자 패널
+- 관리자 라우트
+- 콘텐츠 타입
+- 가이드
+- 플러그인
+- 플러그인 개발 가이드
 ---
 
 import NotV5 from '/docs/snippets/_not-updated-to-v5.md'
 
-# How to pass data from server to admin panel with a Strapi plugin
+# Strapi 플러그인으로 서버에서 관리자 패널로 데이터 전달하는 방법
 
 <NotV5 />
 
-Strapi is **headless** <HeadlessCms />. The admin panel is completely separate from the server.
+Strapi는 **헤드리스** <HeadlessCms />입니다. 관리자 패널은 서버와 완전히 분리되어 있습니다.
 
-When [developing a Strapi plugin](/cms/plugins-development/developing-plugins) you might want to pass data from the `/server` to the `/admin` folder. Within the `/server` folder you have access to the Strapi object and can do database queries whereas in the `/admin` folder you can't.
+[Strapi 플러그인을 개발](/cms/plugins-development/developing-plugins)할 때 `/server` 폴더에서 `/admin` 폴더로 데이터를 전달하고 싶을 수 있습니다. `/server` 폴더 내에서는 Strapi 객체에 접근하여 데이터베이스 쿼리를 할 수 있지만 `/admin` 폴더에서는 할 수 없습니다.
 
-Passing data from the `/server` to the `/admin` folder can be done using the admin panel's Axios instance:
+`/server` 폴더에서 `/admin` 폴더로 데이터를 전달하는 것은 관리자 패널의 Axios 인스턴스를 사용하여 수행할 수 있습니다:
 
 <MermaidWithFallback
     chartFile="/diagrams/pass-data.mmd"
     fallbackImage="/img/assets/diagrams/pass-data.png"
     fallbackImageDark="/img/assets/diagrams/pass-data_DARK.png"
-    alt="Diagram to show how to pass data from server to admin"
+    alt="서버에서 관리자로 데이터를 전달하는 방법을 보여주는 다이어그램"
 />
 
-To pass data from the `/server` to `/admin` folder you would first [create a custom admin route](#create-a-custom-admin-route) and then [get the data returned in the admin panel](#get-the-data-in-the-admin-panel).
+`/server` 폴더에서 `/admin` 폴더로 데이터를 전달하려면 먼저 [커스텀 관리자 라우트를 생성](#create-a-custom-admin-route)한 다음 [관리자 패널에서 반환된 데이터를 가져와야](#get-the-data-in-the-admin-panel) 합니다.
 
-## Create a custom admin route
+## 커스텀 관리자 라우트 생성
 
-Admin routes are like the routes that you would have for any controller, except that the `type: 'admin'` declaration hides them from the general API router, and allows you to access them from the admin panel.
+관리자 라우트는 어떤 컨트롤러에든 가질 수 있는 라우트와 같지만, `type: 'admin'` 선언이 일반 API 라우터에서 숨기고 관리자 패널에서 접근할 수 있게 해줍니다.
 
-The following code will declare a custom admin route for the `my-plugin` plugin:
+다음 코드는 `my-plugin` 플러그인용 커스텀 관리자 라우트를 선언합니다:
 
 ```js title="/my-plugin/server/routes/index.js"
 module.exports = {
@@ -59,9 +59,9 @@ module.exports = {
 };
 ```
 
-This route will call the `index` method of the `myPluginContentType` controller when you send a GET request to the `/my-plugin/pass-data` URL endpoint.
+이 라우트는 `/my-plugin/pass-data` URL 엔드포인트에 GET 요청을 보낼 때 `myPluginContentType` 컨트롤러의 `index` 메소드를 호출합니다.
 
-Let's create a basic custom controller that simply returns a simple text:
+간단한 텍스트를 반환하는 기본 커스텀 컨트롤러를 만들어 보겠습니다:
 
 ```js title="/my-plugin/server/controllers/my-plugin-content-type.js"
 'use strict';
@@ -73,13 +73,13 @@ module.exports = {
 }
 ```
 
-This means that when sending a GET request to the `/my-plugin/pass-data` URL endpoint, you should get the `You are in the my-plugin-content-type controller!` text returned with the response.
+이는 `/my-plugin/pass-data` URL 엔드포인트에 GET 요청을 보낼 때 응답과 함께 `You are in the my-plugin-content-type controller!` 텍스트가 반환되어야 함을 의미합니다.
 
-## Get the data in the admin panel
+## 관리자 패널에서 데이터 가져오기
 
-Any request sent from an admin panel component to the endpoint for which we defined the custom route `/my-plugin/pass-data` should now return the text message returned by the custom controller.
+관리자 패널 컴포넌트에서 커스텀 라우트 `/my-plugin/pass-data`를 정의한 엔드포인트로 보낸 모든 요청은 이제 커스텀 컨트롤러에서 반환한 텍스트 메시지를 반환해야 합니다.
 
-So for instance, if you create an `/admin/src/api/foobar.js` file and copy and paste the following code example:
+예를 들어, `/admin/src/api/foobar.js` 파일을 생성하고 다음 코드 예시를 복사하여 붙여넣으면:
 
 ```js title="/my-plugin/admin/src/api/foobar.js"
 import axios from 'axios';
@@ -93,9 +93,9 @@ const foobarRequests = {
 export default foobarRequests;
 ```
 
-You will be able to use `foobarRequests.getFoobar()` in the code of an admin panel component and have it return the `You are in the my-plugin-content-type controller!` text with the data.
+관리자 패널 컴포넌트의 코드에서 `foobarRequests.getFoobar()`를 사용할 수 있고 데이터와 함께 `You are in the my-plugin-content-type controller!` 텍스트를 반환하게 됩니다.
 
-For instance, within a React component, you could use `useEffect` to get the data after the component initializes:
+예를 들어, React 컴포넌트 내에서 `useEffect`를 사용하여 컴포넌트가 초기화된 후 데이터를 가져올 수 있습니다:
 
 ```js title="/my-plugin/admin/src/components/MyComponent/index.js"
 import foobarRequests from "../../api/foobar";
@@ -110,4 +110,4 @@ useEffect(() => {
 // …
 ```
 
-This would set the `You are in the my-plugin-content-type controller!` text within the `foobar` data of the component's state.
+이렇게 하면 컴포넌트 상태의 `foobar` 데이터에 `You are in the my-plugin-content-type controller!` 텍스트가 설정됩니다.

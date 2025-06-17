@@ -1,10 +1,10 @@
 ---
-title: Command Line Interface
+title: 커맨드 라인 인터페이스
 displayed_sidebar: cmsSidebar
-description: Strapi comes with a full featured Command Line Interface (CLI) which lets you scaffold and manage your project in seconds.
+description: Strapi는 몇 초 만에 프로젝트를 스캐폴드하고 관리할 수 있는 모든 기능을 갖춘 커맨드 라인 인터페이스(CLI)를 제공합니다.
 sidebar_label: Strapi CLI
 tags:
-  - Command Line Interface (CLI)
+  - 커맨드 라인 인터페이스 (CLI)
   - strapi develop
   - strapi start
   - strapi build
@@ -14,44 +14,44 @@ tags:
   - strapi report
 ---
 
-# Command Line Interface (CLI)
+# 커맨드 라인 인터페이스 (CLI)
 
-Strapi comes with a full featured Command Line Interface (CLI) which lets you scaffold and manage your project in seconds. The CLI works with both the `yarn` and `npm` package managers.
+Strapi는 몇 초 만에 프로젝트를 스캐폴드하고 관리할 수 있는 모든 기능을 갖춘 커맨드 라인 인터페이스(CLI)를 제공합니다. CLI는 `yarn`과 `npm` 패키지 관리자 모두와 작동합니다.
 
 :::caution
-Interactive commands such as `strapi admin:create-user` don't display prompts with `npm`. A fix for the `npm` package manager is anticipated by March 2023. In the meantime, consider using the `yarn` package manager.
+`strapi admin:create-user`와 같은 대화형 명령어는 `npm`에서 프롬프트를 표시하지 않습니다. `npm` 패키지 관리자에 대한 수정은 2023년 3월까지 예상됩니다. 그 동안은 `yarn` 패키지 관리자 사용을 고려하세요.
 :::
 
 :::note
-It is recommended to install Strapi locally only, which requires prefixing all of the following `strapi` commands with the package manager used for the project setup (e.g `npm run strapi help` or `yarn strapi help`) or a dedicated node package executor (e.g. `npx strapi help`).
+Strapi를 로컬에서만 설치하는 것을 권장하며, 이는 다음의 모든 `strapi` 명령어 앞에 프로젝트 설정에 사용된 패키지 관리자를 접두사로 붙여야 함을 의미합니다 (예: `npm run strapi help` 또는 `yarn strapi help`) 또는 전용 노드 패키지 실행기를 사용합니다 (예: `npx strapi help`).
 
-To pass options with `npm` use the syntax: `npm run strapi <command> -- --<option>`.
+`npm`으로 옵션을 전달하려면 다음 구문을 사용하세요: `npm run strapi <command> -- --<option>`.
 
-To pass options with `yarn` use the syntax: `yarn strapi <command> --<option>`
+`yarn`으로 옵션을 전달하려면 다음 구문을 사용하세요: `yarn strapi <command> --<option>`
 :::
 
 <details>
-<summary>ℹ️ Strapi v4 CLI commands removed from Strapi 5:</summary>
+<summary>ℹ️ Strapi 5에서 제거된 Strapi v4 CLI 명령어:</summary>
 
-The `strapi install`, `strapi uninstall`, `strapi new`, and `strapi watch-admin` commands from Strapi v4 have been removed in Strapi 5:
+Strapi v4의 `strapi install`, `strapi uninstall`, `strapi new`, `strapi watch-admin` 명령어는 Strapi 5에서 제거되었습니다:
 
-| Strapi v4 command         | Strapi 5 equivalent                                                                                                                                                                                |
+| Strapi v4 명령어          | Strapi 5 동등한 명령어                                                                                                                                                                                |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `strapi install [plugin]` | Use the npx command corresponding to the plugin (found on the Marketplace, see [Marketplace](/cms/plugins/installing-plugins-via-marketplace))                                                |
-| `strapi new`              | Use the equivalent yarn or npx command to create a new Strapi project (see [CLI installation guide](/cms/installation/cli))                                                                   |
-| `strapi watch-admin`      | `yarn develop` or `npm run develop` always starts the Strapi server in "watch-admin" mode. To disable this in Strapi 5, run `yarn develop --no-watch-admin` or `npm run develop --no-watch-admin`. |
+| `strapi install [plugin]` | 플러그인에 해당하는 npx 명령어를 사용하세요 (마켓플레이스에서 찾을 수 있습니다. [마켓플레이스](/cms/plugins/installing-plugins-via-marketplace) 참조)                                                |
+| `strapi new`              | 새로운 Strapi 프로젝트를 생성하기 위해 동등한 yarn 또는 npx 명령어를 사용하세요 ([CLI 설치 가이드](/cms/installation/cli) 참조)                                                                   |
+| `strapi watch-admin`      | `yarn develop` 또는 `npm run develop`는 항상 "watch-admin" 모드로 Strapi 서버를 시작합니다. Strapi 5에서 이를 비활성화하려면 `yarn develop --no-watch-admin` 또는 `npm run develop --no-watch-admin`을 실행하세요. |
 
 </details>
 
 ## strapi develop
 
-**Alias**: `dev`
+**별칭**: `dev`
 
-Start a Strapi application with auto-reloading enabled.
+자동 재로딩이 활성화된 상태로 Strapi 애플리케이션을 시작합니다.
 
-Strapi modifies/creates files at runtime and needs to restart when new files are created. To achieve this, `strapi develop` adds a file watcher and restarts the application when necessary.
+Strapi는 런타임에 파일을 수정/생성하며 새 파일이 생성될 때 재시작해야 합니다. 이를 위해 `strapi develop`는 파일 감시자를 추가하고 필요할 때 애플리케이션을 재시작합니다.
 
-Strapi also adds middlewares to support HMR (Hot Module Replacement) for the administration panel. This allows you to customize the administration panel without having to restart the application or run a separate server.
+Strapi는 또한 관리자 패널을 위한 HMR(핫 모듈 교체)을 지원하는 미들웨어를 추가합니다. 이를 통해 애플리케이션을 재시작하거나 별도의 서버를 실행할 필요 없이 관리자 패널을 커스터마이징할 수 있습니다.
 
 ```shell
 strapi develop
@@ -59,83 +59,83 @@ options: [--no-build |--no-watch-admin |--browser |--debug |--silent]
 ```
 
 - **strapi develop --open**<br/>
-  Starts your application with auto-reloading enabled & open your default browser with the administration panel running.
+  자동 재로딩이 활성화된 상태로 애플리케이션을 시작하고 관리자 패널이 실행 중인 기본 브라우저를 엽니다.
 - **strapi develop --no-watch-admin**<br/>
-  Prevents the server from auto-reload when changes are made to the admin panel code.
-- [DEPRECATED] **strapi develop --no-build**<br/>
-  Starts your application with the auto-reloading enabled and skip the administration panel build process
-- [DEPRECATED] **strapi develop --watch-admin**<br/>
-  Starts your application with the auto-reloading enabled and the front-end development server. It allows you to customize the administration panel.
-- [DEPRECATED] **strapi develop --watch-admin --browser 'google chrome'**<br/>
-  Starts your application with the auto-reloading enabled and the front-end development server. It allows you to customize the administration panel. Provide a browser name to use instead of the default one, `false` means stop opening the browser.
+  관리자 패널 코드에 변경사항이 있을 때 서버가 자동 재로드되는 것을 방지합니다.
+- [사용 중단] **strapi develop --no-build**<br/>
+  자동 재로딩이 활성화된 상태로 애플리케이션을 시작하고 관리자 패널 빌드 프로세스를 건너뜁니다.
+- [사용 중단] **strapi develop --watch-admin**<br/>
+  자동 재로딩이 활성화된 상태로 애플리케이션을 시작하고 프론트엔드 개발 서버를 함께 시작합니다. 관리자 패널을 커스터마이징할 수 있습니다.
+- [사용 중단] **strapi develop --watch-admin --browser 'google chrome'**<br/>
+  자동 재로딩이 활성화된 상태로 애플리케이션을 시작하고 프론트엔드 개발 서버를 함께 시작합니다. 관리자 패널을 커스터마이징할 수 있습니다. 기본 브라우저 대신 사용할 브라우저 이름을 제공하고, `false`는 브라우저 열기를 중단함을 의미합니다.
 
 :::warning
-You should never use this command to run a Strapi application in production.
+프로덕션에서 Strapi 애플리케이션을 실행할 때는 이 명령어를 절대 사용하지 마세요.
 :::
 
 ## strapi start
 
-Start a Strapi application with auto-reloading disabled.
+자동 재로딩이 비활성화된 상태로 Strapi 애플리케이션을 시작합니다.
 
-This command is to run a Strapi application without restarts and file writes, primarily for use in production.
-Certain features such as the Content-type Builder are disabled in the `strapi start` mode because they require application restarts. The `start` command can be prefaced with [environment variables](/cms/configurations/environment#strapi) to customize the application start.
+이 명령어는 주로 프로덕션에서 사용하기 위해 재시작과 파일 쓰기 없이 Strapi 애플리케이션을 실행하는 데 사용됩니다.
+콘텐츠 타입 빌더와 같은 특정 기능은 애플리케이션 재시작이 필요하기 때문에 `strapi start` 모드에서는 비활성화됩니다. `start` 명령어는 애플리케이션 시작을 커스터마이징하기 위해 [환경 변수](/cms/configurations/environment#strapi)를 앞에 붙일 수 있습니다.
 
 ## strapi build
 
-Builds your admin panel.
+관리자 패널을 빌드합니다.
 
 ```bash
 strapi build
 ```
 
-| Option              | Type | Description                                              |
+| 옵션                | 타입 | 설명                                                  |
 | ------------------- | :--: | -------------------------------------------------------- |
-| `-d, --debug`       |  -   | Enable debugging mode with verbose logs (default: false) |
-| `--minify`          |  -   | Minify the output (default: true)                        |
-| `--no-optimization` |  -   | [DEPRECATED]: use minify instead                         |
-| `--silent`          |  -   | Don't log anything (default: false)                      |
-| `--sourcemaps`      |  -   | Produce sourcemaps (default: false)                      |
-| `--stats`           |  -   | Print build statistics to the console (default: false)   |
+| `-d, --debug`       |  -   | 상세 로그와 함께 디버깅 모드 활성화 (기본값: false) |
+| `--minify`          |  -   | 출력 최소화 (기본값: true)                        |
+| `--no-optimization` |  -   | [사용 중단]: 대신 minify를 사용하세요                         |
+| `--silent`          |  -   | 아무것도 로그하지 않음 (기본값: false)                      |
+| `--sourcemaps`      |  -   | 소스맵 생성 (기본값: false)                      |
+| `--stats`           |  -   | 빌드 통계를 콘솔에 출력 (기본값: false)   |
 
 ## strapi login
 
-Logs in to Strapi Cloud (see [Cloud CLI](/cloud/cli/cloud-cli#strapi-login) documentation).
+Strapi Cloud에 로그인합니다 ([Cloud CLI](/cloud/cli/cloud-cli#strapi-login) 문서 참조).
 
 ## strapi logout
 
-Logs out from Strapi Cloud (see [Cloud CLI](/cloud/cli/cloud-cli#strapi-logout) documentation).
+Strapi Cloud에서 로그아웃합니다 ([Cloud CLI](/cloud/cli/cloud-cli#strapi-logout) 문서 참조).
 
 ## strapi deploy
 
-Deploys to Strapi Cloud (see [Cloud CLI](/cloud/cli/cloud-cli#strapi-deploy) documentation).
+Strapi Cloud에 배포합니다 ([Cloud CLI](/cloud/cli/cloud-cli#strapi-deploy) 문서 참조).
 
 ## strapi export
 
-[Exports your project data](/cms/features/data-management). The default settings create a `.tar` file, compressed using `gzip` and encrypted using `aes-128-ecb`.
+[프로젝트 데이터를 내보냅니다](/cms/features/data-management). 기본 설정은 `gzip`으로 압축되고 `aes-128-ecb`로 암호화된 `.tar` 파일을 생성합니다.
 
 ```bash
 strapi export
 ```
 
-The exported file is automatically named using the format `export_YYYYMMDDHHMMSS` with the current date and timestamp. Alternately, you can specify the filename using the `-f` or `--file` flag. The following table provides all of the available options as command line flags:
+내보낸 파일은 현재 날짜와 타임스탬프를 사용하여 `export_YYYYMMDDHHMMSS` 형식으로 자동 명명됩니다. 또는 `-f` 또는 `--file` 플래그를 사용하여 파일명을 지정할 수 있습니다. 다음 표는 명령줄 플래그로 사용 가능한 모든 옵션을 제공합니다:
 
-| Option              |  Type  | Description                                                                                                                |
+| 옵션              |  타입  | 설명                                                                                                                |
 | ------------------- | :----: | -------------------------------------------------------------------------------------------------------------------------- |
-| `--no-encrypt`      |   -    | Disables file encryption and disables the `key` option.   |
-| `--no-compress`     |   -    | Disables file compression.      |
-| `-k`, <br/>`--key`  | string | Passes the encryption key as part of the `export` command. <br/> The `--key` option can't be combined with `--no-encrypt`. |
-| `-f`, <br/>`--file` | string | Specifies the export filename. Do not include a file extension.                                                            |
-| `--exclude`         | string | Exclude data using comma-separated data types. The available types are: `content`, `files`, and `config`.                  |
-| `--only`            | string | Include only these data. The available types are: `content`, `files`, and `config`.                                        |
-| `-h`, <br/>`--help` |   -    | Displays help for the `strapi export` command.                                                                             |
+| `--no-encrypt`      |   -    | 파일 암호화를 비활성화하고 `key` 옵션을 비활성화합니다.   |
+| `--no-compress`     |   -    | 파일 압축을 비활성화합니다.      |
+| `-k`, <br/>`--key`  | string | `export` 명령의 일부로 암호화 키를 전달합니다. <br/> `--key` 옵션은 `--no-encrypt`와 결합할 수 없습니다. |
+| `-f`, <br/>`--file` | string | 내보내기 파일명을 지정합니다. 파일 확장자는 포함하지 마세요.                                                            |
+| `--exclude`         | string | 쉼표로 구분된 데이터 타입을 사용하여 데이터를 제외합니다. 사용 가능한 타입: `content`, `files`, `config`.                  |
+| `--only`            | string | 이러한 데이터만 포함합니다. 사용 가능한 타입: `content`, `files`, `config`.                                        |
+| `-h`, <br/>`--help` |   -    | `strapi export` 명령에 대한 도움말을 표시합니다.                                                                             |
 
-**Examples**
+**예제**
 
-```bash title="Examples of strapi export:"
-# export your data with the default options and the filename myData, which results in a file named myData.tar.gz.enc.
+```bash title="strapi export 예제:"
+# 기본 옵션과 myData 파일명으로 데이터를 내보내며, myData.tar.gz.enc 파일이 생성됩니다.
 strapi export -f myData
 
-# export your data without encryption.
+# 암호화 없이 데이터를 내보냅니다.
 strapi export --no-encrypt
 ```
 

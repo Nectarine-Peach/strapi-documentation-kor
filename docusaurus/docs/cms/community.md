@@ -1,40 +1,38 @@
 ---
 tags:
-- contribution
-- community
-- support
-- feature request
-- bug report
-- pull request
+- 기여
+- 커뮤니티
+- 지원
+- 기능 요청
+- 버그 리포트
+- 풀 리퀘스트
 ---
 
+# 커뮤니티 & 지원
 
+Strapi는 오픈소스 프로젝트입니다(자세한 내용은 <ExternalLink to="https://github.com/strapi/strapi/blob/master/LICENSE" text="LICENSE"/> 파일 참고). 핵심 프로젝트, 문서, 관련 도구는 모두 <ExternalLink to="https://github.com/strapi" text="Strapi"/> GitHub 조직에서 확인할 수 있습니다.
 
-# Community & Support 
+## 오픈소스 & 기여
 
-Strapi is an open-source project (see <ExternalLink to="https://github.com/strapi/strapi/blob/master/LICENSE" text="LICENSE"/> file for more information). The core project, as well as the documentation and any related tool can be found in the <ExternalLink to="https://github.com/strapi" text="Strapi"/> GitHub organization.
+Strapi는 오픈소스 생태계와 함께 성장하며, 누구나 기여할 수 있습니다. Strapi 팀은 기능 요청, 버그 리포트, 풀 리퀘스트 등 모든 기여를 소중히 여깁니다. 다음 GitHub 저장소들은 오픈소스이며, 기여를 환영합니다:
 
-## Open-source & Contribution
+- <ExternalLink to="https://github.com/strapi/strapi" text="`strapi/strapi`"/>: Strapi의 메인 저장소로, 프로젝트의 핵심 코드(관리자 패널, 코어 플러그인, 플러그인 프로바이더 등)가 모두 포함되어 있습니다. 기여 방법은 <ExternalLink to="https://github.com/strapi/strapi/blob/master/CONTRIBUTING.md" text="`CONTRIBUTING.md`"/> 파일을 참고하세요.
+- <ExternalLink to="https://github.com/strapi/documentation" text="`strapi/documentation`"/>: Strapi 공식 문서 저장소입니다. 문서 기여 방법은 <ExternalLink to="https://github.com/strapi/documentation/blob/main/CONTRIBUTING.md" text="기여 가이드"/>를 참고하세요.
+- <ExternalLink to="https://github.com/strapi/design-system" text="`strapi/design-system`"/>: 관리자 패널에서 사용하는 디자인 시스템 저장소로, 다양한 플러그인 간 UI 일관성을 제공합니다.
+- <ExternalLink to="https://github.com/strapi/awesome-strapi" text="`strapi-community/awesome-strapi`"/>: 커뮤니티가 만든 모든 플러그인, 미들웨어, 훅, 확장 기능 등을 모아둔 저장소입니다. 새로운 패키지(플러그인, 미들웨어 등)를 찾거나 제출할 때 활용할 수 있습니다.
 
-As it goes hand in hand with the open-source ecosystem, Strapi is open to contributions. The Strapi team appreciates every contribution, be it a feature request, bug report, or pull request. The following GitHub repositories are open-source and contributions-friendly:
+## Strapi 커뮤니티
 
-- <ExternalLink to="https://github.com/strapi/strapi" text="`strapi/strapi`"/>: main repository of Strapi, which contains the core of the project. You can find the admin panel, core plugins, plugin providers, and the whole code that runs your Strapi application. Please read the <ExternalLink to="https://github.com/strapi/strapi/blob/master/CONTRIBUTING.md" text="`CONTRIBUTING.md`"/> file to have more information about contributions to the main repository.
-- <ExternalLink to="https://github.com/strapi/documentation" text="`strapi/documentation`"/>: contains the whole documentation of Strapi. Please read the <ExternalLink to="https://github.com/strapi/documentation/blob/main/CONTRIBUTING.md" text="contribution guide"/> to have more information about contributions to the Strapi documentation.
-- <ExternalLink to="https://github.com/strapi/design-system" text="`strapi/design-system`"/>: is the design system that is used in the admin panel. It brings consistency between the different admin plugins.
-- <ExternalLink to="https://github.com/strapi/awesome-strapi" text="`strapi-community/awesome-strapi`"/>: contains everything the community built and all managed plugins. It is used as a central place to find and submit new packages such as plugins, middlewares, hooks, and general enhancements to the core of Strapi.
+Strapi는 투명성을 중시하는 커뮤니티 중심 프로젝트입니다. Strapi 팀은 비전 공유와 커뮤니티와 함께 미래를 만들어가는 것을 중요하게 생각합니다. 이를 위해 <ExternalLink to="https://feedback.strapi.io" text="로드맵"/>을 공개하고 있으며, 커뮤니티 누구나 아이디어와 의견을 자유롭게 남길 수 있습니다.
 
-## Strapi Community
+커뮤니티 구성원들은 Strapi에 관한 다양한 자료를 만들어 공유하고 있습니다. Strapi 공식 웹사이트에서 <ExternalLink to="https://strapi.io/tutorials/" text="튜토리얼"/>을 확인하거나 직접 작성할 수도 있습니다. 또한 오픈소스 프로젝트인 만큼, Strapi 공식 문서도 누구나 기여할 수 있습니다(상단 [오픈소스 & 기여](#open-source--contribution) 참고).
 
-Strapi is a community-oriented project with an emphasis on transparency. The Strapi team has at heart to share their vision and build the future of Strapi with the Strapi community. This is why the <ExternalLink to="https://feedback.strapi.io" text="roadmap"/> is open: as all insights are very important and will help steer the project in the right direction, any community member is most welcome to share ideas and opinions there.
-
-Community members also take great part in providing the whole community a plethora of resources about Strapi. You can find <ExternalLink to="https://strapi.io/tutorials/" text="tutorials"/> on the Strapi website, where you can also create your own. Also, as an open-source project, the documentation of Strapi is open to contributions (see [Open-source & Contribution](#open-source--contribution)).
-
-:::strapi Want to join the community?
-You can join <ExternalLink to="https://github.com/strapi/strapi" text="GitHub"/>, the <ExternalLink to="https://forum.strapi.io/" text="Forum"/>, and the <ExternalLink to="https://discord.strapi.io" text="Discord"/> to share your ideas and opinions with other community members and members of the Strapi team. If you're looking for news and updates about Strapi, <ExternalLink to="https://twitter.com/strapijs" text="Twitter"/> and the <ExternalLink to="https://strapi.io/blog" text="blog"/> are pretty good places to start!
+:::strapi 커뮤니티에 참여하고 싶으신가요?
+<ExternalLink to="https://github.com/strapi/strapi" text="GitHub"/>와 <ExternalLink to="https://forum.strapi.io/" text="포럼"/>, <ExternalLink to="https://discord.strapi.io" text="Discord"/>에서 다른 커뮤니티 구성원 및 Strapi 팀과 소통할 수 있습니다. Strapi의 최신 소식과 업데이트는 <ExternalLink to="https://twitter.com/strapijs" text="Twitter"/>와 <ExternalLink to="https://strapi.io/blog" text="블로그"/>에서 확인해보세요!
 :::
 
-## Support
+## 지원
 
-Strapi's Community plan is a free and open-source option for users who wish to self-host the software. If you have an issue or a question, the <ExternalLink to="https://forum.strapi.io" text="forum"/> is great first place to reach out for help. Both the Strapi community and core developers often check this platform and answer posts.
+Strapi의 Community 플랜은 소프트웨어를 직접 호스팅하는 사용자를 위한 무료 오픈소스 옵션입니다. 문제가 있거나 궁금한 점이 있다면 <ExternalLink to="https://forum.strapi.io" text="포럼"/>에서 도움을 요청해보세요. Strapi 커뮤니티와 코어 개발자들이 자주 확인하고 답변을 남깁니다.
 
-For customers on our paid plans, you can reference our <ExternalLink to="https://support.strapi.io/support/home" text="Support platform"/> to determine your support level and check out our Support platform for more information. Please note that you must have an active <GrowthBadge /> or <EnterpriseBadge /> plan to submit a ticket.
+유료 플랜을 사용하는 고객은 <ExternalLink to="https://support.strapi.io/support/home" text="지원 플랫폼"/>에서 지원 수준을 확인하고, 자세한 정보를 얻을 수 있습니다. 티켓 제출은 <GrowthBadge /> 또는 <EnterpriseBadge /> 플랜이 활성화된 경우에만 가능합니다.

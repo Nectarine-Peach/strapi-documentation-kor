@@ -1,66 +1,66 @@
 ---
-title: Server API for plugins
-sidebar_label: Server API
+title: 플러그인용 서버 API
+sidebar_label: 서버 API
 displayed_sidebar: cmsSidebar
-description: Strapi's Server API for plugins allows a Strapi plugin to customize the back end part (i.e. the server) of your application.
+description: Strapi의 플러그인용 서버 API는 Strapi 플러그인이 애플리케이션의 백엔드 부분(즉, 서버)을 커스터마이징할 수 있게 해줍니다.
 tags:
-- plugin APIs
-- lifecycle function
-- register function
-- bootstrap function
-- destroy function
-- configuration
-- backend customization
-- routes
-- controllers
-- services
-- policies
-- middlewares
+- 플러그인 API
+- 라이프사이클 함수
+- register 함수
+- bootstrap 함수
+- destroy 함수
+- 설정
+- 백엔드 커스터마이징
+- 라우트
+- 컨트롤러
+- 서비스
+- 정책
+- 미들웨어
 
 ---
 
-# Server API for plugins
+# 플러그인용 서버 API
 
-A Strapi plugin can interact with both the back end and the [front end](/cms/plugins-development/admin-panel-api) of a Strapi application. The Server API is about the back-end part, i.e. how the plugin interacts with the server part of a Strapi application.
+Strapi 플러그인은 Strapi 애플리케이션의 백엔드와 [프론트엔드](/cms/plugins-development/admin-panel-api) 모두와 상호작용할 수 있습니다. 서버 API는 백엔드 부분, 즉 플러그인이 Strapi 애플리케이션의 서버 부분과 상호작용하는 방법에 대한 것입니다.
 
 :::prerequisites
-You have [created a Strapi plugin](/cms/plugins-development/create-a-plugin).
+[Strapi 플러그인을 생성](/cms/plugins-development/create-a-plugin)했어야 합니다.
 :::
 
-The Server API includes:
+서버 API는 다음을 포함합니다:
 
-- an [entry file](#entry-file) which export the required interface,
-- [lifecycle functions](#lifecycle-functions),
-- a [configuration](#configuration) API,
-- and the ability to [customize all elements of the back-end server](#backend-customization).
+- 필수 인터페이스를 내보내는 [진입 파일](#entry-file)
+- [라이프사이클 함수](#lifecycle-functions)
+- [설정](#configuration) API
+- [백엔드 서버의 모든 요소를 커스터마이징](#backend-customization)할 수 있는 기능
 
-Once you have declared and exported the plugin interface, you will be able to [use the plugin interface](#usage).
+플러그인 인터페이스를 선언하고 내보낸 후에는 [플러그인 인터페이스를 사용](#usage)할 수 있습니다.
 
 :::note
-The whole code for the server part of your plugin could live in the `/server/src/index.ts|js` file. However, it's recommended to split the code into different folders, just like the [structure](/cms/plugins-development/plugin-structure) created by the Plugin SDK.
+플러그인의 서버 부분에 대한 모든 코드는 `/server/src/index.ts|js` 파일에 있을 수 있습니다. 하지만 플러그인 SDK에서 생성된 [구조](/cms/plugins-development/plugin-structure)처럼 코드를 다른 폴더로 분할하는 것이 권장됩니다.
 :::
 
-## Entry file
+## 진입 파일
 
-The `/src/server/index.js` file at the root of the plugin folder exports the required interface, with the following parameters available:
+플러그인 폴더 루트의 `/src/server/index.js` 파일은 필수 인터페이스를 내보내며, 다음 매개변수들을 사용할 수 있습니다:
 
-| Parameter type         | Available parameters                                                                                                                                                                                           |
+| 매개변수 타입 | 사용 가능한 매개변수 |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Lifecycle functions    | <ul><li> [register](#register)</li><li>[bootstrap](#bootstrap)</li><li>[destroy](#destroy)</li></ul>                                                                                                           |
-| Configuration          | <ul><li>[config](#configuration) object   </li></ul>                                                                                                                                                                             |
-| Backend customizations | <ul><li>[contentTypes](#content-types)</li><li>[routes](#routes)</li><li>[controllers](#controllers)</li><li>[services](#services)</li><li>[policies](#policies)</li><li>[middlewares](#middlewares)</li></ul> |
+| 라이프사이클 함수 | <ul><li> [register](#register)</li><li>[bootstrap](#bootstrap)</li><li>[destroy](#destroy)</li></ul> |
+| 설정 | <ul><li>[config](#configuration) 객체</li></ul> |
+| 백엔드 커스터마이징 | <ul><li>[contentTypes](#content-types)</li><li>[routes](#routes)</li><li>[controllers](#controllers)</li><li>[services](#services)</li><li>[policies](#policies)</li><li>[middlewares](#middlewares)</li></ul> |
 
-## Lifecycle functions
+## 라이프사이클 함수
 
 <br/>
 
 ### register()
 
-This function is called to load the plugin, before the application is [bootstrapped](#bootstrap), in order to register [permissions](/cms/features/users-permissions), the server part of [custom fields](/cms/features/custom-fields#registering-a-custom-field-on-the-server), or database migrations.
+이 함수는 애플리케이션이 [부트스트랩](#bootstrap)되기 전에 플러그인을 로드하기 위해 호출되며, [권한](/cms/features/users-permissions), [커스텀 필드](/cms/features/custom-fields#registering-a-custom-field-on-the-server)의 서버 부분, 또는 데이터베이스 마이그레이션을 등록하는 데 사용됩니다.
 
-**Type**: `Function`
+**타입**: `Function`
 
-**Example:**
+**예시:**
 
 <Tabs groupId="js-ts">
 
@@ -71,7 +71,7 @@ This function is called to load the plugin, before the application is [bootstrap
 'use strict';
 
 const register = ({ strapi }) => {
-  // execute some register code
+  // 일부 register 코드 실행
 };
 
 module.exports = register;
@@ -86,7 +86,7 @@ module.exports = register;
 import type { Core } from '@strapi/strapi';
 
 const register = ({ strapi }: { strapi: Core.Strapi }) => {
-  // execute some register code
+  // 일부 register 코드 실행
 };
 
 export default register;
@@ -98,11 +98,11 @@ export default register;
 
 ### bootstrap()
 
-The [bootstrap](/cms/configurations/functions#bootstrap) function is called right after the plugin has [registered](#register).
+[bootstrap](/cms/configurations/functions#bootstrap) 함수는 플러그인이 [등록](#register)된 직후에 호출됩니다.
 
-**Type**: `Function`
+**타입**: `Function`
 
-**Example:**
+**예시:**
 
 <Tabs groupId="js-ts">
 
@@ -112,7 +112,7 @@ The [bootstrap](/cms/configurations/functions#bootstrap) function is called righ
 'use strict';
 
 const bootstrap = ({ strapi }) => {
-  // execute some bootstrap code
+  // 일부 bootstrap 코드 실행
 };
 
 module.exports = bootstrap;
@@ -126,7 +126,7 @@ module.exports = bootstrap;
 import type { Core } from '@strapi/strapi';
 
 const bootstrap = ({ strapi }: { strapi: Core.Strapi }) => {
-  // execute some bootstrap code
+  // 일부 bootstrap 코드 실행
 };
 
 export default bootstrap;
@@ -139,11 +139,11 @@ export default bootstrap;
 
 ### destroy()
 
-The [destroy](/cms/configurations/functions#destroy) lifecycle function is called to cleanup the plugin (close connections, remove listeners, etc.) when the Strapi instance is destroyed.
+[destroy](/cms/configurations/functions#destroy) 라이프사이클 함수는 Strapi 인스턴스가 파괴될 때 플러그인을 정리(연결 종료, 리스너 제거 등)하기 위해 호출됩니다.
 
-**Type**: `Function`
+**타입**: `Function`
 
-**Example:**
+**예시:**
 
 <Tabs groupId="js-ts">
 
@@ -153,7 +153,7 @@ The [destroy](/cms/configurations/functions#destroy) lifecycle function is calle
 'use strict';
 
 const destroy = ({ strapi }) => {
-  // execute some destroy code
+  // 일부 destroy 코드 실행
 };
 
 module.exports = destroy;
@@ -167,7 +167,7 @@ module.exports = destroy;
 import type { Core } from '@strapi/strapi';
 
 const destroy = ({ strapi }: { strapi: Core.Strapi }) => {
-  // destroy phase
+  // destroy 단계
 };
 
 export default destroy;
@@ -176,18 +176,18 @@ export default destroy;
 </TabItem>
 </Tabs>
 
-## Configuration
+## 설정
 
-`config` stores the default plugin configuration. It loads and validates the configuration inputted from the user within the [`./config/plugins.js` configuration file](/cms/configurations/plugins).
+`config`는 기본 플러그인 설정을 저장합니다. [`./config/plugins.js` 설정 파일](/cms/configurations/plugins)에서 사용자가 입력한 설정을 로드하고 유효성을 검사합니다.
 
-**Type**: `Object`
+**타입**: `Object`
 
-| Parameter   | Type                                           | Description                                                                                                                                              |
+| 매개변수 | 타입 | 설명 |
 | ----------- | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `default`   | Object, or Function that returns an Object | Default plugin configuration, merged with the user configuration                                                                                         |
-| `validator` | Function                                       | <ul><li>Checks if the results of merging the default plugin configuration with the user configuration is valid</li><li>Throws errors when the resulting configuration is invalid</li></ul> |
+| `default` | Object, 또는 Object를 반환하는 Function | 기본 플러그인 설정, 사용자 설정과 병합됩니다 |
+| `validator` | Function | <ul><li>기본 플러그인 설정과 사용자 설정을 병합한 결과가 유효한지 확인합니다</li><li>결과 설정이 유효하지 않을 때 오류를 발생시킵니다</li></ul> |
 
-**Example:**
+**예시:**
 
 <Tabs groupId="js-ts">
 <TabItem value="js" label="JavaScript">
@@ -198,7 +198,7 @@ module.exports = {
   default: ({ env }) => ({ optionA: true }),
   validator: (config) => { 
     if (typeof config.optionA !== 'boolean') {
-      throw new Error('optionA has to be a boolean');
+      throw new Error('optionA는 불린 값이어야 합니다');
     }
   },
 };
@@ -214,7 +214,7 @@ export default {
   default: ({ env }) => ({ optionA: true }),
   validator: (config) => { 
     if (typeof config.optionA !== 'boolean') {
-      throw new Error('optionA has to be a boolean');
+      throw new Error('optionA는 불린 값이어야 합니다');
     }
   },
 };
@@ -223,170 +223,101 @@ export default {
 </TabItem>
 </Tabs>
 
-Once defined, the configuration can be accessed:
+## 백엔드 커스터마이징
 
-- with `strapi.plugin('plugin-name').config('some-key')` for a specific configuration property,
-- or with `strapi.config.get('plugin.plugin-name')` for the whole configuration object.
+모든 [백엔드 커스터마이징](/cms/backend-customization) 요소는 플러그인에서 사용할 수 있습니다.
 
-:::tip
-Run `yarn strapi console` or `npm run strapi console` to access the strapi object in a live console.
-:::
+### 콘텐츠 타입
 
-## Backend customization
+플러그인에 [콘텐츠 타입](/cms/backend-customization/models)을 추가할 수 있습니다.
 
-All elements of the back-end server of Strapi can be customized through a plugin using the Server API.
+`contentTypes` 키는 플러그인의 콘텐츠 타입 정의를 저장하는 객체를 기대하며, 여기서 키는 콘텐츠 타입 이름이고 값은 콘텐츠 타입 정의입니다([스키마 생성](/cms/backend-customization/models#defining-a-model-schema) 참고).
 
-:::prerequisites
-To better understand this section, ensure you have read through the [back-end customization](/cms/backend-customization) documentation of a Strapi application.
-:::
+**타입**: `Object`
 
-### Content-types
-
-An object with the [content-types](/cms/backend-customization/models) the plugin provides.
-
-**Type**: `Object`
-
-:::note
-Content-Types keys in the `contentTypes` object should re-use the `singularName` defined in the [`info`](/cms/backend-customization/models#model-information) key of the schema.
-:::
-
-**Example:**
+**예시:**
 
 <Tabs groupId="js-ts">
 
 <TabItem value="js" label="JavaScript">
 
-```js title="/src/plugins/my-plugin/server/content-types/index.js"
+```js title="/src/plugins/my-plugin/server/src/content-types/index.js"
 
 'use strict';
 
-const contentTypeA = require('./content-type-a');
-const contentTypeB = require('./content-type-b');
+const myContentType = require('./my-content-type');
 
 module.exports = {
-  'content-type-a': { schema: contentTypeA }, // should re-use the singularName of the content-type
-  'content-type-b': { schema: contentTypeB },
-};
-```
-
-```js title="/src/plugins/my-plugin/server/content-types/content-type-a.js"
-
-module.exports = {
-  kind: 'collectionType',
-  collectionName: 'content-type',
-  info: {
-    singularName: 'content-type-a', // kebab-case mandatory
-    pluralName: 'content-type-as', // kebab-case mandatory
-    displayName: 'Content Type A',
-    description: 'A regular content-type',
-  },
-  options: {
-    draftAndPublish: true,
-  },
-  pluginOptions: {
-    'content-manager': {
-      visible: false,
-    },
-    'content-type-builder': {
-      visible: false,
-    }
-  },
-  attributes: {
-    name: {
-      type: 'string',
-      min: 1,
-      max: 50,
-      configurable: false,
-    },
-  }
+  'my-content-type': myContentType, // 콘텐츠 타입의 키는 콘텐츠 타입 파일명과 일치해야 함
 };
 ```
 
 </TabItem>
+
 <TabItem value="ts" label="TypeScript">
 
-```js title="/src/plugins/my-plugin/server/content-types/index.ts"
+```js title="/src/plugins/my-plugin/server/src/content-types/index.ts"
 
-const contentTypeA = require('./content-type-a');
-const contentTypeB = require('./content-type-b');
-
-module.exports = {
-  'content-type-a': { schema: contentTypeA }, // should re-use the singularName of the content-type
-  'content-type-b': { schema: contentTypeB },
-};
-```
-
-```js title="/src/plugins/my-plugin/server/content-types/content-type-a.ts"
+import myContentType from './my-content-type';
 
 export default {
-  kind: 'collectionType',
-  collectionName: 'content-type',
-  info: {
-    singularName: 'content-type-a', // kebab-case mandatory
-    pluralName: 'content-type-as', // kebab-case mandatory
-    displayName: 'Content Type A',
-    description: 'A regular content-type',
-  },
-  options: {
-    draftAndPublish: true,
-  },
-  pluginOptions: {
-    'content-manager': {
-      visible: false,
-    },
-    'content-type-builder': {
-      visible: false,
-    }
-  },
-  attributes: {
-    name: {
-      type: 'string',
-      min: 1,
-      max: 50,
-      configurable: false,
-    },
-  }
+  'my-content-type': myContentType, // 콘텐츠 타입의 키는 콘텐츠 타입 파일명과 일치해야 함
 };
 ```
 
 </TabItem>
+
 </Tabs>
 
-### Routes
+### 라우트
 
-An array of [routes](/cms/backend-customization/routes) configuration.
+플러그인은 [라우트](/cms/backend-customization/routes)를 추가할 수 있으며, 이는 다음 형식으로 정의할 수 있습니다:
 
-**Type**: `Object[]`
+```js
+module.exports = {
+  routes: [
+    {
+      method: 'GET',
+      path: '/my-plugin/my-route',
+      handler: 'myController.myAction',
+      config: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    },
+  ],
+};
+```
 
-**Examples:**
+`routes` 키는 플러그인의 라우트를 저장하는 배열 또는 객체를 기대합니다. 자세한 구문은 [라우트 문서](/cms/backend-customization/routes)를 참고하세요.
 
-<Tabs groupId="js-ts">
+**타입**: `Object` 또는 `Array`
 
-<TabItem value="content-api" label="Content API routes only">
+**예시:**
 
 <Tabs groupId="js-ts">
 
 <TabItem value="js" label="JavaScript">
 
-```js title="/src/plugins/my-plugin/server/index.js"
-
-const routes = require('./routes');
-
-module.exports = () => ({
-  routes,
-  type: 'content-api', // can also be 'admin' depending on the type of route
-});
-```
-
-```js title="/src/plugins/my-plugin/server/routes/index.js"
-
+```js title="/src/plugins/my-plugin/server/src/routes/index.js"
 module.exports = [
   {
     method: 'GET',
-    path: '/model',
-    handler: 'controllerName.action',
+    path: '/my-plugin',
+    handler: 'myController.index',
     config: {
-      policies: ['policyName'],
+      policies: [],
+      auth: false,
+    },
+  },
+  {
+    method: 'GET',
+    path: '/my-plugin/:id',
+    handler: 'myController.findOne',
+    config: {
+      policies: [],
+      auth: false,
     },
   },
 ];
@@ -396,25 +327,24 @@ module.exports = [
 
 <TabItem value="ts" label="TypeScript">
 
-```js title="/src/plugins/my-plugin/server/index.ts"
-
-const routes = require('./routes');
-
-export default {
-  routes,
-  type: 'content-api', // can also be 'admin' depending on the type of route
-};
-```
-
-```js title="/src/plugins/my-plugin/server/routes/index.ts"
-
+```js title="/src/plugins/my-plugin/server/src/routes/index.ts"
 export default [
   {
     method: 'GET',
-    path: '/model',
-    handler: 'controllerName.action',
+    path: '/my-plugin',
+    handler: 'myController.index',
     config: {
-      policies: ['policyName'],
+      policies: [],
+      auth: false,
+    },
+  },
+  {
+    method: 'GET',
+    path: '/my-plugin/:id',
+    handler: 'myController.findOne',
+    config: {
+      policies: [],
+      auth: false,
     },
   },
 ];
@@ -424,343 +354,182 @@ export default [
 
 </Tabs>
 
-</TabItem>
+### 컨트롤러
 
-<TabItem value="both" label="Content API and admin routes">
+플러그인은 [컨트롤러](/cms/backend-customization/controllers)를 추가할 수 있습니다.
 
-It is also possible to combine both admin and Content API routes if you need different policies on these: 
+`controllers` 키는 플러그인의 컨트롤러를 저장하는 객체를 기대하며, 여기서 키는 컨트롤러 이름이고 값은 컨트롤러 구현체입니다.
+
+**타입**: `Object`
+
+**예시:**
 
 <Tabs groupId="js-ts">
 
 <TabItem value="js" label="JavaScript">
 
-```js title="./src/plugins/my-plugin/server/routes/index.js"
-
-module.exports = {
-  admin: require('./admin'),
-  'content-api': require('./content-api'),
-};
-```
-
-```js title="./src/plugins/my-plugin/server/routes/admin/index.js"
-
-module.exports = {
-  type: 'admin',
-  routes: [{
-    method: 'GET',
-    path: '/model',
-    handler: 'controllerName.action',
-    config: {
-      policies: ['policyName'],
-    },
-  }],
-};
-```
-
-```js title="./src/plugins/my-plugin/server/routes/content-api/index.js"
-
-module.exports = {
-  type: 'content-api',
-  routes: [{
-    method: 'GET',
-    path: '/model',
-    handler: 'controllerName.action',
-    config: {
-      policies: ['differentPolicyName'],
-    },
-  }],
-};
-```
-
-</TabItem>
-
-<TabItem value="ts" label="TypeScript">
-
-```js title="/src/plugins/my-plugin/server/routes/index.ts"
-
-export default {
-  admin: require('./admin'),
-  'content-api': require('./content-api'),
-};
-```
-
-```js title="/src/plugins/my-plugin/server/routes/admin/index.ts"
-
-export default {
-  type: 'admin',
-  routes: [{
-    method: 'GET',
-    path: '/model',
-    handler: 'controllerName.action',
-    config: {
-      policies: ['policyName'],
-    },
-  }],
-};
-```
-
-```js title="./src/plugins/my-plugin/server/routes/content-api/index.ts"
-
-export default {
-  type: 'content-api',
-  routes: [{
-    method: 'GET',
-    path: '/model',
-    handler: 'controllerName.action',
-    config: {
-      policies: ['differentPolicyName'],
-    },
-  }],
-};
-```
-
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-</Tabs>
-
-### Controllers
-
-An object with the [controllers](/cms/backend-customization/controllers) the plugin provides.
-
-**Type**: `Object`
-
-**Example:**
-
-<Tabs groupdId="js-ts">
-
-<TabItem value="js" label="JavaScript">
-
-```js title="/src/plugins/my-plugin/server/src/index.js"
-
-//…
-const controllers = require('./controllers');
-//…
-
-module.exports = () => ({
-  //…
-  controllers,
-  //…
-});
-```
-
-```js title="/src/plugins/my-plugin/server/controllers/index.js"
-
-const controllerA = require('./controller-a');
-const controllerB = require('./controller-b');
-
-module.exports = {
-  controllerA,
-  controllerB,
-};
-```
-
-```js title="/src/plugins/my-plugin/server/controllers/controller-a.js"
+```js title="/src/plugins/my-plugin/server/src/controllers/index.js"
 
 'use strict';
 
-const controllerA = ({ strapi }) => ({
-  index(ctx) {
-    ctx.body = strapi
-      .plugin('my-strapi-plugin')
-      // the name of the service file & the method.
-      .service('service')
-      .getWelcomeMessage();
-  },
-});
-
-module.exports = controllerA;
-
-```
-
-</TabItem>
-
-<TabItem value="ts" label="TypeScript">
-
-```js title="/src/plugins/my-plugin/server/src/index.ts"
-
-import controllers from './controllers';
-
-module.exports = () => ({
-  controllers,
-});
-```
-
-```js title="/src/plugins/my-plugin/server/controllers/index.ts"
-
-import controllerA from './controller-a';
-import controllerB from './controller-b';
-
-export default {
-  controllerA,
-  controllerB,
-};
-```
-
-```js title="/src/plugins/my-plugin/server/controllers/controller-a.ts"
-
-import type { Core } from '@strapi/strapi';
-
-const controllerA = ({ strapi }: { strapi: Core.Strapi }) => ({
-  index(ctx) {
-    ctx.body = strapi
-      .plugin('my-strapi-plugin')
-      // the name of the service file & the method.
-      .service('service')
-      .getWelcomeMessage();
-  },
-});
-
-export default controllerA;
-
-```
-
-</TabItem>
-
-</Tabs>
-
-### Services
-
-An object with the [services](/cms/backend-customization/services) the plugin provides.
-
-Services should be functions taking `strapi` as a parameter.
-
-**Type**: `Object`
-
-**Example:**
-
-<Tabs groupdId="js-ts">
-
-<TabItem value="js" label="JavaScript">
-
-```js title="/src/plugins/my-plugin/server/src/index.js"
-
-// …
-const services = require('./services');
-// …
-
-module.exports = () => ({
-  // …
-  services,
-  // …
-});
-```
-
-```js title="/src/plugins/my-plugin/server/services/index.js"
-
-const serviceA = require('./service-a');
-const serviceB = require('./service-b');
+const myController = require('./my-controller');
 
 module.exports = {
-  serviceA,
-  serviceB,
+  myController,
 };
 ```
 
-```js title="./src/plugins/my-plugin/server/services/service-a.js"
+```js title="/src/plugins/my-plugin/server/src/controllers/my-controller.js"
 
 'use strict';
 
-const service = ({ strapi }) => ({
-  getWelcomeMessage() {
-    return 'Welcome to Strapi 🚀';
+module.exports = {
+  index(ctx) {
+    ctx.body = `Hello World!`;
   },
-});
 
-module.exports = service;
-
+  async findOne(ctx) {
+    return strapi.plugin('my-plugin').service('myService').findOne(ctx.params.id);
+  },
+};
 ```
 
 </TabItem>
 
 <TabItem value="ts" label="TypeScript">
 
-```js title="/src/plugins/my-plugin/server/src/index.ts"
+```js title="/src/plugins/my-plugin/server/src/controllers/index.ts"
 
-// …
-import services from './services';
-// …
+import myController from './my-controller';
 
 export default {
-  // …
-  services,
-  // …
+  myController,
 };
 ```
 
-```js title="/src/plugins/my-plugin/server/services/index.ts"
-
-import serviceA from './service-a';
-import serviceB from './service-b';
-
-export default {
-  serviceA,
-  serviceB,
-};
-```
-
-```js title="/src/plugins/my-plugin/server/services/service-a.ts"
+```js title="/src/plugins/my-plugin/server/src/controllers/my-controller.ts"
 
 import type { Core } from '@strapi/strapi';
 
-const serviceA = ({ strapi }: { strapi: Core.Strapi }) => ({
-  getWelcomeMessage() {
-    return 'Welcome to Strapi 🚀';
+export default {
+  index(ctx) {
+    ctx.body = `Hello World!`;
   },
-});
 
-export default serviceA;
-
+  async findOne(ctx) {
+    return strapi.plugin('my-plugin').service('myService').findOne(ctx.params.id);
+  },
+};
 ```
 
 </TabItem>
 
 </Tabs>
 
-### Policies
+### 서비스
 
-An object with the [policies](/cms/backend-customization/policies) the plugin provides.
+플러그인은 [서비스](/cms/backend-customization/services)를 추가할 수 있습니다.
 
-**Type**: `Object`
+`services` 키는 플러그인의 서비스를 저장하는 객체를 기대하며, 여기서 키는 서비스 이름이고 값은 서비스 구현체입니다.
 
-**Example:**
+**타입**: `Object`
 
-<Tabs groupdId="js-ts">
+**예시:**
+
+<Tabs groupId="js-ts">
 
 <TabItem value="js" label="JavaScript">
 
-```js title="/src/plugins/my-plugin/server/src/index.js"
+```js title="/src/plugins/my-plugin/server/src/services/index.js"
 
-"use strict";
+'use strict';
 
-//…
-const policies = require('./policies');
-//…
+const myService = require('./my-service');
 
 module.exports = {
-  //…
-  policies,
-  //…
+  myService,
 };
 ```
 
-```js title="/src/plugins/my-plugin/server/policies/index.js"
+```js title="/src/plugins/my-plugin/server/src/services/my-service.js"
 
-const policyA = require('./policy-a');
-const policyB = require('./policy-b');
+'use strict';
 
-module.exports = {
-  policyA,
-  policyB,
+module.exports = ({ strapi }) => ({
+  findOne(id) {
+    return strapi.documents('plugin::my-plugin.my-content-type').findOne({
+      documentId: id,
+    });
+  },
+});
+```
+
+</TabItem>
+
+<TabItem value="ts" label="TypeScript">
+
+```js title="/src/plugins/my-plugin/server/src/services/index.ts"
+
+import myService from './my-service';
+
+export default {
+  myService,
 };
 ```
 
-```js title="/src/plugins/my-plugin/server/policies/policy-a.js"
+```js title="/src/plugins/my-plugin/server/src/services/my-service.ts"
+
+import type { Core } from '@strapi/strapi';
+
+export default ({ strapi }: { strapi: Core.Strapi }) => ({
+  findOne(id: string) {
+    return strapi.documents('plugin::my-plugin.my-content-type').findOne({
+      documentId: id,
+    });
+  },
+});
+```
+
+</TabItem>
+
+</Tabs>
+
+### 정책
+
+플러그인은 [정책](/cms/backend-customization/policies)을 추가할 수 있습니다.
+
+`policies` 키는 플러그인의 정책을 저장하는 객체를 기대하며, 여기서 키는 정책 이름이고 값은 정책 구현체입니다.
+
+**타입**: `Object`
+
+**예시:**
+
+<Tabs groupId="js-ts">
+
+<TabItem value="js" label="JavaScript">
+
+```js title="/src/plugins/my-plugin/server/src/policies/index.js"
+
+'use strict';
+
+const myPolicy = require('./my-policy');
+
+module.exports = {
+  myPolicy,
+};
+```
+
+```js title="/src/plugins/my-plugin/server/src/policies/my-policy.js"
+
+'use strict';
 
 module.exports = (policyContext, config, { strapi }) => {
-  if (ctx.state.user && ctx.state.user.isActive) {
+  // Add your own logic here.
+  console.log('In my-policy policy.');
+
+  const canDoSomething = true;
+
+  if (canDoSomething) {
     return true;
   }
 
@@ -772,34 +541,24 @@ module.exports = (policyContext, config, { strapi }) => {
 
 <TabItem value="ts" label="TypeScript">
 
-```js title="/src/plugins/my-plugin/server/src/index.ts"
+```js title="/src/plugins/my-plugin/server/src/policies/index.ts"
 
-//…
-import policies from './policies';
-//…
-
-module.exports = {
-  //…
-  policies,
-  //…
-};
-```
-
-```js title="/src/plugins/my-plugin/server/policies/index.ts"
-
-import policyA from './policy-a';
-import policyB from './policy-b';
+import myPolicy from './my-policy';
 
 export default {
-  policyA,
-  policyB,
+  myPolicy,
 };
 ```
 
-```js title="/src/plugins/my-plugin/server/policies/policy-a.ts"
+```js title="/src/plugins/my-plugin/server/src/policies/my-policy.ts"
 
 export default (policyContext, config, { strapi }) => {
-  if (ctx.state.user && ctx.state.user.isActive) {
+  // Add your own logic here.
+  console.log('In my-policy policy.');
+
+  const canDoSomething = true;
+
+  if (canDoSomething) {
     return true;
   }
 
@@ -811,57 +570,46 @@ export default (policyContext, config, { strapi }) => {
 
 </Tabs>
 
-### Middlewares
+### 미들웨어
 
-An object with the [middlewares](/cms/configurations/middlewares) the plugin provides.
+플러그인은 [미들웨어](/cms/backend-customization/middlewares)를 추가할 수 있습니다.
 
-**Type**: `Object`
+`middlewares` 키는 플러그인의 미들웨어를 저장하는 객체를 기대하며, 여기서 키는 미들웨어 이름이고 값은 미들웨어 구현체입니다.
 
-**Example:**
+**타입**: `Object`
+
+**예시:**
 
 <Tabs groupId="js-ts">
 
 <TabItem value="js" label="JavaScript">
 
-```js title="/src/plugins/my-plugin/server/middlewares/your-middleware.js"
+```js title="/src/plugins/my-plugin/server/src/middlewares/index.js"
 
-/** 
- * The your-middleware.js file 
- * declares a basic middleware function and exports it.
- */
 'use strict';
-module.exports = async (ctx, next) => {
-  console.log("your custom logic")
-  await next();
-}
-```
 
-```js title="./src/plugins/my-plugin/server/middlewares/index.js"
-
-/**
- * The middleware function previously created
- * is imported from its file and
- * exported by the middlewares index.
- */
-'use strict';
-const yourMiddleware = require('./your-middleware');
+const myMiddleware = require('./my-middleware');
 
 module.exports = {
-  yourMiddleware
+  myMiddleware,
 };
 ```
 
-```js title="./src/plugins/my-plugin/server/register.js"
+```js title="/src/plugins/my-plugin/server/src/middlewares/my-middleware.js"
+
+'use strict';
 
 /**
- * The middleware is called from 
- * the plugin's register lifecycle function.
+ * `my-middleware` 미들웨어
  */
-'use strict';
-const middlewares = require('./middlewares');
 
-module.exports = ({ strapi }) => {
-  strapi.server.use(middlewares.yourMiddleware);
+module.exports = (config, { strapi }) => {
+  // 여기에 자신만의 로직을 추가하세요.
+  return async (ctx, next) => {
+    console.log('In my-middleware middleware.');
+
+    await next();
+  };
 };
 ```
 
@@ -869,98 +617,73 @@ module.exports = ({ strapi }) => {
 
 <TabItem value="ts" label="TypeScript">
 
-```js title="/src/plugins/my-plugin/server/middlewares/your-middleware.ts"
+```js title="/src/plugins/my-plugin/server/src/middlewares/index.ts"
 
-/** 
- * The your-middleware.js file 
- * declares a basic middleware function and exports it.
- */
-const middleware = async (ctx, next) => {
-  console.log("your custom logic")
-  await next();
-}
-
-export default middleware;
-```
-
-```js title="./src/plugins/my-plugin/server/middlewares/index.ts"
-
-/**
- * The middleware function previously created
- * is imported from its file and
- * exported by the middlewares index.
- */
-import yourMiddleware from 'your-middleware';
+import myMiddleware from './my-middleware';
 
 export default {
-  yourMiddleware
+  myMiddleware,
 };
 ```
 
-```js title="/src/plugins/my-plugin/server/register.ts"
+```js title="/src/plugins/my-plugin/server/src/middlewares/my-middleware.ts"
 
 /**
- * The middleware is called from 
- * the plugin's register lifecycle function.
+ * `my-middleware` 미들웨어
  */
-import type { Core } from '@strapi/strapi';
-import middlewares from './middlewares';
 
-export default ({ strapi }: { strapi: Core.Strapi }) => {
-  strapi.server.use(middlewares.yourMiddleware);
+export default (config, { strapi }) => {
+  // 여기에 자신만의 로직을 추가하세요.
+  return async (ctx, next) => {
+    console.log('In my-middleware middleware.');
+
+    await next();
+  };
 };
-
 ```
 
 </TabItem>
 
 </Tabs>
 
-## Usage
+## 사용법
 
-Once a plugin is exported and loaded into Strapi, its features are accessible in the code through getters. The Strapi instance (`strapi`) exposes both top-level getters and global getters:
+서버 API에서 정의된 요소에 액세스하려면, `strapi.plugin(pluginName).service|controller|contentType|policy|middleware(elementName)` 문법을 사용하세요.
 
-- top-level getters imply chaining functions<br/>(e.g., `strapi.plugin('the-plugin-name').controller('the-controller-name'`),
-- global getters are syntactic sugar that allows direct access using a feature's uid<br/>(e.g., `strapi.controller('plugin::plugin-name.controller-name')`).
+**예시:**
 
-```js
-// Access an API or a plugin controller using a top-level getter 
-strapi.api['api-name'].controller('controller-name')
-strapi.plugin('plugin-name').controller('controller-name')
+<Tabs groupId="js-ts">
 
-// Access an API or a plugin controller using a global getter
-strapi.controller('api::api-name.controller-name')
-strapi.controller('plugin::plugin-name.controller-name')
-```
-
-<details>
-<summary> Top-level getter syntax examples</summary>
+<TabItem value="js" label="JavaScript">
 
 ```js
-strapi.plugin('plugin-name').config
-strapi.plugin('plugin-name').routes
-strapi.plugin('plugin-name').controller('controller-name')
-strapi.plugin('plugin-name').service('service-name')
-strapi.plugin('plugin-name').contentType('content-type-name')
-strapi.plugin('plugin-name').policy('policy-name')
-strapi.plugin('plugin-name').middleware('middleware-name')
+module.exports = {
+  async findOne(ctx) {
+    // 플러그인의 서비스에 액세스
+    return await strapi
+      .plugin('my-plugin')
+      .service('myService')
+      .findOne(ctx.params.id);
+  },
+};
 ```
 
-</details>
+</TabItem>
 
-<details>
-<summary> Global getter syntax examples</summary>
+<TabItem value="ts" label="TypeScript">
 
 ```js
-strapi.controller('plugin::plugin-name.controller-name');
-strapi.service('plugin::plugin-name.service-name');
-strapi.contentType('plugin::plugin-name.content-type-name');
-strapi.policy('plugin::plugin-name.policy-name');
-strapi.middleware('plugin::plugin-name.middleware-name');
+export default {
+  async findOne(ctx) {
+    // 플러그인의 서비스에 액세스
+    return await strapi
+      .plugin('my-plugin')
+      .service('myService')
+      .findOne(ctx.params.id);
+  },
+};
 ```
 
-</details>
+</TabItem>
 
-:::strapi Document Service API
-To interact with the content-types, use the [Document Service API](/cms/api/document-service).
-:::
+</Tabs>

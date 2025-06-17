@@ -1,31 +1,31 @@
 ---
-title: Plugins extension
+title: 플러그인 확장
 displayed_sidebar: cmsSidebar
 tags:
-- bootstrap function
-- controllers
-- middlewares
-- policies
-- plugins
-- plugins development
-- register function 
-- services
+- bootstrap 함수
+- 컨트롤러
+- 미들웨어
+- 정책
+- 플러그인
+- 플러그인 개발
+- register 함수 
+- 서비스
 ---
 
-# Plugins extension
+# 플러그인 확장
 
-Strapi comes with plugins that can be installed from the [Marketplace](/cms/plugins/installing-plugins-via-marketplace#installing-marketplace-plugins-and-providers) or as npm packages. You can also create your own plugins (see [plugins development](/cms/plugins-development/developing-plugins)) or extend the existing ones.
+Strapi는 [마켓플레이스](/cms/plugins/installing-plugins-via-marketplace#installing-marketplace-plugins-and-providers)에서 설치하거나 npm 패키지로 설치할 수 있는 플러그인들을 제공합니다. 또한 자신만의 플러그인을 만들거나([플러그인 개발](/cms/plugins-development/developing-plugins) 참고) 기존 플러그인을 확장할 수도 있습니다.
 
 :::warning
-* Any plugin update could break this plugin's extensions.
-* New versions of Strapi will be released with migration guides when required, but these guides never cover plugin extensions. Consider forking a plugin if extensive customizations are required.
-* Currently, the admin panel part of a plugin can only be extended using <ExternalLink to="https://www.npmjs.com/package/patch-package" text="patch-package"/>, but please consider that doing so might break your plugin in future versions of Strapi.
+* 플러그인 업데이트로 인해 이 플러그인의 확장 기능이 작동하지 않을 수 있습니다.
+* 새로운 버전의 Strapi는 필요시 마이그레이션 가이드와 함께 릴리즈되지만, 이러한 가이드는 플러그인 확장을 다루지 않습니다. 광범위한 커스터마이징이 필요한 경우 플러그인을 포크하는 것을 고려하세요.
+* 현재 플러그인의 관리자 패널 부분은 <ExternalLink to="https://www.npmjs.com/package/patch-package" text="patch-package"/>를 사용해서만 확장할 수 있지만, 이렇게 하면 향후 Strapi 버전에서 플러그인이 작동하지 않을 수 있다는 점을 고려하세요.
 :::
 
-Plugin extensions code is located in the `./src/extensions` folder (see [project structure](/cms/project-structure)). Some plugins automatically create files there, ready to be modified.
+플러그인 확장 코드는 `./src/extensions` 폴더에 있습니다([프로젝트 구조](/cms/project-structure) 참고). 일부 플러그인은 수정 준비가 된 파일들을 자동으로 생성합니다.
 
 <details> 
-<summary>Example of extensions folder structure</summary>
+<summary>확장 폴더 구조 예시</summary>
 
 ```bash
 /extensions
@@ -41,56 +41,56 @@ Plugin extensions code is located in the `./src/extensions` folder (see [project
 ```
 </details>
 
-Plugins can be extended in 2 ways:
+플러그인은 2가지 방법으로 확장할 수 있습니다:
 
-- [extending the plugin's content-types](#extending-a-plugins-content-types)
-- [extending the plugin's interface](#extending-a-plugins-interface) (e.g. to add controllers, services, policies, middlewares and more)
+- [플러그인의 콘텐츠 타입 확장](#extending-a-plugins-content-types)
+- [플러그인의 인터페이스 확장](#extending-a-plugins-interface) (예: 컨트롤러, 서비스, 정책, 미들웨어 등을 추가)
 
-## Extending a plugin's content-types
+## 플러그인의 콘텐츠 타입 확장
 
-A plugin's Content-Types can be extended in 2 ways: using the programmatic interface within `strapi-server.js|ts` and by overriding the content-types schemas.
+플러그인의 콘텐츠 타입은 2가지 방법으로 확장할 수 있습니다: `strapi-server.js|ts` 내에서 프로그래밍 인터페이스를 사용하거나 콘텐츠 타입 스키마를 재정의하는 방법입니다.
 
-The final schema of the content-types depends on the following loading order:
+콘텐츠 타입의 최종 스키마는 다음 로딩 순서에 따라 결정됩니다:
 
-1. the content-types of the original plugin,
-2. the content-types overridden by the declarations in the [schema](/cms/backend-customization/models#model-schema) defined in `./src/extensions/plugin-name/content-types/content-type-name/schema.json`
-3. the content-types declarations in the [`content-types` key exported from `strapi-server.js|ts`](/cms/plugins-development/server-api#content-types)
-4. the content-types declarations in the [`register()` function](/cms/configurations/functions#register) of the Strapi application
+1. 원본 플러그인의 콘텐츠 타입
+2. `./src/extensions/plugin-name/content-types/content-type-name/schema.json`에 정의된 [스키마](/cms/backend-customization/models#model-schema) 선언으로 재정의된 콘텐츠 타입
+3. [`strapi-server.js|ts`에서 내보낸 `content-types` 키](/cms/plugins-development/server-api#content-types)의 콘텐츠 타입 선언
+4. Strapi 애플리케이션의 [`register()` 함수](/cms/configurations/functions#register)에서의 콘텐츠 타입 선언
 
-To overwrite a plugin's [content-types](/cms/backend-customization/models):
+플러그인의 [콘텐츠 타입](/cms/backend-customization/models)을 덮어쓰려면:
 
-1. _(optional)_ Create the `./src/extensions` folder at the root of the app, if the folder does not already exist.
-2. Create a subfolder with the same name as the plugin to be extended.
-3. Create a `content-types` subfolder.
-4. Inside the `content-types` subfolder, create another subfolder with the same [singularName](/cms/backend-customization/models#model-information) as the content-type to overwrite.
-5. Inside this `content-types/name-of-content-type` subfolder, define the new schema for the content-type in a `schema.json` file (see [schema](/cms/backend-customization/models#model-schema) documentation).
-6. _(optional)_ Repeat steps 4 and 5 for each content-type to overwrite.
+1. _(선택사항)_ 폴더가 아직 없다면 앱 루트에 `./src/extensions` 폴더를 생성합니다.
+2. 확장할 플러그인과 같은 이름의 하위 폴더를 생성합니다.
+3. `content-types` 하위 폴더를 생성합니다.
+4. `content-types` 하위 폴더 안에 덮어쓸 콘텐츠 타입과 같은 [singularName](/cms/backend-customization/models#model-information)으로 또 다른 하위 폴더를 생성합니다.
+5. 이 `content-types/name-of-content-type` 하위 폴더 안에서 `schema.json` 파일로 콘텐츠 타입의 새로운 스키마를 정의합니다([스키마](/cms/backend-customization/models#model-schema) 문서 참고).
+6. _(선택사항)_ 덮어쓸 각 콘텐츠 타입에 대해 4단계와 5단계를 반복합니다.
 
-## Extending a plugin's interface
+## 플러그인의 인터페이스 확장
 
-When a Strapi application is initializing, plugins, extensions and global lifecycle functions events happen in the following order:
+Strapi 애플리케이션이 초기화될 때, 플러그인, 확장 및 전역 라이프사이클 함수 이벤트는 다음 순서로 발생합니다:
 
-1. Plugins are loaded and their interfaces are exposed.
-2. Files in `./src/extensions` are loaded.
-3. The `register()` and `bootstrap()` functions in `./src/index.js|ts` are called.
+1. 플러그인이 로드되고 인터페이스가 노출됩니다.
+2. `./src/extensions`의 파일들이 로드됩니다.
+3. `./src/index.js|ts`의 `register()`와 `bootstrap()` 함수가 호출됩니다.
 
-A plugin's interface can be extended at step 2 (i.e. within `./src/extensions`) or step 3 (i.e. inside `./src/index.js|ts`).
+플러그인의 인터페이스는 2단계(`./src/extensions` 내에서) 또는 3단계(`./src/index.js|ts` 내에서)에서 확장할 수 있습니다.
 
 :::note
-If your Strapi project is TypeScript-based, please ensure that the `index` file has a TypeScript extension (i.e., `src/index.ts`) otherwise it will not be compiled.
+Strapi 프로젝트가 TypeScript 기반이라면, `index` 파일이 TypeScript 확장자(즉, `src/index.ts`)를 가지고 있는지 확인하세요. 그렇지 않으면 컴파일되지 않습니다.
 :::
 
-### Within the extensions folder
+### 확장 폴더 내에서
 
-To extend a plugin's server interface using the `./src/extensions` folder:
+`./src/extensions` 폴더를 사용하여 플러그인의 서버 인터페이스를 확장하려면:
 
-1. _(optional)_ Create the `./src/extensions` folder at the root of the app, if the folder does not already exist.
-2. Create a subfolder with the same name as the plugin to be extended.
-3. Create a `strapi-server.js|ts` file to extend a plugin's back end using the [Server API](/cms/plugins-development/server-api).
-4. Within this file, define and export a function. The function receives the `plugin` interface as an argument so it can be extended.
+1. _(선택사항)_ 폴더가 아직 없다면 앱 루트에 `./src/extensions` 폴더를 생성합니다.
+2. 확장할 플러그인과 같은 이름의 하위 폴더를 생성합니다.
+3. [서버 API](/cms/plugins-development/server-api)를 사용하여 플러그인의 백엔드를 확장하기 위한 `strapi-server.js|ts` 파일을 생성합니다.
+4. 이 파일 내에서 함수를 정의하고 내보냅니다. 이 함수는 `plugin` 인터페이스를 인수로 받아 확장할 수 있습니다.
 
 <details>
-<summary>Example of backend extension</summary>
+<summary>백엔드 확장 예시</summary>
 
 ```js title="./src/extensions/some-plugin-to-extend/strapi-server.js|ts"
 
@@ -110,12 +110,12 @@ module.exports = (plugin) => {
 ```
 </details>
 
-### Within the register and bootstrap functions
+### register와 bootstrap 함수 내에서
 
-To extend a plugin's interface within `./src/index.js|ts`, use the `bootstrap()` and `register()` [functions](/cms/configurations/functions) of the whole project, and access the interface programmatically with [getters](/cms/plugins-development/server-api#usage).
+`./src/index.js|ts` 내에서 플러그인의 인터페이스를 확장하려면, 전체 프로젝트의 `bootstrap()`과 `register()` [함수](/cms/configurations/functions)를 사용하고, [게터](/cms/plugins-development/server-api#usage)를 통해 프로그래밍 방식으로 인터페이스에 접근합니다.
 
 <details>
-<summary>Example of extending a plugin's content-type within ./src/index.js|ts</summary>
+<summary>./src/index.js|ts 내에서 플러그인의 콘텐츠 타입 확장 예시</summary>
 
 ```js title="./src/index.js|ts"
 
@@ -123,9 +123,9 @@ module.exports = {
   register({ strapi }) {
     const contentTypeName = strapi.contentType('plugin::my-plugin.content-type-name')  
     contentTypeName.attributes = {
-      // Spread previous defined attributes
+      // 이전에 정의된 속성들을 확산
       ...contentTypeName.attributes,
-      // Add new, or override attributes
+      // 새로운 속성 추가 또는 기존 속성 재정의
       'toto': {
         type: 'string',
       }

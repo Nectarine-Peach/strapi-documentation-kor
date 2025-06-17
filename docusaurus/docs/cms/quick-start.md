@@ -1,43 +1,43 @@
 ---
-sidebar_label: 'Quick Start Guide'
+sidebar_label: '빠른 시작 가이드'
 displayed_sidebar: cmsSidebar
 sidebar_position: 2
-title: Quick Start Guide - Strapi Developer Docs
-description: Get ready to get Strapi, your favorite open-source headless cms up and running in less than 3 minutes.
+title: 빠른 시작 가이드 - Strapi 개발자 문서
+description: 오픈소스 헤드리스 CMS인 Strapi를 3분 이내에 설치하고 실행하는 방법을 안내합니다.
 tags:
- - guides
- - Content-type Builder
- - collection type
- - Content Manager
+ - 가이드
+ - 콘텐츠 타입 빌더
+ - 컬렉션 타입
+ - 콘텐츠 매니저
  - Strapi Cloud
 ---
 
 import InstallPrerequisites from '/docs/snippets/installation-prerequisites.md'
 
-# Quick Start Guide
+# 빠른 시작 가이드
 
-Strapi offers a lot of flexibility. Whether you want to go fast and quickly see the final result, or would rather dive deeper into the product, we got you covered. For this tutorial, we'll go for the DIY approach and build a project and content structure from scratch, then deploy your project to Strapi Cloud to add data from there.
+Strapi는 매우 유연합니다. 빠르게 결과를 보고 싶거나, 제품을 깊이 있게 탐구하고 싶을 때 모두 적합합니다. 이 튜토리얼에서는 직접 프로젝트와 콘텐츠 구조를 처음부터 만들어보고, 이후 Strapi Cloud에 배포하여 데이터를 추가하는 과정을 안내합니다.
 
-*Estimated completion time: 5-10 minutes*
+*예상 소요 시간: 5~10분*
 
 :::prerequisites
 <InstallPrerequisites components={props.components} />
 
-You will also need to <ExternalLink to="https://github.com/git-guides/install-git" text="install `git`"/> and to have a <ExternalLink to="https://github.com" text="GitHub"/> account to deploy your project to Strapi Cloud.
+또한, 프로젝트를 Strapi Cloud에 배포하려면 <ExternalLink to="https://github.com/git-guides/install-git" text="`git` 설치"/>와 <ExternalLink to="https://github.com" text="GitHub 계정"/>이 필요합니다.
 :::
 
-## <Icon name="rocket-launch"/> Part A: Create a new project with Strapi
+## <Icon name="rocket-launch"/> A단계: Strapi로 새 프로젝트 생성하기
 
-We will first create a new Strapi project on your machine by running a command in the terminal, and then register our first local administrator user.
+먼저 터미널에서 명령어를 실행해 Strapi 프로젝트를 생성하고, 첫 번째 로컬 관리자 계정을 등록합니다.
 
-Follow the steps below by clicking on the togglable content to read more instructions.
+아래 단계별로 토글을 클릭해 자세한 설명을 확인하세요.
 
 <details open>
-<summary>Step 1: Run the installation script and create a Strapi Cloud account</summary>
+<summary>1단계: 설치 스크립트 실행 및 Strapi Cloud 계정 생성</summary>
 
-### Step 1: Run the installation script and create a Strapi Cloud account
+### 1단계: 설치 스크립트 실행 및 Strapi Cloud 계정 생성
 
-1. Run the following command in a terminal:
+1. 터미널에서 다음 명령어를 실행하세요:
 
     <TabItem value="npm" label="NPM">
 
@@ -47,53 +47,53 @@ Follow the steps below by clicking on the togglable content to read more instruc
 
     </TabItem>
 
-2. The terminal will prompt you to log in or sign up. Once you do, a 30-day trial of the <GrowthBadge tooltip="The CMS Growth plan includes the Live Preview, Releases, and Content History features."/> plan will be automatically applied to your project. Ensure `Login/Sign up` is selected in the terminal, or use arrow keys to select it, and press Enter.
+2. 터미널에서 로그인 또는 회원가입을 하라는 메시지가 표시됩니다. 진행하면 30일 무료 <GrowthBadge tooltip="CMS Growth 플랜에는 라이브 프리뷰, 릴리즈, 콘텐츠 히스토리 기능이 포함됩니다."/> 플랜이 자동 적용됩니다. 터미널에서 `Login/Sign up`이 선택되어 있는지 확인하고, Enter를 누르세요.
 
-3. In the new browser tab that opens, ensure the confirmation code is the same as in the terminal and click **Confirm**.
+3. 새로 열린 브라우저 탭에서 터미널에 표시된 인증 코드와 동일한지 확인 후 **Confirm**을 클릭하세요.
 
-4. Still in the browser tab, click **Continue with GitHub**. If you are not already logged in into GitHub with your current browser session, you might be redirected to a GitHub login page.
+4. 브라우저 탭에서 **Continue with GitHub**을 클릭합니다. 이미 GitHub에 로그인되어 있지 않다면 로그인 페이지로 이동할 수 있습니다.
 
-5. Once logged in, the browser will display a "Congratulations, you're all set!" message and you can safely close the browser tab and get back to the terminal.
+5. 로그인 후 "Congratulations, you're all set!" 메시지가 나오면 브라우저 탭을 닫고 터미널로 돌아오세요.
 
     <ThemedImage
-      alt="Login GIF"
+      alt="로그인 GIF"
       sources={{
         light: '/img/assets/quick-start-guide/qsg-cloud-login.gif',
         dark: '/img/assets/quick-start-guide/qsg-cloud-login.gif',
       }}
     />
 
-6. The terminal will now ask you a few questions. Press `Enter` to accept the default answer to all questions.
+6. 터미널에서 몇 가지 질문이 나옵니다. 모두 기본값(Enter)을 입력해도 됩니다.
 
-    ![Questions and answers from the terminal](/img/assets/quick-start-guide/qsg-questions-answers-terminal.png)
+    ![터미널 질문과 답변](/img/assets/quick-start-guide/qsg-questions-answers-terminal.png)
 
-As you will see in the terminal, your project is now building locally.
+터미널에서 프로젝트가 로컬에 생성되고 있음을 확인할 수 있습니다.
 
 :::info
 
-* The folder of your project will include a `.strapi-cloud.json` file used to link the local Strapi project on your machine to the Strapi servers.
-* Many more installation options are available. Please refer to the [installation documentation](/cms/installation) for details.
+* 프로젝트 폴더에는 로컬 Strapi 프로젝트와 Strapi 서버를 연결하는 `.strapi-cloud.json` 파일이 포함됩니다.
+* 더 다양한 설치 옵션은 [설치 문서](/cms/installation)에서 확인할 수 있습니다.
 :::
 
 </details>
 
 <details>
-<summary>Step 2: Register the first local administrator user</summary>
+<summary>2단계: 첫 번째 로컬 관리자 계정 등록</summary>
 
-### Step 2: Register the first local administrator user
+### 2단계: 첫 번째 로컬 관리자 계정 등록
 
-Once the installation is complete, you need to start the server. In the terminal, type `cd my-strapi-project && yarn develop` and your browser automatically opens a new tab.
+설치가 완료되면 서버를 시작해야 합니다. 터미널에서 `cd my-strapi-project && yarn develop`을 입력하면 브라우저가 자동으로 새 탭을 엽니다.
 
 :::tip
-As long as you stay in the `my-strapi-project` folder, you will just need to run `yarn develop` any time you want to start the Strapi server again.
+`my-strapi-project` 폴더 내에서 작업할 때는 언제든 `yarn develop` 명령어로 Strapi 서버를 다시 시작할 수 있습니다.
 :::
 
-By completing the form, you create your own account. Once done, you become the first administrator user of this Strapi application. Welcome aboard, commander!
+폼을 작성하면 본인 계정이 생성되며, 이 Strapi 애플리케이션의 첫 번째 관리자 사용자가 됩니다. 환영합니다!
 
-You now have access to the <ExternalLink to="http://localhost:1337/admin" text="admin panel"/>:
+이제 <ExternalLink to="http://localhost:1337/admin" text="관리자 패널"/>에 접근할 수 있습니다:
 
 <ThemedImage
-alt="Admin panel screenshot: dashboard"
+alt="관리자 패널 스크린샷: 대시보드"
 sources={{
     light: '/img/assets/quick-start-guide/qsg-handson-part1-01-admin_panel-v5.png',
     dark: '/img/assets/quick-start-guide/qsg-handson-part1-01-admin_panel-v5_DARK.png',
@@ -102,96 +102,96 @@ sources={{
 
 </details>
 
-:::callout <Icon name="confetti" /> Congratulations!
-You have just created a new Strapi project! You can start playing with Strapi and discover the [Content Manager](/cms/features/content-manager) by yourself, or proceed to part B below.
+:::callout <Icon name="confetti" /> 축하합니다!
+새로운 Strapi 프로젝트가 생성되었습니다! 이제 Strapi를 직접 사용해보거나, 아래 B단계로 진행해보세요.
 :::
 
-## <Icon name="wrench" /> Part B: Build your content structure with the Content-type Builder
+## <Icon name="wrench" /> B단계: 콘텐츠 타입 빌더로 콘텐츠 구조 만들기
 
-The installation script has just created an empty project. We will now guide you through creating a restaurants directory, inspired by our <ExternalLink to="https://github.com/strapi/foodadvisor" text="FoodAdvisor"/> example application.
+설치 스크립트로 빈 프로젝트가 생성되었습니다. 이제 [FoodAdvisor](https://github.com/strapi/foodadvisor) 예제 앱을 참고해 음식점 디렉터리를 만들어보겠습니다.
 
-The admin panel of a local Strapi project runs at <ExternalLink to="http://localhost:1337/admin" text="http://localhost:1337/admin"/>. This is where you will spend most of your time creating and updating content.
+로컬 Strapi 프로젝트의 관리자 패널은 <ExternalLink to="http://localhost:1337/admin" text="http://localhost:1337/admin"/>에서 실행됩니다. 이곳에서 대부분의 콘텐츠 생성 및 수정 작업을 하게 됩니다.
 
-First we will build a content structure for your content. This can only be done while in development mode, which is the default mode for projects that are created locally.
+먼저 콘텐츠 구조를 만들어봅니다. 이 작업은 개발 모드(로컬 프로젝트의 기본 모드)에서만 가능합니다.
 
 :::tip
-If the server is not already running, in your terminal, `cd` into the `my-strapi-project` folder and run `npm run develop` (or `yarn develop`) to launch it.
+서버가 실행 중이 아니라면, 터미널에서 `my-strapi-project` 폴더로 이동 후 `npm run develop`(또는 `yarn develop`)을 실행하세요.
 :::
 
-The Content-Type Builder helps you create your content structure. When creating an empty project with Strapi, this is where to get the party started!
+콘텐츠 타입 빌더는 콘텐츠 구조를 만드는 데 도움을 줍니다. Strapi로 빈 프로젝트를 만들었다면, 여기서부터 시작하세요!
 
 <details >
 
-<summary>Step 1: Create a "Restaurant" collection type</summary>
+<summary>1단계: "Restaurant" 컬렉션 타입 생성</summary>
 
-### Step 1: Create a "Restaurant" collection type
+### 1단계: "Restaurant" 컬렉션 타입 생성
 
-Your restaurants directory will eventually include many restaurants, so we need to create a "Restaurant" collection type. Then we can describe the fields to display when adding a new restaurant entry:
+음식점 디렉터리에는 여러 음식점이 들어가야 하므로, "Restaurant" 컬렉션 타입을 만듭니다. 이후 음식점 추가 시 표시할 필드를 정의합니다:
 
-1. Click on the **Create your first Content type** button.<br />If it's not showing up, go to <Icon name="layout" /> <ExternalLink to="http://localhost:1337/admin/plugins/content-type-builder" text="Content-Type Builder"/> in the main navigation.
-2. Click on **Create new collection type**.
-3. Type `Restaurant` for the _Display name_, and click **Continue**.  
-4. Click the Text field.
-5. Type `Name` in the _Name_ field.
-6. Switch to the _Advanced Settings_ tab, and check the **Required field** and the **Unique field** settings.
-7. Click on **Add another field**.
-8. Choose the Rich text (Blocks) field in the list.
-9. Type `Description` under the _Name_ field, then click **Finish**.
-10. Finally, click **Save** and wait for Strapi to restart.
+1. **Create your first Content type** 버튼을 클릭하세요.<br />버튼이 보이지 않으면, 좌측 메뉴에서 <Icon name="layout" /> <ExternalLink to="http://localhost:1337/admin/plugins/content-type-builder" text="Content-Type Builder"/>로 이동하세요.
+2. **Create new collection type**을 클릭합니다.
+3. _Display name_에 `Restaurant`을 입력하고 **Continue**를 클릭합니다.  
+4. Text 필드를 클릭합니다.
+5. _Name_ 필드에 `Name`을 입력합니다.
+6. _Advanced Settings_ 탭으로 이동해 **Required field**와 **Unique field**를 체크합니다.
+7. **Add another field**를 클릭합니다.
+8. 목록에서 Rich text (Blocks) 필드를 선택합니다.
+9. _Name_ 필드에 `Description`을 입력한 후 **Finish**를 클릭합니다.
+10. 마지막으로 **Save**를 클릭하고, Strapi가 재시작될 때까지 기다립니다.
 
 <ThemedImage
-alt="GIF: Create Restaurant collection type in Content-type Builder"
+alt="GIF: Content-type Builder에서 Restaurant 컬렉션 타입 생성"
 sources={{
     light: '/img/assets/quick-start-guide/qsg-handson-restaurant-v5.gif',
     dark: '/img/assets/quick-start-guide/qsg-handson-restaurant-v5_DARK.gif',
 }}
 />
 
-Once Strapi has restarted, "Restaurant" is listed under <Icon name="feather" /> _Content Manager > Collection types_ in the navigation. Wow, you have just created your very first content-type! It was so cool — let's create another one right now, just for pleasure.
+Strapi가 재시작되면, 좌측 메뉴의 <Icon name="feather" /> _Content Manager > Collection types_에 "Restaurant"가 표시됩니다. 첫 번째 콘텐츠 타입 생성 완료! 이제 바로 또 하나 만들어볼까요?
 
 </details>
 
 <details>
-<summary>Step 2: Create a "Category" collection type</summary>
+<summary>2단계: "Category" 컬렉션 타입 생성</summary>
 
-### Step 2: Create a "Category" collection type
+### 2단계: "Category" 컬렉션 타입 생성
 
-It would help getting a bit more organized if our restaurants directory had some categories. Let's create a "Category" collection type:
+음식점 디렉터리를 더 체계적으로 관리하려면 카테고리가 필요합니다. "Category" 컬렉션 타입을 만들어봅시다:
 
-1. Go to <Icon name="layout" /> <ExternalLink to="http://localhost:1337/admin/plugins/content-type-builder" text="Content-type Builder"/> in the main navigation.
-2. Click on **Create new collection type**.
-3. Type `Category` for the _Display name_, and click **Continue**.
-4. Click the Text field.
-5. Type `Name` in the _Name_ field.
-6. Switch to the _Advanced Settings_ tab, and check the **Required field** and the **Unique field** settings.
-7. Click on **Add another field**.
-8. Choose the Relation field.
-9. In the center, select the icon that represents "many-to-many" ![icon many-to-many](/img/assets/icons/v5/ctb_relation_manytomany.svg). The text should read `Categories has and belongs to many Restaurants`.
+1. 좌측 메뉴에서 <Icon name="layout" /> <ExternalLink to="http://localhost:1337/admin/plugins/content-type-builder" text="Content-type Builder"/>로 이동합니다.
+2. **Create new collection type**을 클릭합니다.
+3. _Display name_에 `Category`를 입력하고 **Continue**를 클릭합니다.
+4. Text 필드를 클릭합니다.
+5. _Name_ 필드에 `Name`을 입력합니다.
+6. _Advanced Settings_ 탭으로 이동해 **Required field**와 **Unique field**를 체크합니다.
+7. **Add another field**를 클릭합니다.
+8. Relation 필드를 선택합니다.
+9. 가운데에서 "many-to-many"를 나타내는 아이콘을 선택합니다. ![many-to-many 아이콘](/img/assets/icons/v5/ctb_relation_manytomany.svg) 텍스트는 `Categories has and belongs to many Restaurants`로 표시됩니다.
 
 <ThemedImage
-alt="Admin Panel screenshot: relations"
+alt="관리자 패널 스크린샷: 관계 설정"
 sources={{
   light: '/img/assets/quick-start-guide/qsg-handson-part2-02-collection_ct-v5.png',
   dark: '/img/assets/quick-start-guide/qsg-handson-part2-02-collection_ct-v5_DARK.png',
 }}
 />
 
-11. Finally, click **Finish**, then the **Save** button, and wait for Strapi to restart.
+11. 마지막으로 **Finish**를 클릭한 후 **Save** 버튼을 눌러 Strapi가 재시작될 때까지 기다립니다.
 
 </details>
 
-:::callout <Icon name="confetti" /> Congratulations!
-You have just created a basic content structure for your Strapi project! You can keep on playing with the [Content-Type Builder](/cms/features/content-type-builder), or proceed to parts C and D below to discover Strapi Cloud and add actual content to your project.
+:::callout <Icon name="confetti" /> 축하합니다!
+Strapi 프로젝트의 기본 콘텐츠 구조가 완성되었습니다! [콘텐츠 타입 빌더](/cms/features/content-type-builder)로 더 실험해보거나, 아래 C, D단계로 진행해보세요.
 :::
 
-## <Icon name="cloud" />️ Part C: Deploy to Strapi Cloud
+## <Icon name="cloud" />️ C단계: Strapi Cloud에 배포하기
 
-Now that your beautiful first Strapi project is working locally, it's time for the world to see it live! The most straightforward way to host your project is to use Strapi Cloud: Deploying your project on Strapi Cloud is done with a single command! 🚀
+이제 멋진 Strapi 프로젝트가 로컬에서 동작하니, 전 세계에 공개해볼 차례입니다! Strapi Cloud를 이용하면 한 번의 명령어로 프로젝트를 배포할 수 있습니다. 🚀
 
-To deploy your project for free to Strapi Cloud, in your terminal:
+Strapi Cloud에 무료로 배포하려면 터미널에서 다음을 실행하세요:
 
-1. If the server for your local Strapi project is running, which should be the case if you followed this tutorial so far, press `Ctrl-C` to stop the server.
-2. Ensure you are in the folder of your Strapi project (if needed, run for instance `cd my-strapi-project` to reach this folder), and run the following command:
+1. 로컬 Strapi 프로젝트 서버가 실행 중이라면, `Ctrl-C`로 서버를 중지하세요.
+2. Strapi 프로젝트 폴더에 있는지 확인하고(필요하다면 `cd my-strapi-project`로 이동), 아래 명령어를 실행하세요:
 
     <Tabs groupId="yarn-npm">
 
@@ -213,48 +213,46 @@ To deploy your project for free to Strapi Cloud, in your terminal:
 
     </Tabs>
 
-3. Answer questions in the terminal, giving your project a name (you can press Enter to keep the default name), choosing the recommended NodeJS version, and selecting the region closer to your current place:
+3. 터미널에서 프로젝트 이름(Enter로 기본값 사용 가능), 권장 NodeJS 버전, 가까운 리전을 선택하세요:
 
-    ![Strapi Cloud terminal questions and answers](/img/assets/quick-start-guide/qsg-strapi-cloud-terminal-questions.png)
+    ![Strapi Cloud 터미널 질문과 답변](/img/assets/quick-start-guide/qsg-strapi-cloud-terminal-questions.png)
 
-Within a few moments, your local project will be hosted on Strapi Cloud. 🚀 
+잠시 후, 로컬 프로젝트가 Strapi Cloud에 배포됩니다. 🚀 
 
-Once it's done, the terminal will provide you a clickable link that starts with `https://cloud.strapi.io/projects`. Click on the link, or copy and paste it in your browser address bar, to visit the page.
-
-You will see the Strapi Cloud project we've just created, `my-strapi-project`, visible in the Strapi Cloud dashboard. Click the **Visit app** button in the top right corner to access your deployed Strapi project.
+완료되면 터미널에 `https://cloud.strapi.io/projects`로 시작하는 링크가 표시됩니다. 클릭하거나 복사해 브라우저에 입력하면, Strapi Cloud 대시보드에서 방금 만든 `my-strapi-project`를 확인할 수 있습니다. 우측 상단 **Visit app** 버튼을 클릭해 배포된 프로젝트에 접속하세요.
 
 <ThemedImage
-alt="Visit Strapi Cloud App GIF"
+alt="Strapi Cloud 앱 방문 GIF"
 sources={{
   light: '/img/assets/quick-start-guide/qsg-visit-cloud-app.gif',
   dark: '/img/assets/quick-start-guide/qsg-visit-cloud-app_DARK.gif',
 }}
 />
 
-:::callout <Icon name="confetti" /> Congratulations!
-Now your project is hosted on Strapi Cloud and accessible online. You can learn more about Strapi Cloud by reading [its dedicated documentation](/cloud/intro) or proceed to part D to log in into your online Strapi project and add your first data from there.
+:::callout <Icon name="confetti" /> 축하합니다!
+이제 프로젝트가 Strapi Cloud에 배포되어 온라인에서 접근할 수 있습니다. [Cloud 전용 문서](/cloud/intro)도 참고하거나, D단계로 넘어가 온라인 프로젝트에 데이터를 추가해보세요.
 :::
 
 :::tip
-Feel free to play with the Content-Type Builder even further and add more fields to your content-types or create new content-types. Anytime you make such changes, deploy them again on Strapi Cloud, by running the appropriate `deploy` command, and see your hosted project updated within a few minutes. Magical, isn't it? 🪄
+콘텐츠 타입 빌더로 더 많은 필드를 추가하거나 새로운 콘텐츠 타입을 만들어보세요. 변경 사항이 있을 때마다 `deploy` 명령어로 다시 배포하면, 몇 분 내에 온라인 프로젝트가 업데이트됩니다. 정말 마법 같죠? 🪄
 :::
 
-## <Icon name="note-pencil" /> Part D: Add content to your Strapi Cloud project with the Content Manager
+## <Icon name="note-pencil" /> D단계: 콘텐츠 매니저로 Strapi Cloud 프로젝트에 콘텐츠 추가하기
 
-Now that we have created a basic content structure with 2 collection types, "Restaurant" and "Category", and deployed your project to Strapi Cloud, let's use the Cloud to actually add content by creating new entries.
+이제 "Restaurant"와 "Category" 두 컬렉션 타입으로 기본 구조를 만들고, 프로젝트를 Strapi Cloud에 배포했습니다. 이제 실제로 데이터를 추가해보겠습니다.
 
 <details>
-<summary>Step 1: Log in to the admin panel of your new Strapi Cloud project</summary>
+<summary>1단계: Strapi Cloud 프로젝트의 관리자 패널 로그인</summary>
 
-### Step 1: Log in to the admin panel of your new Strapi Cloud project
+### 1단계: Strapi Cloud 프로젝트의 관리자 패널 로그인
 
-Now that your Strapi Cloud project is created, let's log in into the project:
+Strapi Cloud 프로젝트가 생성되었으니, 로그인해봅시다:
 
-1. From your <ExternalLink to="https://cloud.strapi.io/projects" text="Strapi Cloud dashboard"/>, click the `my-strapi-project` project.
-3. Click the **Visit app** button.
-4. In the new page that opens, complete the form to create the first administrator user of this Strapi Cloud project.
+1. <ExternalLink to="https://cloud.strapi.io/projects" text="Strapi Cloud 대시보드"/>에서 `my-strapi-project`를 클릭하세요.
+2. **Visit app** 버튼을 클릭합니다.
+3. 새로 열린 페이지에서 첫 번째 관리자 계정을 생성하세요.
 
-Logged in into our first Strapi Cloud project, we will now add data from there.
+로그인 후, 이제 Strapi Cloud 프로젝트에 데이터를 추가할 수 있습니다.
 
 <ThemedImage
 alt=""
@@ -265,14 +263,14 @@ sources={{
 />
 
 <details>
-<summary><Icon name="info" /> Additional information and tips about users and Strapi Cloud projects:</summary>
+<summary><Icon name="info" /> 사용자 및 Strapi Cloud 프로젝트 관련 추가 정보와 팁</summary>
 
-:::note Note: Local users and Strapi Cloud users are different
-The databases for your Strapi Cloud project and your local project are different. This means that data is not automatically transferred from your local project to Strapi Cloud. This includes users that you previously created locally. That's why you are invited to create a new administrator account when logging in to your Strapi Cloud project for the first time.
+:::note 참고: 로컬 사용자와 Strapi Cloud 사용자는 다릅니다
+Strapi Cloud 프로젝트와 로컬 프로젝트의 데이터베이스는 서로 다릅니다. 즉, 로컬에서 만든 데이터(사용자 포함)는 자동으로 Cloud로 이전되지 않습니다. 처음 Cloud 프로젝트에 로그인할 때 새 관리자 계정을 만드는 이유입니다.
 :::
 
-:::tip Tip: Directly accessing the admin panel of your Strapi Cloud project
-Any project hosted on Strapi Cloud is accessible from its own URL, something like `https://my-strapi-project-name.strapiapp.com`. To access the admin panel of your online project, simply add `/admin` to the URL, for instance as in `https://my-strapi-project-name.strapiapp.com/admin`. URLs can be found in your Strapi Cloud dashboard and you can also directly access your Strapi Cloud projects from there by clicking on the name of your project then on the **Visit app** button.
+:::tip 팁: Strapi Cloud 프로젝트의 관리자 패널 바로 접근하기
+Strapi Cloud에 배포된 프로젝트는 `https://my-strapi-project-name.strapiapp.com`과 같은 고유 URL로 접근할 수 있습니다. 온라인 프로젝트의 관리자 패널은 URL 뒤에 `/admin`을 붙이면 됩니다(예: `https://my-strapi-project-name.strapiapp.com/admin`). URL은 Cloud 대시보드에서 확인할 수 있으며, 프로젝트 이름 클릭 후 **Visit app** 버튼으로도 바로 이동할 수 있습니다.
 :::
 
 </details>
@@ -280,76 +278,75 @@ Any project hosted on Strapi Cloud is accessible from its own URL, something lik
 </details>
 
 <details>
-<summary>Step 2: Create an entry for the "Restaurant" collection type</summary>
+<summary>2단계: "Restaurant" 컬렉션 타입에 엔트리 추가</summary>
 
+### 2단계: "Restaurant" 컬렉션 타입에 엔트리 추가
 
-### Step 2: Create an entry for the "Restaurant" collection type
-
-1. Go to <Icon name="feather" /> _Content Manager > Collection types - Restaurant_ in the navigation.
-2. Click on **Create new entry**.
-3. Type the name of your favorite local restaurant in the _Name_ field. Let's say it's `Biscotte Restaurant`.
-4. In the _Description_ field, write a few words about it. If you're lacking some inspiration, you can use `Welcome to Biscotte restaurant! Restaurant Biscotte offers a cuisine based on fresh, quality products, often local, organic when possible, and always produced by passionate producers.`
-5. Click **Save**.
+1. 좌측 메뉴에서 <Icon name="feather" /> _Content Manager > Collection types - Restaurant_로 이동합니다.
+2. **Create new entry**를 클릭합니다.
+3. _Name_ 필드에 좋아하는 음식점 이름을 입력하세요. 예: `Biscotte Restaurant`.
+4. _Description_ 필드에 간단한 소개를 작성하세요. 예시: `Welcome to Biscotte restaurant! Restaurant Biscotte offers a cuisine based on fresh, quality products, often local, organic when possible, and always produced by passionate producers.`
+5. **Save**를 클릭합니다.
 
 <ThemedImage
-alt="Screenshot: Biscotte Restaurant in Content Manager"
+alt="스크린샷: Biscotte Restaurant 등록"
 sources={{
   light: '/img/assets/quick-start-guide/qsg-handson-part2-03-restaurant-v5.png',
   dark: '/img/assets/quick-start-guide/qsg-handson-part2-03-restaurant-v5_DARK.png',
 }}
 />
 
-The restaurant is now listed in the _Collection types - Restaurant_ view of the <Icon name="feather" /> _Content Manager_.
+이제 _Collection types - Restaurant_ 뷰에 음식점이 등록됩니다.
 
 </details>
 
 <details>
-<summary>Step 3: Add Categories</summary>
+<summary>3단계: 카테고리 추가</summary>
 
-#### Step 3: Add Categories
+#### 3단계: 카테고리 추가
 
-Let's go to <Icon name="feather" /> _Content Manager > Collection types - Category_ and create 2 categories:
+<Icon name="feather" /> _Content Manager > Collection types - Category_로 이동해 2개의 카테고리를 만들어봅시다:
 
-1. Click on **Create new entry**.
-2. Type `French Food` in the _Name_ field.
-3. Click **Save**.
-4. Go back to _Collection types - Category_, then click again on **Create new entry**.  
-5. Type `Brunch` in the _Name_ field, then click **Save**.
+1. **Create new entry**를 클릭합니다.
+2. _Name_ 필드에 `French Food`를 입력합니다.
+3. **Save**를 클릭합니다.
+4. _Collection types - Category_로 돌아가 **Create new entry**를 다시 클릭합니다.  
+5. _Name_ 필드에 `Brunch`를 입력하고 **Save**를 클릭합니다.
 
 <ThemedImage
-alt="GIF: Add Categories"
+alt="GIF: 카테고리 추가"
 sources={{
   light: '/img/assets/quick-start-guide/qsg-handson-categories-v5.gif',
   dark: '/img/assets/quick-start-guide/qsg-handson-categories-v5_DARK.gif',
 }}/>
 
-The "French Food" and "Brunch" categories are now listed in the _Collection types - Category_ view of the <Icon name="feather" /> _Content Manager_.
+"French Food"와 "Brunch" 카테고리가 _Collection types - Category_ 뷰에 등록됩니다.
 
-Now, we will add a category to a restaurant:
+이제 음식점에 카테고리를 추가해봅시다:
 
-1. Go to <Icon name="feather" /> _Content Manager > Collection types - Restaurant_ in the navigation, and click on "Biscotte Restaurant".
-2. In the **Categories** drop-down list at the bottom of the page, select "French Food". Scroll back to the top of the page and click **Save**.
+1. <Icon name="feather" /> _Content Manager > Collection types - Restaurant_로 이동해 "Biscotte Restaurant"를 클릭합니다.
+2. 페이지 하단의 **Categories** 드롭다운에서 "French Food"를 선택합니다. 페이지 상단으로 돌아가 **Save**를 클릭하세요.
 
 </details>
 
 <details>
-<summary>Step 4: Set Roles & Permissions</summary>
+<summary>4단계: 역할 및 권한 설정</summary>
 
-### Step 4: Set Roles & Permissions
+### 4단계: 역할 및 권한 설정
 
-We have just added a restaurant and 2 categories. We now have enough content to consume (pun intended). But first, we need to make sure that the content is publicly accessible through the API:
+음식점과 카테고리를 추가했으니, 이제 API를 통해 외부에서 접근할 수 있도록 공개 권한을 설정해야 합니다:
 
-1. Click on _<Icon name="gear-six" /> Settings_ at the bottom of the main navigation.
-2. Under _Users & Permissions Plugin_, choose _Roles_.
-3. Click the **Public** role.
-4. Scroll down under _Permissions_.
-5. In the _Permissions_ tab, find _Restaurant_ and click on it.
-6. Click the checkboxes next to **find** and **findOne**.
-7. Repeat with _Category_: click the checkboxes next to **find** and **findOne**.
-8. Finally, click **Save**.
+1. 좌측 하단 _<Icon name="gear-six" /> Settings_를 클릭합니다.
+2. _Users & Permissions Plugin_에서 _Roles_를 선택합니다.
+3. **Public** 역할을 클릭합니다.
+4. _Permissions_ 아래로 스크롤합니다.
+5. _Permissions_ 탭에서 _Restaurant_를 찾아 클릭합니다.
+6. **find**와 **findOne** 체크박스를 선택합니다.
+7. _Category_도 동일하게 **find**와 **findOne**을 체크합니다.
+8. 마지막으로 **Save**를 클릭합니다.
 
 <ThemedImage
-alt="Screenshot: Public Role in Users & Permissions plugin"
+alt="스크린샷: Users & Permissions 플러그인에서 Public 역할"
 sources={{
   light: '/img/assets/quick-start-guide/qsg-handson-part2-04-roles-v5.png',
   dark: '/img/assets/quick-start-guide/qsg-handson-part2-04-roles-v5_DARK.png'
@@ -358,45 +355,45 @@ sources={{
 </details>
 
 <details>
-<summary>Step 5: Publish the content</summary>
+<summary>5단계: 콘텐츠 발행</summary>
 
-### Step 5: Publish the content
+### 5단계: 콘텐츠 발행
 
-By default, any content you create is saved as a draft. Let's publish our categories and restaurant.
+기본적으로 생성된 콘텐츠는 초안 상태로 저장됩니다. 카테고리와 음식점을 발행해봅시다.
 
-First, navigate to <Icon name="feather" /> _Content Manager > Collection types - Category_. From there:
+먼저 <Icon name="feather" /> _Content Manager > Collection types - Category_로 이동해:
 
-1. Click the "Brunch" entry.
-2. On the next screen, click **Publish**.
-3. In the _Confirmation_ window, click **Yes, publish**.  
+1. "Brunch" 항목을 클릭합니다.
+2. 다음 화면에서 **Publish**를 클릭합니다.
+3. _Confirmation_ 창에서 **Yes, publish**를 클릭합니다.  
 
-Then, go back to the Categories list and repeat for the "French Food" category.
+다시 카테고리 목록으로 돌아가 "French Food"도 동일하게 발행하세요.
 
-Finally, to publish your favorite restaurant, go to <Icon name="feather" /> _Content Manager > Collection types - Restaurant_, click the "Biscotte Restaurant" entry, and **Publish** it.
+마지막으로, 음식점도 발행하려면 <Icon name="feather" /> _Content Manager > Collection types - Restaurant_에서 "Biscotte Restaurant"를 클릭한 후 **Publish**를 클릭하세요.
 
 <ThemedImage
-alt="GIF: Publish content"
+alt="GIF: 콘텐츠 발행"
 sources={{
   light: '/img/assets/quick-start-guide/qsg-handson-publish-v5.gif',
-  dark: '/img/assets/quick-start-guide/qsg-handson-publish-v5_DARK.gif'
+  dark: '/img/assets/quick-start-guide/qsg-handson-publish-v5_DARK.gif',
 }}
 />
 
 </details>
 
 <details>
-<summary>Step 6: Use the API</summary>
+<summary>6단계: API 사용하기</summary>
 
-### Step 6: Use the API
+### 6단계: API 사용하기
 
-OK dear gourmet, we have just finished creating our content and making it accessible through the API. You can give yourself a pat on the back — but you have yet to see the final result of your hard work.
+이제 콘텐츠를 생성하고, API를 통해 접근할 수 있게 되었습니다. 수고하셨습니다! 이제 결과를 직접 확인해보세요.
 
-There you are: the list of restaurants should be accessible by visting the `/api/restaurants` path of your Strapi Cloud project URL (e.g., `https://beautiful-first-strapi-project.strapiapp.com/api/restaurants`).
+예시: Strapi Cloud 프로젝트 URL의 `/api/restaurants` 경로로 접속하면 음식점 목록을 확인할 수 있습니다(예: `https://beautiful-first-strapi-project.strapiapp.com/api/restaurants`).
 
-Try it now! The result should be similar to the example response below 👇.
+아래는 API 응답 예시입니다 👇.
 
 <details>
-<summary>Click me to view an example of API response:</summary>
+<summary>API 응답 예시 보기</summary>
 
 ```json
 {
@@ -437,20 +434,20 @@ Try it now! The result should be similar to the example response below 👇.
 
 </details>
 
-:::callout <Icon name="confetti"/> Congratulations!
-Now your content is created, published, and you have permissions to request it through the API.
-Keep on creating amazing content!
+:::callout <Icon name="confetti"/> 축하합니다!
+이제 콘텐츠가 생성·발행되었고, API를 통해 접근할 수 있습니다.
+멋진 콘텐츠를 계속 만들어보세요!
 :::
 
-:::tip Tip: Transfer data between your local and Strapi Cloud projects
-The databases for your Strapi Cloud project and your local project are different. This means that data is not automatically synchronized between your Strapi Cloud and local projects. You can use the [data management system](/cms/features/data-management) to transfer data between projects.
+:::tip 팁: 로컬과 Strapi Cloud 프로젝트 간 데이터 전송
+Strapi Cloud와 로컬 프로젝트의 데이터베이스는 서로 다릅니다. 데이터가 자동으로 동기화되지 않으니, [데이터 관리 시스템](/cms/features/data-management)을 활용해 프로젝트 간 데이터를 전송할 수 있습니다.
 :::
 
-## <Icon name="fast-forward"/> What to do next?
+## <Icon name="fast-forward"/> 다음 단계는?
 
-Now that you know the basics of creating and publishing content with Strapi, we encourage you to explore and dig deeper into some Strapi features:
+이제 Strapi로 콘텐츠를 생성·발행하는 기본 과정을 익혔으니, 아래 기능도 탐구해보세요:
 
-<Icon name="arrow-fat-right"/> learn how to use Strapi's [REST](/cms/api/rest) API to query the content,<br/>
-<Icon name="arrow-fat-right"/> learn more about Strapi features by browsing the <Icon name="backpack" /> **Features** category,<br/>
-<Icon name="arrow-fat-right"/> learn more about Strapi Cloud projects by reading the [Cloud Documentation](/cloud/intro),<br/>
-<Icon name="arrow-fat-right"/> and [customize your Strapi back end](/cms/backend-customization) and [admin panel](/cms/admin-panel-customization) for advanced use cases.<br/>
+<Icon name="arrow-fat-right"/> Strapi의 [REST](/cms/api/rest) API로 콘텐츠 쿼리하기<br/>
+<Icon name="arrow-fat-right"/> <Icon name="backpack" /> **기능** 카테고리에서 다양한 Strapi 기능 살펴보기<br/>
+<Icon name="arrow-fat-right"/> [Cloud 전용 문서](/cloud/intro)에서 Strapi Cloud 프로젝트 더 알아보기<br/>
+<Icon name="arrow-fat-right"/> [백엔드 커스터마이징](/cms/backend-customization) 및 [관리자 패널 커스터마이징](/cms/admin-panel-customization)으로 고급 활용하기<br/>

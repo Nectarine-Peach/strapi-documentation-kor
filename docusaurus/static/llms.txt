@@ -20,15 +20,15 @@
 - [Projects overview](https://docs.strapi.io/cloud/projects/overview): View and manage your projects on Strapi Cloud.
 - [Runtime logs](https://docs.strapi.io/cloud/projects/runtime-logs): View runtime logs of Strapi Cloud project.
 - [Project settings](https://docs.strapi.io/cloud/projects/settings): View and manage your projects settings on Strapi Cloud.
-- [Admin panel customization](https://docs.strapi.io/cms/admin-panel-customization): The administration panel of Strapi can be customized according to your needs, so you can make it reflect your identity.
-- [Admin panel bundlers](https://docs.strapi.io/cms/admin-panel-customization/bundlers): Learn more about configuring Vite and webpack with Strapi 5.
-- [Admin panel extension](https://docs.strapi.io/cms/admin-panel-customization/extension): Learn more about extending Strapi's admin panel.
-- [Favicon](https://docs.strapi.io/cms/admin-panel-customization/favicon): Replace the favicon displayed in Strapi's admin panel.
-- [Homepage customization](https://docs.strapi.io/cms/admin-panel-customization/homepage): Learn about the Strapi admin panel Homepage and how to customize it with widgets.
-- [Locales & translations](https://docs.strapi.io/cms/admin-panel-customization/locales-translations): Learn how to update locales and extend translations in the Strapi admin panel.
-- [Logos](https://docs.strapi.io/cms/admin-panel-customization/logos): Customize the logos displayed in Strapi's admin panel.
-- [Theme extension](https://docs.strapi.io/cms/admin-panel-customization/theme-extension): Extend Strapi's admin panel theme.
-- [Customizing the rich text editor](https://docs.strapi.io/cms/admin-panel-customization/wysiwyg-editor): Learn more about the various strategies available to customize the WYSIWYG editor in Strapi's admin panel.
+- [관리자 패널 커스터마이징](https://docs.strapi.io/cms/admin-panel-customization): Strapi의 관리자 패널은 필요에 따라 커스터마이징할 수 있어, 브랜드 아이덴티티를 반영할 수 있습니다.
+- [관리자 패널 번들러](https://docs.strapi.io/cms/admin-panel-customization/bundlers): Strapi 5에서 Vite와 webpack 번들러 설정 방법을 알아보세요.
+- [관리자 패널 확장](https://docs.strapi.io/cms/admin-panel-customization/extension): Strapi 관리자 패널을 확장하는 방법을 알아보세요.
+- [파비콘](https://docs.strapi.io/cms/admin-panel-customization/favicon): Strapi 관리자 패널에 표시되는 파비콘을 교체하는 방법을 안내합니다.
+- [홈페이지 커스터마이징](https://docs.strapi.io/cms/admin-panel-customization/homepage): Strapi 관리자 패널의 홈페이지와 위젯 커스터마이징 방법을 알아보세요.
+- [로케일 & 번역](https://docs.strapi.io/cms/admin-panel-customization/locales-translations): Strapi 관리자 패널에서 로케일을 추가하고 번역을 확장하는 방법을 알아보세요.
+- [로고](https://docs.strapi.io/cms/admin-panel-customization/logos): Strapi 관리자 패널에 표시되는 로고를 커스터마이징하는 방법을 알아보세요.
+- [테마 확장](https://docs.strapi.io/cms/admin-panel-customization/theme-extension): Strapi 관리자 패널의 테마를 확장하는 방법을 알아보세요.
+- [리치 텍스트 에디터 커스터마이징](https://docs.strapi.io/cms/admin-panel-customization/wysiwyg-editor): Strapi 관리자 패널의 WYSIWYG(리치 텍스트) 에디터를 커스터마이징하는 다양한 전략을 알아보세요.
 - [Strapi Client](https://docs.strapi.io/cms/api/client): The Strapi Client library simplifies interactions with your Strapi back end, providing a way to fetch, create, update, and delete content.
 - [Content API](https://docs.strapi.io/cms/api/content-api): Learn more about Strapi 5's Content API
 - [Documents](https://docs.strapi.io/cms/api/document): Learn what a Document is in Strapi v5
@@ -52,7 +52,7 @@
 - [Sort and Pagination](https://docs.strapi.io/cms/api/rest/sort-pagination): Use Strapi's REST API to sort or paginate your data.
 - [Status](https://docs.strapi.io/cms/api/rest/status): Use Strapi's REST API to work with draft or published versions of your documents.
 - [Upload files](https://docs.strapi.io/cms/api/rest/upload): Learn how to use the /api/upload endpoints to upload files to Strapi with the REST API.
-- [Back-end customization](https://docs.strapi.io/cms/backend-customization): All elements of Strapi's back end, like routes, policies, middlewares, controllers, services, models, requests, responses, and webhooks, can be customized.
+- [백엔드 커스터마이징](https://docs.strapi.io/cms/backend-customization): Strapi 백엔드의 모든 요소(라우트, 정책, 미들웨어, 컨트롤러, 서비스, 모델, 요청, 응답, 웹훅 등)는 커스터마이징이 가능합니다.
 - [Controllers](https://docs.strapi.io/cms/backend-customization/controllers): Controllers are JavaScript files that contain a set of methods, called actions, reached by the client according to the requested [route](/cms/backend-...
 - [Middlewares](https://docs.strapi.io/cms/backend-customization/middlewares): import MiddlewareTypes from '/docs/snippets/middleware-types.md'
 - [Models](https://docs.strapi.io/cms/backend-customization/models): Strapi models (i.e. content-types, components, and dynamic zones) define a representation of the content structure.
@@ -61,7 +61,7 @@
 - [Routes](https://docs.strapi.io/cms/backend-customization/routes): Strapi routes handle requests to your content and are auto-generated for your content-types. Routes can be customized according to your needs.
 - [Services](https://docs.strapi.io/cms/backend-customization/services): Strapi services are a set of reusable functions, useful to simplify controllers logic.
 - [Webhooks](https://docs.strapi.io/cms/backend-customization/webhooks): Strapi webhooks are user-defined HTTP callbacks used by an application to notify other applications that an event occurred.
-- [Command Line Interface](https://docs.strapi.io/cms/cli): Strapi comes with a full featured Command Line Interface (CLI) which lets you scaffold and manage your project in seconds.
+- [커맨드 라인 인터페이스](https://docs.strapi.io/cms/cli): Strapi는 몇 초 만에 프로젝트를 스캐폴드하고 관리할 수 있는 모든 기능을 갖춘 커맨드 라인 인터페이스(CLI)를 제공합니다.
 - [Configurations](https://docs.strapi.io/cms/configurations): Learn how you can manage and customize the configuration of your Strapi application.
 - [API calls configuration](https://docs.strapi.io/cms/configurations/api): Strapi's default API parameters can be configured.
 - [CRON jobs](https://docs.strapi.io/cms/configurations/cron): Strapi allows you to configure cron jobs for execution at specific dates and times, with optional reoccurrence rules.
@@ -73,54 +73,54 @@
 - [Plugins configuration](https://docs.strapi.io/cms/configurations/plugins): Strapi plugins have a single entry point file to define their configurations.
 - [Server configuration](https://docs.strapi.io/cms/configurations/server): Strapi offers a single entry point file for its server configuration.
 - [TypeScript configuration](https://docs.strapi.io/cms/configurations/typescript): How to configure Strapi for TypeScript development.
-- [Customization](https://docs.strapi.io/cms/customization): Learn more about Strapi 5 customization possibilities
+- [커스터마이징](https://docs.strapi.io/cms/customization): Strapi 5의 다양한 커스터마이징 가능성을 알아보세요
 - [Database migrations](https://docs.strapi.io/cms/database-migrations): Strapi database migrations are ways to modify the database
 - [Database transactions](https://docs.strapi.io/cms/database-transactions): Conceptual guide to transactions in Strapi
-- [Deployment](https://docs.strapi.io/cms/deployment): Learn how to develop locally with Strapi and deploy Strapi with various hosting options.
-- [Error handling](https://docs.strapi.io/cms/error-handling): With Strapi's error handling feature it's easy to send and receive errors in your application.
-- [Admin panel](https://docs.strapi.io/cms/features/admin-panel): Learn to use the admin panel.
-- [API Tokens](https://docs.strapi.io/cms/features/api-tokens): Learn how you can use API tokens to manage end-users authentication.
-- [Audit Logs](https://docs.strapi.io/cms/features/audit-logs): Learn how you can use the Audit Logs feature of Strapi 5.
-- [Content History](https://docs.strapi.io/cms/features/content-history): Learn how you can use the Content History feature of Strapi 5 to browse and restore previous versions of documents from the Content Manager.
-- [Content Manager](https://docs.strapi.io/cms/features/content-manager): Learn to use the Content Manager.
+- [배포](https://docs.strapi.io/cms/deployment): Strapi를 사용하여 로컬에서 개발하고 다양한 호스팅 옵션으로 Strapi를 배포하는 방법을 알아보세요.
+- [에러 처리](https://docs.strapi.io/cms/error-handling): Strapi의 에러 처리 기능을 통해 애플리케이션에서 에러를 쉽게 송수신할 수 있습니다.
+- [관리자 패널](https://docs.strapi.io/cms/features/admin-panel): 관리자 패널 사용법을 알아보세요.
+- [API 토큰](https://docs.strapi.io/cms/features/api-tokens): API 토큰을 사용하여 엔드유저 인증을 관리하는 방법을 알아보세요.
+- [감사 로그](https://docs.strapi.io/cms/features/audit-logs): Strapi 5의 감사 로그(Audit Logs) 기능을 사용하는 방법을 알아보세요.
+- [콘텐츠 이력](https://docs.strapi.io/cms/features/content-history): Strapi 5의 콘텐츠 이력(Content History) 기능을 사용하여 콘텐츠 매니저에서 문서의 이전 버전을 탐색하고 복원하는 방법을 알아보세요.
+- [콘텐츠 매니저](https://docs.strapi.io/cms/features/content-manager): 콘텐츠 매니저 사용법을 알아보세요.
 - [Content-type Builder](https://docs.strapi.io/cms/features/content-type-builder): Learn to use the Content-type Builder.
 - [Custom Fields](https://docs.strapi.io/cms/features/custom-fields): Learn how you can use custom fields to extend Strapi's content-types capabilities.
-- [Data Management](https://docs.strapi.io/cms/features/data-management): Learn to use the Data Management to import, export, or transfer data between different Strapi instances.
-- [Draft & Publish](https://docs.strapi.io/cms/features/draft-and-publish): Learn how you can use the Draft & Publish feature of Strapi 5 to manage drafts for content.
-- [Email](https://docs.strapi.io/cms/features/email): Send email from your server or externals providers.
-- [Internationalization](https://docs.strapi.io/cms/features/internationalization): Learn how to use the Internationalization (i18n) feature that enables content managers to translate the content
-- [Media Library](https://docs.strapi.io/cms/features/media-library): Learn to use the Media Library which allows to display and manage all assets uploaded in the application.
-- [Preview](https://docs.strapi.io/cms/features/preview): With the Preview feature, you can preview your front-end directly from the Content Manager
+- [데이터 관리](https://docs.strapi.io/cms/features/data-management): 데이터 관리 기능을 사용해 서로 다른 Strapi 인스턴스 간 데이터 가져오기, 내보내기, 전송을 수행하는 방법을 알아보세요.
+- [드래프트 & 발행](https://docs.strapi.io/cms/features/draft-and-publish): Strapi 5의 드래프트 & 발행 기능을 활용해 콘텐츠 초안을 관리하는 방법을 알아보세요.
+- [이메일](https://docs.strapi.io/cms/features/email): 서버 또는 외부 제공업체를 통해 이메일을 발송하세요.
+- [국제화(i18n)](https://docs.strapi.io/cms/features/internationalization): 콘텐츠 관리자가 콘텐츠를 번역할 수 있도록 해주는 국제화(i18n) 기능 사용법을 알아보세요.
+- [미디어 라이브러리](https://docs.strapi.io/cms/features/media-library): 애플리케이션에 업로드된 모든 에셋을 표시하고 관리할 수 있는 미디어 라이브러리 사용법을 알아보세요.
+- [미리보기](https://docs.strapi.io/cms/features/preview): 미리보기 기능을 통해 Content Manager에서 프론트엔드 결과를 바로 확인할 수 있습니다.
 - [Role-Based Access Control (RBAC)](https://docs.strapi.io/cms/features/rbac): Learn to use the RBAC feature which allows to manage the users of the admin panel.
 - [Releases](https://docs.strapi.io/cms/features/releases): Learn how to use the Releases feature that enables content managers to organize entries to publish/unpublish simultaneously
-- [Review Workflows](https://docs.strapi.io/cms/features/review-workflows): Learn how to use the Review Workflows feature that enables the creation and management of workflows for your various content-types
-- [Single Sign-On (SSO)](https://docs.strapi.io/cms/features/sso): Learn to use the SSO feature which manages authentication through an identity provider.
-- [Users & Permissions](https://docs.strapi.io/cms/features/users-permissions): Learn to use the Users & Permissions and API tokens features to manage end-users.
-- [Installation](https://docs.strapi.io/cms/installation): Learn many different options to install Strapi and getting started on using it.
+- [리뷰 워크플로우](https://docs.strapi.io/cms/features/review-workflows): 다양한 콘텐츠 타입에 대한 워크플로우를 생성 및 관리할 수 있는 리뷰 워크플로우(Review Workflows) 기능 사용법을 알아보세요.
+- [싱글 사인온(SSO)](https://docs.strapi.io/cms/features/sso): SSO(싱글 사인온) 기능을 사용하여 외부 인증 제공업체를 통한 인증을 관리하는 방법을 알아보세요.
+- [사용자 및 권한(Users & Permissions)](https://docs.strapi.io/cms/features/users-permissions): 엔드유저 관리를 위한 Users & Permissions 및 API 토큰 기능 사용법을 알아보세요.
+- [설치](https://docs.strapi.io/cms/installation): Strapi를 설치하고 사용을 시작하는 다양한 옵션을 알아보세요.
 - [Additional resources for migrating to Strapi 5](https://docs.strapi.io/cms/migration/v4-to-v5/additional-resources/introduction): The following pages cover some dedicated topics for specific use cases when upgrading to Strapi 5. Please ensure you have read the [introduction to up...
 - [Breaking changes](https://docs.strapi.io/cms/migration/v4-to-v5/breaking-changes): View the list of all breaking changes introduced between Strapi v4 and v5.
-- [Upgrading to Strapi 5 - Introduction and FAQ](https://docs.strapi.io/cms/migration/v4-to-v5/introduction-and-faq): Learn more about how to upgrade to Strapi 5
+- [Strapi 5로 업그레이드 - 소개 및 FAQ](https://docs.strapi.io/cms/migration/v4-to-v5/introduction-and-faq): Strapi 5로 업그레이드하는 방법에 대해 자세히 알아보세요
 - [Step-by-step guide to upgrade to Strapi 5](https://docs.strapi.io/cms/migration/v4-to-v5/step-by-step): Follow this step-by-step guide to upgrade from Strapi v4 to Strapi 5
 - [Admin Panel API](https://docs.strapi.io/cms/plugins-development/admin-panel-api): A Strapi plugin can interact with both the [back end](/cms/plugins-development/server-api) and the front end of a Strapi application. The Admin Panel ...
 - [Content Manager APIs](https://docs.strapi.io/cms/plugins-development/content-manager-apis): The Content Manager APIs reference lists the APIs available to plugins for adding actions and options to the Content Manager List view and Edit view.
-- [Plugin creation & setup](https://docs.strapi.io/cms/plugins-development/create-a-plugin): Learn how to use the Plugin SDK to build and publish a Strapi plugin
-- [Developing plugins](https://docs.strapi.io/cms/plugins-development/developing-plugins): Generation introduction about Strapi plugins development
+- [플러그인 생성 및 설정](https://docs.strapi.io/cms/plugins-development/create-a-plugin): Plugin SDK를 사용하여 Strapi 플러그인을 빌드하고 게시하는 방법을 알아보세요
+- [플러그인 개발](https://docs.strapi.io/cms/plugins-development/developing-plugins): Strapi 플러그인 개발에 대한 일반적인 소개
 - [How to create components for Strapi plugins](https://docs.strapi.io/cms/plugins-development/guides/create-components-for-plugins): Learn how to create and configure components for your Strapi plugins
 - [How to pass data from server to admin panel with a Strapi plugin](https://docs.strapi.io/cms/plugins-development/guides/pass-data-from-server-to-admin): Learn how to pass data from server to admin panel with a Strapi plugin
 - [How to store and access data from a Strapi plugin](https://docs.strapi.io/cms/plugins-development/guides/store-and-access-data): Learn how to store and access data from a Strapi plugin
-- [Plugin SDK](https://docs.strapi.io/cms/plugins-development/plugin-sdk): Reference documentation for Strapi's Plugin SDK commands
-- [Plugin structure](https://docs.strapi.io/cms/plugins-development/plugin-structure): Learn more about the structure of a Strapi plugin
-- [Plugins extension](https://docs.strapi.io/cms/plugins-development/plugins-extension): Strapi comes with plugins that can be installed from the [Marketplace](/cms/plugins/installing-plugins-via-marketplace#installing-marketplace-plugins-...
-- [Server API for plugins](https://docs.strapi.io/cms/plugins-development/server-api): Strapi's Server API for plugins allows a Strapi plugin to customize the back end part (i.e. the server) of your application.
+- [플러그인 SDK](https://docs.strapi.io/cms/plugins-development/plugin-sdk): Strapi의 플러그인 SDK 명령어에 대한 참조 문서
+- [플러그인 구조](https://docs.strapi.io/cms/plugins-development/plugin-structure): Strapi 플러그인의 구조에 대해 자세히 알아보세요
+- [플러그인 확장](https://docs.strapi.io/cms/plugins-development/plugins-extension): Strapi는 [마켓플레이스](/cms/plugins/installing-plugins-via-marketplace#installing-marketplace-plugins-and-providers)에서 설치하거나 npm 패키지로 설치할 수 있는 플러그인들을 제공합니다....
+- [플러그인용 서버 API](https://docs.strapi.io/cms/plugins-development/server-api): Strapi의 플러그인용 서버 API를 통해 Strapi 플러그인이 애플리케이션의 백엔드 부분(즉, 서버)을 커스터마이징할 수 있습니다.
 - [Documentation plugin](https://docs.strapi.io/cms/plugins/documentation): By using Swagger UI, the API documentation plugin takes out most of your pain to generate your documentation.
 - [GraphQL plugin](https://docs.strapi.io/cms/plugins/graphql): Use a GraphQL endpoint in your Strapi project to fetch and mutate your content.
 - [Installing Plugins via the Marketplace](https://docs.strapi.io/cms/plugins/installing-plugins-via-marketplace): Strapi comes with built-in plugins such as [Documentation](/cms/plugins/documentation), [GraphQL](/cms/plugins/graphql), and [Sentry](/cms/plugins/sen...
 - [Sentry plugin](https://docs.strapi.io/cms/plugins/sentry): Track errors in your Strapi application.
-- [Project structure](https://docs.strapi.io/cms/project-structure): Discover the project structure of any default Strapi application.
-- [Quick Start Guide - Strapi Developer Docs](https://docs.strapi.io/cms/quick-start): Get ready to get Strapi, your favorite open-source headless cms up and running in less than 3 minutes.
-- [Templates](https://docs.strapi.io/cms/templates): Use and create pre-made Strapi applications designed for a specific use case.
-- [Testing](https://docs.strapi.io/cms/testing): Learn how to test your Strapi application.
-- [TypeScript](https://docs.strapi.io/cms/typescript): Get started with TypeScript for your Strapi application
-- [TypeScript development](https://docs.strapi.io/cms/typescript/development): Learn more about TypeScript usage with Strapi 5
-- [TypeScript Guides](https://docs.strapi.io/cms/typescript/guides): Learn how you can leverage TypeScript while developing your Strapi project.
-- [Upgrade tool](https://docs.strapi.io/cms/upgrade-tool): The Strapi upgrade tool is a CLI command that helps automatically upgrading to a new Strapi version.
+- [프로젝트 구조](https://docs.strapi.io/cms/project-structure): 기본 Strapi 애플리케이션의 프로젝트 구조를 알아보세요.
+- [빠른 시작 가이드 - Strapi 개발자 문서](https://docs.strapi.io/cms/quick-start): 오픈소스 헤드리스 CMS인 Strapi를 3분 이내에 설치하고 실행하는 방법을 안내합니다.
+- [템플릿](https://docs.strapi.io/cms/templates): 특정 목적에 맞게 설계된 Strapi의 사전 제작 애플리케이션(템플릿)을 사용하거나 직접 만들어보세요.
+- [테스트](https://docs.strapi.io/cms/testing): Strapi 애플리케이션을 테스트하는 방법을 알아보세요.
+- [TypeScript](https://docs.strapi.io/cms/typescript): Strapi 애플리케이션에서 TypeScript 시작하기
+- [TypeScript 개발](https://docs.strapi.io/cms/typescript/development): Strapi 5에서 TypeScript 사용에 대해 자세히 알아보세요
+- [TypeScript 가이드](https://docs.strapi.io/cms/typescript/guides): Strapi 프로젝트를 개발하면서 TypeScript를 활용하는 방법을 알아보세요.
+- [업그레이드 도구](https://docs.strapi.io/cms/upgrade-tool): Strapi 업그레이드 도구는 새로운 Strapi 버전으로 자동 업그레이드를 도와주는 CLI 명령어입니다.

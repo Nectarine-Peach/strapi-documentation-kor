@@ -1,47 +1,47 @@
 ---
-title: Admin panel configuration
-sidebar_label: Admin panel
+title: 관리자 패널 구성
+sidebar_label: 관리자 패널
 displayed_sidebar: cmsSidebar
 toc_max_heading_level: 2
-description: Strapi's admin panel offers a single entry point file for its configuration.
+description: Strapi의 관리자 패널은 구성을 위한 단일 진입점 파일을 제공합니다.
 tags:
-- admin panel
-- API token
-- authentication
-- base configuration
-- configuration
-- minimal configuration
-- password
+- 관리자 패널
+- API 토큰
+- 인증
+- 기본 구성
+- 구성
+- 최소 구성
+- 비밀번호
 ---
 
-# Admin panel configuration
+# 관리자 패널 구성
 
-The `/config/admin` file is used to define the [admin panel](/cms/features/admin-panel) configuration for the Strapi application.
+`/config/admin` 파일은 Strapi 애플리케이션의 [관리자 패널](/cms/features/admin-panel) 구성을 정의하는 데 사용됩니다.
 
-The present page acts as a reference for all the configuration parameters and values that you can find in the `/config/admin` file, grouped by topic. For additional information on how each feature works, please refer to links given in the introduction of each sub-section.
+이 페이지는 `/config/admin` 파일에서 찾을 수 있는 모든 구성 매개변수와 값들을 주제별로 그룹화하여 참조할 수 있도록 작성되었습니다. 각 기능의 작동 방식에 대한 추가 정보는 각 하위 섹션의 소개에서 제공되는 링크를 참조하세요.
 
-## Admin panel behavior
+## 관리자 패널 동작
 
-The admin panel behavior can be configured with the following parameters:
+관리자 패널 동작은 다음 매개변수로 구성할 수 있습니다:
 
-| Parameter                         | Description                                                                                                                                                                                        | Type          | Default                                                                                                                             |
+| 매개변수                         | 설명                                                                                                                                                                                        | 타입          | 기본값                                                                                                                             |
 |-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `autoOpen`                        | Enable or disable administration opening on start.                                                                                                                                                 | boolean       | `true`                                                                                                                              |
-| `watchIgnoreFiles`                | Add custom files that should not be watched during development.<br/><br/> See more <ExternalLink to="https://github.com/paulmillr/chokidar#path-filtering" text="here" /> (property `ignored`).                                        | array(string) | `[]`                                                                                                                                |
-| `serveAdminPanel`                 | If false, the admin panel won't be served.<br/><br/>Note: the `index.html` will still be served                                            | boolean       | `true`                                                                                                                              |
+| `autoOpen`                        | 시작 시 관리자 패널 자동 열기를 활성화하거나 비활성화합니다.                                                                                                                                                 | boolean       | `true`                                                                                                                              |
+| `watchIgnoreFiles`                | 개발 중에 감시하지 않을 커스텀 파일을 추가합니다.<br/><br/> 자세한 내용은 <ExternalLink to="https://github.com/paulmillr/chokidar#path-filtering" text="여기" />를 참조하세요 (`ignored` 속성).                                        | array(string) | `[]`                                                                                                                                |
+| `serveAdminPanel`                 | false인 경우 관리자 패널이 서비스되지 않습니다.<br/><br/>참고: `index.html`은 여전히 서비스됩니다                                            | boolean       | `true`                                                                                                                              |
 
-:::note config/admin vs. src/admin/app configurations
-Some UI elements of the admin panel must be configured in the `src/admin/app` file:
+:::note config/admin vs. src/admin/app 구성
+관리자 패널의 일부 UI 요소는 `src/admin/app` 파일에서 구성해야 합니다:
 
-**Tutorial videos**  
-To disable the information box containing the tutorial videos, set the `config.tutorials` key to `false`.
+**튜토리얼 비디오**  
+튜토리얼 비디오가 포함된 정보 박스를 비활성화하려면 `config.tutorials` 키를 `false`로 설정하세요.
 
-**Releases notifications**  
-To disable notifications about new Strapi releases, set the `config.notifications.releases` key to `false`.
+**릴리즈 알림**  
+새로운 Strapi 릴리즈에 대한 알림을 비활성화하려면 `config.notifications.releases` 키를 `false`로 설정하세요.
 
 ```js title="/src/admin/app.js"
 const config = {
-  // … other customization options go here
+  // … 다른 커스터마이제이션 옵션들
   tutorials: false,
   notifications: { releases: false },
 };
@@ -53,39 +53,39 @@ export default {
 
 :::
 
-## Admin panel server 
+## 관리자 패널 서버 
 
-By default, Strapi's admin panel is exposed via `http://localhost:1337/admin`. For security reasons, the host, port, and path can be updated.
+기본적으로 Strapi의 관리자 패널은 `http://localhost:1337/admin`을 통해 노출됩니다. 보안상의 이유로 호스트, 포트, 경로를 업데이트할 수 있습니다.
 
 
-The server configuration for the admin panel can be configured with the following parameters:
+관리자 패널의 서버 구성은 다음 매개변수로 구성할 수 있습니다:
 
-| Parameter                         | Description                                                                                                                                                                                        | Type          | Default                                                                                                                             |
+| 매개변수                         | 설명                                                                                                                                                                                        | 타입          | 기본값                                                                                                                             |
 |-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `url`                             | Path to access the admin panel. If the URL is relative, it will be concatenated with the server URL.<br/><br/>Example: `/dashboard` makes the admin panel accessible at `http://localhost:1337/dashboard`.                                                                                | string        | `/admin`                                                                                                                            |
-| `host`                            | Host for the admin panel server. | string        | `localhost`                                                                                                                         |
-| `port`                            | Port for the admin panel server. | string        | `8000`                                                                                                                              |
+| `url`                             | 관리자 패널에 접근하는 경로입니다. URL이 상대적이면 서버 URL과 연결됩니다.<br/><br/>예시: `/dashboard`는 관리자 패널을 `http://localhost:1337/dashboard`에서 접근 가능하게 만듭니다.                                                                                | string        | `/admin`                                                                                                                            |
+| `host`                            | 관리자 패널 서버의 호스트입니다. | string        | `localhost`                                                                                                                         |
+| `port`                            | 관리자 패널 서버의 포트입니다. | string        | `8000`                                                                                                                              |
 
 :::note
-If you add a path to the `url` option, it won't prefix your application. To do so, use a proxy server like Nginx (see [optional software deployment guides](/cms/deployment#additional-resources)).
+`url` 옵션에 경로를 추가해도 애플리케이션에 접두사가 붙지 않습니다. 이를 위해서는 Nginx와 같은 프록시 서버를 사용하세요([선택적 소프트웨어 배포 가이드](/cms/deployment#additional-resources) 참고).
 :::
 
-### Update the admin panel's path only
+### 관리자 패널의 경로만 업데이트
 
-To make the admin panel accessible at another path, for instance at `http://localhost:1337/dashboard`, define or update the `url` property:
+관리자 패널을 다른 경로에서 접근 가능하게 하려면, 예를 들어 `http://localhost:1337/dashboard`에서, `url` 속성을 정의하거나 업데이트하세요:
 
 ```js title="/config/admin.js"
 module.exports = ({ env }) => ({
-  // … other configuration properties
+  // … 다른 구성 속성들
   url: "/dashboard",
 });
 ```
 
-Since by default the back-end server and the admin panel server run on the same host and port, only updating the `config/admin` file should work if you left the `host` and `port` property values untouched in the back-end [server configuration](/cms/configurations/server) file.
+기본적으로 백엔드 서버와 관리자 패널 서버가 같은 호스트와 포트에서 실행되므로, 백엔드 [서버 구성](/cms/configurations/server) 파일에서 `host`와 `port` 속성 값을 그대로 두었다면 `config/admin` 파일만 업데이트하면 됩니다.
 
-### Update the admin panel's host and port
+### 관리자 패널의 호스트와 포트 업데이트
 
-If the admin panel server and the back-end server are not hosted on the same server, you will need to update the host and port of the admin panel. For example, to host the admin panel on `my-host.com:3000`:
+관리자 패널 서버와 백엔드 서버가 같은 서버에 호스팅되지 않는 경우, 관리자 패널의 호스트와 포트를 업데이트해야 합니다. 예를 들어, 관리자 패널을 `my-host.com:3000`에서 호스팅하려면:
 
 <Tabs groupId="js-ts">
 <TabItem value="js" label="JavaScript">
@@ -94,7 +94,7 @@ If the admin panel server and the back-end server are not hosted on the same ser
 module.exports = ({ env }) => ({
   host: "my-host.com",
   port: 3000,
-  // Additionally you can define another path instead of the default /admin one 👇
+  // 추가로 기본 /admin 대신 다른 경로를 정의할 수도 있습니다 👇
   // url: '/dashboard' 
 });
 ```
@@ -106,7 +106,7 @@ module.exports = ({ env }) => ({
 export default ({ env }) => ({
   host: "my-host.com",
   port: 3000,
-  // Additionally you can define another path instead of the default /admin one 👇
+  // 추가로 기본 /admin 대신 다른 경로를 정의할 수도 있습니다 👇
   // url: '/dashboard'
 });
 ```
@@ -114,15 +114,15 @@ export default ({ env }) => ({
 </TabItem>
 </Tabs>
 
-### Deploy on different servers {#deploy-on-different-servers}
+### 다른 서버에 배포 {#deploy-on-different-servers}
 
-Unless you chose to deploy Strapi's back-end server and admin panel server on different servers, by default:
-- The back-end server and the admin panel server both run on the same host and port (`http://localhost:1337/`)
-- The admin panel is accessible at the `/admin` path while the back-end server is accessible at the `/api` path
+Strapi의 백엔드 서버와 관리자 패널 서버를 다른 서버에 배포하지 않는 한, 기본적으로:
+- 백엔드 서버와 관리자 패널 서버는 모두 같은 호스트와 포트에서 실행됩니다(`http://localhost:1337/`)
+- 관리자 패널은 `/admin` 경로에서 접근 가능하고 백엔드 서버는 `/api` 경로에서 접근 가능합니다
 
-To deploy the admin panel and the back-end on completely different servers, you need to configure both the server (`/config/server`) and admin panel (`/config/admin-panel`) configurations.
+관리자 패널과 백엔드를 완전히 다른 서버에 배포하려면, 서버(`/config/server`)와 관리자 패널(`/config/admin-panel`) 구성을 모두 설정해야 합니다.
 
-The following example setup allows you to serve the admin panel from one domain while the API runs on another:
+다음 예시 설정을 통해 API가 다른 도메인에서 실행되는 동안 한 도메인에서 관리자 패널을 서비스할 수 있습니다:
 
 <Tabs groupId="js-ts">
 <TabItem value="js" label="JavaScript">
@@ -138,11 +138,11 @@ module.exports = ({ env }) => ({
 ```js title="/config/admin.js"
 module.exports = ({ env }) => ({
   /**
-   * Note: The administration will be accessible from the root of the domain 
-   * (ex: http://yourfrontend.com/)
+   * 참고: 관리자 패널이 도메인의 루트에서 접근 가능합니다
+   * (예: http://yourfrontend.com/)
    */ 
   url: "/",
-  serveAdminPanel: false, // http://yourbackend.com will not serve any static admin files
+  serveAdminPanel: false, // http://yourbackend.com은 정적 관리자 파일을 서비스하지 않습니다
 });
 ```
 
@@ -160,42 +160,42 @@ export default ({ env }) => ({
 ```js title="/config/admin.ts"
 export default ({ env }) => ({
   /**
-   * Note: The administration will be accessible from the root of the domain 
-   * (ex: http://yourfrontend.com/)
+   * 참고: 관리자 패널이 도메인의 루트에서 접근 가능합니다
+   * (예: http://yourfrontend.com/)
    */ 
   url: "/",
-  serveAdminPanel: false, // http://yourbackend.com will not serve any static admin files
+  serveAdminPanel: false, // http://yourbackend.com은 정적 관리자 파일을 서비스하지 않습니다
 });
 ```
 
 </TabItem>
 </Tabs>
 
-With this configuration:
-- The admin panel will be accessible at `http://yourfrontend.com` 
-- All API requests from the panel will be sent to `http://yourbackend.com`
-- The backend server will not serve any static admin files due to `serveAdminPanel: false`
+이 구성으로:
+- 관리자 패널은 `http://yourfrontend.com`에서 접근 가능합니다
+- 패널의 모든 API 요청은 `http://yourbackend.com`으로 전송됩니다
+- `serveAdminPanel: false`로 인해 백엔드 서버는 정적 관리자 파일을 서비스하지 않습니다
 
-## API tokens
+## API 토큰
 
-The [API tokens](/cms/features/api-tokens) feature can be configured with the following parameters:
+[API 토큰](/cms/features/api-tokens) 기능은 다음 매개변수로 구성할 수 있습니다:
 
-| Parameter                         | Description                                                                                                                                                                                        | Type          | Default                                                                                                                             |
+| 매개변수                         | 설명                                                                                                                                                                                        | 타입          | 기본값                                                                                                                             |
 |-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `apiToken.salt`                   | Salt used to generate API tokens                                                                                                                            | string        | Random string                                                                                                                       |
-| `apiToken.secrets.encryptionKey`   | Encryption key used to set API tokens visibility in the admin panel | string | Random string |
+| `apiToken.salt`                   | API 토큰 생성에 사용되는 솔트                                                                                                                            | string        | 랜덤 문자열                                                                                                                       |
+| `apiToken.secrets.encryptionKey`   | 관리자 패널에서 API 토큰 가시성을 설정하는 데 사용되는 암호화 키 | string | 랜덤 문자열 |
 
-## Audit logs
+## 감사 로그
 
-The [Audit Logs](/cms/features/audit-logs) feature can be configured with the following parameters:
+[감사 로그](/cms/features/audit-logs) 기능은 다음 매개변수로 구성할 수 있습니다:
 
-| Parameter                         | Description                                                                                                                                                                                        | Type          | Default                                                                                                                             |
+| 매개변수                         | 설명                                                                                                                                                                                        | 타입          | 기본값                                                                                                                             |
 |-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `auditLogs.enabled`               | Enable or disable the Audit Logs feature                                                                                                                         | boolean       | `true`                                                                                                                              |
-| `auditLogs.retentionDays`         | How long Audit Logs are kept, in days.<br /><br />_The behavior differs for self-hosted vs. Strapi Cloud customers, see the note under the table._               | integer       | 90                                                                                                                                  |
+| `auditLogs.enabled`               | 감사 로그 기능을 활성화하거나 비활성화합니다                                                                                                                         | boolean       | `true`                                                                                                                              |
+| `auditLogs.retentionDays`         | 감사 로그가 보관되는 기간(일 단위)입니다.<br /><br />_자체 호스팅 vs. Strapi Cloud 고객에 대한 동작이 다릅니다. 표 아래 참고사항을 참조하세요._               | integer       | 90                                                                                                                                  |
 
-:::note Retention days for self-hosted vs. Strapi Cloud users
-For Strapi Cloud customers, the `auditLogs.retentionDays` value stored in the license information is used, unless a _smaller_ `retentionDays` value is defined in the `config/admin.js|ts` configuration file.
+:::note 자체 호스팅 vs. Strapi Cloud 사용자의 보관 일수
+Strapi Cloud 고객의 경우, `config/admin.js|ts` 구성 파일에서 _더 작은_ `retentionDays` 값이 정의되지 않는 한, 라이선스 정보에 저장된 `auditLogs.retentionDays` 값이 사용됩니다.
 :::
 
 ## Authentication
